@@ -1,6 +1,6 @@
 ---
 title: "Test_document"
-author: "Tian Walker"
+author: "Tian Walker, Dominik Graetz"
 date: "2022-11-17"
 output: html_document
 ---
