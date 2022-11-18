@@ -75,8 +75,8 @@ mexico <- mexico %>%
   filter(age >=50, crp <5)
 
 mexico
-
-
+library(psych)
+describe(mexico$age)
 ```
 
 ```{r}
