@@ -1,12 +1,57 @@
 ---
-title: "Final_Groupof5"
-author: "Tian Walker, Brittany Spinner"
-date: "2022-11-18"
-output: html_document
+title             : "Diabetes title."
+shorttitle        : "Short title for diabetes."
+
+author: 
+  - name          : "Dominik Grätz"
+    affiliation   : "1"
+    email         : "dgrtz@uoregon.edu"
+  - name          : "Rachel Miller-Moudgil"
+    affiliation   : "1"
+    email         : "rmillerm@uoregon.edu"
+  - name          : "Amber Somarriba"
+    affiliation   : "1"
+    email         : "asomarri@uoregon.edu"
+  - name          : "Brittany Spinner"
+    affiliation   : "1"
+    email         : "bspinner@uoregon.edu"
+  - name          : "Tian Walker"
+    affiliation   : "1"
+    email         : "twalker@uoregon.edu"
+
+affiliation:
+  - id            : "1"
+    institution   : "University of Oregon"
+    
+authornote: "List of group members ordered by alphabet."
+
+abstract: "The abstract goes here."
+
+keywords          : "Diabetes, access to care, Mexico, China"
+wordcount         : "X (this cannot easily be done automatically, we can also just leave it out)"
+
+bibliography      : ["../r-references.bib"]
+
+floatsintext      : yes
+figurelist        : yes
+tablelist         : no
+footnotelist      : no
+linenumbers       : no
+mask              : no
+draft             : no
+
+documentclass     : "apa6"
+classoption       : "man"
+output            : papaja::apa6_pdf
 ---
 
+
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(cache = TRUE)
+library(tidyverse)
+library(rio)
+library(here)
+library(papaja)
 ```
 
 ```{r}
@@ -18,8 +63,8 @@ knitr::opts_chunk$set(echo = TRUE)
 #left_join(china_bio, by = 'id')
 
 #china_raw_dat <- china |>
-  #select(income, q4022,  sex = q0406 , q0407, hba1c, crp, q4023a, q4024, weight = q2507, height = q2506, waist = q2508, marriage = q0408, q2000:q2024 ) |>
-  #rename(diagnosis = q4022, age = q0407, medication = q4023a, dt_exrcse = q4024 )
+#select(income, q4022,  sex = q0406 , q0407, hba1c, crp, q4023a, q4024, weight = q2507, height = q2506, waist = q2508, marriage = q0408, q2000:q2024 ) |>
+#rename(diagnosis = q4022, age = q0407, medication = q4023a, dt_exrcse = q4024 )
 
 #write_csv(china_raw_dat, file = "china_raw_dat.csv")
 ```
@@ -36,8 +81,8 @@ knitr::opts_chunk$set(echo = TRUE)
 #left_join(mex_bio, by = 'id')
 
 #mexico_raw_dat <- mexico %>% 
- # select(income, q4022,  sex = q0406 , q0407, hba1c, crp, q4023a, q4024, weight = q2507, height = q2506, waist = q2508, marriage = q0408, q2000:q2024 ) |>
-  #rename(diagnosis = q4022, age = q0407, medication = q4023a, dt_exrcse = q4024 )
+# select(income, q4022,  sex = q0406 , q0407, hba1c, crp, q4023a, q4024, weight = q2507, height = q2506, waist = q2508, marriage = q0408, q2000:q2024 ) |>
+#rename(diagnosis = q4022, age = q0407, medication = q4023a, dt_exrcse = q4024 )
 
 #write_csv(mexico_raw_dat, file = "mexico_raw_dat.csv")
 
@@ -50,15 +95,30 @@ library(tidyverse)
 library(rio)
 ```
 
+# Introduction
+
+Enter text/code here. I make a reference here [@example_ref].
+**This is just copied from the outline document; needs to be rewritten/references automated!**
+
+## About the data:
+We will be using two datasets from the Wave 1 Study on Global Ageing (SAGE) from the World Health Organization (WHO). We will be looking at inflammation (measured through C-reactive protein; crp) and hemoglobin A1c (average blood glucose level over the last three months) to better understand the relationship between inflammation and diabetes in Mexico and China. Observations of the potential association between diabetes and inflammation were initially made over 100 years ago (Williamson, 1901), and we now know that inflammation is a pathogenic mediator in the progression of diabetes, and likely has a causal role in some cases as well (Tsalamandris et al., 2019). The relationship between inflammation and diabetes is multifaceted but we know that decreasing inflammation means decreasing diabetes progression and complications (Agrawal & Kant, 2014).
+The data is from two datasets designed exactly the same: one from Mexico and one from China. The data frame for China has 13,367 observations from 1,489 variables. In the dataset from Mexico there are 2,315 observations of 1690 variables. Everything else is the same as the dataset from China. Almost all of the variables are numbers or characters, and the data was originally formatted in SPSS (statistical package for the social sciences). There were more people who did the survey than did the biomarker collection (source of CRP and HbA1c data) so the number of data points in our study is smaller than the full dataset. There is demographic information along with many health-related validated scales. We have listed the variables that we will be looking at below
+
+## Why China and Mexico?
+
+China and Mexico are interesting places to study the relationship between diabetes and inflammation because they are both classified as low to middle income countries (LMIC’s) where 80% of the global burden of diabetes falls. Additionally, diabetes is a leading cause of death in Mexico and closely linked to the obesity epidemic. China experienced a famine that likely created an epigenetic environment that makes people prone to diabetes. Obesity is a relatively new phenomenon in China and so the pathophysiology of disease development may be different than other places where obesity has been a major issue for decades. 
+
+
+# Methods
+
+
+# Results
+
+Enter text/code here. Let's do all the coding here!
 
 ```{r}
 china <- import(here("data","china_raw_dat.csv"))
-
-
 mexico <- import(here("data","mexico_raw_dat.csv"))
-
-
-
 ```
 
 ```{r}
@@ -68,39 +128,94 @@ mexico <- import(here("data","mexico_raw_dat.csv"))
 
 #we also want to filter anyone younger than 50 as they are solely a reference group not used in this analysis
 
-china <- china %>% 
-  filter(age >=50, crp <5)
+#adding the countries
+china <- china %>%
+  mutate(country = "China")
 
-mexico <- mexico %>% 
-  filter(age >=50, crp <5)
+mexico <- mexico %>%
+  mutate(country = "Mexico")
 
-mexico
-library(psych)
-describe(mexico$age)
+#combining data into one, log transform
+data <- bind_rows(china, mexico) %>%
+  mutate(hba1c_log = log(hba1c), .after = hba1c) %>%
+  filter(age >=50, crp <5)
 ```
 
 ```{r}
 #dichotomized variable for blood sugar that is in range or not
 #diabetes variable that includes people who are undiagnosed (i.e. hba1c above 6.5 but no diabetes diagnosis)
 
-china <- china %>% 
- mutate(a1c_dichot_words = ifelse(hba1c>= 6.5, "elevated", "in-range" )) |>
-mutate(diabetes=if_else(diagnosis==1|hba1c>6.5,1,0))
-
-mexico <- mexico %>% 
- mutate(a1c_dichot_words = ifelse(hba1c>= 6.5, "elevated", "in-range" )) |>
-mutate(diabetes=if_else(diagnosis==1|hba1c>6.5,1,0))
-
+data <- data %>% 
+  mutate(a1c_dichot_words = ifelse(hba1c>= 6.5, "elevated", "in-range" )) %>%
+  mutate(diabetes=if_else(diagnosis==1|hba1c>6.5,1,0))
 ```
 
 ```{r}
 #variable that indicates whether someone was doing both medication and diet/exercise intervention
 
-china <- china |>
-mutate(both_trtmnt = ifelse( medication ==1|dt_exrcse==1, 1, 0))
-
-mexico <- mexico |>
-mutate(both_trtmnt = ifelse( medication ==1|dt_exrcse==1, 1, 0))
+data <- data %>%
+  mutate(both_trtmnt = ifelse( medication ==1|dt_exrcse==1, 1, 0))
 
 ```
+
+```{r}
+#get descriptives
+
+summary <- data %>%
+  group_by(country) %>%
+  summarize(N = n(),
+            N_male = length(sex[sex == 1]), #1 is male
+            N_male_pct = N_male/N,
+            N_female = length(sex[sex == 2]),
+            N_female_pct = N_female/N,
+            diabetes_yes = length(diabetes[diabetes == 1]),
+            diabetes_pct = diabetes_yes/N,
+            age_M = mean(age),
+            age_SD = sd(age))
+
+descr <- summary %>%
+  t() %>%
+  as.data.frame() %>%
+  rownames_to_column()
+# 
+# kbl(descr, caption = "caption") %>%
+#   pack_rows(Gender = )
+# 
+# apa_table(summary, caption = "Descriptives.")
+```
+
+|      | China|Mexico|
+|:----:|:----:|:----|
+|N |Cell2 |Cell2|
+|Cell2 |cell3 |Cell2|
+|Cell4 |Cell5 |Cell2|
+
+
+
+# Discussion
+
+Enter text/code here.
+
+\newpage
+
+# References
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

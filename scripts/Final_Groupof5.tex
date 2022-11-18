@@ -33,6 +33,16 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -178,16 +188,37 @@ The abstract goes here.
 \section{Introduction}\label{introduction}}
 
 Enter text/code here. I make a reference here (Deshpande, Harris-Hayes, \& Schootman, 2008).
+\textbf{This is just copied from the outline document; needs to be rewritten/references automated!}
+
+\hypertarget{about-the-data}{%
+\subsection{About the data:}\label{about-the-data}}
+
+We will be using two datasets from the Wave 1 Study on Global Ageing (SAGE) from the World Health Organization (WHO). We will be looking at inflammation (measured through C-reactive protein; crp) and hemoglobin A1c (average blood glucose level over the last three months) to better understand the relationship between inflammation and diabetes in Mexico and China. Observations of the potential association between diabetes and inflammation were initially made over 100 years ago (Williamson, 1901), and we now know that inflammation is a pathogenic mediator in the progression of diabetes, and likely has a causal role in some cases as well (Tsalamandris et al., 2019). The relationship between inflammation and diabetes is multifaceted but we know that decreasing inflammation means decreasing diabetes progression and complications (Agrawal \& Kant, 2014).
+The data is from two datasets designed exactly the same: one from Mexico and one from China. The data frame for China has 13,367 observations from 1,489 variables. In the dataset from Mexico there are 2,315 observations of 1690 variables. Everything else is the same as the dataset from China. Almost all of the variables are numbers or characters, and the data was originally formatted in SPSS (statistical package for the social sciences). There were more people who did the survey than did the biomarker collection (source of CRP and HbA1c data) so the number of data points in our study is smaller than the full dataset. There is demographic information along with many health-related validated scales. We have listed the variables that we will be looking at below
+
+\hypertarget{why-china-and-mexico}{%
+\subsection{Why China and Mexico?}\label{why-china-and-mexico}}
+
+China and Mexico are interesting places to study the relationship between diabetes and inflammation because they are both classified as low to middle income countries (LMIC's) where 80\% of the global burden of diabetes falls. Additionally, diabetes is a leading cause of death in Mexico and closely linked to the obesity epidemic. China experienced a famine that likely created an epigenetic environment that makes people prone to diabetes. Obesity is a relatively new phenomenon in China and so the pathophysiology of disease development may be different than other places where obesity has been a major issue for decades.
 
 \hypertarget{methods}{%
 \section{Methods}\label{methods}}
 
-Enter text/code here.
-
 \hypertarget{results}{%
 \section{Results}\label{results}}
 
-Enter text/code here.
+Enter text/code here. Let's do all the coding here!
+
+\begin{longtable}[]{@{}ccl@{}}
+\toprule()
+& China & Mexico \\
+\midrule()
+\endhead
+Cell1 & Cell2 & Cell2 \\
+Cell2 & cell3 & Cell2 \\
+Cell4 & Cell5 & Cell2 \\
+\bottomrule()
+\end{longtable}
 
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
