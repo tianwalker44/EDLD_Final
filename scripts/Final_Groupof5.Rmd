@@ -1,0 +1,102 @@
+---
+title: "Final_Groupof5"
+author: "Tian Walker"
+date: "2022-11-18"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#code used to create extracted data file - China 
+#china_survey <- import("China_IND.sav") 
+#china_bio <- import( "ChinaLABData.csv", setclass = "tbl_df")
+#china_survey$id <- as.numeric(china_survey$id)
+#china <- china_survey %>%
+#left_join(china_bio, by = 'id')
+
+#china_raw_dat <- china |>
+  #select(income, q4022,  sex = q0406 , q0407, hba1c, crp, q4023a, q4024, weight = q2507, height = q2506, waist = q2508, marriage = q0408, q2000:q2024 ) |>
+  #rename(diagnosis = q4022, age = q0407, medication = q4023a, dt_exrcse = q4024 )
+
+#write_csv(china_raw_dat, file = "china_raw_dat.csv")
+```
+
+```{r}
+#code used to create extracted data file - Mexico 
+
+#mex_survey <- import("Mexico_IND.sav")
+
+#mex_bio <- import("MexicoLabData.csv")
+
+#mex_survey$id <- as.numeric(mex_survey$id)
+#mexico <- mex_survey %>%
+#left_join(mex_bio, by = 'id')
+
+#mexico_raw_dat <- mexico %>% 
+ # select(income, q4022,  sex = q0406 , q0407, hba1c, crp, q4023a, q4024, weight = q2507, height = q2506, waist = q2508, marriage = q0408, q2000:q2024 ) |>
+  #rename(diagnosis = q4022, age = q0407, medication = q4023a, dt_exrcse = q4024 )
+
+#write_csv(mexico_raw_dat, file = "mexico_raw_dat.csv")
+
+```
+
+
+```{r}
+library(needs)
+needs(here, rio, tidyverse)
+```
+
+
+```{r}
+china <- import(here("data","china_raw_dat.csv"))
+
+
+mexico <- import(here("data","mexico_raw_dat.csv"))
+
+
+```
+
+```{r}
+#variable creation and cleaning 
+
+#Must filter CRP greater than 5 because such values indicate infection which we don't want
+
+#we also want to filter anyone younger than 50 as they are solely a reference group not used in this analysis
+
+china <- china %>% 
+  filter(age >=50, crp <5)
+
+mexico <- mexico %>% 
+  filter(age >=50, crp <5)
+
+
+```
+
+```{r}
+#dichotomized variable for blood sugar that is in range or not
+#diabetes variable that includes people who are undiagnosed (i.e. hba1c above 6.5 but no diabetes diagnosis)
+
+china <- china %>% 
+ mutate(a1c_dichot_words = ifelse(hba1c>= 6.5, "elevated", "in-range" )) |>
+mutate(diabetes=if_else(diagnosis==1|hba1c>6.5,1,0))
+
+mexico <- mexico %>% 
+ mutate(a1c_dichot_words = ifelse(hba1c>= 6.5, "elevated", "in-range" )) |>
+mutate(diabetes=if_else(diagnosis==1|hba1c>6.5,1,0))
+
+```
+
+```{r}
+#variable that indicates whether someone was doing both medication and diet/exercise intervention
+
+china <- china |>
+mutate(both_trtmnt = ifelse( medication ==1|dt_exrcse==1, 1, 0))
+
+mexico <- mexico |>
+mutate(both_trtmnt = ifelse( medication ==1|dt_exrcse==1, 1, 0))
+
+```
+
