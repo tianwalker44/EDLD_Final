@@ -1,6 +1,6 @@
 ---
 title: "Final_Groupof5"
-author: "Tian Walker"
+author: "Tian Walker, Brittany Spinner"
 date: "2022-11-18"
 output: html_document
 ---
@@ -45,8 +45,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```{r}
-library(needs)
-needs(here, rio, tidyverse)
+library(here)
+library(tidyverse)
+library(rio)
 ```
 
 
