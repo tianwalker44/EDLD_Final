@@ -58,6 +58,7 @@ china <- import(here("data","china_raw_dat.csv"))
 mexico <- import(here("data","mexico_raw_dat.csv"))
 
 
+
 ```
 
 ```{r}
@@ -72,6 +73,8 @@ china <- china %>%
 
 mexico <- mexico %>% 
   filter(age >=50, crp <5)
+
+mexico
 
 
 ```
