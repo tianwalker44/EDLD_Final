@@ -48,7 +48,7 @@ output            : papaja::apa6_pdf
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache = TRUE)
+knitr::opts_chunk$set(cache = FALSE)
 library(tidyverse)
 library(rio)
 library(here)
@@ -136,8 +136,8 @@ china <- china %>%
 mexico <- mexico %>%
   mutate(country = "Mexico")
 
-table(china$sex)
-table(mexico$sex)
+# table(china$sex)
+# table(mexico$sex)
 
 #combining data into one, log transform
 
@@ -198,7 +198,7 @@ The descriptive statistics for our sample look as follows:
 |Sex     |                                   |                                                                      |                                                                      |
 |        |male                               |`r summary$N_male[1]` (`r summary$N_male_pct[1]` %)                   |`r summary$N_male_pct[2]` (`r summary$N_male_pct[2]` %)               |
 |        |female                             |`r summary$N_female[1]` (`r summary$N_female_pct[1]` %)               |`r summary$N_female_pct[2]` (`r summary$N_female_pct[2]` %)           |
-|        |unknown                            |`r summary$N_unknown[1]` (`r summary$N_unknown_pct[1]` %)             |`r summary$N_unknown_pct[2]` (`r summary$N_unknwon_pct[2]` %)         |
+|        |unknown                            |`r summary$N_unknown[1]` (`r summary$N_unknown_pct[1]` %)             |`r summary$N_unknown[2]` (`r summary$N_unknown_pct[2]` %)         |
 |Age     |                                   |`r summary$age_M[1]` (SD = `r summary$age_SD[1]`)                     |`r summary$age_M[2]` (SD = `r summary$age_SD[2]`)                     |
 |Diabetes|                                   |                                                                      |                                                                      |
 |        |diagnosed                          |`r summary$diabetes_diag[1]` (`r summary$diabetes_diag_pct[1]` %)     |`r summary$diabetes_diag[2]` (`r summary$diabetes_diag_pct[2]` %)     |
