@@ -139,9 +139,16 @@ table(china$sex)
 table(mexico$sex)
 
 #combining data into one, log transform
-data <- bind_rows(china, mexico) %>%
-  mutate(hba1c_log = log(hba1c), .after = hba1c) %>%
-  filter(age >=50, crp <5)
+
+#we only want to log transform hba1c in China. It is normally distributed in Mexico. 
+
+#We can't bind the data because the variables all have exactly the same names.
+#We can use GridExtra to put graphs side by side, but we don't need to put the data together.
+#OR if we put the data together we need to rename all of the variables with a c or m on them. 
+
+#data <- bind_rows(china, mexico) %>%
+  #mutate(hba1c_log = log(hba1c), .after = hba1c) %>%
+  #filter(age >=50, crp <5)
 ```
 
 ```{r}
