@@ -142,8 +142,8 @@
   {\section*{\protect\normalfont{\@title}}}
   {}{\typeout{Failed to patch title.}}
 \makeatother
-\shorttitle{Short title for diabetes.}
-\keywords{Diabetes, access to care, Mexico, China\newline\indent Word count: X (this cannot easily be done automatically, we can also just leave it out)}
+\shorttitle{Inflammation, access to care and Diabetes in China and Mexico.}
+\keywords{Diabetes, access to care, inflammation, health, Mexico, China\newline\indent Word count: X (this cannot easily be done automatically, we can also just leave it out)}
 \usepackage{csquotes}
 \usepackage[titles]{tocloft}
 \cftpagenumbersoff{figure}
@@ -152,6 +152,12 @@
 \setlength{\cftfigindent}{0pt}
 \setlength{\cftafterloftitleskip}{0pt}
 \settowidth{\cftfignumwidth}{Figure 10.\qquad}
+\cftpagenumbersoff{table}
+\renewcommand{\cfttabpresnum}{\itshape\tablename\enspace}
+\renewcommand{\cfttabaftersnum}{.\space}
+\setlength{\cfttabindent}{0pt}
+\setlength{\cftafterloftitleskip}{0pt}
+\settowidth{\cfttabnumwidth}{Table 10.\qquad}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -159,14 +165,14 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
-  pdftitle={Diabetes title.},
+  pdftitle={Relations between Inflammation, access to care and Diabetes in two repesentative populations of China and Mexico.},
   pdfauthor={Dominik Grätz1, Rachel Miller-Moudgil1, Amber Somarriba1, Brittany Spinner1, \& Tian Walker1},
   pdflang={en-EN},
-  pdfkeywords={Diabetes, access to care, Mexico, China},
+  pdfkeywords={Diabetes, access to care, inflammation, health, Mexico, China},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
-\title{Diabetes title.}
+\title{Relations between Inflammation, access to care and Diabetes in two repesentative populations of China and Mexico.}
 \author{Dominik Grätz\textsuperscript{1}, Rachel Miller-Moudgil\textsuperscript{1}, Amber Somarriba\textsuperscript{1}, Brittany Spinner\textsuperscript{1}, \& Tian Walker\textsuperscript{1}}
 \date{}
 
@@ -176,7 +182,7 @@
 \affiliation{\vspace{0.5cm}\textsuperscript{1} University of Oregon}
 
 \abstract{
-The abstract goes here.
+\emph{Background.} Background goes here. \emph{Methods.} Methods go here. \emph{Results.} Results here. \emph{Conclusions.} Conclusions here.
 }
 
 
@@ -209,14 +215,53 @@ China and Mexico are interesting places to study the relationship between diabet
 
 Enter text/code here. Let's do all the coding here!
 
-\begin{longtable}[]{@{}ccl@{}}
+\begin{verbatim}
+## 
+##    1    2 
+## 7183 7749
+\end{verbatim}
+
+\begin{verbatim}
+## < table of extent 0 >
+\end{verbatim}
+
+The descriptive statistics for our sample look as follows:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0437}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1913}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3825}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3825}}@{}}
+\caption{Descriptive statistics.}\tabularnewline
 \toprule()
-& China & Mexico \\
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+China
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Mexico
+\end{minipage} \\
+\midrule()
+\endfirsthead
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+China
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Mexico
+\end{minipage} \\
 \midrule()
 \endhead
-Cell1 & Cell2 & Cell2 \\
-Cell2 & cell3 & Cell2 \\
-Cell4 & Cell5 & Cell2 \\
+N & & 7256 & 1885 \\
+Sex & & & \\
+& male & 3495 (48.20 \%) & 0 (0 \%) \\
+& female & 3754 (51.70 \%) & 0 (0 \%) \\
+& unknown & 7 (0.10 \%) & 100 ( \%) \\
+Age & & 63.10 (SD = 9.30) & 68.10 (SD = 9.30) \\
+Diabetes & & & \\
+& diagnosed & 494 (6.80 \%) & 374 (19.80 \%) \\
+& undiagnosed & 466 (6.40 \%) & 182 (9.70 \%) \\
 \bottomrule()
 \end{longtable}
 
@@ -228,8 +273,10 @@ Enter text/code here.
 \newpage
 
 \hypertarget{references}{%
-\section*{References}\label{references}}
-\addcontentsline{toc}{section}{References}
+\section{References}\label{references}}
+
+
+
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}
@@ -241,6 +288,9 @@ Deshpande, A. D., Harris-Hayes, M., \& Schootman, M. (2008). Epidemiology of dia
 
 \clearpage
 \renewcommand{\listfigurename}{Figure captions}
-
+\listoffigures
+\clearpage
+\renewcommand{\listtablename}{Table captions}
+\listoftables
 
 \end{document}

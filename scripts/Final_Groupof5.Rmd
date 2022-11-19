@@ -1,6 +1,6 @@
 ---
-title             : "Diabetes title."
-shorttitle        : "Short title for diabetes."
+title             : "Relations between Inflammation, access to care and Diabetes in two repesentative populations of China and Mexico."
+shorttitle        : "Inflammation, access to care and Diabetes in China and Mexico."
 
 author: 
   - name          : "Dominik Grätz"
@@ -25,16 +25,16 @@ affiliation:
     
 authornote: "List of group members ordered by alphabet."
 
-abstract: "The abstract goes here."
+abstract: "*Background.* Background goes here. *Methods.* Methods go here. *Results.* Results here. *Conclusions.* Conclusions here."
 
-keywords          : "Diabetes, access to care, Mexico, China"
+keywords          : "Diabetes, access to care, inflammation, health, Mexico, China"
 wordcount         : "X (this cannot easily be done automatically, we can also just leave it out)"
 
 bibliography      : ["../r-references.bib"]
 
 floatsintext      : yes
 figurelist        : yes
-tablelist         : no
+tablelist         : yes
 footnotelist      : no
 linenumbers       : no
 mask              : no
@@ -44,6 +44,7 @@ documentclass     : "apa6"
 classoption       : "man"
 output            : papaja::apa6_pdf
 ---
+
 
 
 ```{r setup, include=FALSE}
@@ -146,9 +147,9 @@ table(mexico$sex)
 #We can use GridExtra to put graphs side by side, but we don't need to put the data together.
 #OR if we put the data together we need to rename all of the variables with a c or m on them. 
 
-#data <- bind_rows(china, mexico) %>%
-  #mutate(hba1c_log = log(hba1c), .after = hba1c) %>%
-  #filter(age >=50, crp <5)
+data <- bind_rows(china, mexico) %>%
+  mutate(hba1c_log = log(hba1c), .after = hba1c) %>%
+  filter(age >=50, crp <5)
 ```
 
 ```{r}
@@ -157,7 +158,8 @@ table(mexico$sex)
 
 data <- data %>% 
   mutate(a1c_dichot_words = ifelse(hba1c>= 6.5, "elevated", "in-range" )) %>%
-  mutate(diabetes=if_else(diagnosis==1|hba1c>6.5,1,0))
+  filter(!is.na(diagnosis)) %>%
+  mutate(diabetes=if_else(diagnosis==1|hba1c>6.5,1,0)) 
 ```
 
 ```{r}
@@ -174,31 +176,35 @@ data <- data %>%
 summary <- data %>%
   group_by(country) %>%
   summarize(N = n(),
-            N_male = length(sex[sex == 1]), #1 is male
-            N_male_pct = N_male/N,
-            N_female = length(sex[sex == 2]),
-            N_female_pct = N_female/N,
-            diabetes_yes = length(diabetes[diabetes == 1]),
-            diabetes_pct = diabetes_yes/N,
-            age_M = mean(age),
-            age_SD = sd(age))
-
-descr <- summary %>%
-  t() %>%
-  as.data.frame() %>%
-  rownames_to_column()
-# 
-# kbl(descr, caption = "caption") %>%
-#   pack_rows(Gender = )
-# 
-# apa_table(summary, caption = "Descriptives.")
+            N_male = sum(sex == 1, na.rm = TRUE), #1 is male
+            N_male_pct = round((N_male/N*100), 1),
+            N_female = sum(sex == 2, na.rm = TRUE),
+            N_female_pct = round((N_female/N)*100, 1),
+            N_unknown = sum(is.na(sex)),
+            N_unknown_pct = round((N_unknown/N)*100, 1),
+            diabetes_diag = sum(diagnosis == 1, na.rm = TRUE),
+            diabetes_diag_pct = round((diabetes_diag/N)*100, 1),
+            diabetes_undiag = sum(hba1c >= 6.5 & diagnosis == 2, na.rm = TRUE),
+            diabetes_undiag_pct = round((diabetes_undiag/N)*100, 1),
+            age_M = round(mean(age), 1),
+            age_SD = round(sd(age), 1))
 ```
 
-|      | China|Mexico|
-|:----:|:----:|:----|
-|N |Cell2 |Cell2|
-|Cell2 |cell3 |Cell2|
-|Cell4 |Cell5 |Cell2|
+The descriptive statistics for our sample look as follows:
+
+|        |                                   |`r summary$country[1]`                                                |`r summary$country[2]`                                                |
+|:-------|:----------------------------------|:---------------------------------------------------------------------|:---------------------------------------------------------------------|
+|N       |                                   |`r summary$N[1]`                                                      |`r summary$N[2]`                                                      |
+|Sex     |                                   |                                                                      |                                                                      |
+|        |male                               |`r summary$N_male[1]` (`r summary$N_male_pct[1]` %)                   |`r summary$N_male_pct[2]` (`r summary$N_male_pct[2]` %)               |
+|        |female                             |`r summary$N_female[1]` (`r summary$N_female_pct[1]` %)               |`r summary$N_female_pct[2]` (`r summary$N_female_pct[2]` %)           |
+|        |unknown                            |`r summary$N_unknown[1]` (`r summary$N_unknown_pct[1]` %)             |`r summary$N_unknown_pct[2]` (`r summary$N_unknwon_pct[2]` %)         |
+|Age     |                                   |`r summary$age_M[1]` (SD = `r summary$age_SD[1]`)                     |`r summary$age_M[2]` (SD = `r summary$age_SD[2]`)                     |
+|Diabetes|                                   |                                                                      |                                                                      |
+|        |diagnosed                          |`r summary$diabetes_diag[1]` (`r summary$diabetes_diag_pct[1]` %)     |`r summary$diabetes_diag[2]` (`r summary$diabetes_diag_pct[2]` %)     |
+|        |undiagnosed                        |`r summary$diabetes_undiag[1]` (`r summary$diabetes_undiag_pct[1]` %) |`r summary$diabetes_undiag[2]` (`r summary$diabetes_undiag_pct[2]` %) |
+
+Table: Descriptive statistics.
 
 
 
@@ -211,21 +217,6 @@ Enter text/code here.
 # References
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\listoftables
+\listoffigures
 
