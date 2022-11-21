@@ -214,35 +214,48 @@ summary <- data %>%
 
 ```{r Reg1_HBA1C-CRP}
 
-#Regression 1: only diabetes population: hba1c regressed onto CRP among those doing an intervention or not
+#Regression 1: only diabetes population: hba1c regressed onto CRP among those doing medication or not
 
 data$medication <- as.factor(data$medication )
-mreg1 <- lm(crp~hba1c + as.factor(medication), data = mexico)
+
+data_dia <- data %>% 
+  filter(diagnosis == 1)
+
+mreg1 <- lm(crp~hba1c + medication, data = data_dia[data_dia$country=="China",])
 
 mreg1_plot <- data %>% 
   filter(diagnosis == 1) %>% 
   ggplot(aes(hba1c, crp)) +           
-  geom_point(aes(color = medication)) +                     
-  facet_wrap(~country)
+  geom_point(aes(color = medication)) +  
+  geom_smooth(method = "lm", aes(color = medication)) 
+#+facet_wrap(~country)
+  
+# This doesn't seem to be creating a line
+  #stat_smooth(method = "lm",
+             # formula = mreg1,
+              #geom = "smooth")
 
-
-#stat_smooth(method = "lm",
-              #formula = mreg1,
-              #geom = "smooth") +
-
-mreg1_plot
 summary(mreg1)
 
-creg1 <- lm(crp~hba1c + as.factor(medication), data = china)
-creg1_plot <- ggplot(china, aes(hba1c, crp)) +           
-  geom_point(aes(color = medication)) +                                     
+creg1 <- lm(crp~hba1c + medication, data =data[data$country=="Mexico",])
+
+creg1_plot <- data %>% 
+  filter(diagnosis == 1) %>% 
+  ggplot(aes(hba1c, crp)) +           
+  geom_point(aes(color = medication)) +                    
   stat_smooth(method = "lm",
               formula = creg1,
-              geom = "smooth") +
-  facet_wrap(~country)
-summary(creg1)
+              geom = "smooth") 
+
+library(gridExtra)
+grid.arrange(creg1_plot, mreg1_plot)
 
 ```
+
+```{r echo=FALSE}
+mreg1_plot
+```
+
 
 ```{r}
 #need to duplicate in China
