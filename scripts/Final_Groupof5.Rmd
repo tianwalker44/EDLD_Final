@@ -170,7 +170,7 @@ qnumbers <- c(2000:2019, 2023:2048)
 q <- paste0("q", qnumbers)
 
 data <- data %>%
-  mutate(across(q, ~ifelse(.x > 5, NA, .x))) %>% #this will get rid of responses over 5 which indicate missing or NA
+  mutate(across(q, ~ifelse(.x > 5 | .x < 1, NA, .x))) %>% #this will get rid of responses over 5 which indicate missing or NA
   rowwise() %>%
   mutate(q_mean = mean(c_across(q), na.rm = TRUE), .after = q2049)
 
