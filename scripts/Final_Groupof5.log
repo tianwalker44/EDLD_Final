@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.5.14)  21 NOV 2022 15:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.5.14)  21 NOV 2022 15:47
 entering extended mode
 **./Final_Groupof5.tex
 (Final_Groupof5.tex
@@ -1134,12 +1134,12 @@ Overfull \hbox (28.90639pt too wide) in paragraph at lines 242--243
 [][]  
  []
 
-<Final_Groupof5_files/figure-latex/unnamed-chunk-6-1.pdf, id=38, 469.755pt x 32
+<Final_Groupof5_files/figure-latex/unnamed-chunk-5-1.pdf, id=38, 469.755pt x 32
 5.215pt>
-File: Final_Groupof5_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (typ
+File: Final_Groupof5_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (typ
 e pdf)
-<use Final_Groupof5_files/figure-latex/unnamed-chunk-6-1.pdf>
-Package pdftex.def Info: Final_Groupof5_files/figure-latex/unnamed-chunk-6-1.pd
+<use Final_Groupof5_files/figure-latex/unnamed-chunk-5-1.pdf>
+Package pdftex.def Info: Final_Groupof5_files/figure-latex/unnamed-chunk-5-1.pd
 f  used on input line 271.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
@@ -1153,35 +1153,35 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [5 <./Final_Groupof5_files/figure-latex/Reg1_HBA1C-CRP-1.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[6 <./Final_Groupof5_files/figure-latex/unnamed-chunk-6-1.pdf>] [7] [8]
+[6 <./Final_Groupof5_files/figure-latex/unnamed-chunk-5-1.pdf>] [7] [8]
 Underfull \vbox (badness 4752) has occurred while \output is active []
 
 [9] [10]
-<Final_Groupof5_files/figure-latex/unnamed-chunk-10-1.pdf, id=87, 469.755pt x 3
-25.215pt>
-File: Final_Groupof5_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (ty
-pe pdf)
-<use Final_Groupof5_files/figure-latex/unnamed-chunk-10-1.pdf>
-Package pdftex.def Info: Final_Groupof5_files/figure-latex/unnamed-chunk-10-1.p
-df  used on input line 409.
+<Final_Groupof5_files/figure-latex/unnamed-chunk-9-1.pdf, id=87, 469.755pt x 32
+5.215pt>
+File: Final_Groupof5_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (typ
+e pdf)
+<use Final_Groupof5_files/figure-latex/unnamed-chunk-9-1.pdf>
+Package pdftex.def Info: Final_Groupof5_files/figure-latex/unnamed-chunk-9-1.pd
+f  used on input line 408.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (28.90639pt too wide) in paragraph at lines 409--410
+Overfull \hbox (28.90639pt too wide) in paragraph at lines 408--409
 [][]  
  []
 
 
-Overfull \hbox (0.55127pt too wide) in paragraph at lines 444--444
+Overfull \hbox (0.55127pt too wide) in paragraph at lines 443--443
 []|\T1/lmr/m/n/12 (-20) Age|  
  []
 
 
-Overfull \hbox (24.77396pt too wide) in paragraph at lines 445--445
+Overfull \hbox (24.77396pt too wide) in paragraph at lines 444--444
 []|\T1/lmr/m/n/12 (-20) Diabetes|  
  []
 
-[11 <./Final_Groupof5_files/figure-latex/unnamed-chunk-10-1.pdf>] [12] [13] (Fi
-nal_Groupof5.lof)
+[11 <./Final_Groupof5_files/figure-latex/unnamed-chunk-9-1.pdf>] [12] [13] (Fin
+al_Groupof5.lof)
 \tf@lof=\write5
 \openout5 = `Final_Groupof5.lof'.
 
@@ -1194,20 +1194,20 @@ nal_Groupof5.lof)
 AED endfloat: Processing end Figures and Tables [15
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 479.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 479.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 478.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 478.
 (Final_Groupof5.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 479.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 479.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 478.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 478.
  ) 
 Here is how much of TeX's memory you used:
  16979 strings out of 492891
- 257468 string characters out of 3122624
+ 257463 string characters out of 3122624
  388049 words of memory out of 3000000
  20512 multiletter control sequences out of 15000+200000
  43648 words of font info for 62 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,11n,47p,1352b,536s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 43i,11n,47p,1352b,546s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Dominik/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.
 enc}{C:/Users/Dominik/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-m
 athsy.enc}{C:/Users/Dominik/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/l
@@ -1221,7 +1221,7 @@ MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Users/Dominik/AppData/Local/Progr
 ams/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Users/Dominik/AppData/Local
 /Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Dominik/AppData
 /Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
-Output written on Final_Groupof5.pdf (15 pages, 406193 bytes).
+Output written on Final_Groupof5.pdf (15 pages, 427412 bytes).
 PDF statistics:
  195 PDF objects out of 1000 (max. 8388607)
  39 named destinations out of 1000 (max. 500000)

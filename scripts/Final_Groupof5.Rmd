@@ -250,7 +250,7 @@ grid.arrange(creg1_plot, mreg1_plot)
 
 ```
 
-```{r}
+```{r Table for Mreg1}
 mreg1_summary <- summary(mreg1)
 table1 <- apa_print(mreg1)
 table1$table$predictor <- c('Intercept', 
@@ -306,11 +306,19 @@ summary(reg2)
 ```
 
 ```{r}
-#We did this above this is unnecessary!
-china <- china %>%
-  mutate(q_sum = q2000+q2001+q2002+q2003+q2004+q2005+q2006+q2007+q2008+q2009+q2010+q2011+q2012+q2013+q2014+q2015+q2016+q2017+q2018+q2019+q2023+q2024+q2025+q2026+q2027+q2028+q2029+q2030+q2031+q2032+q2033+q2034+q2035+q2036+q2037+q2038+q2039+q2040+q2041+q2042+q2043+q2044+q2045+q2046+q2047+q2048, na.rm=TRUE, .after=q2049) %>% mutate(q_mean = q_sum/33, .after=q_sum)
-mexico <- mexico %>%
-  mutate(q_sum = q2000+q2001+q2002+q2003+q2004+q2005+q2006+q2007+q2008+q2009+q2010+q2011+q2012+q2013+q2014+q2015+q2016+q2017+q2018+q2019+q2023+q2024+q2025+q2026+q2027+q2028+q2029+q2030+q2031+q2032+q2033+q2034+q2035+q2036+q2037+q2038+q2039+q2040+q2041+q2042+q2043+q2044+q2045+q2046+q2047+q2048, na.rm=TRUE, .after=q2049) %>% mutate(q_mean = q_sum/33, .after=q_sum)
+#DG:We did this above this is unnecessary!
+# china <- china %>%
+#   mutate(q_sum = q2000+q2001+q2002+q2003+q2004+q2005+q2006+q2007+q2008+q2009+q2010+q2011+q2012+q2013+q2014+q2015+q2016+q2017+q2018+q2019+q2023+q2024+q2025+q2026+q2027+q2028+q2029+q2030+q2031+q2032+q2033+q2034+q2035+q2036+q2037+q2038+q2039+q2040+q2041+q2042+q2043+q2044+q2045+q2046+q2047+q2048, na.rm=TRUE, .after=q2049) %>% mutate(q_mean = q_sum/33, .after=q_sum)
+# mexico <- mexico %>%
+#   mutate(q_sum = q2000+q2001+q2002+q2003+q2004+q2005+q2006+q2007+q2008+q2009+q2010+q2011+q2012+q2013+q2014+q2015+q2016+q2017+q2018+q2019+q2023+q2024+q2025+q2026+q2027+q2028+q2029+q2030+q2031+q2032+q2033+q2034+q2035+q2036+q2037+q2038+q2039+q2040+q2041+q2042+q2043+q2044+q2045+q2046+q2047+q2048, na.rm=TRUE, .after=q2049) %>% mutate(q_mean = q_sum/33, .after=q_sum)
+
+#Instead, this is how you get the countries separately
+china <- data %>%
+  filter(country == "China")
+
+mexico <- data %>%
+  filter(country == "Mexico")
+
 ```
 
 ```{r}
