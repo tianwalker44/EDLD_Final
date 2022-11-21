@@ -48,7 +48,7 @@ output            : papaja::apa6_pdf
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache = FALSE)
+knitr::opts_chunk$set(cache = FALSE, echo = FALSE, warning = FALSE, results = FALSE)
 library(tidyverse)
 library(rio)
 library(here)

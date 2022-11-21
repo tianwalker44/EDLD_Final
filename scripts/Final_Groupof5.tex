@@ -116,9 +116,9 @@
 
 % Create new environments so endfloat can handle them
 % \newenvironment{ltable}
-%   {\begin{landscape}\centering\begin{threeparttable}}
-%   {\end{threeparttable}\end{landscape}}
-\newenvironment{lltable}{\begin{landscape}\centering\begin{ThreePartTable}}{\end{ThreePartTable}\end{landscape}}
+%   {\begin{landscape}\begin{center}\begin{threeparttable}}
+%   {\end{threeparttable}\end{center}\end{landscape}}
+\newenvironment{lltable}{\begin{landscape}\begin{center}\begin{ThreePartTable}}{\end{ThreePartTable}\end{center}\end{landscape}}
 
 % Enables adjusting longtable caption width to table width
 % Solution found at http://golatex.de/longtable-mit-caption-so-breit-wie-die-tabelle-t15767.html
@@ -131,20 +131,6 @@
 % \setlength{\parindent}{0.5in}
 % \setlength{\parskip}{0pt plus 0pt minus 0pt}
 
-% Overwrite redefinition of paragraph and subparagraph by the default LaTeX template
-% See https://github.com/crsh/papaja/issues/292
-\makeatletter
-\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
-  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
-  {-1em}%
-  {\normalfont\normalsize\bfseries\itshape\typesectitle}}
-
-\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{1em}%
-  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
-  {-\z@\relax}%
-  {\normalfont\normalsize\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
-\makeatother
-
 % \usepackage{etoolbox}
 \makeatletter
 \patchcmd{\HyOrg@maketitle}
@@ -156,15 +142,7 @@
   {\section*{\protect\normalfont{\@title}}}
   {}{\typeout{Failed to patch title.}}
 \makeatother
-
-\usepackage{xpatch}
-\makeatletter
-\xapptocmd\appendix
-  {\xapptocmd\section
-    {\addcontentsline{toc}{section}{\appendixname\ifoneappendix\else~\theappendix\fi\\: #1}}
-    {}{\InnerPatchFailed}%
-  }
-{}{\PatchFailed}
+\shorttitle{Inflammation, access to care and Diabetes in China and Mexico.}
 \keywords{Diabetes, access to care, inflammation, health, Mexico, China\newline\indent Word count: X (this cannot easily be done automatically, we can also just leave it out)}
 \usepackage{csquotes}
 \usepackage[titles]{tocloft}
@@ -199,13 +177,11 @@
 \date{}
 
 
-\shorttitle{Inflammation, access to care and Diabetes in China and Mexico.}
-
 \authornote{List of group members ordered by alphabet.}
 
 \affiliation{\vspace{0.5cm}\textsuperscript{1} University of Oregon}
 
-\abstract{%
+\abstract{
 \emph{Background.} Background goes here. \emph{Methods.} Methods go here. \emph{Results.} Results here. \emph{Conclusions.} Conclusions here.
 }
 
@@ -238,156 +214,6 @@ China and Mexico are interesting places to study the relationship between diabet
 \section{Results}\label{results}}
 
 Enter text/code here. Let's do all the coding here!
-
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = crp ~ hba1c, data = mexico)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -2.2072 -1.1830 -0.6649  0.5873  7.9933 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  1.38948    0.16425   8.459  < 2e-16 ***
-## hba1c        0.09642    0.02564   3.761 0.000173 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 1.808 on 2402 degrees of freedom
-##   (3044 observations deleted due to missingness)
-## Multiple R-squared:  0.005854,   Adjusted R-squared:  0.00544 
-## F-statistic: 14.14 on 1 and 2402 DF,  p-value: 0.0001735
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = crp ~ hba1c, data = china)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -3.0866 -1.2185 -0.8918  0.3402  8.4252 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  1.13766    0.08207  13.862  < 2e-16 ***
-## hba1c        0.10663    0.01379   7.733 1.18e-14 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 2.117 on 7547 degrees of freedom
-##   (7501 observations deleted due to missingness)
-## Multiple R-squared:  0.007862,   Adjusted R-squared:  0.00773 
-## F-statistic:  59.8 on 1 and 7547 DF,  p-value: 1.185e-14
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = crp ~ hba1c + q_mean, data = data)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -1.9522 -0.7722 -0.4342  0.4937  3.7339 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) 0.679465   0.065499  10.374  < 2e-16 ***
-## hba1c       0.058840   0.008349   7.048 2.05e-12 ***
-## q_mean      0.129617   0.019386   6.686 2.53e-11 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 1.097 on 5244 degrees of freedom
-##   (3777 observations deleted due to missingness)
-## Multiple R-squared:  0.01845,    Adjusted R-squared:  0.01808 
-## F-statistic: 49.29 on 2 and 5244 DF,  p-value: < 2.2e-16
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = crp ~ hba1c + q_mean, data = mexico)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -2.1795 -1.2074 -0.6225  0.6301  7.9003 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  1.20415    0.24679   4.879 1.18e-06 ***
-## hba1c        0.06934    0.03297   2.103  0.03561 *  
-## q_mean       0.14385    0.05186   2.774  0.00561 ** 
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 1.794 on 1444 degrees of freedom
-##   (4001 observations deleted due to missingness)
-## Multiple R-squared:  0.008975,   Adjusted R-squared:  0.007603 
-## F-statistic: 6.539 on 2 and 1444 DF,  p-value: 0.001489
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = crp ~ hba1c + q_mean, data = china)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -2.9119 -1.1872 -0.8699  0.3433  8.5226 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  0.70968    0.13590   5.222 1.84e-07 ***
-## hba1c        0.09596    0.01624   5.911 3.63e-09 ***
-## q_mean       0.23115    0.04519   5.115 3.25e-07 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 2.105 on 4961 degrees of freedom
-##   (10086 observations deleted due to missingness)
-## Multiple R-squared:  0.01179,    Adjusted R-squared:  0.01139 
-## F-statistic: 29.59 on 2 and 4961 DF,  p-value: 1.676e-13
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = crp ~ hba1c + q_mean, data = mex_sub)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -2.3312 -1.1832 -0.6210  0.6121  7.9189 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)   
-## (Intercept) -0.23976    0.75435  -0.318  0.75067   
-## hba1c        0.31176    0.13164   2.368  0.01805 * 
-## q_mean       0.18209    0.06013   3.028  0.00252 **
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 1.797 on 1089 degrees of freedom
-##   (733 observations deleted due to missingness)
-## Multiple R-squared:  0.01345,    Adjusted R-squared:  0.01164 
-## F-statistic: 7.426 on 2 and 1089 DF,  p-value: 0.0006263
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: Removed 3982 rows containing non-finite values (`stat_smooth()`).
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: Computation failed in `stat_smooth()`
-## Caused by error in `model.frame.lm()`:
-## ! object 'weight' not found
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: Removed 3982 rows containing missing values (`geom_point()`).
-\end{verbatim}
 
 \includegraphics{Final_Groupof5_files/figure-latex/unnamed-chunk-12-1.pdf}
 
