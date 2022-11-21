@@ -139,6 +139,7 @@ mexico <- mexico %>%
 # table(china$sex)
 # table(mexico$sex)
 
+
 #combining data into one, log transform
 
 #we only want to log transform hba1c in China. It is normally distributed in Mexico. 
@@ -155,8 +156,12 @@ data <- bind_rows(china, mexico) %>%
 
 q <- c("q2000", "q2001","q2002","q2003","q2004","q2005","q2006","q2007","q2008","q2009","q2010","q2011","q2012","q2013","q2014","q2015","q2016","q2017","q2018","q2019","q2023","q2024","q2025","q2026","q2027","q2028","q2029","q2030","q2031","q2032","q2033","q2034","q2035","q2036","q2037","q2038","q2039","q2040","q2041","q2042","q2043","q2044","q2045","q2046","q2047","q2048") #list of relevant health variables
 
-data <- data %>% mutate(q_sum = q2000+q2001+q2002+q2003+q2004+q2005+q2006+q2007+q2008+q2009+q2010+q2011+q2012+q2013+q2014+q2015+q2016+q2017+q2018+q2019+q2023+q2024+q2025+q2026+q2027+q2028+q2029+q2030+q2031+q2032+q2033+q2034+q2035+q2036+q2037+q2038+q2039+q2040+q2041+q2042+q2043+q2044+q2045+q2046+q2047+q2048, na.rm=TRUE, .after=q2049) %>% mutate(q_mean = q_sum/33, .after=q_sum) #This code returns an error, but not sure where the issue is. Tried using mutate(q_sum = q) but it did not like that either!
+#table(data$country)
+data <- data %>% 
+group_by(country) %>% 
+  mutate(q_sum = q2000+q2001+q2002+q2003+q2004+q2005+q2006+q2007+q2008+q2009+q2010+q2011+q2012+q2013+q2014+q2015+q2016+q2017+q2018+q2019+q2023+q2024+q2025+q2026+q2027+q2028+q2029+q2030+q2031+q2032+q2033+q2034+q2035+q2036+q2037+q2038+q2039+q2040+q2041+q2042+q2043+q2044+q2045+q2046+q2047+q2048, na.rm=TRUE, .after=q2049) %>% mutate(q_mean = q_sum/33, .after=q_sum) #This code returns an error, but not sure where the issue is. Tried using mutate(q_sum = q) but it did not like that either!
 
+#View(data)
 ```
 
 ```{r}
