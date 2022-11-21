@@ -262,6 +262,8 @@ mreg2_plot <- ggplot(mexico, aes(hba1c, crp)) +
               formula = reg2,
               geom = "smooth") +
   facet_wrap(~both_trtmnt)
+#from Tian- maybe we should facet_wrap by country and color by treatment? 
+#Also both_treatment is yes/no people doing both treatments or not so we should also look at dt_excrse and medication. 
 
 summary(mreg2)
 
@@ -276,6 +278,16 @@ mex_sub <- mexico %>%
 mreg3 <- lm(crp~hba1c + q_mean, data = mex_sub)
 
 summary(mreg3)
+mexico %>% 
+  filter(diabetes == "yes")
+ggplot(mexico, aes(crp, q_mean)) +           
+  geom_point(aes(color = as.factor(medication))) +          stat_smooth(method = "lm",
+              formula = reg2,
+              geom = "smooth") 
+  #facet_wrap(~dt_exrcse)
+
+
+#names(mexico)
 
 ```
 
