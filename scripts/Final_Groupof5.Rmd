@@ -217,6 +217,20 @@ reg1_plot <- ggplot(data, aes(hba1c, crp)) +
 
 ```
 
+```{r}
+#need to duplicate in China
+mreg1 <- lm(crp~hba1c, data = mexico)
+mreg1_plot <- ggplot(mexico, aes(hba1c, crp)) +           
+  geom_point() +                                     
+  stat_smooth(method = "lm",
+              formula = reg1,
+              geom = "smooth") +
+  facet_wrap(~both_trtmnt)
+
+summary(reg1)
+```
+
+
 ```{r Reg2_HBA1C-CRP}
 
 #Regression 2: same as above adding health state description into model
@@ -230,7 +244,41 @@ reg2_plot <- ggplot(data, aes(hba1c, crp)) +
               geom = "smooth") +
   facet_wrap(~both_trtmnt)
 
+summary(reg2)
 ```
+
+```{r}
+#need to duplicate in China
+mexico <- mexico %>% 
+  mutate(q_sum = q2000+q2001+q2002+q2003+q2004+q2005+q2006+q2007+q2008+q2009+q2010+q2011+q2012+q2013+q2014+q2015+q2016+q2017+q2018+q2019+q2023+q2024+q2025+q2026+q2027+q2028+q2029+q2030+q2031+q2032+q2033+q2034+q2035+q2036+q2037+q2038+q2039+q2040+q2041+q2042+q2043+q2044+q2045+q2046+q2047+q2048, na.rm=TRUE, .after=q2049) %>% mutate(q_mean = q_sum/33, .after=q_sum)
+```
+
+```{r}
+#need to duplicate in China
+mreg2 <- lm(crp~hba1c + q_mean, data = mexico)
+mreg2_plot <- ggplot(mexico, aes(hba1c, crp)) +           
+  geom_point() +                                     
+  stat_smooth(method = "lm",
+              formula = reg2,
+              geom = "smooth") +
+  facet_wrap(~both_trtmnt)
+
+summary(mreg2)
+
+
+```
+
+```{r}
+#Tian - I got excited and looked at in the subgroup of people with "healthy" a1c levels
+
+mex_sub <- mexico %>% 
+  filter(hba1c < 6.5)
+mreg3 <- lm(crp~hba1c + q_mean, data = mex_sub)
+
+summary(mreg3)
+
+```
+
 
 ```{r Reg3_add-acccess, eval=FALSE, echo=FALSE}
 
