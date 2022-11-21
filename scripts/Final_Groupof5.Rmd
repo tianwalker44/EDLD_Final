@@ -94,6 +94,7 @@ library(papaja)
 library(here)
 library(tidyverse)
 library(rio)
+library(gridExtra)
 ```
 
 # Introduction
@@ -122,7 +123,7 @@ china <- import(here("data","china_raw_dat.csv"))
 mexico <- import(here("data","mexico_raw_dat.csv"))
 ```
 
-```{r}
+```{r Data Cleaning}
 #variable creation and cleaning 
 
 #Must filter CRP greater than 5 because such values indicate infection which we don't want
@@ -169,11 +170,10 @@ qnumbers <- c(2000:2019, 2023:2048)
 q <- paste0("q", qnumbers)
 
 data <- data %>%
+  mutate(across(q, ~ifelse(.x > 5, NA, .x))) %>% #this will get rid of responses over 5 which indicate missing or NA
   rowwise() %>%
   mutate(q_mean = mean(c_across(q), na.rm = TRUE), .after = q2049)
-```
 
-```{r}
 #dichotomized variable for blood sugar that is in range or not
 #diabetes variable that includes people who are undiagnosed (i.e. hba1c above 6.5 but no diabetes diagnosis)
 
@@ -181,9 +181,7 @@ data <- data %>%
   mutate(a1c_dichot_words = ifelse(hba1c>= 6.5, "elevated", "in-range" )) %>%
   filter(!is.na(diagnosis)) %>%
   mutate(diabetes=if_else(diagnosis==1|hba1c>6.5,1,0)) 
-```
 
-```{r}
 #variable that indicates whether someone was doing both medication and diet/exercise intervention
 
 data <- data %>%
@@ -191,7 +189,7 @@ data <- data %>%
 
 ```
 
-```{r}
+```{r Descriptives Table}
 #get descriptives
 
 summary <- data %>%
@@ -247,7 +245,6 @@ creg1_plot <- data %>%
               formula = creg1,
               geom = "smooth") 
 
-library(gridExtra)
 grid.arrange(creg1_plot, mreg1_plot)
 
 ```
@@ -255,7 +252,6 @@ grid.arrange(creg1_plot, mreg1_plot)
 ```{r echo=FALSE}
 mreg1_plot
 ```
-
 
 ```{r}
 #need to duplicate in China
