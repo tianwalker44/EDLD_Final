@@ -207,13 +207,31 @@ summary <- data %>%
 
 #Regression 1: only diabetes population: hba1c regressed onto CRP among those doing an intervention or not
 
-reg1 <- lm(crp~hba1c, data = data)
-reg1_plot <- ggplot(data, aes(hba1c, crp)) +           
-  geom_point() +                                     
+data$medication <- as.factor(data$medication )
+mreg1 <- lm(crp~hba1c + as.factor(medication), data = mexico)
+
+mreg1_plot <- data %>% 
+  filter(diagnosis == 1) %>% 
+  ggplot(aes(hba1c, crp)) +           
+  geom_point(aes(color = medication)) +                     
+  facet_wrap(~country)
+
+
+#stat_smooth(method = "lm",
+              #formula = mreg1,
+              #geom = "smooth") +
+
+mreg1_plot
+summary(mreg1)
+
+creg1 <- lm(crp~hba1c + as.factor(medication), data = china)
+creg1_plot <- ggplot(china, aes(hba1c, crp)) +           
+  geom_point(aes(color = medication)) +                                     
   stat_smooth(method = "lm",
-              formula = reg1,
+              formula = creg1,
               geom = "smooth") +
-  facet_wrap(~both_trtmnt)
+  facet_wrap(~country)
+summary(creg1)
 
 ```
 
