@@ -279,8 +279,8 @@ mreg3 <- lm(crp~hba1c + q_mean, data = mex_sub)
 
 summary(mreg3)
 mexico %>% 
-  filter(diabetes == "yes")
-ggplot(mexico, aes(crp, q_mean)) +           
+#filter(diabetes == "yes")
+ggplot(aes(crp, q_mean)) +           
   geom_point(aes(color = as.factor(medication))) +          stat_smooth(method = "lm",
               formula = reg2,
               geom = "smooth") 
@@ -288,7 +288,8 @@ ggplot(mexico, aes(crp, q_mean)) +
 
 
 #names(mexico)
-
+#table(mexico$diabetes)
+#names(mexico)
 ```
 
 

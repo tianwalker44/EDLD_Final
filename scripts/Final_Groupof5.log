@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.3.15)  20 NOV 2022 19:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.3.15)  20 NOV 2022 19:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -781,48 +781,84 @@ Package fancyhdr Warning: \headheight is too small (15.2pt):
 [1{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ] [2] [3]
-Overfull \hbox (0.55127pt too wide) in paragraph at lines 275--275
-[]|\T1/lmr/m/n/12 (-20) Age|  
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
+42.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
+262.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/lm/ts1lmtt.fd
+File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+) [4]
+Underfull \vbox (badness 4752) has occurred while \output is active []
+
+[5] [6]
+Overfull \hbox (5.71321pt too wide) in paragraph at lines 335--335
+[]\T1/lmtt/m/n/12 ## Warning: Removed 3982 rows containing non-finite values (\
+TS1/lmtt/m/n/12 `\T1/lmtt/m/n/12 stat_smooth()\TS1/lmtt/m/n/12 `\T1/lmtt/m/n/12
+ ).[] 
  []
 
+<Final_Groupof5_files/figure-latex/unnamed-chunk-12-1.pdf, id=47, 451.6875pt x 
+315.1775pt>
+File: Final_Groupof5_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (ty
+pe pdf)
+<use Final_Groupof5_files/figure-latex/unnamed-chunk-12-1.pdf>
+Package pdftex.def Info: Final_Groupof5_files/figure-latex/unnamed-chunk-12-1.p
+df  used on input line 347.
+(pdftex.def)             Requested size: 451.71394pt x 315.19595pt.
 
-Overfull \hbox (24.77396pt too wide) in paragraph at lines 276--276
-[]|\T1/lmr/m/n/12 (-20) Diabetes|  
+Overfull \hbox (10.86647pt too wide) in paragraph at lines 347--348
+[][]  
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[4] [5] [6] (./Final_Groupof5.lof)
+[7]
+Overfull \hbox (0.55127pt too wide) in paragraph at lines 382--382
+[]|\T1/lmr/m/n/12 (-20) Age|  
+ []
+
+
+Overfull \hbox (24.77396pt too wide) in paragraph at lines 383--383
+[]|\T1/lmr/m/n/12 (-20) Diabetes|  
+ []
+
+[8 <./Final_Groupof5_files/figure-latex/unnamed-chunk-12-1.pdf>] [9] [10] (./Fi
+nal_Groupof5.lof)
 \tf@lof=\write5
 \openout5 = `Final_Groupof5.lof'.
 
-[7
+[11
 
 ] (./Final_Groupof5.lot)
 \tf@lot=\write6
 \openout6 = `Final_Groupof5.lot'.
 
-AED endfloat: Processing end Figures and Tables [8
+AED endfloat: Processing end Figures and Tables [12
 
 ] (./Final_Groupof5.aux) ) 
 Here is how much of TeX's memory you used:
- 17227 strings out of 478994
- 266905 string characters out of 5858184
- 637487 words of memory out of 5000000
- 34294 multiletter control sequences out of 15000+600000
- 443248 words of font info for 86 fonts, out of 8000000 for 9000
+ 17322 strings out of 478994
+ 268685 string characters out of 5858184
+ 635490 words of memory out of 5000000
+ 34374 multiletter control sequences out of 15000+600000
+ 443872 words of font info for 88 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 85i,11n,88p,1350b,590s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 85i,12n,88p,1350b,590s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/l
-m/lm-ec.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pf
-b></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/loc
-al/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2
-021/texmf-dist/fonts/type1/public/lm/lmri12.pfb>
-Output written on Final_Groupof5.pdf (8 pages, 103664 bytes).
+m/lm-ts1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}<
+/usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local
+/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/20
+21/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2021/texmf-dis
+t/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2021/texmf-dist/fonts/ty
+pe1/public/lm/lmtt12.pfb>
+Output written on Final_Groupof5.pdf (12 pages, 221673 bytes).
 PDF statistics:
- 115 PDF objects out of 1000 (max. 8388607)
- 100 compressed objects within 1 object stream
- 30 named destinations out of 1000 (max. 500000)
- 20553 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 148 PDF objects out of 1000 (max. 8388607)
+ 124 compressed objects within 2 object streams
+ 34 named destinations out of 1000 (max. 500000)
+ 20558 words of extra memory for PDF output out of 20736 (max. 10000000)
 

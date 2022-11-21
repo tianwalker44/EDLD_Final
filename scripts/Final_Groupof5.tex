@@ -239,6 +239,113 @@ China and Mexico are interesting places to study the relationship between diabet
 
 Enter text/code here. Let's do all the coding here!
 
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = crp ~ hba1c, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.1105 -0.7936 -0.4304  0.4757  3.6965 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 0.931994   0.043038  21.655   <2e-16 ***
+## hba1c       0.066080   0.007067   9.351   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.102 on 7896 degrees of freedom
+##   (1126 observations deleted due to missingness)
+## Multiple R-squared:  0.01095,    Adjusted R-squared:  0.01083 
+## F-statistic: 87.44 on 1 and 7896 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = crp ~ hba1c + q_mean, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.9522 -0.7722 -0.4342  0.4937  3.7339 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 0.679465   0.065499  10.374  < 2e-16 ***
+## hba1c       0.058840   0.008349   7.048 2.05e-12 ***
+## q_mean      0.129617   0.019386   6.686 2.53e-11 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.097 on 5244 degrees of freedom
+##   (3777 observations deleted due to missingness)
+## Multiple R-squared:  0.01845,    Adjusted R-squared:  0.01808 
+## F-statistic: 49.29 on 2 and 5244 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = crp ~ hba1c + q_mean, data = mexico)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.1795 -1.2074 -0.6225  0.6301  7.9003 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  1.20415    0.24679   4.879 1.18e-06 ***
+## hba1c        0.06934    0.03297   2.103  0.03561 *  
+## q_mean       0.14385    0.05186   2.774  0.00561 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.794 on 1444 degrees of freedom
+##   (4001 observations deleted due to missingness)
+## Multiple R-squared:  0.008975,   Adjusted R-squared:  0.007603 
+## F-statistic: 6.539 on 2 and 1444 DF,  p-value: 0.001489
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = crp ~ hba1c + q_mean, data = mex_sub)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.3312 -1.1832 -0.6210  0.6121  7.9189 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)   
+## (Intercept) -0.23976    0.75435  -0.318  0.75067   
+## hba1c        0.31176    0.13164   2.368  0.01805 * 
+## q_mean       0.18209    0.06013   3.028  0.00252 **
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.797 on 1089 degrees of freedom
+##   (733 observations deleted due to missingness)
+## Multiple R-squared:  0.01345,    Adjusted R-squared:  0.01164 
+## F-statistic: 7.426 on 2 and 1089 DF,  p-value: 0.0006263
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 3982 rows containing non-finite values (`stat_smooth()`).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Computation failed in `stat_smooth()`
+## Caused by error in `model.frame.lm()`:
+## ! object 'weight' not found
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 3982 rows containing missing values (`geom_point()`).
+\end{verbatim}
+
+\includegraphics{Final_Groupof5_files/figure-latex/unnamed-chunk-12-1.pdf}
+
 The descriptive statistics for our sample look as follows:
 
 \begin{longtable}[]{@{}
