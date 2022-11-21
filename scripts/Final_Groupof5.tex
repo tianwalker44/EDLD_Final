@@ -242,23 +242,45 @@ Enter text/code here. Let's do all the coding here!
 \begin{verbatim}
 ## 
 ## Call:
-## lm(formula = crp ~ hba1c, data = data)
+## lm(formula = crp ~ hba1c, data = mexico)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2.1105 -0.7936 -0.4304  0.4757  3.6965 
+## -2.2072 -1.1830 -0.6649  0.5873  7.9933 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) 0.931994   0.043038  21.655   <2e-16 ***
-## hba1c       0.066080   0.007067   9.351   <2e-16 ***
+## (Intercept)  1.38948    0.16425   8.459  < 2e-16 ***
+## hba1c        0.09642    0.02564   3.761 0.000173 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 1.102 on 7896 degrees of freedom
-##   (1126 observations deleted due to missingness)
-## Multiple R-squared:  0.01095,    Adjusted R-squared:  0.01083 
-## F-statistic: 87.44 on 1 and 7896 DF,  p-value: < 2.2e-16
+## Residual standard error: 1.808 on 2402 degrees of freedom
+##   (3044 observations deleted due to missingness)
+## Multiple R-squared:  0.005854,   Adjusted R-squared:  0.00544 
+## F-statistic: 14.14 on 1 and 2402 DF,  p-value: 0.0001735
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = crp ~ hba1c, data = china)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.0866 -1.2185 -0.8918  0.3402  8.4252 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  1.13766    0.08207  13.862  < 2e-16 ***
+## hba1c        0.10663    0.01379   7.733 1.18e-14 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.117 on 7547 degrees of freedom
+##   (7501 observations deleted due to missingness)
+## Multiple R-squared:  0.007862,   Adjusted R-squared:  0.00773 
+## F-statistic:  59.8 on 1 and 7547 DF,  p-value: 1.185e-14
 \end{verbatim}
 
 \begin{verbatim}
@@ -305,6 +327,29 @@ Enter text/code here. Let's do all the coding here!
 ##   (4001 observations deleted due to missingness)
 ## Multiple R-squared:  0.008975,   Adjusted R-squared:  0.007603 
 ## F-statistic: 6.539 on 2 and 1444 DF,  p-value: 0.001489
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = crp ~ hba1c + q_mean, data = china)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.9119 -1.1872 -0.8699  0.3433  8.5226 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.70968    0.13590   5.222 1.84e-07 ***
+## hba1c        0.09596    0.01624   5.911 3.63e-09 ***
+## q_mean       0.23115    0.04519   5.115 3.25e-07 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.105 on 4961 degrees of freedom
+##   (10086 observations deleted due to missingness)
+## Multiple R-squared:  0.01179,    Adjusted R-squared:  0.01139 
+## F-statistic: 29.59 on 2 and 4961 DF,  p-value: 1.676e-13
 \end{verbatim}
 
 \begin{verbatim}
