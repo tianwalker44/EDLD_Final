@@ -144,11 +144,7 @@ mexico <- mexico %>%
 
 #combining data into one, log transform
 
-#we only want to log transform hba1c in China. It is normally distributed in Mexico. 
-
-#We can't bind the data because the variables all have exactly the same names.
-#We can use GridExtra to put graphs side by side, but we don't need to put the data together.
-#OR if we put the data together we need to rename all of the variables with a c or m on them. 
+#TW: we only want to log transform hba1c in China. It is normally distributed in Mexico. 
 
 data <- bind_rows(china, mexico) %>%
   mutate(hba1c_log = log(hba1c), .after = hba1c) %>%
@@ -267,7 +263,7 @@ mreg1_plot
 ```
 
 ```{r}
-#need to duplicate in China
+
 mreg1 <- lm(crp~hba1c, data = mexico)
 mreg1_plot <- ggplot(mexico, aes(hba1c, crp)) +           
   geom_point() +                                     
@@ -287,7 +283,6 @@ creg1_plot <- ggplot(china, aes(hba1c, crp)) +
 summary(creg1)
 
 ```
-
 
 ```{r Reg2_HBA1C-CRP}
 
@@ -330,6 +325,7 @@ creg2_plot <- ggplot(china, aes(hba1c, crp)) +
               formula = reg2,
               geom = "smooth") +
   facet_wrap(~both_trtmnt)
+
 mreg2 <- lm(crp~hba1c + q_mean, data = mexico)
 mreg2_plot <- ggplot(mexico, aes(hba1c, crp)) +           
   geom_point() +                                     
@@ -347,7 +343,7 @@ summary(creg2)
 ```
 
 ```{r}
-#Tian - I got excited and looked at in the subgroup of people with "healthy" a1c levels
+#TW: I got excited and looked at in the subgroup of people with "healthy" a1c levels
 
 mex_sub <- mexico %>% 
   filter(hba1c < 6.5)
@@ -372,6 +368,7 @@ ggplot(aes(crp, q_mean)) +
 ```{r Reg3_add-acccess, eval=FALSE, echo=FALSE}
 
 #Regression 3: adding access to care variable into regression model. This chunk is should remain hidden and not evaluated until we decide whether to analyze access to healthcare.
+#Might be done as a chi square instead of a regression
 
 reg3 <- lm(crp~hba1c + q_mean + access, data = data) #Access = whatever variable we come up with for access to helathcare.
 reg3_plot <- ggplot(data, aes(hba1c, crp)) +           
