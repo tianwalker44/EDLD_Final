@@ -1,0 +1,58 @@
+---
+title             : "Relations between Inflammation, access to care and Diabetes in two repesentative populations of China and Mexico."
+shorttitle        : "Inflammation, access to care and Diabetes in China and Mexico."
+
+author: 
+  - name          : "Dominik Grätz"
+    affiliation   : "1"
+    email         : "dgrtz@uoregon.edu"
+  - name          : "Rachel Miller-Moudgil"
+    affiliation   : "1"
+    email         : "rmillerm@uoregon.edu"
+  - name          : "Amber Somarriba"
+    affiliation   : "1"
+    email         : "asomarri@uoregon.edu"
+  - name          : "Brittany Spinner"
+    affiliation   : "1"
+    email         : "bspinner@uoregon.edu"
+  - name          : "Tian Walker"
+    affiliation   : "1"
+    email         : "twalker@uoregon.edu"
+
+affiliation:
+  - id            : "1"
+    institution   : "University of Oregon"
+    
+authornote: "List of group members ordered by alphabet."
+
+abstract: "*Background.* Background goes here. *Methods.* Methods go here. *Results.* Results here. *Conclusions.* Conclusions here."
+
+keywords          : "Diabetes, access to care, inflammation, health, Mexico, China"
+wordcount         : "X (this cannot easily be done automatically, we can also just leave it out)"
+
+bibliography      : ["../r-references.bib"]
+
+floatsintext      : yes
+figurelist        : yes
+tablelist         : yes
+footnotelist      : no
+linenumbers       : no
+mask              : no
+draft             : no
+
+documentclass     : "apa6"
+classoption       : "man"
+output            : papaja::apa6_pdf
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, warning = FALSE, echo = FALSE)
+library(tidyverse)
+library(rio)
+library(here)
+library(papaja)
+```
+
+```{r}
+mexico <- import(here("data","mexico_raw_dat.csv"))
+```
