@@ -123,3 +123,36 @@ RQ2_df <- data %>%
 ```
 
 
+```{r descriptives table prep}
+summary <- data %>%
+  summarize(country = "Mexico",
+            N = n(),
+            N_male = sum(sex == 1, na.rm = TRUE), #1 is male
+            N_male_pct = round((N_male/N*100), 1),
+            N_female = sum(sex == 2, na.rm = TRUE),
+            N_female_pct = round((N_female/N)*100, 1),
+            N_unknown = sum(is.na(sex)),
+            N_unknown_pct = round((N_unknown/N)*100, 1),
+            diabetes_diag = sum(diagnosis == 1, na.rm = TRUE),
+            diabetes_diag_pct = round((diabetes_diag/N)*100, 1),
+            diabetes_undiag = sum(hba1c >= 6.5 & diagnosis == 2, na.rm = TRUE),
+            diabetes_undiag_pct = round((diabetes_undiag/N)*100, 1),
+            age_M = round(mean(age), 1),
+            age_SD = round(sd(age), 1))
+```
+
+The descriptive statistics for our sample look as follows:
+
+|  |            |`r summary$country[1]` |
+|:-|:-----------|:----------------------|
+|N       |           |`r summary$N[1]`                                                     |
+|Sex     |           |                                                                     |
+|        |male       |`r summary$N_male[1]` (`r summary$N_male_pct[1]` %)                  |
+|        |female     |`r summary$N_female[1]` (`r summary$N_female_pct[1]` %)              |
+|        |unknown    |`r summary$N_unknown[1]` (`r summary$N_unknown_pct[1]` %)            |
+|Age     |           |`r summary$age_M[1]` (SD = `r summary$age_SD[1]`)                    |
+|Diabetes|           |                                                                     |
+|        |diagnosed  |`r summary$diabetes_diag[1]` (`r summary$diabetes_diag_pct[1]` %)    |
+|        |undiagnosed|`r summary$diabetes_undiag[1]` (`r summary$diabetes_undiag_pct[1]` %)|
+Table: Descriptive statistics.
+

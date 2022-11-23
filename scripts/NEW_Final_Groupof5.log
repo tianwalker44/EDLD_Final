@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.5.14)  22 NOV 2022 17:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.5.14)  22 NOV 2022 18:20
 entering extended mode
 **./NEW_Final_Groupof5.tex
 (NEW_Final_Groupof5.tex
@@ -563,6 +563,54 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
+("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\longtable.
+sty"
+Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)+ FMi change
+\LTleft=\skip69
+\LTright=\skip70
+\LTpre=\skip71
+\LTpost=\skip72
+\LTchunksize=\count119
+\LTcapwidth=\dimen143
+\LT@head=\box33
+\LT@firsthead=\box34
+\LT@foot=\box35
+\LT@lastfoot=\box36
+\LT@cols=\count120
+\LT@rows=\count121
+\c@LT@tables=\count122
+\c@LT@chunks=\count123
+\LT@p@ftn=\toks26
+) ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\array.st
+y"
+Package: array 2018/12/30 v2.4k Tabular extension package (FMi)
+\col@sep=\dimen144
+\ar@mcellbox=\box37
+\extrarowheight=\dimen145
+\NC@list=\toks27
+\extratabsurround=\skip73
+\backup@length=\skip74
+\ar@cellbox=\box38
+) ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\calc.sty
+"
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count124
+\calc@Bcount=\count125
+\calc@Adimen=\dimen146
+\calc@Bdimen=\dimen147
+\calc@Askip=\skip75
+\calc@Bskip=\skip76
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count126
+\calc@Cskip=\skip77
+)
+("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/footnotehyper\fo
+otnotehyper.sty"
+Package: footnotehyper 2018/01/23 v1.1 hyperref aware footnote.sty (JFB)
+\FNH@notes=\box39
+\FNH@width=\dimen148
+)
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\babel.st
 y"
 Package: babel 2019/05/04 3.31 The Babel package
@@ -588,19 +636,19 @@ Language: nil 2019/05/04 3.31 Nil language
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\babel.de
 f"
 File: babel.def 2019/05/04 3.31 Babel common definitions
-\babel@savecnt=\count119
-\U@D=\dimen143
+\babel@savecnt=\count127
+\U@D=\dimen149
 
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\txtbabel
 .def")
-\bbl@dirlevel=\count120
+\bbl@dirlevel=\count128
 )))
-\everypar=\toks26
+\everypar=\toks28
 
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel/locale/e
 n\babel-english.tex")
 Package babel Info: Importing data from babel-en.ini for english on input line 
-67.
+77.
 \l@english = a dialect from \language\bbl@tempa 
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/was\upgreek.sty"
 Package: upgreek 2003/02/12 v2.0 (WaS)
@@ -609,25 +657,6 @@ Package upgreek Info: Using Euler Roman for upright Greek on input line 31.
 LaTeX Font Info:    Overwriting symbol font `ugrf@m' in version `bold'
 (Font)                  U/eur/m/n --> U/eur/b/n on input line 38.
 )
-("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\longtable.
-sty"
-Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)+ FMi change
-\LTleft=\skip69
-\LTright=\skip70
-\LTpre=\skip71
-\LTpost=\skip72
-\LTchunksize=\count121
-\LTcapwidth=\dimen144
-\LT@head=\box33
-\LT@firsthead=\box34
-\LT@foot=\box35
-\LT@lastfoot=\box36
-\LT@cols=\count122
-\LT@rows=\count123
-\c@LT@tables=\count124
-\c@LT@chunks=\count125
-\LT@p@ftn=\toks27
-)
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\lscape.
 sty"
 Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
@@ -635,30 +664,20 @@ Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/multirow\multiro
 w.sty"
 Package: multirow 2019/01/01 v2.4 Span multiple rows of a table
-\multirow@colwidth=\skip73
-\multirow@cntb=\count126
-\multirow@dima=\skip74
-\bigstrutjot=\dimen145
+\multirow@colwidth=\skip78
+\multirow@cntb=\count129
+\multirow@dima=\skip79
+\bigstrutjot=\dimen150
 )
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\tabularx.s
 ty"
 Package: tabularx 2016/02/03 v2.11b `tabularx' package (DPC)
-("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\array.sty"
-Package: array 2018/12/30 v2.4k Tabular extension package (FMi)
-\col@sep=\dimen146
-\ar@mcellbox=\box37
-\extrarowheight=\dimen147
-\NC@list=\toks28
-\extratabsurround=\skip75
-\backup@length=\skip76
-\ar@cellbox=\box38
-)
-\TX@col@width=\dimen148
-\TX@old@table=\dimen149
-\TX@old@col=\dimen150
-\TX@target=\dimen151
-\TX@delta=\dimen152
-\TX@cols=\count127
+\TX@col@width=\dimen151
+\TX@old@table=\dimen152
+\TX@old@col=\dimen153
+\TX@target=\dimen154
+\TX@delta=\dimen155
+\TX@cols=\count130
 \TX@ftn=\toks29
 )
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/threeparttablex\
@@ -673,21 +692,21 @@ Package: environ 2014/05/04 v0.3 A new way to define environments
 paces.sty"
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
-\TPTL@width=\skip77
+\TPTL@width=\skip80
 )
-\longtablewidth=\skip78
+\longtablewidth=\skip81
 Failed to patch abstract.
 Failed to patch title.
 
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/csquotes\csquote
 s.sty"
 Package: csquotes 2018/04/13 v5.2d context-sensitive quotations (JAW)
-\csq@reset=\count128
-\csq@gtype=\count129
-\csq@glevel=\count130
-\csq@qlevel=\count131
-\csq@maxlvl=\count132
-\csq@tshold=\count133
+\csq@reset=\count131
+\csq@gtype=\count132
+\csq@glevel=\count133
+\csq@qlevel=\count134
+\csq@maxlvl=\count135
+\csq@tshold=\count136
 \csq@ltx@everypar=\toks30
 
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/csquotes\csquote
@@ -705,39 +724,39 @@ File: csquotes.cfg
 sty"
 Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
 Package tocloft Info: The document has section divisions on input line 51.
-\cftparskip=\skip79
-\cftbeforetoctitleskip=\skip80
-\cftaftertoctitleskip=\skip81
-\cftbeforepartskip=\skip82
-\cftpartnumwidth=\skip83
-\cftpartindent=\skip84
-\cftbeforesecskip=\skip85
-\cftsecindent=\skip86
-\cftsecnumwidth=\skip87
-\cftbeforesubsecskip=\skip88
-\cftsubsecindent=\skip89
-\cftsubsecnumwidth=\skip90
-\cftbeforesubsubsecskip=\skip91
-\cftsubsubsecindent=\skip92
-\cftsubsubsecnumwidth=\skip93
-\cftbeforeparaskip=\skip94
-\cftparaindent=\skip95
-\cftparanumwidth=\skip96
-\cftbeforesubparaskip=\skip97
-\cftsubparaindent=\skip98
-\cftsubparanumwidth=\skip99
-\cftbeforeloftitleskip=\skip100
-\cftafterloftitleskip=\skip101
-\cftbeforefigskip=\skip102
-\cftfigindent=\skip103
-\cftfignumwidth=\skip104
-\c@lofdepth=\count134
-\c@lotdepth=\count135
-\cftbeforelottitleskip=\skip105
-\cftafterlottitleskip=\skip106
-\cftbeforetabskip=\skip107
-\cfttabindent=\skip108
-\cfttabnumwidth=\skip109
+\cftparskip=\skip82
+\cftbeforetoctitleskip=\skip83
+\cftaftertoctitleskip=\skip84
+\cftbeforepartskip=\skip85
+\cftpartnumwidth=\skip86
+\cftpartindent=\skip87
+\cftbeforesecskip=\skip88
+\cftsecindent=\skip89
+\cftsecnumwidth=\skip90
+\cftbeforesubsecskip=\skip91
+\cftsubsecindent=\skip92
+\cftsubsecnumwidth=\skip93
+\cftbeforesubsubsecskip=\skip94
+\cftsubsubsecindent=\skip95
+\cftsubsubsecnumwidth=\skip96
+\cftbeforeparaskip=\skip97
+\cftparaindent=\skip98
+\cftparanumwidth=\skip99
+\cftbeforesubparaskip=\skip100
+\cftsubparaindent=\skip101
+\cftsubparanumwidth=\skip102
+\cftbeforeloftitleskip=\skip103
+\cftafterloftitleskip=\skip104
+\cftbeforefigskip=\skip105
+\cftfigindent=\skip106
+\cftfignumwidth=\skip107
+\c@lofdepth=\count137
+\c@lotdepth=\count138
+\cftbeforelottitleskip=\skip108
+\cftafterlottitleskip=\skip109
+\cftbeforetabskip=\skip110
+\cfttabindent=\skip111
+\cfttabnumwidth=\skip112
 
 Package tocloft Warning: \@starttoc has already been redefined; tocloft bailing
  out. on input line 1147.
@@ -802,9 +821,9 @@ Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
 .sty"
 Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 )
-\@linkdim=\dimen153
-\Hy@linkcounter=\count136
-\Hy@pagecounter=\count137
+\@linkdim=\dimen156
+\Hy@linkcounter=\count139
+\Hy@pagecounter=\count140
 
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\pd1enc.
 def"
@@ -812,7 +831,7 @@ File: pd1enc.def 2018/11/30 v6.88e Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
-\Hy@SavedSpaceFactor=\count138
+\Hy@SavedSpaceFactor=\count141
 
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/00miktex\hyperre
 f.cfg"
@@ -833,16 +852,16 @@ Package hyperref Info: Plain pages OFF on input line 4534.
 Package hyperref Info: Backreferencing OFF on input line 4539.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4772.
-\c@Hy@tempcnt=\count139
+\c@Hy@tempcnt=\count142
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/url\url.sty"
 \Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5125.
-\XeTeXLinkMargin=\dimen154
-\Fld@menulength=\count140
-\Field@Width=\dimen155
-\Fld@charsize=\dimen156
+\XeTeXLinkMargin=\dimen157
+\Fld@menulength=\count143
+\Field@Width=\dimen158
+\Fld@charsize=\dimen159
 Package hyperref Info: Hyper figures OFF on input line 6380.
 Package hyperref Info: Link nesting OFF on input line 6385.
 Package hyperref Info: Hyper index ON on input line 6388.
@@ -852,17 +871,17 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6405.
 Package hyperref Info: PDF/A mode OFF on input line 6410.
 LaTeX Info: Redefining \ref on input line 6450.
 LaTeX Info: Redefining \pageref on input line 6454.
-\Hy@abspage=\count141
-\c@Item=\count142
-\c@Hfootnote=\count143
+\Hy@abspage=\count144
+\c@Item=\count145
+\c@Hfootnote=\count146
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\hpdftex
 .def"
 File: hpdftex.def 2018/11/30 v6.88e Hyperref driver for pdfTeX
-\Fld@listcount=\count144
-\c@bookmark@seq@number=\count145
+\Fld@listcount=\count147
+\c@bookmark@seq@number=\count148
 
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\rerunfi
 lecheck.sty"
@@ -870,12 +889,12 @@ Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
-\Hy@SectionHShift=\skip110
+\Hy@SectionHShift=\skip113
 )
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\bkm-pdf
 tex.def"
 File: bkm-pdftex.def 2016/05/17 v1.26 bookmark driver for pdfTeX (HO)
-\BKM@id=\count146
+\BKM@id=\count149
 )) ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/xurl\xurl.sty
 "
 Package: xurl 2018/12/23 v 0.07 modify URL breaks
@@ -887,30 +906,30 @@ Package csquotes Info: Redefining alias 'default' -> 'english'.
 (NEW_Final_Groupof5.aux)
 \openout1 = `NEW_Final_Groupof5.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 157.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 157.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 167.
+LaTeX Font Info:    ... okay on input line 167.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 167.
+LaTeX Font Info:    ... okay on input line 167.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 167.
+LaTeX Font Info:    ... okay on input line 167.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 167.
+LaTeX Font Info:    ... okay on input line 167.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 167.
+LaTeX Font Info:    ... okay on input line 167.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 167.
+LaTeX Font Info:    ... okay on input line 167.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 167.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 167.
 
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ts1cmr.fd"
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 157.
+LaTeX Font Info:    ... okay on input line 167.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 167.
+LaTeX Font Info:    ... okay on input line 167.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 167.
+LaTeX Font Info:    ... okay on input line 167.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 167.
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -952,16 +971,16 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp
 -pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count147
-\scratchdimen=\dimen157
-\scratchbox=\box39
-\nofMPsegments=\count148
-\nofMParguments=\count149
+\scratchcounter=\count150
+\scratchdimen=\dimen160
+\scratchbox=\box40
+\nofMPsegments=\count151
+\nofMParguments=\count152
 \everyMPshowfont=\toks31
-\MPscratchCnt=\count150
-\MPscratchDim=\dimen158
-\MPnumerator=\count151
-\makeMPintoPDFobject=\count152
+\MPscratchCnt=\count153
+\MPscratchDim=\dimen161
+\MPnumerator=\count154
+\makeMPintoPDFobject=\count155
 \everyMPtoPDFconversion=\toks32
 )
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\epstopd
@@ -993,7 +1012,7 @@ n.sty"
 Package: ltcaption 2018/08/26 v1.4-95 longtable captions (AR)
 )
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Redefining \microtypecontext on input line 157.
+LaTeX Info: Redefining \microtypecontext on input line 167.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
@@ -1009,8 +1028,8 @@ Package microtype Info: No adjustment of character kerning.
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-\AtBeginShipoutBox=\box40
-Package hyperref Info: Link coloring OFF on input line 157.
+\AtBeginShipoutBox=\box41
+Package hyperref Info: Link coloring OFF on input line 167.
 
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\nameref
 .sty"
@@ -1020,38 +1039,38 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 tlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count153
+\c@section@level=\count156
 )
-LaTeX Info: Redefining \ref on input line 157.
-LaTeX Info: Redefining \pageref on input line 157.
-LaTeX Info: Redefining \nameref on input line 157.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 159.
+LaTeX Info: Redefining \ref on input line 167.
+LaTeX Info: Redefining \pageref on input line 167.
+LaTeX Info: Redefining \nameref on input line 167.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 169.
 
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ot1lmr.fd"
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 159.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 169.
 
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omllmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 159
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 169
 .
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omslmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 159
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 169
 .
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omxlmex.fd"
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 159.
+(Font)              <12> on input line 169.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 159.
+(Font)              <8> on input line 169.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 159.
-LaTeX Font Info:    Try loading font information for U+msa on input line 159.
+(Font)              <6> on input line 169.
+LaTeX Font Info:    Try loading font information for U+msa on input line 169.
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd
 "
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -1060,7 +1079,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 .cfg"
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 159.
+LaTeX Font Info:    Try loading font information for U+msb on input line 169.
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd
 "
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1081,18 +1100,23 @@ This may cause the page layout to be inconsistent, however.
 
 [1{C:/Users/Dominik/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
-] [2] [3] AED endfloat: Processing end Figures and Tables
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 168.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 168.
+] [2]
+Overfull \hbox (19.6176pt too wide) in paragraph at lines 199--199
+[]|\T1/lmr/m/n/12 (-20) Diabetes|  
+ []
+
+[3] AED endfloat: Processing end Figures and Tables
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 213.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 213.
 (NEW_Final_Groupof5.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 168.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 168.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 213.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 213.
  ) 
 Here is how much of TeX's memory you used:
- 16662 strings out of 492891
- 251830 string characters out of 3122624
- 377690 words of memory out of 3000000
- 20262 multiletter control sequences out of 15000+200000
+ 16804 strings out of 492891
+ 254121 string characters out of 3122624
+ 384646 words of memory out of 3000000
+ 20396 multiletter control sequences out of 15000+200000
  42660 words of font info for 56 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,11n,47p,1356b,429s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1101,9 +1125,9 @@ enc}<C:/Users/Dominik/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/l
 mr12.pfb><C:/Users/Dominik/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public
 /lm/lmr8.pfb><C:/Users/Dominik/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
 blic/lm/lmri12.pfb>
-Output written on NEW_Final_Groupof5.pdf (3 pages, 71327 bytes).
+Output written on NEW_Final_Groupof5.pdf (3 pages, 74531 bytes).
 PDF statistics:
- 41 PDF objects out of 1000 (max. 8388607)
- 6 named destinations out of 1000 (max. 500000)
+ 44 PDF objects out of 1000 (max. 8388607)
+ 7 named destinations out of 1000 (max. 500000)
  6161 words of extra memory for PDF output out of 10000 (max. 10000000)
 
