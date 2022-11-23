@@ -77,9 +77,7 @@ write_csv(mexico_raw_dat, file = "mexico_raw_dat.csv")
 #Rachel's code to drop irrelevant variables, filter, and add a medication*dt_exrcse variable.
 
 data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset
-data <- data %>% select(sex, diagnosis, age, hba1c, crp, medication, dt_exrcse) %>% filter(age >=50 & (diagnosis == 2 | hba1c >6.5))  %>% as_tibble #Selecting only relevant variables, renaming for clarification, and filtering. Once we figure out where the access variable (Q5004) is, we can replace this with the code below.
-
-#data <- data %>% select(sex, diagnosis, age, hba1c, crp, medication, dt_exrcse, q5004) %>% rename(access = q5004) %>% filter(age >=50, crp <5, hba1c >6.5)  %>% as_tibble #Variable q5004 is missing from this dataset. Need help understanding where it went.
+data <- data %>% select(sex, diagnosis, age, hba1c, crp, medication, dt_exrcse, q5026, q5027) %>% rename(care = q5026, num_care = q5027) %>% filter(age >=50 & (diagnosis == 2 | crp < 5))  %>% as_tibble #Selecting only relevant variables, renaming for clarification, and filtering for people with a diabetes diagnosis and high levels of inflammation (crp).
 
 data <- data %>% mutate(med_dt_exrcse = medication*dt_exrcse, .after=dt_exrcse) %>% mutate(med_dt_exrcse = dplyr::recode(med_dt_exrcse, '4' = "1", '1' = "2", '2' = "2")) #Adding a new column for people who both take medication AND diet and exercise. 1 = yes for both, 2 = not yes for both
 
@@ -89,11 +87,12 @@ data <- data %>%
          diagnosis = as.factor(diagnosis),
          medication = as.factor(medication),
          dt_exrcse = as.factor(dt_exrcse),
-         med_dt_exrcse = as.factor(med_dt_exrcse))
+         med_dt_exrcse = as.factor(med_dt_exrcse),
+         care = as.factor(care))
 
 #For our own sanity, this is a mini dataframe of variable descriptions and their coding criteria (if applicable).
-col1 <- c("sex","diagnosis","age","hba1c","crp","medication","dt_exrcse","med_dt_exrcse","access")
-col2 <- c("participant gender as reported by researcher (male = 1, female = 2)","whether the participant has been diagnosed with diabetes (yes = 1, no = 2)","participant age","participant blood sugar level","participant inflammation level","whether the participant is currently taking medication for diabetes inflammation (yes = 1, no = 2)","whether the participant is on a diabetes-specific diet and exercise plan (yes = 1, no = 2)","whether the participant is on BOTH medication and a diet and exercise plan (yes = 1, no = 2)","participant access to healthcare, i.e., to whom they typically go for healthcare (coding TBD)")
+col1 <- c("sex","diagnosis","age","hba1c","crp","medication","dt_exrcse","med_dt_exrcse","care","num_care")
+col2 <- c("participant gender as reported by researcher (male = 1, female = 2)","whether the participant has been diagnosed with diabetes (yes = 1, no = 2)","participant age","participant blood sugar level","participant inflammation level","whether the participant is currently taking medication for diabetes inflammation (yes = 1, no = 2)","whether the participant is on a diabetes-specific diet and exercise plan (yes = 1, no = 2)","whether the participant is on BOTH medication and a diet and exercise plan (yes = 1, no = 2)","whether the participant has accessed medical care in the past year (1 = yes, 2 = no)","number of times the participant has accessed medical care in the past year")
 data_variables <- data.frame(col1, col2)
 
 ```
@@ -105,9 +104,16 @@ data_by_sex <- data %>% pivot_wider(names_from="sex", values_from="crp") %>% ren
 
 ```
 
-```{r RQ1}
+```{r RQ1, echo=FALSE, render = 'normal print'}
 #RQ1: Does taking medication lower inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
 
+RQ1_df <- data %>% 
+  filter(!is.na(medication | hba1c | age | crp))
+
+mreg1 <- lm(crp~hba1c * medication + age, data = RQ1_df)
+summary(mreg1) #No significant findings. Oh well!
+
+#mreg1_plot <- ggplot(RQ1_df, aes(medication, hba1c, age)) + geom_point() + stat_smooth(method = "lm", formula = mreg1, geom = "smooth") #This plot looks terrible right now, so I will see if we need to come back to it later.
 
 ```
 
