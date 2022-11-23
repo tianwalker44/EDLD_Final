@@ -57,6 +57,7 @@ library(tidyr)
 ```{r data-cleaning-tian, echo=FALSE, eval=FALSE}
 #code used to create extracted data file - Mexico 
 #Rachel's note: This does not need re-run, as this was Tian joining two Mexico datasets and renaming variables and outputting mexico_raw_dat.csv. We should leave the code here so Joe can see how much initial data cleaning she worked on.
+#great idea #dg
 
 mex_survey <- import("Mexico_IND.sav")
 
@@ -64,7 +65,7 @@ mex_bio <- import("MexicoLabData.csv")
 
 mex_survey$id <- as.numeric(mex_survey$id)
 mexico <- mex_survey %>%
-left_join(mex_bio, by = 'id')
+  left_join(mex_bio, by = 'id')
 
 mexico_raw_dat <- mexico %>% select(income, q4022,  sex = q0406 , q0407, hba1c, crp, q4023a, q4024, weight = q2507, height = q2506, waist = q2508, marriage = q0408, q2000:q2024) %>% rename(diagnosis = q4022, age = q0407, medication = q4023a, dt_exrcse = q4024)
 
@@ -80,6 +81,14 @@ data <- data %>% select(sex, diagnosis, age, hba1c, crp, medication, dt_exrcse) 
 #data <- data %>% select(sex, diagnosis, age, hba1c, crp, medication, dt_exrcse, q5004) %>% rename(access = q5004) %>% filter(age >=50, crp <5, hba1c >6.5)  %>% as_tibble #Variable q5004 is missing from this dataset. Need help understanding where it went.
 
 data <- data %>% mutate(med_dt_exrcse = medication*dt_exrcse, .after=dt_exrcse) %>% mutate(med_dt_exrcse = dplyr::recode(med_dt_exrcse, '4' = "1", '1' = "2", '2' = "2")) #Adding a new column for people who both take medication AND diet and exercise. 1 = yes for both, 2 = not yes for both
+
+#making categorical variables factors
+data <- data %>%
+  mutate(sex = as.factor(sex),
+         diagnosis = as.factor(diagnosis),
+         medication = as.factor(medication),
+         dt_exrcse = as.factor(dt_exrcse),
+         med_dt_exrcse = as.factor(med_dt_exrcse))
 
 #For our own sanity, this is a mini dataframe of variable descriptions and their coding criteria (if applicable).
 col1 <- c("sex","diagnosis","age","hba1c","crp","medication","dt_exrcse","med_dt_exrcse","access")
@@ -98,10 +107,13 @@ data_by_sex <- data %>% pivot_wider(names_from="sex", values_from="crp") %>% ren
 ```{r RQ1}
 #RQ1: Does taking medication lower inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
 
+
 ```
 
 ```{r RQ2}
 #RQ2: Does diet and exercise predict inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
+RQ2_df <- data %>%
+  filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age), !(is.na(crp)))
 
 ```
 
@@ -109,3 +121,5 @@ data_by_sex <- data %>% pivot_wider(names_from="sex", values_from="crp") %>% ren
 #RQ3: For those with vs. without access to medical care, what is the effect of diet and exercise on inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
 
 ```
+
+
