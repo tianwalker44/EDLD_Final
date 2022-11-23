@@ -77,7 +77,7 @@ write_csv(mexico_raw_dat, file = "mexico_raw_dat.csv")
 #Rachel's code to drop irrelevant variables, filter, and add a medication*dt_exrcse variable.
 
 data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset
-data <- data %>% select(sex, diagnosis, age, hba1c, crp, medication, dt_exrcse, q5026, q5027) %>% rename(care = q5026, num_care = q5027) %>% filter(age >=50 & (diagnosis == 2 | crp < 5))  %>% as_tibble #Selecting only relevant variables, renaming for clarification, and filtering for people with a diabetes diagnosis and high levels of inflammation (crp).
+data <- data %>% select(sex, diagnosis, age, hba1c, crp, medication, dt_exrcse, q5026, q5027) %>% rename(access = q5026) %>% filter(age >=50 & (diagnosis == 2 | crp < 5))  %>% as_tibble #Selecting only relevant variables, renaming for clarification, and filtering for people with a diabetes diagnosis and high levels of inflammation (crp).
 
 data <- data %>% mutate(med_dt_exrcse = medication*dt_exrcse, .after=dt_exrcse) %>% mutate(med_dt_exrcse = dplyr::recode(med_dt_exrcse, '4' = "1", '1' = "2", '2' = "2")) #Adding a new column for people who both take medication AND diet and exercise. 1 = yes for both, 2 = not yes for both
 
@@ -140,8 +140,27 @@ table2$table$predictor <- c('Intercept',
                             'hba1c:dt_exrcse2')
 ```
 
-```{r RQ3}
+```{r RQ3-brittany}
 #RQ3: For those with vs. without access to medical care, what is the effect of diet and exercise on inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
+
+data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset
+RQ3df <- data %>% 
+  filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age), !(is.na(crp)), !is.na(q5026))
+str(RQ3df)  
+RQ3df <- RQ3df %>% select(diagnosis, age, hba1c, crp, dt_exrcse, q5026) %>% rename(care = q5026) %>% filter(age >=50 & (diagnosis == 2 | crp < 5))
+str(RQ3df)
+RQ3df$care <- factor(RQ3df$care,
+                      levels = c(1,2), labels = c("Yes","No")) #How do i get rid of NA values
+table(RQ3df$care)
+
+prop <- prop.table(table(RQ3df$care))
+
+barplot(prop, xlab = "Individuals 50yo or older with Diabetes that partake in Diet&/Exercise and saw a Dr. in the Last Year", ylab = "Proportion of Individuals") #need to add title and subtitle(?)
+
+#chi_df <- chisq.test(RQ3df$care) #need to get rid of NA values in care and possible create two dfs with yes no and then run chi between dfs of data$care but this is the code 
+#chi_df
+#chi_df$expected
+#chi_df$observed 
 
 ```
 
