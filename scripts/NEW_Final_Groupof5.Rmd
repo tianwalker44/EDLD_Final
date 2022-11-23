@@ -77,7 +77,7 @@ write_csv(mexico_raw_dat, file = "mexico_raw_dat.csv")
 #Rachel's code to drop irrelevant variables, filter, and add a medication*dt_exrcse variable.
 
 data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset
-data <- data <- data %>% select(sex, diagnosis, age, hba1c, crp, medication, dt_exrcse, q5026, q5027) %>% rename(care = q5026, num_care = q5027) %>% filter(age >=50 & (diagnosis == 1 | hba1c >6.5))  %>% as_tibble #Selecting only relevant variables, renaming for clarification, and filtering. 
+data <- data <- data %>% select(sex, diagnosis, age, hba1c, crp, medication, dt_exrcse, q5026, q5027) %>% rename(care = q5026, num_care = q5027) %>% filter(age >=50 & (diagnosis == 1 & crp < 5))  %>% as_tibble #Selecting only relevant variables, renaming for clarification, and filtering to include diagnosed people who have high levels of inflammation (crp). 
 
 data <- data %>% mutate(med_dt_exrcse = medication*dt_exrcse, .after=dt_exrcse) %>% mutate(med_dt_exrcse = dplyr::recode(med_dt_exrcse, '4' = "1", '1' = "2", '2' = "2")) #Adding a new column for people who both take medication AND diet and exercise. 1 = yes for both, 2 = not yes for both
 
