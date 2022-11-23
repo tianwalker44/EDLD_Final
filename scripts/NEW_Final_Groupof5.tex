@@ -69,6 +69,29 @@
   \let\oldsubparagraph\subparagraph
   \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
 \fi
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 \ifLuaTeX
 \usepackage[bidi=basic]{babel}
 \else
@@ -93,9 +116,9 @@
 
 % Create new environments so endfloat can handle them
 % \newenvironment{ltable}
-%   {\begin{landscape}\begin{center}\begin{threeparttable}}
-%   {\end{threeparttable}\end{center}\end{landscape}}
-\newenvironment{lltable}{\begin{landscape}\begin{center}\begin{ThreePartTable}}{\end{ThreePartTable}\end{center}\end{landscape}}
+%   {\begin{landscape}\centering\begin{threeparttable}}
+%   {\end{threeparttable}\end{landscape}}
+\newenvironment{lltable}{\begin{landscape}\centering\begin{ThreePartTable}}{\end{ThreePartTable}\end{landscape}}
 
 % Enables adjusting longtable caption width to table width
 % Solution found at http://golatex.de/longtable-mit-caption-so-breit-wie-die-tabelle-t15767.html
@@ -108,6 +131,20 @@
 % \setlength{\parindent}{0.5in}
 % \setlength{\parskip}{0pt plus 0pt minus 0pt}
 
+% Overwrite redefinition of paragraph and subparagraph by the default LaTeX template
+% See https://github.com/crsh/papaja/issues/292
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries\itshape\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{1em}%
+  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+  {-\z@\relax}%
+  {\normalfont\normalsize\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
 % \usepackage{etoolbox}
 \makeatletter
 \patchcmd{\HyOrg@maketitle}
@@ -119,7 +156,15 @@
   {\section*{\protect\normalfont{\@title}}}
   {}{\typeout{Failed to patch title.}}
 \makeatother
-\shorttitle{Inflammation, access to care and Diabetes in China and Mexico.}
+
+\usepackage{xpatch}
+\makeatletter
+\xapptocmd\appendix
+  {\xapptocmd\section
+    {\addcontentsline{toc}{section}{\appendixname\ifoneappendix\else~\theappendix\fi\\: #1}}
+    {}{\InnerPatchFailed}%
+  }
+{}{\PatchFailed}
 \keywords{Diabetes, access to care, inflammation, health, Mexico, China\newline\indent Word count: X (this cannot easily be done automatically, we can also just leave it out)}
 \usepackage{csquotes}
 \usepackage[titles]{tocloft}
@@ -154,11 +199,13 @@
 \date{}
 
 
+\shorttitle{Inflammation, access to care and Diabetes in China and Mexico.}
+
 \authornote{List of group members ordered by alphabet.}
 
 \affiliation{\vspace{0.5cm}\textsuperscript{1} University of Oregon}
 
-\abstract{
+\abstract{%
 \emph{Background.} Background goes here. \emph{Methods.} Methods go here. \emph{Results.} Results here. \emph{Conclusions.} Conclusions here.
 }
 
@@ -190,17 +237,81 @@ Mexico
 \end{minipage} \\
 \midrule()
 \endhead
-\(N_{total}\) & & 2094 \\
+\(N_{total}\) & & 661 \\
 Sex & & \\
-& male & 836 (39.90 \%) \\
-& female & 1254 (59.90 \%) \\
-& unknown & 4 (0.20 \%) \\
-Age & & 67.80 (\(SD\) = 9.10) \\
+& male & 218 (33 \%) \\
+& female & 442 (66.90 \%) \\
+& unknown & 1 (0.20 \%) \\
+Age & & 67.50 (\(SD\) = 8.70) \\
 Diabetes & & \\
-& diagnosed & 327 (15.60 \%) \\
-& undiagnosed & 205 (9.80 \%) \\
+& diagnosed & 449 (67.90 \%) \\
+& undiagnosed & 205 (31 \%) \\
 \bottomrule()
 \end{longtable}
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+Diabetes and its insidious complications continue to expand as a global health burden at an alarming rate. As of 2021, there were approximately 537 million adults living with diabetes in the world and this number is expected to jump to 783 million by 2045. A disproportionate percentage of these people live in low to middle income countries (LMICs). In light of the Covid pandemic, it is also of great import that we better understand the relationships between diabetes and infectious diseases as diabetes both increased the severity of Covid (in people with elevated a1c levels) and has increased in incidence during the Covid 19 pandemic (Yang et al., 2020) (Rohm, Meier, Olefsky, \& Donath, 2022).
+
+Additionally, diabetes is associated with a steep increase in cardiovascular disease risk and is a leading cause of death in many low to middle income countries (LMICs) including Mexico. Although the precise classification of diabetes remains controversial because of the complex nature of its pathogenesis, there are three universally acknowledged subtypes: type 1 diabetes, type 2 diabetes, and gestational diabetes. Diabetes is a progressive disease in that the longer one has it, the more complications ensue. Therefore, it is helpful to conceptualize diabetes as a process that can be stopped, but not reversed. Research that contributes to slowing down or stopping the process can be extremely valuable to global health regardless of its contribution to cure and prevention because of the astronomical rates of diabetes in our world today.
+
+Inflammation is a strong indicator of diabetes development and progression. Inflammation predicts the development of diabetes (Dilys J. Freeman et al., 2002) (Dilys J. Freeman et al., 2001) (Schmidt et al., 1999). Specifically, trials for drugs directed at inflammation among people with type 2 diabetes have indicated that drugs targeted at inflammation may be a therapeutic option for preventing diabetes (Agrawal \& Kant, 2014).Retinopathy and focal neuropathy (Said, 2007) have also been linked to inflammatory processes. Additionally, the direct damage caused by high blood glucose leads to more inflammation and creates a nasty feedback loop wherein inflammation causes more insulin resistance which leads to high blood glucose.
+
+Diabetes treatment and inflammation
+
+The ability of cells to absorb insulin can be increased through diet, exercise, and oral pills.Increasing exercise and dieting can cause major decreases in inflammation. Some of the drugs for type 2 diabetes aimed at increasing insulin sensitivity also decrease inflammation (e.g., drugs that cause weight loss). In the opposite direction, insulin can cause severe low blood glucose levels that initiate a stress response causing more inflammation.
+
+\hypertarget{methods}{%
+\section{Methods}\label{methods}}
+
+C-reactive protein and hba1c measured through dried bloodspots (minimally invasive biomarkers) {[}McDade, Williams, and Snodgrass (2007)).
+
+Self-report surveys conducted by trained interviewers.
+
+Data are from the World Health Organization's Study on Adult Health and Ageing (SAGE). Our data is from 1 of 5 countries where the data were collected.
+
+Cite R packages here
+
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
+
+\hypertarget{limitations}{%
+\subsection{Limitations}\label{limitations}}
+
+We were not able to look at pills and insulin separately and some their effects have the potential to cancel each other out. The sex variable was established through interviewer discernment.
+
+\hypertarget{references}{%
+\section*{References}\label{references}}
+\addcontentsline{toc}{section}{References}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\vadjust pre{\hypertarget{ref-10.4239ux2fwjd.v5.i5.697}{}}%
+Agrawal, N. K., \& Kant, S. (2014). Targeting inflammation in diabetes: {Newer} therapeutic options. \emph{World Journal of Diabetes}, \emph{5}(5), 697. \url{https://doi.org/10.4239/wjd.v5.i5.697}
+
+\leavevmode\vadjust pre{\hypertarget{ref-freemanCreactiveProteinIndependent2002}{}}%
+Freeman, Dilys J., Norrie, J., Caslake, M. J., Gaw, A., Ford, I., Lowe, G. D. O., \ldots{} Study, W. of S. C. P. (2002). C-reactive protein is an independent predictor of risk for the development of diabetes in the west of scotland coronary prevention study. \emph{Diabetes}, \emph{51}(5), 1596--1600. \url{https://doi.org/10.2337/diabetes.51.5.1596}
+
+\leavevmode\vadjust pre{\hypertarget{ref-10.1161ux2f01.cir.103.3.357}{}}%
+Freeman, Dilys J., Norrie, J., Sattar, N., Neely, R. D. G., Cobbe, S. M., Ford, I., \ldots{} Gaw, A. (2001). Pravastatin and the development of diabetes mellitus. \emph{Circulation}, \emph{103}(3), 357--362. \url{https://doi.org/10.1161/01.cir.103.3.357}
+
+\leavevmode\vadjust pre{\hypertarget{ref-10.1353ux2fdem.2007.0038}{}}%
+McDade, T. W., Williams, S., \& Snodgrass, J. J. (2007). What a drop can do: {Dried} blood spots as a minimally invasive method for integrating biomarkers into population-based research. \emph{Demography}, \emph{44}(4), 899--925. \url{https://doi.org/10.1353/dem.2007.0038}
+
+\leavevmode\vadjust pre{\hypertarget{ref-rohmInflammationObesityDiabetes2022}{}}%
+Rohm, T. V., Meier, D. T., Olefsky, J. M., \& Donath, M. Y. (2022). Inflammation in obesity, diabetes, and related disorders. \emph{Immunity}, \emph{55}(1), 31--55. \url{https://doi.org/10.1016/j.immuni.2021.12.013}
+
+\leavevmode\vadjust pre{\hypertarget{ref-saidDiabeticNeuropathyReview2007}{}}%
+Said, G. (2007). Diabetic neuropathy---a review. \emph{Nature Clinical Practice Neurology}, \emph{3}(6, 6), 331--340. \url{https://doi.org/10.1038/ncpneuro0504}
+
+\leavevmode\vadjust pre{\hypertarget{ref-schmidtMarkersInflammationPrediction1999}{}}%
+Schmidt, M. I., Duncan, B. B., Sharrett, A. R., Lindberg, G., Savage, P. J., Offenbacher, S., \ldots{} Heiss, G. (1999). Markers of inflammation and prediction of diabetes mellitus in adults ({Atherosclerosis Risk} in {Communities} study): A cohort study. \emph{The Lancet}, \emph{353}(9165), 1649--1652. \url{https://doi.org/10.1016/S0140-6736(99)01046-6}
+
+\leavevmode\vadjust pre{\hypertarget{ref-yangPrevalenceComorbiditiesIts2020}{}}%
+Yang, J., Zheng, Y., Gou, X., Pu, K., Chen, Z., Guo, Q., \ldots{} Zhou, Y. (2020). Prevalence of comorbidities and its effects in patients infected with {SARS-CoV-2}: A systematic review and meta-analysis. \emph{International Journal of Infectious Diseases}, \emph{94}, 91--95. \url{https://doi.org/10.1016/j.ijid.2020.03.017}
+
+\end{CSLReferences}
 
 
 \clearpage
