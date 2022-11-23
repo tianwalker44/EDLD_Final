@@ -106,16 +106,20 @@ data_by_sex <- data %>% pivot_wider(names_from="sex", values_from="crp") %>% ren
 ```
 
 ```{r RQ1}
-#RQ1: Does taking medication lower inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
+#RQ1: Does diet and exercise predict inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
+
+RQ1_df <- data %>%
+  filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age), !(is.na(crp)))
+mod1 <- lm(crp~hba1c*dt_exrcse, data = RQ2_df)
 
 
 ```
 
 ```{r RQ2}
-#RQ2: Does diet and exercise predict inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
-RQ2_df <- data %>%
-  filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age), !(is.na(crp)))
+#RQ2: Does taking medication lower inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
 
+RQ2_df <- data %>%
+  filter(!is.na(medication) & !is.na(hba1c) & !is.na(age), !(is.na(crp)))
 
 mod2 <- lm(crp~hba1c*medication, data = RQ2_df)
 
