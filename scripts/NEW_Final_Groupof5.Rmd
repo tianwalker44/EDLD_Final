@@ -110,9 +110,22 @@ data_by_sex <- data %>% pivot_wider(names_from="sex", values_from="crp") %>% ren
 
 RQ1_df <- data %>%
   filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age), !(is.na(crp)))
-mod1 <- lm(crp~hba1c*dt_exrcse, data = RQ2_df)
+mod1 <- lm(crp~hba1c*dt_exrcse + age, data = RQ1_df)
 
 
+```
+
+```{r eval=FALSE, error=TRUE, message=TRUE, warning=TRUE, include=FALSE}
+mod1_summary<- summary(mod1)
+table1 <- apa_print(mod1)
+table1$table$predictor <- c('Intercept', 
+                            'Hba1c',
+                            'Diet_Exercise',
+                            'Age',
+                            'variable')
+apa_table(table1$table,
+          caption = "Interaction of HbA1c and Medication on CRP ",
+          note = paste("Model fit: $F$(", mod1_summary$fstatistic[2], ", ", mod1_summary$fstatistic[3], ") = ", round(mod1_summary$fstatistic[1], 2), ",", "$p$ ", report_p(get_model_p(mod1_summary)), ", ", "$R^2$ = ", round(mod1_summary$r.squared, 2), sep = ""))
 ```
 
 ```{r RQ2}
