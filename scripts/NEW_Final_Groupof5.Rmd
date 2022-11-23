@@ -116,7 +116,17 @@ data_by_sex <- data %>% pivot_wider(names_from="sex", values_from="crp") %>% ren
 RQ2_df <- data %>%
   filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age), !(is.na(crp)))
 
+
+mod2 <- lm(crp~hba1c*medication, data = RQ2_df)
+
+
 ```
+
+```{r}
+RQ2_df %>% 
+  ggplot(aes(hba1c, crp)) + geom_point(aes(color = medication), alpha = 0.5) + geom_smooth(aes(color = medication), method = "lm") + scale_color_brewer(palette = 7) + theme_dark() + labs( title = "The Relationship Between Blood Sugar and Inflammation by Medication", caption =  "SAGE data from Mexico", x = "Blood Sugar (HbA1c)", y = "Inflammation (CRP)")
+```
+
 
 ```{r RQ3}
 #RQ3: For those with vs. without access to medical care, what is the effect of diet and exercise on inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
