@@ -75,12 +75,13 @@ write_csv(mexico_raw_dat, file = "mexico_raw_dat.csv")
 #Rachel's code to drop irrelevant variables, filter, and add a medication*dt_exrcse variable.
 
 data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset
+data <- data %>% select(sex, diagnosis, age, hba1c, crp, medication, dt_exrcse) %>% filter(age >=50, crp <5, hba1c >6.5)  %>% as_tibble #Selecting only relevant variables, renaming for clarification, and filtering. Once we figure out where the access variable (Q5004) is, we can replace this with the code below.
 
-data <- data %>% select(sex, diagnosis, age, hba1c, crp, medication, dt_exrcse, q5004) %>% rename(access = q5004) %>% filter(age >=50, crp <5, hba1c >6.5)  %>% as_tibble #Selecting only relevant variables, renaming for clarification, and filtering. #Variable q5004 is missing from this dataset. Need clarification.
+#data <- data %>% select(sex, diagnosis, age, hba1c, crp, medication, dt_exrcse, q5004) %>% rename(access = q5004) %>% filter(age >=50, crp <5, hba1c >6.5)  %>% as_tibble #Variable q5004 is missing from this dataset. Need help understanding where it went.
 
 data <- data %>% mutate(med_dt_exrcse = medication*dt_exrcse, .after=dt_exrcse) %>% mutate(med_dt_exrcse = dplyr::recode(med_dt_exrcse, '4' = "1", '1' = "2", '2' = "2")) #Adding a new column for people who both take medication AND diet and exercise. 1 = yes for both, 2 = not yes for both
 
-#Creating a mini dataframe of variable descriptions and their coding (if applicable)
+#For our own sanity, this is a mini dataframe of variable descriptions and their coding criteria (if applicable).
 col1 <- c("sex","diagnosis","age","hba1c","crp","medication","dt_exrcse","med_dt_exrcse","access")
 col2 <- c("participant gender as reported by researcher (male = 1, female = 2)","whether the participant has been diagnosed with diabetes (yes = 1, no = 2)","participant age","participant blood sugar level","participant inflammation level","whether the participant is currently taking medication for diabetes inflammation (yes = 1, no = 2)","whether the participant is on a diabetes-specific diet and exercise plan (yes = 1, no = 2)","whether the participant is on BOTH medication and a diet and exercise plan (yes = 1, no = 2)","participant access to healthcare, i.e., to whom they typically go for healthcare (coding TBD)")
 data_variables <- data.frame(col1, col2)
