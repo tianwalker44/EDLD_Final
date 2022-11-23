@@ -88,20 +88,29 @@ data <- data %>%
          medication = as.factor(medication),
          dt_exrcse = as.factor(dt_exrcse),
          med_dt_exrcse = as.factor(med_dt_exrcse),
-         care = as.factor(care))
+         access = as.factor(access))
 
 #For our own sanity, this is a mini dataframe of variable descriptions and their coding criteria (if applicable).
-col1 <- c("sex","diagnosis","age","hba1c","crp","medication","dt_exrcse","med_dt_exrcse","care","num_care")
+col1 <- c("sex","diagnosis","age","hba1c","crp","medication","dt_exrcse","med_dt_exrcse","access","num_care")
 col2 <- c("participant gender as reported by researcher (male = 1, female = 2)","whether the participant has been diagnosed with diabetes (yes = 1, no = 2)","participant age","participant blood sugar level","participant inflammation level","whether the participant is currently taking medication for diabetes inflammation (yes = 1, no = 2)","whether the participant is on a diabetes-specific diet and exercise plan (yes = 1, no = 2)","whether the participant is on BOTH medication and a diet and exercise plan (yes = 1, no = 2)","whether the participant has accessed medical care in the past year (1 = yes, 2 = no)","number of times the participant has accessed medical care in the past year")
 data_variables <- data.frame(col1, col2)
 
 ```
 
-```{r pivot-by-sex, echo=FALSE}
-#Code to investigate crp levels by sex. This is just to fulfill Joe's requirement of using one of the pivot commands.
+```{r pivot-group_by, echo=FALSE}
+#Code to fulfill all of Joe's requirements.
 
-data_by_sex <- data %>% pivot_wider(names_from="sex", values_from="crp") %>% rename(male="1",female="2") %>% as_tibble
+#pivot_wider, to investigate crp levels by sex
+crp_by_sex <- data %>% pivot_wider(names_from="sex", values_from="crp") %>% rename(male="1",female="2") %>% as_tibble
 
+#pivot_longer, to investigate medication by crp level
+medication_by_crp <- data %>% pivot_longer(cols = "crp", "medication", values_to = "crp","on medication?", names_repair = "unique") #This isn't really doing what I want it to, but I'm out of time for now. -Rachel
+
+#group_by, to look at the mean crp of participants who both take medicine and diet and exercise, versus those who don't.
+groups_med_dt_exrcse <- data %>%
+  group_by(medication, dt_exrcse) %>% 
+  dplyr::summarize(mean = mean(crp)) %>% 
+  as_tibble()
 ```
 
 ```{r RQ1, echo=FALSE, render = 'normal print'}
@@ -143,17 +152,17 @@ table2$table$predictor <- c('Intercept',
 ```{r RQ3-brittany}
 #RQ3: For those with vs. without access to medical care, what is the effect of diet and exercise on inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
 
-data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset
+# data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset #From Rachel: I'm hashtagging this out, because if you re-import the dataset here, it loses all the cleaning from earlier. 
 RQ3df <- data %>% 
-  filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age), !(is.na(crp)), !is.na(q5026))
+  filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age), !(is.na(crp)), !is.na(access)) #From Rachel: There were inconsistencies from the cleaning to here about the variable being called care vs. access. I switched them all to access, here and in the code below.
 str(RQ3df)  
-RQ3df <- RQ3df %>% select(diagnosis, age, hba1c, crp, dt_exrcse, q5026) %>% rename(care = q5026) %>% filter(age >=50 & (diagnosis == 2 | crp < 5))
+RQ3df <- RQ3df %>% select(diagnosis, age, hba1c, crp, dt_exrcse, access) %>%  filter(age >=50 & (diagnosis == 2 | crp < 5)) 
 str(RQ3df)
-RQ3df$care <- factor(RQ3df$care,
+RQ3df$access <- factor(RQ3df$access,
                       levels = c(1,2), labels = c("Yes","No")) #How do i get rid of NA values
-table(RQ3df$care)
+table(RQ3df$access)
 
-prop <- prop.table(table(RQ3df$care))
+prop <- prop.table(table(RQ3df$access))
 
 barplot(prop, xlab = "Individuals 50yo or older with Diabetes that partake in Diet&/Exercise and saw a Dr. in the Last Year", ylab = "Proportion of Individuals") #need to add title and subtitle(?)
 
