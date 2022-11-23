@@ -51,8 +51,60 @@ library(tidyverse)
 library(rio)
 library(here)
 library(papaja)
+library(tidyr)
 ```
 
-```{r}
-mexico <- import(here("data","mexico_raw_dat.csv"))
+```{r data-cleaning-tian, echo=FALSE, eval=FALSE}
+#code used to create extracted data file - Mexico 
+#Rachel's note: This does not need re-run, as this was Tian joining two Mexico datasets and renaming variables and outputting mexico_raw_dat.csv. We should leave the code here so Joe can see how much initial data cleaning she worked on.
+
+mex_survey <- import("Mexico_IND.sav")
+
+mex_bio <- import("MexicoLabData.csv")
+
+mex_survey$id <- as.numeric(mex_survey$id)
+mexico <- mex_survey %>%
+left_join(mex_bio, by = 'id')
+
+mexico_raw_dat <- mexico %>% select(income, q4022,  sex = q0406 , q0407, hba1c, crp, q4023a, q4024, weight = q2507, height = q2506, waist = q2508, marriage = q0408, q2000:q2024) %>% rename(diagnosis = q4022, age = q0407, medication = q4023a, dt_exrcse = q4024)
+
+write_csv(mexico_raw_dat, file = "mexico_raw_dat.csv")
+```
+
+```{r data-cleaning-rachel, echo=FALSE}
+#Rachel's code to drop irrelevant variables, filter, and add a medication*dt_exrcse variable.
+
+data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset
+
+data <- data %>% select(sex, diagnosis, age, hba1c, crp, medication, dt_exrcse, q5004) %>% rename(access = q5004) %>% filter(age >=50, crp <5, hba1c >6.5)  %>% as_tibble #Selecting only relevant variables, renaming for clarification, and filtering. #Variable q5004 is missing from this dataset. Need clarification.
+
+data <- data %>% mutate(med_dt_exrcse = medication*dt_exrcse, .after=dt_exrcse) %>% mutate(med_dt_exrcse = dplyr::recode(med_dt_exrcse, '4' = "1", '1' = "2", '2' = "2")) #Adding a new column for people who both take medication AND diet and exercise. 1 = yes for both, 2 = not yes for both
+
+#Creating a mini dataframe of variable descriptions and their coding (if applicable)
+col1 <- c("sex","diagnosis","age","hba1c","crp","medication","dt_exrcse","med_dt_exrcse","access")
+col2 <- c("participant gender as reported by researcher (male = 1, female = 2)","whether the participant has been diagnosed with diabetes (yes = 1, no = 2)","participant age","participant blood sugar level","participant inflammation level","whether the participant is currently taking medication for diabetes inflammation (yes = 1, no = 2)","whether the participant is on a diabetes-specific diet and exercise plan (yes = 1, no = 2)","whether the participant is on BOTH medication and a diet and exercise plan (yes = 1, no = 2)","participant access to healthcare, i.e., to whom they typically go for healthcare (coding TBD)")
+data_variables <- data.frame(col1, col2)
+
+```
+
+```{r pivot-by-sex, echo=FALSE}
+#Code to investigate crp levels by sex. This is just to fulfill Joe's requirement of using one of the pivot commands.
+
+data_by_sex <- data %>% pivot_wider(names_from="sex", values_from="crp") %>% rename(male="1",female="2") %>% as_tibble
+
+```
+
+```{r RQ1}
+#RQ1: Does taking medication lower inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
+
+```
+
+```{r RQ2}
+#RQ2: Does diet and exercise predict inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
+
+```
+
+```{r RQ3}
+#RQ3: For those with vs. without access to medical care, what is the effect of diet and exercise on inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
+
 ```
