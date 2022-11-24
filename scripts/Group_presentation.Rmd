@@ -1,0 +1,209 @@
+---
+title: "EDLD 651 Final Project (more creative title?)"
+subtitle: "`the process and some cool tables & graphs`"
+author: "Insert names here,<br><span style = 'font-size: 50%;'>biomarker cluster research meeting<br>Fall 2022</span>"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE,
+                      cache = TRUE,
+                      fig.width = 12)
+
+library(xaringan)
+library(xaringanExtra)
+library(xaringanthemer)
+library(tidyverse)
+library(knitr)
+library(here)
+library(kableExtra)
+
+
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+
+style_duo_accent(
+  primary_color = "#3e1f79",
+  secondary_color = "#791f5e",
+  header_font_google = xaringanthemer::google_font("Atkinson Hyperlegible", "600"),
+  text_font_google   = xaringanthemer::google_font("Atkinson Hyperlegible", "300", "300i"),
+  code_font_google   = xaringanthemer::google_font("IBM Plex Mono"),
+  colors = c(
+    darkblue = "#0072B2",
+    lightblue = "#56B4E9",
+    darkorange = "#D55E00",
+    lightorange = "#E69f00",
+    yellow = "#f0e442",
+    green = "#009E73",
+    pink = "#CC79A7",
+    gray = "#99999",
+    white = "#FFFFFF"
+  )
+)
+
+```
+
+# Heading
+
+### * bullet 1
+### * bullet 2
+### * bullet 3
+
+```{r echo=FALSE, out.width="50%"}
+#example of how to pull in an image (if we want to bring in screenshots)
+#knitr::include_graphics("type_1_errors.png")
+```
+
+
+---
+# Outline
+
+
+* name 1 -
+* name 2 -
+* name 3 -
+* name 4 -
+* name 5 -
+  
+
+**Insightful comment or quote**
+
+
+
+---
+class: inverse, center, middle
+
+# Data cleaning, models, and Graphs! 
+
+
+---
+
+# Name 1
+
+` libraries that we used `
+
+```{r}
+
+#install.packages("here")
+library(here)
+library(rio)
+```
+
+---
+
+
+# Name 2
+
+```{r }
+
+
+
+```
+
+---
+
+# Name 3
+
+
+
+---
+
+
+
+background-size: contain
+
+background-image: url("https://www.tidyverse.org/images/tidyverse-default.png")
+
+
+---
+
+# Name 4 
+---
+
+# Name 5
+
+```{r}
+
+```
+
+---
+
+background-size: contain
+
+background-image: url("https://miro.medium.com/max/1400/1*yZCLeg3j9Wm7UE8boJigtA.png")
+--
+
+* **Questions?**
+
+--
+
+ adapted from EDLD 651 slides
+
+---
+
+
+# Concluding Remarks
+
+
+---
+# Random Templates to inspire 
+
+
+  CTRL = command
+  Alt = option
+  
+---
+
+# Customize your RStudio Display!
+
+**Tools 🡆 Global Options...**
+
+Appearance 
+  + Font, font size
+  + Editor theme!!
+  
+Code
+
+  + Display -> Rainbow Parentheses
+  
+
+---
+
+```{r echo=FALSE}
+
+
+```
+
+
+---
+
+```{r eval=FALSE, include=FALSE}
+
+
+```
+
+
+---
+class: inverse, middle, center
+```{r echo=FALSE, out.width="50%"}
+
+#knitr::include_graphics("Bean.png")
+
+```
+
+
+
