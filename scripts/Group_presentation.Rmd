@@ -1,7 +1,7 @@
 ---
 title: "EDLD 651 Final Project (more creative title?)"
 subtitle: "`the process and some cool tables & graphs`"
-author: "Insert names here,<br><span style = 'font-size: 50%;'>biomarker cluster research meeting<br>Fall 2022</span>"
+author: "Dominik Grätz, Rachel Miller-Moudgil, Amber Somarriba, Brittany Spinner, and Tian Walker<br><span style = 'font-size: 50%;'>biomarker cluster research meeting<br>Fall 2022</span>"
 output:
   xaringan::moon_reader:
     css: xaringan-themer.css
@@ -34,6 +34,7 @@ library(kableExtra)
 ```
 
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
+#This is all code that sets the theme for the entire presentation. 
 library(xaringanthemer)
 
 style_duo_accent(
@@ -63,9 +64,25 @@ style_duo_accent(
 ### * bullet 2
 ### * bullet 3
 
-```{r echo=FALSE, out.width="50%"}
+```{r instructions, echo=FALSE, eval=FALSE, out.width="50%"}
+
+#A dashed line (---) represents the start of a new slide. A hashtag (#) represents a heading. An asterisks (*) represents a bullet point. A double asterisks (**) turns the fond bold. And within each slide, you have option of adding in any r code you want to bring in graphs or images, using the typical hash marks (```).
+
+--- begin new slide
+
+# Heading
+
+* bullet 1
+* bullet 2
+* bullet 3
+
+**bold comment**
+
+--- begin new slide
+
 #example of how to pull in an image (if we want to bring in screenshots)
 #knitr::include_graphics("type_1_errors.png")
+
 ```
 
 
@@ -73,26 +90,16 @@ style_duo_accent(
 # Outline
 
 
-* name 1 -
-* name 2 -
-* name 3 -
-* name 4 -
-* name 5 -
+* Dominik Grätz
+* Rachel Miller-Moudgil
+* Amber Somarriba
+* Brittany Spinner
+* Tian Walker
   
 
 **Insightful comment or quote**
 
-
-
 ---
-class: inverse, center, middle
-
-# Data cleaning, models, and Graphs! 
-
-
----
-
-# Name 1
 
 ` libraries that we used `
 
@@ -101,100 +108,173 @@ class: inverse, center, middle
 #install.packages("here")
 library(here)
 library(rio)
+
 ```
 
 ---
+class: inverse, center, middle
+
+# Data cleaning, models, and graphs! 
 
 
-# Name 2
+---
+
+# Dominik Grätz
+
+INSERT BULLET POINTS ABOUT THE CODING CHALLENGES YOU FACED HERE
+
+* Presentation cover the following:
+
+* Share your journey (everyone, at least for a minute or two)
+
+* Discuss challenges you had along the way
+
+* Celebrate your successes
+
+* Discuss challenges you are still facing
+
+* Discuss substantive findings
+
+* Show off your cool figures!
+
+* Discuss next R hurdle you want to address
 
 ```{r }
 
+#INSERT ANY RELEVANT CODE YOU WANT TO SHOW HERE
 
-
-```
-
----
-
-# Name 3
-
-
-
----
-
-
-
-background-size: contain
-
-background-image: url("https://www.tidyverse.org/images/tidyverse-default.png")
-
-
----
-
-# Name 4 
----
-
-# Name 5
-
-```{r}
+#knitr::include_graphics("image.png") <-- use this code to insert any image you want
 
 ```
 
 ---
 
-background-size: contain
 
-background-image: url("https://miro.medium.com/max/1400/1*yZCLeg3j9Wm7UE8boJigtA.png")
---
+# Rachel Miller-Moudgil
+
+INSERT BULLET POINTS ABOUT THE CODING CHALLENGES YOU FACED HERE
+
+* Presentation cover the following:
+
+* Share your journey (everyone, at least for a minute or two)
+
+* Discuss challenges you had along the way
+
+* Celebrate your successes
+
+* Discuss challenges you are still facing
+
+* Discuss substantive findings
+
+* Show off your cool figures!
+
+* Discuss next R hurdle you want to address
+
+```{r }
+
+#INSERT ANY RELEVANT CODE YOU WANT TO SHOW HERE
+
+#knitr::include_graphics("image.png") <-- use this code to insert any image you want
+
+```
+
+---
+
+# Amber Somarriba
+
+INSERT BULLET POINTS ABOUT THE CODING CHALLENGES YOU FACED HERE
+
+* Presentation cover the following:
+
+* Share your journey (everyone, at least for a minute or two)
+
+* Discuss challenges you had along the way
+
+* Celebrate your successes
+
+* Discuss challenges you are still facing
+
+* Discuss substantive findings
+
+* Show off your cool figures!
+
+* Discuss next R hurdle you want to address
+
+```{r }
+
+#INSERT ANY RELEVANT CODE YOU WANT TO SHOW HERE
+
+#knitr::include_graphics("image.png") <-- use this code to insert any image you want
+
+```
+
+---
+
+# Brittany Spinner
+
+INSERT BULLET POINTS ABOUT THE CODING CHALLENGES YOU FACED HERE
+
+* Presentation cover the following:
+
+* Share your journey (everyone, at least for a minute or two)
+
+* Discuss challenges you had along the way
+
+* Celebrate your successes
+
+* Discuss challenges you are still facing
+
+* Discuss substantive findings
+
+* Show off your cool figures!
+
+* Discuss next R hurdle you want to address
+
+```{r }
+
+#INSERT ANY RELEVANT CODE YOU WANT TO SHOW HERE
+
+#knitr::include_graphics("image.png") <-- use this code to insert any image you want
+
+```
+
+---
+
+# Tian Walker
+
+INSERT BULLET POINTS ABOUT THE CODING CHALLENGES YOU FACED HERE
+
+* Presentation cover the following:
+
+* Share your journey (everyone, at least for a minute or two)
+
+* Discuss challenges you had along the way
+
+* Celebrate your successes
+
+* Discuss challenges you are still facing
+
+* Discuss substantive findings
+
+* Show off your cool figures!
+
+* Discuss next R hurdle you want to address
+
+```{r }
+
+#INSERT ANY RELEVANT CODE YOU WANT TO SHOW HERE
+
+#knitr::include_graphics("image.png") <-- use this code to insert any image you want
+
+```
+
+---
 
 * **Questions?**
 
---
+---
 
  adapted from EDLD 651 slides
-
----
-
-
-# Concluding Remarks
-
-
----
-# Random Templates to inspire 
-
-
-  CTRL = command
-  Alt = option
-  
----
-
-# Customize your RStudio Display!
-
-**Tools 🡆 Global Options...**
-
-Appearance 
-  + Font, font size
-  + Editor theme!!
-  
-Code
-
-  + Display -> Rainbow Parentheses
-  
-
----
-
-```{r echo=FALSE}
-
-
-```
-
-
----
-
-```{r eval=FALSE, include=FALSE}
-
-
-```
 
 
 ---
