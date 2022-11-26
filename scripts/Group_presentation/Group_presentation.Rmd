@@ -1,0 +1,339 @@
+---
+title: "EDLD 651 Final Project (more creative title?)"
+subtitle: "'[subtitle]'"
+author: "Dominik Grätz, Rachel Miller-Moudgil, Amber Somarriba, Brittany Spinner, and Tian Walker<br><span style = 'font-size: 50%;'>EDLD 651<br>Fall 2022</span>"
+output:
+  xaringan::moon_reader:
+  css: xaringan-themer.css
+lib_dir: libs
+nature:
+  highlightStyle: github
+highlightLines: true
+countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE,
+                      cache = TRUE,
+                      fig.width = 12)
+
+library(xaringan)
+library(xaringanExtra)
+library(xaringanthemer)
+library(tidyverse)
+library(knitr)
+library(here)
+library(kableExtra)
+
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+#This is all code that sets the theme for the entire presentation. 
+
+style_duo_accent(
+  primary_color = "#3e1f79",
+  secondary_color = "#791f5e",
+  header_font_google = xaringanthemer::google_font("Atkinson Hyperlegible", "600"),
+  text_font_google   = xaringanthemer::google_font("Atkinson Hyperlegible", "300", "300i"),
+  code_font_google   = xaringanthemer::google_font("IBM Plex Mono"),
+  colors = c(
+    darkblue = "#0072B2",
+    lightblue = "#56B4E9",
+    darkorange = "#D55E00",
+    lightorange = "#E69f00",
+    yellow = "#f0e442",
+    green = "#009E73",
+    pink = "#CC79A7",
+    gray = "#99999",
+    white = "#FFFFFF"
+  )
+)
+
+```
+
+```{r instructions, echo=FALSE, eval=FALSE, out.width="50%"}
+
+#A dashed line (---) represents the start of a new slide. A hashtag (#) represents a heading. An asterisks (*) represents a bullet point. A double asterisks (**) turns the fond bold. And within each slide, you have option of adding in any r code you want to bring in graphs or images, using the typical hash marks (```).
+
+--- begin new slide
+
+# Heading
+
+* bullet 1
+* bullet 2
+* bullet 3
+    * sub bullet 1
+    * sub bullet 2
+
+**bold comment**
+  
+--- begin new slide
+
+#Code to pull in an image (if you want to bring in images or screenshots):
+knitr::include_graphics("image.png")
+
+```
+
+
+---
+  # Outline
+
+* Dominik Grätz
+* Rachel Miller-Moudgil
+* Amber Somarriba
+* Brittany Spinner
+* Tian Walker
+
+**Challenges and successes with data cleaning, models, and graphs!**
+  
+---
+  
+# Dominik Grätz
+  
+  INSERT BULLET POINTS ABOUT THE CODING CHALLENGES YOU FACED HERE
+
+* Presentation cover the following:
+  
+    * Share your journey (everyone, at least for a minute or two)
+
+    * Discuss challenges you had along the way
+
+    * Celebrate your successes
+
+    * Discuss challenges you are still facing
+
+    * Discuss substantive findings
+
+    * Show off your cool figures!
+  
+   * Discuss next R hurdle you want to address
+
+```{r }
+
+#INSERT ANY RELEVANT CODE YOU WANT TO SHOW HERE
+
+#knitr::include_graphics("image.png") <-- use this code to insert any image you want
+
+```
+
+---
+  
+  # Rachel Miller-Moudgil (1/3)
+  
+  **Using experimental vs. secondary data**
+  
+  * I usually work with experimental data,  where throughout the research process I've had control over variables and measurement. Using secondary data means:
+  
+    * Takes hours to understand the data 
+    
+    * Takes hours to figure out which variables are relevant
+
+```{r Rachel_image1, echo=FALSE, out.width = "50%", fig.align = "center", eval=FALSE}
+
+# Code or image showing messy variables transformed into clean
+
+knitr::include_graphics("Group_presentation/Rachels_images/colnames_original.png") #Stuck on error message "cannot find the file(s)"
+
+```
+---
+
+# Rachel Miller-Moudgil (1/3)
+
+**Using experimental vs. secondary data**
+
+* I usually work with experimental data, where throughout the research process I've had control over variables and measurement. Using secondary data means:
+
+    * Taking hours to understand the data 
+    
+    * Taking hours to figure out which variables are relevant
+
+```{r Rachel_image2, echo=FALSE, out.width = "50%", fig.align = "center", eval=FALSE}
+
+# Code or image showing messy variables transformed into clean
+
+knitr::include_graphics("Group_presentation/Rachels_images/colnames_new.png") #Stuck on error message "cannot find the file(s)"
+
+```
+
+---
+  
+  # Rachel Miller-Moudgil (1/3)
+  
+  **Using experimental vs. secondary data**
+  
+  * I usually work with experimental data, where throughout the research process I've had control over variables and measurement. Using secondary data means:
+  
+    * Taking hours to understand the data 
+    
+    * Taking hours to figure out which variables are relevant
+    
+    * Not everything is measured the way you wish it was
+
+```{r Rachel_image3, echo=FALSE, out.width = "50%", fig.align = "center", eval=FALSE}
+
+# code or image showing variable not nicely aligning with our construct.
+
+knitr::include_graphics("Group_presentation/Rachels_images/access_variables.png") #Stuck on error message "cannot find the file(s)"
+
+```
+
+---
+
+# Rachel Miller-Moudgil (2/3)
+
+**Working alone vs. with others**
+
+* Unfamiliar research area = steep learning curve
+
+* Workflow kinks (e.g., merge issues, forgetting to push to GitHub, modeling and graphing dependent on data cleaning)
+
+* Having others who know code that you don't, and who can double-check your code with fresh eyes (shout out to Tian and Dominik!)
+
+```{r}
+
+#INSERT ANY RELEVANT CODE YOU WANT TO SHOW HERE
+
+#knitr::include_graphics("image.png") <-- use this code to insert any image you want
+
+```
+---
+
+# Rachel Miller-Moudgil (3/3)
+
+**My next R hurdle**
+
+* Pivot_longer and pivot_wider: concept & code
+
+* Reviewing citation packages & code
+
+```{r }
+
+#INSERT ANY RELEVANT CODE YOU WANT TO SHOW HERE
+
+#knitr::include_graphics("image.png") <-- use this code to insert any image you want
+
+```
+
+---
+
+# Amber Somarriba
+
+INSERT BULLET POINTS ABOUT THE CODING CHALLENGES YOU FACED HERE
+
+* Presentation cover the following:
+  
+    * Share your journey (everyone, at least for a minute or two)
+
+    * Discuss challenges you had along the way
+
+    * Celebrate your successes
+
+    * Discuss challenges you are still facing
+
+    * Discuss substantive findings
+
+    * Show off your cool figures!
+  
+    * Discuss next R hurdle you want to address
+
+```{r }
+
+#INSERT ANY RELEVANT CODE YOU WANT TO SHOW HERE
+
+#knitr::include_graphics("image.png") <-- use this code to insert any image you want
+
+```
+
+---
+
+# Brittany Spinner
+
+INSERT BULLET POINTS ABOUT THE CODING CHALLENGES YOU FACED HERE
+
+* Presentation cover the following:
+  
+    * Share your journey (everyone, at least for a minute or two)
+
+    * Discuss challenges you had along the way
+
+    * Celebrate your successes
+
+    * Discuss challenges you are still facing
+
+    * Discuss substantive findings
+
+    * Show off your cool figures!
+  
+    * Discuss next R hurdle you want to address
+
+```{r }
+
+#INSERT ANY RELEVANT CODE YOU WANT TO SHOW HERE
+
+#knitr::include_graphics("image.png") <-- use this code to insert any image you want
+
+```
+
+---
+
+# Tian Walker
+
+INSERT BULLET POINTS ABOUT THE CODING CHALLENGES YOU FACED HERE
+
+* Presentation cover the following:
+  
+    * Share your journey (everyone, at least for a minute or two)
+
+    * Discuss challenges you had along the way
+
+    * Celebrate your successes
+
+    * Discuss challenges you are still facing
+
+    * Discuss substantive findings
+
+    * Show off your cool figures!
+  
+    * Discuss next R hurdle you want to address
+
+```{r }
+
+#INSERT ANY RELEVANT CODE YOU WANT TO SHOW HERE
+
+#knitr::include_graphics("image.png") <-- use this code to insert any image you want
+
+```
+
+---
+
+* **Questions?**
+
+---
+# Credits
+
+**adapted from EDLD 651 slides**
+
+` packages that we used `
+
+```{r}
+
+#install.packages("here")
+library(here)
+library(rio)
+```
+
+---
+class: inverse, middle, center
+```{r echo=FALSE, out.width="50%"}
+
+#knitr::include_graphics("Bean.png")
+
+```
+
+
+
