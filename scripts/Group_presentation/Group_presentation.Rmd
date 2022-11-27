@@ -28,6 +28,7 @@ library(xaringanthemer)
 library(tidyverse)
 library(knitr)
 library(here)
+library(rio)
 library(kableExtra)
 
 ```
@@ -76,6 +77,20 @@ style_duo_accent(
 
 #Code to pull in an image (if you want to bring in images or screenshots):
 knitr::include_graphics("image.png")
+
+```
+
+
+```{r include=FALSE}
+data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset
+data <- data %>% select(sex, diagnosis, age, hba1c, crp, medication, dt_exrcse, q5026, q5027) %>% rename(access = q5026) %>% filter(age >=50 & (diagnosis == 1 | crp < 5))  %>% as_tibble #Selecting only relevant variables, renaming for clarification, and filtering for people with a diabetes diagnosis and high levels of inflammation (crp).
+
+data <- data %>%
+  mutate(sex = as.factor(sex),
+         diagnosis = as.factor(diagnosis),
+         medication = as.factor(medication),
+         dt_exrcse = as.factor(dt_exrcse),
+         access = as.factor(access))
 
 ```
 
@@ -283,8 +298,23 @@ INSERT BULLET POINTS ABOUT THE CODING CHALLENGES YOU FACED HERE
 
 # Tian Walker
 
-INSERT BULLET POINTS ABOUT THE CODING CHALLENGES YOU FACED HERE
+Coding Challenges
 
+  * create a variable with 3 levels (case_when)
+  
+  * creating bar graphs (geom_bar vs. geom_col)
+  
+  * loading in duplicate variables that are empty
+  
+  * learning how to read between the lines with error    messages 
+  
+---
+
+background-size: contain
+
+background-image: url("https://assets.entrepreneur.com/content/3x2/2000/1638079565-Untitleddesign-2021-11-28T100532825.png?auto=webp&quality=95&crop=16:9&width=675")
+
+---
 * Presentation cover the following:
   
     * Share your journey (everyone, at least for a minute or two)
@@ -308,10 +338,13 @@ INSERT BULLET POINTS ABOUT THE CODING CHALLENGES YOU FACED HERE
 #knitr::include_graphics("image.png") <-- use this code to insert any image you want
 
 ```
+---
+
+
 
 ---
 
-* **Questions?**
+# **Questions?**
 
 ---
 # Credits
