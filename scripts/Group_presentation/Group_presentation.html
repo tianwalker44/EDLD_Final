@@ -33,6 +33,9 @@ class: center, middle, inverse, title-slide
 
 
 
+
+
+
 ---
   # Outline
 
@@ -46,32 +49,55 @@ class: center, middle, inverse, title-slide
   
 ---
   
-# Dominik Grätz
+# Dominik Grätz - Journey
   
-  INSERT BULLET POINTS ABOUT THE CODING CHALLENGES YOU FACED HERE
+* I knew some basics about coding in R, but did not make full use of the `{tidyverse}`
 
-* Presentation cover the following:
+  * Before, I have used functions from the `{plyr}` package 
+    &lt;br&gt; &amp;rarr; `{tidyverse}` functions make life so much easier!
+    
+  * For filtering, for example, I still like to use indexing instead of using `filter()`, but mostly because I am more used to that and can code faster that way (for now):
   
-    * Share your journey (everyone, at least for a minute or two)
 
-    * Discuss challenges you had along the way
+```r
+data &lt;- data[is.na(data$Response),] #vs.
+data &lt;- data %&gt;% filter(!is.na(Response))
+```
 
-    * Celebrate your successes
-
-    * Discuss challenges you are still facing
-
-    * Discuss substantive findings
-
-    * Show off your cool figures!
-  
-   * Discuss next R hurdle you want to address
+* Similarly, I still sometimes use base R column manipulation instead of `mutate()` when I think it's faster.
 
 
 ```r
-#INSERT ANY RELEVANT CODE YOU WANT TO SHOW HERE
-
-#knitr::include_graphics("image.png") &lt;-- use this code to insert any image you want
+data$RT &lt;- data$RT * 2 #vs.
+data &lt;- data %&gt;% 
+  mutate(RT = RT * 2)
 ```
+
+---
+
+
+# Dominik Grätz - Challenges faced
+
+* Sometimes, I HATE Markdown, but I love the output and cleanliness.
+
+* I need to learn more about tables - I made the table below by hand but haven't found a convenient solution with the packages that exist that produces indentation like this and multiple columns.
+
+&lt;img src="table.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+* Collaboration was great! We took some time to boil the questions down, but it was a great working with a team having experiences in different areas!
+* I am still not certain I fully understand Github...
+
+---
+
+# Dominik Grätz - Challenges in the future
+
+* In the future, for my work, I would like to produce plots like this (but nice): 
+
+&lt;img src="circularplot.png" width="30%" style="display: block; margin: auto;" /&gt;
+
+* I have not found a package that produces nice circular (rose) plots - may need to switch to Matlab for that?
+
+* I also want to produce appealing interactive maps that display information about voting, demographics, prevalence of illnesses, things like that. &lt;br&gt; &amp;rarr; Excited for the data viz class!
 
 ---
   

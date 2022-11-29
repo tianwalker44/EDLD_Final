@@ -108,33 +108,61 @@ data <- data %>%
   
 ---
   
-# Dominik Grätz
+# Dominik Grätz - Journey
   
-  INSERT BULLET POINTS ABOUT THE CODING CHALLENGES YOU FACED HERE
+* I knew some basics about coding in R, but did not make full use of the `{tidyverse}`
 
-* Presentation cover the following:
+  * Before, I have used functions from the `{plyr}` package 
+    <br> &rarr; `{tidyverse}` functions make life so much easier!
+    
+  * For filtering, for example, I still like to use indexing instead of using `filter()`, but mostly because I am more used to that and can code faster that way (for now):
   
-    * Share your journey (everyone, at least for a minute or two)
+```{r eval = FALSE}
+data <- data[is.na(data$Response),] #vs.
+data <- data %>% filter(!is.na(Response))
+```
 
-    * Discuss challenges you had along the way
+* Similarly, I still sometimes use base R column manipulation instead of `mutate()` when I think it's faster.
 
-    * Celebrate your successes
+```{r eval = FALSE}
+data$RT <- data$RT * 2 #vs.
+data <- data %>% 
+  mutate(RT = RT * 2)
+```
 
-    * Discuss challenges you are still facing
+---
 
-    * Discuss substantive findings
 
-    * Show off your cool figures!
-  
-   * Discuss next R hurdle you want to address
+# Dominik Grätz - Challenges faced
 
-```{r }
+* Sometimes, I HATE Markdown, but I love the output and cleanliness.
 
-#INSERT ANY RELEVANT CODE YOU WANT TO SHOW HERE
+* I need to learn more about tables - I made the table below by hand but haven't found a convenient solution with the packages that exist that produces indentation like this and multiple columns.
 
-#knitr::include_graphics("image.png") <-- use this code to insert any image you want
+```{r echo=FALSE, out.width = "60%",fig.align = "center"}
+
+knitr::include_graphics("table.png") 
 
 ```
+
+* Collaboration was great! We took some time to boil the questions down, but it was a great working with a team having experiences in different areas!
+* I am still not certain I fully understand Github...
+
+---
+
+# Dominik Grätz - Challenges in the future
+
+* In the future, for my work, I would like to produce plots like this (but nice): 
+
+```{r echo=FALSE, out.width = "30%",fig.align = "center"}
+
+knitr::include_graphics("circularplot.png") 
+
+```
+
+* I have not found a package that produces nice circular (rose) plots - may need to switch to Matlab for that?
+
+* I also want to produce appealing interactive maps that display information about voting, demographics, prevalence of illnesses, things like that. <br> &rarr; Excited for the data viz class!
 
 ---
   
