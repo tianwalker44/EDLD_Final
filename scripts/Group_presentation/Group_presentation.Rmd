@@ -140,9 +140,7 @@ data <- data %>%
 * I need to learn more about tables - I made the table below by hand but haven't found a convenient solution with the packages that exist that produces indentation like this and multiple columns.
 
 ```{r echo=FALSE, out.width = "60%",fig.align = "center"}
-
 knitr::include_graphics("table.png") 
-
 ```
 
 * Collaboration was great! We took some time to boil the questions down, but it was a great working with a team having experiences in different areas!
@@ -150,14 +148,12 @@ knitr::include_graphics("table.png")
 
 ---
 
-# Dominik Grätz - Challenges in the future
+# Dominik Grätz - Next hurdles
 
 * In the future, for my work, I would like to produce plots like this (but nice): 
 
 ```{r echo=FALSE, out.width = "30%",fig.align = "center"}
-
 knitr::include_graphics("circularplot.png") 
-
 ```
 
 * I have not found a package that produces nice circular (rose) plots - may need to switch to Matlab for that?

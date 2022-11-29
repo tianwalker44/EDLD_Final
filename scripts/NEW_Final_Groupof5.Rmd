@@ -31,6 +31,7 @@ keywords          : "Diabetes, access to care, inflammation, health, Mexico, Chi
 wordcount         : "X (this cannot easily be done automatically, we can also just leave it out)"
 
 bibliography      : [references.bib]
+link-citations    : true
 
 floatsintext      : yes
 figurelist        : yes
@@ -117,7 +118,7 @@ groups_med_dt_exrcse <- data %>%
 #RQ1: Does taking medication lower inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
 
 RQ1_df <- data %>% 
-  filter(!is.na(medication | hba1c | age | crp))
+  filter(!is.na(medication) | !is.na(hba1c) | !is.na(age) | !is.na(crp))
 
 mreg1 <- lm(crp~hba1c * medication + age, data = RQ1_df)
 summary(mreg1) #No significant findings. Oh well!
@@ -133,7 +134,15 @@ mod1 <- lm(crp~hba1c*dt_exrcse + age, data = RQ1_df)
 
 ```{r}
 RQ1_df %>% 
-  ggplot(aes(hba1c, crp)) + geom_point(aes(color = medication), alpha = 0.5) + geom_smooth(aes(color = medication), method = "lm") + scale_color_brewer(palette = 7) + theme_dark() + labs( title = "The Relationship Between Blood Sugar and Inflammation by Medication", caption =  "SAGE data from Mexico", x = "Blood Sugar (HbA1c)", y = "Inflammation (CRP)")
+  ggplot(aes(hba1c, crp)) + 
+  geom_point(aes(color = medication), alpha = 0.5) + 
+  geom_smooth(aes(color = medication), method = "lm") + 
+  scale_color_brewer(palette = 7) + 
+  theme_dark() + 
+  labs( title = "The Relationship Between Blood Sugar and Inflammation by Medication", 
+        caption =  "SAGE data from Mexico", 
+        x = "Blood Sugar (HbA1c)", 
+        y = "Inflammation (CRP)")
 ```
 
 

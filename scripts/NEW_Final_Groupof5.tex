@@ -116,9 +116,9 @@
 
 % Create new environments so endfloat can handle them
 % \newenvironment{ltable}
-%   {\begin{landscape}\centering\begin{threeparttable}}
-%   {\end{threeparttable}\end{landscape}}
-\newenvironment{lltable}{\begin{landscape}\centering\begin{ThreePartTable}}{\end{ThreePartTable}\end{landscape}}
+%   {\begin{landscape}\begin{center}\begin{threeparttable}}
+%   {\end{threeparttable}\end{center}\end{landscape}}
+\newenvironment{lltable}{\begin{landscape}\begin{center}\begin{ThreePartTable}}{\end{ThreePartTable}\end{center}\end{landscape}}
 
 % Enables adjusting longtable caption width to table width
 % Solution found at http://golatex.de/longtable-mit-caption-so-breit-wie-die-tabelle-t15767.html
@@ -131,20 +131,6 @@
 % \setlength{\parindent}{0.5in}
 % \setlength{\parskip}{0pt plus 0pt minus 0pt}
 
-% Overwrite redefinition of paragraph and subparagraph by the default LaTeX template
-% See https://github.com/crsh/papaja/issues/292
-\makeatletter
-\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
-  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
-  {-1em}%
-  {\normalfont\normalsize\bfseries\itshape\typesectitle}}
-
-\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{1em}%
-  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
-  {-\z@\relax}%
-  {\normalfont\normalsize\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
-\makeatother
-
 % \usepackage{etoolbox}
 \makeatletter
 \patchcmd{\HyOrg@maketitle}
@@ -156,15 +142,7 @@
   {\section*{\protect\normalfont{\@title}}}
   {}{\typeout{Failed to patch title.}}
 \makeatother
-
-\usepackage{xpatch}
-\makeatletter
-\xapptocmd\appendix
-  {\xapptocmd\section
-    {\addcontentsline{toc}{section}{\appendixname\ifoneappendix\else~\theappendix\fi\\: #1}}
-    {}{\InnerPatchFailed}%
-  }
-{}{\PatchFailed}
+\shorttitle{Inflammation, access to care and Diabetes in China and Mexico.}
 \keywords{Diabetes, access to care, inflammation, health, Mexico, China\newline\indent Word count: X (this cannot easily be done automatically, we can also just leave it out)}
 \usepackage{csquotes}
 \usepackage[titles]{tocloft}
@@ -199,13 +177,11 @@
 \date{}
 
 
-\shorttitle{Inflammation, access to care and Diabetes in China and Mexico.}
-
 \authornote{List of group members ordered by alphabet.}
 
 \affiliation{\vspace{0.5cm}\textsuperscript{1} University of Oregon}
 
-\abstract{%
+\abstract{
 \emph{Background.} Background goes here. \emph{Methods.} Methods go here. \emph{Results.} Results here. \emph{Conclusions.} Conclusions here.
 }
 
@@ -336,11 +312,11 @@ Diabetes & & \\
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-Diabetes and its insidious complications continue to expand as a global health burden at an alarming rate. As of 2021, there were approximately 537 million adults living with diabetes in the world and this number is expected to jump to 783 million by 2045. A disproportionate percentage of these people live in low to middle income countries (LMICs). In light of the Covid pandemic, it is also of great import that we better understand the relationships between diabetes and infectious diseases as diabetes both increased the severity of Covid (in people with elevated a1c levels) and has increased in incidence during the Covid 19 pandemic (Yang et al., 2020) (Rohm, Meier, Olefsky, \& Donath, 2022).
+Diabetes and its insidious complications continue to expand as a global health burden at an alarming rate. As of 2021, there were approximately 537 million adults living with diabetes in the world and this number is expected to jump to 783 million by 2045. A disproportionate percentage of these people live in low to middle income countries (LMICs). In light of the Covid pandemic, it is also of great import that we better understand the relationships between diabetes and infectious diseases as diabetes both increased the severity of Covid (in people with elevated a1c levels) and has increased in incidence during the Covid 19 pandemic (\protect\hyperlink{ref-yangPrevalenceComorbiditiesIts2020}{Yang et al., 2020}) (\protect\hyperlink{ref-rohmInflammationObesityDiabetes2022}{Rohm, Meier, Olefsky, \& Donath, 2022}).
 
 Additionally, diabetes is associated with a steep increase in cardiovascular disease risk and is a leading cause of death in many low to middle income countries (LMICs) including Mexico. Although the precise classification of diabetes remains controversial because of the complex nature of its pathogenesis, there are three universally acknowledged subtypes: type 1 diabetes, type 2 diabetes, and gestational diabetes. Diabetes is a progressive disease in that the longer one has it, the more complications ensue. Therefore, it is helpful to conceptualize diabetes as a process that can be stopped, but not reversed. Research that contributes to slowing down or stopping the process can be extremely valuable to global health regardless of its contribution to cure and prevention because of the astronomical rates of diabetes in our world today.
 
-Inflammation is a strong indicator of diabetes development and progression. Inflammation predicts the development of diabetes (Dilys J. Freeman et al., 2002) (Dilys J. Freeman et al., 2001) (Schmidt et al., 1999). Specifically, trials for drugs directed at inflammation among people with type 2 diabetes have indicated that drugs targeted at inflammation may be a therapeutic option for preventing diabetes (Agrawal \& Kant, 2014).Retinopathy and focal neuropathy (Said, 2007) have also been linked to inflammatory processes. Additionally, the direct damage caused by high blood glucose leads to more inflammation and creates a nasty feedback loop wherein inflammation causes more insulin resistance which leads to high blood glucose.
+Inflammation is a strong indicator of diabetes development and progression. Inflammation predicts the development of diabetes (\protect\hyperlink{ref-freemanCreactiveProteinIndependent2002}{Dilys J. Freeman et al., 2002}) (\protect\hyperlink{ref-10.1161ux2f01.cir.103.3.357}{Dilys J. Freeman et al., 2001}) (\protect\hyperlink{ref-schmidtMarkersInflammationPrediction1999}{Schmidt et al., 1999}). Specifically, trials for drugs directed at inflammation among people with type 2 diabetes have indicated that drugs targeted at inflammation may be a therapeutic option for preventing diabetes (\protect\hyperlink{ref-10.4239ux2fwjd.v5.i5.697}{Agrawal \& Kant, 2014}).Retinopathy and focal neuropathy (\protect\hyperlink{ref-saidDiabeticNeuropathyReview2007}{Said, 2007}) have also been linked to inflammatory processes. Additionally, the direct damage caused by high blood glucose leads to more inflammation and creates a nasty feedback loop wherein inflammation causes more insulin resistance which leads to high blood glucose.
 
 Diabetes treatment and inflammation
 
@@ -349,7 +325,7 @@ The ability of cells to absorb insulin can be increased through diet, exercise, 
 \hypertarget{methods}{%
 \section{Methods}\label{methods}}
 
-C-reactive protein and hba1c measured through dried bloodspots (minimally invasive biomarkers) {[}McDade, Williams, and Snodgrass (2007)).
+C-reactive protein and hba1c measured through dried bloodspots (minimally invasive biomarkers) {[}McDade, Williams, and Snodgrass (\protect\hyperlink{ref-10.1353ux2fdem.2007.0038}{2007})).
 
 Self-report surveys conducted by trained interviewers.
 
