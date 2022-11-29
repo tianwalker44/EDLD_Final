@@ -207,3 +207,35 @@ The descriptive statistics for our sample look as follows:
 |           |undiagnosed|`r summary$diabetes_undiag[1]` (`r summary$diabetes_undiag_pct[1]` %)|
 Table: Descriptive statistics.
 
+
+# Introduction
+
+Diabetes and its insidious complications continue to expand as a global health burden at an alarming rate. As of 2021, there were approximately 537 million adults living with diabetes in the world and this number is expected to jump to 783 million by 2045. A disproportionate percentage of these people live in low to middle income countries (LMICs). In light of the Covid pandemic, it is also of great import that we better understand the relationships between diabetes and infectious diseases as diabetes both increased the severity of Covid (in people with elevated a1c levels) and has increased in incidence during the Covid 19 pandemic [@yangPrevalenceComorbiditiesIts2020] [@rohmInflammationObesityDiabetes2022].
+
+Additionally, diabetes is associated with a steep increase in cardiovascular disease risk and is a leading cause of death in many low to middle income countries (LMICs) including Mexico. Although the precise classification of diabetes remains controversial because of the complex nature of its pathogenesis, there are three universally acknowledged subtypes: type 1 diabetes, type 2 diabetes, and gestational diabetes. Diabetes is a progressive disease in that the longer one has it, the more complications ensue. Therefore, it is helpful to conceptualize diabetes as a process that can be stopped, but not reversed. Research that contributes to slowing down or stopping the process can be extremely valuable to global health regardless of its contribution to cure and prevention because of the astronomical rates of diabetes in our world today. 
+
+Inflammation is a strong indicator of diabetes development and progression. Inflammation predicts the development of diabetes [@freemanCreactiveProteinIndependent2002] [@10.1161/01.cir.103.3.357] [@schmidtMarkersInflammationPrediction1999]. Specifically, trials for drugs directed at inflammation among people with type 2 diabetes have indicated that drugs targeted at inflammation may be a therapeutic option for preventing diabetes [@10.4239/wjd.v5.i5.697].Retinopathy and focal neuropathy [@saidDiabeticNeuropathyReview2007] have also been linked to inflammatory processes. Additionally, the direct damage caused by high blood glucose leads to more inflammation and creates a nasty feedback loop wherein inflammation causes more insulin resistance which leads to high blood glucose. 
+
+Diabetes treatment and inflammation
+
+The ability of cells to absorb insulin can be increased through diet, exercise, and oral pills.Increasing exercise and dieting can cause major decreases in inflammation. Some of the drugs for type 2 diabetes aimed at increasing insulin sensitivity also decrease inflammation (e.g., drugs that cause weight loss). In the opposite direction, insulin can cause severe low blood glucose levels that initiate a stress response causing more inflammation.
+
+# Methods
+
+C-reactive protein and hba1c measured through dried bloodspots (minimally invasive biomarkers) [@10.1353/dem.2007.0038). 
+
+Self-report surveys conducted by trained interviewers. 
+
+Data are from the World Health Organization's Study on Adult Health and Ageing (SAGE). Our data is from 1 of 5 countries where the data were collected.
+
+Cite R packages here
+
+# Discussion 
+
+
+
+## Limitations
+
+We were not able to look at pills and insulin separately and some their effects have the potential to cancel each other out. The sex variable was established through interviewer discernment. 
+
+# References
