@@ -69,6 +69,29 @@
   \let\oldsubparagraph\subparagraph
   \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
 \fi
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 \ifLuaTeX
 \usepackage[bidi=basic]{babel}
 \else
@@ -198,23 +221,25 @@
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -1.5545 -0.7586 -0.3563  0.5011  3.5249 
+## -2.2772 -1.1663 -0.6781  0.7534  6.3926 
 ## 
 ## Coefficients:
-##                    Estimate Std. Error t value Pr(>|t|)  
-## (Intercept)        1.170340   0.621564   1.883   0.0605 .
-## hba1c              0.069964   0.039064   1.791   0.0741 .
-## medication2        0.859571   0.655572   1.311   0.1906  
-## age               -0.002503   0.007024  -0.356   0.7218  
-## hba1c:medication2 -0.090588   0.079689  -1.137   0.2564  
+##                   Estimate Std. Error t value Pr(>|t|)  
+## (Intercept)        2.19497    0.93370   2.351   0.0192 *
+## hba1c              0.08034    0.05983   1.343   0.1800  
+## medication2        1.44670    0.96421   1.500   0.1343  
+## age               -0.01268    0.01061  -1.194   0.2330  
+## hba1c:medication2 -0.14441    0.11724  -1.232   0.2188  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 1.107 on 366 degrees of freedom
-##   (1820 observations deleted due to missingness)
-## Multiple R-squared:  0.01194,    Adjusted R-squared:  0.001137 
-## F-statistic: 1.105 on 4 and 366 DF,  p-value: 0.3538
+## Residual standard error: 1.768 on 404 degrees of freedom
+##   (1551 observations deleted due to missingness)
+## Multiple R-squared:  0.01363,    Adjusted R-squared:  0.003864 
+## F-statistic: 1.396 on 4 and 404 DF,  p-value: 0.2347
 \end{verbatim}
+
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-1-1.pdf}
 
 \begin{verbatim}
 ## 
@@ -222,37 +247,37 @@
 ## lm(formula = crp ~ hba1c * dt_exrcse + age, data = data)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -1.6591 -0.7701 -0.3612  0.4871  3.3676 
+##    Min     1Q Median     3Q    Max 
+## -2.058 -1.190 -0.673  0.638  6.334 
 ## 
 ## Coefficients:
-##                   Estimate Std. Error t value Pr(>|t|)  
-## (Intercept)       1.335079   0.686390   1.945   0.0525 .
-## hba1c             0.066237   0.054890   1.207   0.2283  
-## dt_exrcse2        0.009813   0.572430   0.017   0.9863  
-## age              -0.002263   0.006978  -0.324   0.7458  
-## hba1c:dt_exrcse2 -0.032749   0.069211  -0.473   0.6364  
+##                  Estimate Std. Error t value Pr(>|t|)  
+## (Intercept)       2.75378    1.06608   2.583   0.0101 *
+## hba1c             0.02982    0.08539   0.349   0.7271  
+## dt_exrcse2       -0.31641    0.87926  -0.360   0.7191  
+## age              -0.01274    0.01063  -1.198   0.2315  
+## hba1c:dt_exrcse2  0.01552    0.10629   0.146   0.8840  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 1.103 on 366 degrees of freedom
-##   (1820 observations deleted due to missingness)
-## Multiple R-squared:  0.02035,    Adjusted R-squared:  0.009643 
-## F-statistic: 1.901 on 4 and 366 DF,  p-value: 0.1097
+## Residual standard error: 1.772 on 404 degrees of freedom
+##   (1551 observations deleted due to missingness)
+## Multiple R-squared:  0.009143,   Adjusted R-squared:  -0.0006676 
+## F-statistic: 0.9319 on 4 and 404 DF,  p-value: 0.4452
 \end{verbatim}
 
 \begin{verbatim}
-## tibble [350 x 10] (S3: tbl_df/tbl/data.frame)
-##  $ sex          : Factor w/ 2 levels "1","2": 1 2 1 2 2 1 1 2 1 2 ...
+## tibble [386 x 10] (S3: tbl_df/tbl/data.frame)
+##  $ sex          : Factor w/ 2 levels "1","2": 2 1 2 1 2 2 1 1 2 1 ...
 ##  $ diagnosis    : Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
-##  $ age          : int [1:350] 67 62 75 87 65 62 60 60 67 57 ...
-##  $ hba1c        : num [1:350] 6.54 6.05 14.22 8.82 9.65 ...
-##  $ crp          : num [1:350] 0.95 3.15 1.29 1.29 1 ...
+##  $ age          : int [1:386] 57 67 62 75 87 65 62 60 60 68 ...
+##  $ hba1c        : num [1:386] 8.4 6.54 6.05 14.22 8.82 ...
+##  $ crp          : num [1:386] 6.98 0.95 3.15 1.29 1.29 ...
 ##  $ medication   : Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 2 ...
-##  $ dt_exrcse    : Factor w/ 2 levels "1","2": 2 1 2 1 2 2 2 2 1 2 ...
+##  $ dt_exrcse    : Factor w/ 2 levels "1","2": 2 2 1 2 1 2 2 2 2 2 ...
 ##  $ med_dt_exrcse: Factor w/ 2 levels "1","2": 2 2 2 2 2 2 2 2 2 1 ...
-##  $ access       : Factor w/ 2 levels "1","2": 2 2 2 2 2 1 1 1 1 2 ...
-##  $ q5027        : int [1:350] NA NA NA NA NA 1 12 12 1 NA ...
+##  $ access       : Factor w/ 2 levels "1","2": 2 2 2 2 2 2 1 1 1 2 ...
+##  $ q5027        : int [1:386] NA NA NA NA NA NA 1 12 12 NA ...
 \end{verbatim}
 
 \begin{verbatim}
@@ -296,17 +321,81 @@ Mexico
 \end{minipage} \\
 \midrule()
 \endhead
-\(N_{total}\) & & 2191 \\
+\(N_{total}\) & & 1960 \\
 Sex & & \\
-& male & 869 (39.70 \%) \\
-& female & 1317 (60.10 \%) \\
-& unknown & 5 (0.20 \%) \\
-Age & & 68.20 (\(SD\) = 9.30) \\
+& male & 761 (38.80 \%) \\
+& female & 1198 (61.10 \%) \\
+& unknown & 1 (0.10 \%) \\
+Age & & 68.10 (\(SD\) = 9.30) \\
 Diabetes & & \\
-& diagnosed & 374 (17.10 \%) \\
-& undiagnosed & 205 (9.40 \%) \\
+& diagnosed & 449 (22.90 \%) \\
+& undiagnosed & 182 (9.30 \%) \\
 \bottomrule()
 \end{longtable}
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+Diabetes and its insidious complications continue to expand as a global health burden at an alarming rate. As of 2021, there were approximately 537 million adults living with diabetes in the world and this number is expected to jump to 783 million by 2045. A disproportionate percentage of these people live in low to middle income countries (LMICs). In light of the Covid pandemic, it is also of great import that we better understand the relationships between diabetes and infectious diseases as diabetes both increased the severity of Covid (in people with elevated a1c levels) and has increased in incidence during the Covid 19 pandemic (Yang et al., 2020) (Rohm, Meier, Olefsky, \& Donath, 2022).
+
+Additionally, diabetes is associated with a steep increase in cardiovascular disease risk and is a leading cause of death in many low to middle income countries (LMICs) including Mexico. Although the precise classification of diabetes remains controversial because of the complex nature of its pathogenesis, there are three universally acknowledged subtypes: type 1 diabetes, type 2 diabetes, and gestational diabetes. Diabetes is a progressive disease in that the longer one has it, the more complications ensue. Therefore, it is helpful to conceptualize diabetes as a process that can be stopped, but not reversed. Research that contributes to slowing down or stopping the process can be extremely valuable to global health regardless of its contribution to cure and prevention because of the astronomical rates of diabetes in our world today.
+
+Inflammation is a strong indicator of diabetes development and progression. Inflammation predicts the development of diabetes (Dilys J. Freeman et al., 2002) (Dilys J. Freeman et al., 2001) (Schmidt et al., 1999). Specifically, trials for drugs directed at inflammation among people with type 2 diabetes have indicated that drugs targeted at inflammation may be a therapeutic option for preventing diabetes (Agrawal \& Kant, 2014).Retinopathy and focal neuropathy (Said, 2007) have also been linked to inflammatory processes. Additionally, the direct damage caused by high blood glucose leads to more inflammation and creates a nasty feedback loop wherein inflammation causes more insulin resistance which leads to high blood glucose.
+
+Diabetes treatment and inflammation
+
+The ability of cells to absorb insulin can be increased through diet, exercise, and oral pills.Increasing exercise and dieting can cause major decreases in inflammation. Some of the drugs for type 2 diabetes aimed at increasing insulin sensitivity also decrease inflammation (e.g., drugs that cause weight loss). In the opposite direction, insulin can cause severe low blood glucose levels that initiate a stress response causing more inflammation.
+
+\hypertarget{methods}{%
+\section{Methods}\label{methods}}
+
+C-reactive protein and hba1c measured through dried bloodspots (minimally invasive biomarkers) {[}McDade, Williams, and Snodgrass (2007)).
+
+Self-report surveys conducted by trained interviewers.
+
+Data are from the World Health Organization's Study on Adult Health and Ageing (SAGE). Our data is from 1 of 5 countries where the data were collected.
+
+Cite R packages here
+
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
+
+\hypertarget{limitations}{%
+\subsection{Limitations}\label{limitations}}
+
+We were not able to look at pills and insulin separately and some their effects have the potential to cancel each other out. The sex variable was established through interviewer discernment.
+
+\hypertarget{references}{%
+\section*{References}\label{references}}
+\addcontentsline{toc}{section}{References}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\vadjust pre{\hypertarget{ref-10.4239ux2fwjd.v5.i5.697}{}}%
+Agrawal, N. K., \& Kant, S. (2014). Targeting inflammation in diabetes: {Newer} therapeutic options. \emph{World Journal of Diabetes}, \emph{5}(5), 697. \url{https://doi.org/10.4239/wjd.v5.i5.697}
+
+\leavevmode\vadjust pre{\hypertarget{ref-freemanCreactiveProteinIndependent2002}{}}%
+Freeman, Dilys J., Norrie, J., Caslake, M. J., Gaw, A., Ford, I., Lowe, G. D. O., \ldots{} Study, W. of S. C. P. (2002). C-reactive protein is an independent predictor of risk for the development of diabetes in the west of scotland coronary prevention study. \emph{Diabetes}, \emph{51}(5), 1596--1600. \url{https://doi.org/10.2337/diabetes.51.5.1596}
+
+\leavevmode\vadjust pre{\hypertarget{ref-10.1161ux2f01.cir.103.3.357}{}}%
+Freeman, Dilys J., Norrie, J., Sattar, N., Neely, R. D. G., Cobbe, S. M., Ford, I., \ldots{} Gaw, A. (2001). Pravastatin and the development of diabetes mellitus. \emph{Circulation}, \emph{103}(3), 357--362. \url{https://doi.org/10.1161/01.cir.103.3.357}
+
+\leavevmode\vadjust pre{\hypertarget{ref-10.1353ux2fdem.2007.0038}{}}%
+McDade, T. W., Williams, S., \& Snodgrass, J. J. (2007). What a drop can do: {Dried} blood spots as a minimally invasive method for integrating biomarkers into population-based research. \emph{Demography}, \emph{44}(4), 899--925. \url{https://doi.org/10.1353/dem.2007.0038}
+
+\leavevmode\vadjust pre{\hypertarget{ref-rohmInflammationObesityDiabetes2022}{}}%
+Rohm, T. V., Meier, D. T., Olefsky, J. M., \& Donath, M. Y. (2022). Inflammation in obesity, diabetes, and related disorders. \emph{Immunity}, \emph{55}(1), 31--55. \url{https://doi.org/10.1016/j.immuni.2021.12.013}
+
+\leavevmode\vadjust pre{\hypertarget{ref-saidDiabeticNeuropathyReview2007}{}}%
+Said, G. (2007). Diabetic neuropathy---a review. \emph{Nature Clinical Practice Neurology}, \emph{3}(6, 6), 331--340. \url{https://doi.org/10.1038/ncpneuro0504}
+
+\leavevmode\vadjust pre{\hypertarget{ref-schmidtMarkersInflammationPrediction1999}{}}%
+Schmidt, M. I., Duncan, B. B., Sharrett, A. R., Lindberg, G., Savage, P. J., Offenbacher, S., \ldots{} Heiss, G. (1999). Markers of inflammation and prediction of diabetes mellitus in adults ({Atherosclerosis Risk} in {Communities} study): A cohort study. \emph{The Lancet}, \emph{353}(9165), 1649--1652. \url{https://doi.org/10.1016/S0140-6736(99)01046-6}
+
+\leavevmode\vadjust pre{\hypertarget{ref-yangPrevalenceComorbiditiesIts2020}{}}%
+Yang, J., Zheng, Y., Gou, X., Pu, K., Chen, Z., Guo, Q., \ldots{} Zhou, Y. (2020). Prevalence of comorbidities and its effects in patients infected with {SARS-CoV-2}: A systematic review and meta-analysis. \emph{International Journal of Infectious Diseases}, \emph{94}, 91--95. \url{https://doi.org/10.1016/j.ijid.2020.03.017}
+
+\end{CSLReferences}
 
 
 \clearpage
