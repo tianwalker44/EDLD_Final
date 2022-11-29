@@ -126,6 +126,11 @@ summary(mreg1) #No significant findings. Oh well!
 
 ```
 
+```{r}
+RQ1_df %>% 
+  ggplot(aes(hba1c, crp)) + geom_point(aes(color = medication), alpha = 0.5) + geom_smooth(aes(color = medication), method = "lm") + scale_color_brewer(palette = 7) + theme_dark() + labs( title = "The Relationship Between Blood Sugar and Inflammation by Medication", caption =  "SAGE data from Mexico", x = "Blood Sugar (HbA1c)", y = "Inflammation (CRP)")
+```
+
 ```{r RQ2, echo=FALSE, render = 'normal print'}
 #RQ2: Does diet and exercise predict inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
 RQ2_df <- data %>%
@@ -148,6 +153,8 @@ table2$table$predictor <- c('Intercept',
                             'age',
                             'hba1c:dt_exrcse2')
 ```
+
+
 
 ```{r RQ3-brittany}
 #RQ3: For those with vs. without access to medical care, what is the effect of diet and exercise on inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
