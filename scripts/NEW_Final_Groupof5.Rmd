@@ -69,7 +69,28 @@ mex_survey$id <- as.numeric(mex_survey$id)
 mexico <- mex_survey %>%
   left_join(mex_bio, by = 'id')
 
-mexico_raw_dat <- mexico %>% select(income, q4022,  sex = q0406 , q0407, hba1c, crp, q4023a, q4024, weight = q2507, height = q2506, waist = q2508, marriage = q0408, q2000:q2024) %>% rename(diagnosis = q4022, age = q0407, medication = q4023a, dt_exrcse = q4024)
+mexico_raw_dat <-
+  mexico %>% select(
+    income,
+    q4022,
+    sex = q0406 ,
+    q0407,
+    hba1c,
+    crp,
+    q4023a,
+    q4024,
+    weight = q2507,
+    height = q2506,
+    waist = q2508,
+    marriage = q0408,
+    q2000:q2024
+  ) %>% 
+  rename(
+    diagnosis = q4022,
+    age = q0407,
+    medication = q4023a,
+    dt_exrcse = q4024
+  )
 
 write_csv(mexico_raw_dat, file = "mexico_raw_dat.csv")
 ```
@@ -77,10 +98,27 @@ write_csv(mexico_raw_dat, file = "mexico_raw_dat.csv")
 ```{r data-cleaning-rachel, echo=FALSE}
 #Rachel's code to drop irrelevant variables, filter, and add a medication*dt_exrcse variable.
 
-data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset
-data <- data %>% select(sex, diagnosis, age, hba1c, crp, medication, dt_exrcse, q5026, q5027) %>% rename(access = q5026) %>% filter(age >=50 & (diagnosis == 1 | crp < 5))  %>% as_tibble #Selecting only relevant variables, renaming for clarification, and filtering for people with a diabetes diagnosis and high levels of inflammation (crp).
+data <- import(here("data", "mexico_raw_dat.csv")) %>% 
+  as_tibble #Importing the Mexico dataset
+data <-
+  data %>% select(sex,
+                  diagnosis,
+                  age,
+                  hba1c,
+                  crp,
+                  medication,
+                  dt_exrcse,
+                  q5026,
+                  q5027) %>% rename(access = q5026) %>% filter(age >= 50 &
+                                                                 (diagnosis == 1 | crp < 5))  %>% as_tibble #Selecting only relevant variables, renaming for clarification, and filtering for people with a diabetes diagnosis and high levels of inflammation (crp).
 
-data <- data %>% mutate(med_dt_exrcse = medication*dt_exrcse, .after=dt_exrcse) %>% mutate(med_dt_exrcse = dplyr::recode(med_dt_exrcse, '4' = "1", '1' = "2", '2' = "2")) #Adding a new column for people who both take medication AND diet and exercise. 1 = yes for both, 2 = not yes for both
+data <-
+  data %>% mutate(med_dt_exrcse = medication * dt_exrcse, .after = dt_exrcse) %>% mutate(med_dt_exrcse = dplyr::recode(
+    med_dt_exrcse,
+    '4' = "1",
+    '1' = "2",
+    '2' = "2"
+  )) #Adding a new column for people who both take medication AND diet and exercise. 1 = yes for both, 2 = not yes for both
 
 #making categorical variables factors
 data <- data %>%
@@ -92,8 +130,32 @@ data <- data %>%
          access = as.factor(access))
 
 #For our own sanity, this is a mini dataframe of variable descriptions and their coding criteria (if applicable).
-col1 <- c("sex","diagnosis","age","hba1c","crp","medication","dt_exrcse","med_dt_exrcse","access","num_care")
-col2 <- c("participant gender as reported by researcher (male = 1, female = 2)","whether the participant has been diagnosed with diabetes (yes = 1, no = 2)","participant age","participant blood sugar level","participant inflammation level","whether the participant is currently taking medication for diabetes inflammation (yes = 1, no = 2)","whether the participant is on a diabetes-specific diet and exercise plan (yes = 1, no = 2)","whether the participant is on BOTH medication and a diet and exercise plan (yes = 1, no = 2)","whether the participant has accessed medical care in the past year (1 = yes, 2 = no)","number of times the participant has accessed medical care in the past year")
+col1 <-
+  c(
+    "sex",
+    "diagnosis",
+    "age",
+    "hba1c",
+    "crp",
+    "medication",
+    "dt_exrcse",
+    "med_dt_exrcse",
+    "access",
+    "num_care"
+  )
+col2 <-
+  c(
+    "participant gender as reported by researcher (male = 1, female = 2)",
+    "whether the participant has been diagnosed with diabetes (yes = 1, no = 2)",
+    "participant age",
+    "participant blood sugar level",
+    "participant inflammation level",
+    "whether the participant is currently taking medication for diabetes inflammation (yes = 1, no = 2)",
+    "whether the participant is on a diabetes-specific diet and exercise plan (yes = 1, no = 2)",
+    "whether the participant is on BOTH medication and a diet and exercise plan (yes = 1, no = 2)",
+    "whether the participant has accessed medical care in the past year (1 = yes, 2 = no)",
+    "number of times the participant has accessed medical care in the past year"
+  )
 data_variables <- data.frame(col1, col2)
 
 ```
@@ -102,10 +164,21 @@ data_variables <- data.frame(col1, col2)
 #Code to fulfill all of Joe's requirements.
 
 #pivot_wider, to investigate crp levels by sex
-crp_by_sex <- data %>% pivot_wider(names_from="sex", values_from="crp") %>% rename(male="1",female="2") %>% as_tibble
+
+crp_by_sex <-
+  data %>% pivot_wider(names_from = "sex", values_from = "crp") %>% 
+  rename(male = "1", female = "2") %>% 
+  as_tibble
 
 #pivot_longer, to investigate medication by crp level
-medication_by_crp <- data %>% pivot_longer(cols = "crp", "medication", values_to = "crp","on medication?", names_repair = "unique") #This isn't really doing what I want it to, but I'm out of time for now. -Rachel
+medication_by_crp <-
+  data %>% pivot_longer(
+    cols = "crp",
+    "medication",
+    values_to = "crp",
+    "on medication?",
+    names_repair = "unique"
+  ) #This isn't really doing what I want it to, but I'm out of time for now. -Rachel
 
 #group_by, to look at the mean crp of participants who both take medicine and diet and exercise, versus those who don't.
 groups_med_dt_exrcse <- data %>%
@@ -126,50 +199,70 @@ summary(mreg1) #No significant findings. Oh well!
 #mreg1_plot <- ggplot(RQ1_df, aes(medication, hba1c, age)) + geom_point() + stat_smooth(method = "lm", formula = mreg1, geom = "smooth") #This plot looks terrible right now, so I will see if we need to come back to it later.
 
 RQ1_df <- data %>%
-  filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age), !(is.na(crp)))
-mod1 <- lm(crp~hba1c*dt_exrcse + age, data = RQ1_df)
+  filter(!is.na(dt_exrcse) &
+           !is.na(hba1c) & !is.na(age),!(is.na(crp)))
+mod1 <- lm(crp ~ hba1c * dt_exrcse + age, data = RQ1_df)
 
 
 ```
 
 ```{r}
-RQ1_df %>% 
-  ggplot(aes(hba1c, crp)) + 
-  geom_point(aes(color = medication), alpha = 0.5) + 
-  geom_smooth(aes(color = medication), method = "lm") + 
-  scale_color_brewer(palette = 7) + 
-  theme_dark() + 
-  labs( title = "The Relationship Between Blood Sugar and Inflammation by Medication", 
-        caption =  "SAGE data from Mexico", 
-        x = "Blood Sugar (HbA1c)", 
-        y = "Inflammation (CRP)")
+RQ1_df %>%
+  ggplot(aes(hba1c, crp)) +
+  geom_point(aes(color = medication), alpha = 0.5) +
+  geom_smooth(aes(color = medication), method = "lm") +
+  scale_color_brewer(palette = 7) +
+  theme_dark() +
+  labs(
+    title = "The Relationship Between Blood Sugar and Inflammation by Medication",
+    caption =  "SAGE data from Mexico",
+    x = "Blood Sugar (HbA1c)",
+    y = "Inflammation (CRP)"
+  )
 ```
 
 
 ```{r eval=FALSE, error=TRUE, message=TRUE, warning=TRUE, include=FALSE}
-mod1_summary<- summary(mod1)
+mod1_summary <- summary(mod1)
 table1 <- apa_print(mod1)
-table1$table$predictor <- c('Intercept', 
+table1$table$predictor <- c('Intercept',
                             'Hba1c',
                             'Diet_Exercise',
                             'Age',
                             'variable')
-apa_table(table1$table,
-          caption = "Interaction of HbA1c and Medication on CRP ",
-          note = paste("Model fit: $F$(", mod1_summary$fstatistic[2], ", ", mod1_summary$fstatistic[3], ") = ", round(mod1_summary$fstatistic[1], 2), ",", "$p$ ", report_p(get_model_p(mod1_summary)), ", ", "$R^2$ = ", round(mod1_summary$r.squared, 2), sep = ""))
+apa_table(
+  table1$table,
+  caption = "Interaction of HbA1c and Medication on CRP ",
+  note = paste(
+    "Model fit: $F$(",
+    mod1_summary$fstatistic[2],
+    ", ",
+    mod1_summary$fstatistic[3],
+    ") = ",
+    round(mod1_summary$fstatistic[1], 2),
+    ",",
+    "$p$ ",
+    report_p(get_model_p(mod1_summary)),
+    ", ",
+    "$R^2$ = ",
+    round(mod1_summary$r.squared, 2),
+    sep = ""
+  )
+)
 ```
 
 ```{r RQ2, echo=FALSE, render = 'normal print'}
 #RQ2: Does diet and exercise predict inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
 RQ2_df <- data %>%
-  filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age), !(is.na(crp)))
+  filter(!is.na(dt_exrcse) &
+           !is.na(hba1c) & !is.na(age),!(is.na(crp)))
 mreg2 <- lm(crp ~ hba1c * dt_exrcse + age, data = data)
-mreg2_plot <- ggplot(data, aes(dt_exrcse, hba1c, age)) +         
-  geom_point() +                                     
+mreg2_plot <- ggplot(data, aes(dt_exrcse, hba1c, age)) +
+  geom_point() +
   stat_smooth(method = "lm",
               formula = mreg2,
               geom = "smooth") +
-  facet_wrap(~dt_exrcse) +
+  facet_wrap( ~ dt_exrcse) +
   theme_classic()
 summary(mreg2)
 
@@ -188,13 +281,18 @@ table2$table$predictor <- c('Intercept',
 #RQ3: For those with vs. without access to medical care, what is the effect of diet and exercise on inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
 
 # data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset #From Rachel: I'm hashtagging this out, because if you re-import the dataset here, it loses all the cleaning from earlier. 
-RQ3df <- data %>% 
-  filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age), !(is.na(crp)), !is.na(access)) #From Rachel: There were inconsistencies from the cleaning to here about the variable being called care vs. access. I switched them all to access, here and in the code below.
-str(RQ3df)  
-RQ3df <- RQ3df %>% select(diagnosis, age, hba1c, crp, dt_exrcse, access) %>%  filter(age >=50 & (diagnosis == 2 | crp < 5)) 
+RQ3df <- data %>%
+  filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age),
+         !(is.na(crp)),
+         !is.na(access)) #From Rachel: There were inconsistencies from the cleaning to here about the variable being called care vs. access. I switched them all to access, here and in the code below.
+str(RQ3df)
+RQ3df <-
+  RQ3df %>% select(diagnosis, age, hba1c, crp, dt_exrcse, access) %>%
+  filter(age >= 50 & (diagnosis == 2 | crp < 5))
 str(RQ3df)
 RQ3df$access <- factor(RQ3df$access,
-                      levels = c(1,2), labels = c("Yes","No")) #How do i get rid of NA values
+                       levels = c(1, 2),
+                       labels = c("Yes", "No")) #How do i get rid of NA values
 table(RQ3df$access)
 
 prop <- prop.table(table(RQ3df$access))
@@ -211,20 +309,24 @@ barplot(prop, xlab = "Individuals 50yo or older with Diabetes that partake in Di
 
 ```{r descriptives table prep}
 summary <- data %>%
-  summarize(country = "Mexico",
-            N = n(),
-            N_male = sum(sex == 1, na.rm = TRUE), #1 is male
-            N_male_pct = round((N_male/N*100), 1),
-            N_female = sum(sex == 2, na.rm = TRUE),
-            N_female_pct = round((N_female/N)*100, 1),
-            N_unknown = sum(is.na(sex)),
-            N_unknown_pct = round((N_unknown/N)*100, 1),
-            diabetes_diag = sum(diagnosis == 1, na.rm = TRUE),
-            diabetes_diag_pct = round((diabetes_diag/N)*100, 1),
-            diabetes_undiag = sum(hba1c >= 6.5 & diagnosis == 2, na.rm = TRUE),
-            diabetes_undiag_pct = round((diabetes_undiag/N)*100, 1),
-            age_M = round(mean(age), 1),
-            age_SD = round(sd(age), 1))
+  summarize(
+    country = "Mexico",
+    N = n(),
+    N_male = sum(sex == 1, na.rm = TRUE),
+    #1 is male
+    N_male_pct = round((N_male / N * 100), 1),
+    N_female = sum(sex == 2, na.rm = TRUE),
+    N_female_pct = round((N_female / N) * 100, 1),
+    N_unknown = sum(is.na(sex)),
+    N_unknown_pct = round((N_unknown / N) * 100, 1),
+    diabetes_diag = sum(diagnosis == 1, na.rm = TRUE),
+    diabetes_diag_pct = round((diabetes_diag / N) * 100, 1),
+    diabetes_undiag = sum(hba1c >= 6.5 &
+                            diagnosis == 2, na.rm = TRUE),
+    diabetes_undiag_pct = round((diabetes_undiag / N) * 100, 1),
+    age_M = round(mean(age), 1),
+    age_SD = round(sd(age), 1)
+  )
 ```
 
 The descriptive statistics for our sample look as follows:
