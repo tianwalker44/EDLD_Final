@@ -197,22 +197,22 @@
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2.2772 -1.1663 -0.6781  0.7534  6.3926 
+## -1.5545 -0.7586 -0.3563  0.5011  3.5249 
 ## 
 ## Coefficients:
-##                   Estimate Std. Error t value Pr(>|t|)  
-## (Intercept)        2.19497    0.93370   2.351   0.0192 *
-## hba1c              0.08034    0.05983   1.343   0.1800  
-## medication2        1.44670    0.96421   1.500   0.1343  
-## age               -0.01268    0.01061  -1.194   0.2330  
-## hba1c:medication2 -0.14441    0.11724  -1.232   0.2188  
+##                    Estimate Std. Error t value Pr(>|t|)  
+## (Intercept)        1.170340   0.621564   1.883   0.0605 .
+## hba1c              0.069964   0.039064   1.791   0.0741 .
+## medication2        0.859571   0.655572   1.311   0.1906  
+## age               -0.002503   0.007024  -0.356   0.7218  
+## hba1c:medication2 -0.090588   0.079689  -1.137   0.2564  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 1.768 on 404 degrees of freedom
-##   (1551 observations deleted due to missingness)
-## Multiple R-squared:  0.01363,    Adjusted R-squared:  0.003864 
-## F-statistic: 1.396 on 4 and 404 DF,  p-value: 0.2347
+## Residual standard error: 1.107 on 366 degrees of freedom
+##   (3 observations deleted due to missingness)
+## Multiple R-squared:  0.01194,    Adjusted R-squared:  0.001137 
+## F-statistic: 1.105 on 4 and 366 DF,  p-value: 0.3538
 \end{verbatim}
 
 \includegraphics{NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-1-1.pdf}
@@ -223,42 +223,42 @@
 ## lm(formula = crp ~ hba1c * dt_exrcse + age, data = data)
 ## 
 ## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -2.058 -1.190 -0.673  0.638  6.334 
+##     Min      1Q  Median      3Q     Max 
+## -1.6591 -0.7701 -0.3612  0.4871  3.3676 
 ## 
 ## Coefficients:
-##                  Estimate Std. Error t value Pr(>|t|)  
-## (Intercept)       2.75378    1.06608   2.583   0.0101 *
-## hba1c             0.02982    0.08539   0.349   0.7271  
-## dt_exrcse2       -0.31641    0.87926  -0.360   0.7191  
-## age              -0.01274    0.01063  -1.198   0.2315  
-## hba1c:dt_exrcse2  0.01552    0.10629   0.146   0.8840  
+##                   Estimate Std. Error t value Pr(>|t|)  
+## (Intercept)       1.335079   0.686390   1.945   0.0525 .
+## hba1c             0.066237   0.054890   1.207   0.2283  
+## dt_exrcse2        0.009813   0.572430   0.017   0.9863  
+## age              -0.002263   0.006978  -0.324   0.7458  
+## hba1c:dt_exrcse2 -0.032749   0.069211  -0.473   0.6364  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 1.772 on 404 degrees of freedom
-##   (1551 observations deleted due to missingness)
-## Multiple R-squared:  0.009143,   Adjusted R-squared:  -0.0006676 
-## F-statistic: 0.9319 on 4 and 404 DF,  p-value: 0.4452
+## Residual standard error: 1.103 on 366 degrees of freedom
+##   (3 observations deleted due to missingness)
+## Multiple R-squared:  0.02035,    Adjusted R-squared:  0.009643 
+## F-statistic: 1.901 on 4 and 366 DF,  p-value: 0.1097
 \end{verbatim}
 
 \begin{verbatim}
-## tibble [386 x 10] (S3: tbl_df/tbl/data.frame)
-##  $ sex          : Factor w/ 2 levels "1","2": 2 1 2 1 2 2 1 1 2 1 ...
-##  $ diagnosis    : Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
-##  $ age          : int [1:386] 57 67 62 75 87 65 62 60 60 68 ...
-##  $ hba1c        : num [1:386] 8.4 6.54 6.05 14.22 8.82 ...
-##  $ crp          : num [1:386] 6.98 0.95 3.15 1.29 1.29 ...
+## tibble [350 x 10] (S3: tbl_df/tbl/data.frame)
+##  $ sex          : Factor w/ 2 levels "1","2": 1 2 1 2 2 1 1 2 1 2 ...
+##  $ diagnosis    : Factor w/ 1 level "1": 1 1 1 1 1 1 1 1 1 1 ...
+##  $ age          : int [1:350] 67 62 75 87 65 62 60 60 67 57 ...
+##  $ hba1c        : num [1:350] 6.54 6.05 14.22 8.82 9.65 ...
+##  $ crp          : num [1:350] 0.95 3.15 1.29 1.29 1 ...
 ##  $ medication   : Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 2 ...
-##  $ dt_exrcse    : Factor w/ 2 levels "1","2": 2 2 1 2 1 2 2 2 2 2 ...
+##  $ dt_exrcse    : Factor w/ 2 levels "1","2": 2 1 2 1 2 2 2 2 1 2 ...
 ##  $ med_dt_exrcse: Factor w/ 2 levels "1","2": 2 2 2 2 2 2 2 2 2 1 ...
-##  $ access       : Factor w/ 2 levels "1","2": 2 2 2 2 2 2 1 1 1 2 ...
-##  $ q5027        : int [1:386] NA NA NA NA NA NA 1 12 12 NA ...
+##  $ access       : Factor w/ 2 levels "1","2": 2 2 2 2 2 1 1 1 1 2 ...
+##  $ q5027        : int [1:350] NA NA NA NA NA 1 12 12 1 NA ...
 \end{verbatim}
 
 \begin{verbatim}
 ## tibble [350 x 6] (S3: tbl_df/tbl/data.frame)
-##  $ diagnosis: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+##  $ diagnosis: Factor w/ 1 level "1": 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ age      : int [1:350] 67 62 75 87 65 62 60 60 67 57 ...
 ##  $ hba1c    : num [1:350] 6.54 6.05 14.22 8.82 9.65 ...
 ##  $ crp      : num [1:350] 0.95 3.15 1.29 1.29 1 ...
@@ -275,6 +275,8 @@
 \includegraphics{NEW_Final_Groupof5_files/figure-latex/RQ3-brittany-1.pdf}
 
 The descriptive statistics for our sample look as follows:
+
+\newpage
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.0541}}
@@ -297,15 +299,15 @@ Mexico
 \end{minipage} \\
 \midrule()
 \endhead
-\(N_{total}\) & & 1960 \\
+\(N_{total}\) & & 374 \\
 Sex & & \\
-& male & 761 (38.80 \%) \\
-& female & 1198 (61.10 \%) \\
-& unknown & 1 (0.10 \%) \\
-Age & & 68.10 (\(SD\) = 9.30) \\
+& male & 119 (31.80 \%) \\
+& female & 254 (67.90 \%) \\
+& unknown & 1 (0.30 \%) \\
+Age & & 68 (\(SD\) = 8.40) \\
 Diabetes & & \\
-& diagnosed & 449 (22.90 \%) \\
-& undiagnosed & 182 (9.30 \%) \\
+& diagnosed & 374 (100 \%) \\
+& undiagnosed & 0 (0 \%) \\
 \bottomrule()
 \end{longtable}
 

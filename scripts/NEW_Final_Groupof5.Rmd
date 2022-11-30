@@ -69,7 +69,9 @@ mex_survey$id <- as.numeric(mex_survey$id)
 mexico <- mex_survey %>%
   left_join(mex_bio, by = 'id')
 
-mexico_raw_dat <- mexico %>% select(income, q4022,  sex = q0406 , q0407, hba1c, crp, q4023a, q4024, weight = q2507, height = q2506, waist = q2508, marriage = q0408, q2000:q2024) %>% rename(diagnosis = q4022, age = q0407, medication = q4023a, dt_exrcse = q4024)
+mexico_raw_dat <- mexico %>% 
+  select(income, q4022,  sex = q0406 , q0407, hba1c, crp, q4023a, q4024, weight = q2507, height = q2506, waist = q2508, marriage = q0408, q2000:q2024) %>% 
+  rename(diagnosis = q4022, age = q0407, medication = q4023a, dt_exrcse = q4024)
 
 write_csv(mexico_raw_dat, file = "mexico_raw_dat.csv")
 ```
@@ -78,7 +80,11 @@ write_csv(mexico_raw_dat, file = "mexico_raw_dat.csv")
 #Rachel's code to drop irrelevant variables, filter, and add a medication*dt_exrcse variable.
 
 data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset
-data <- data %>% select(sex, diagnosis, age, hba1c, crp, medication, dt_exrcse, q5026, q5027) %>% rename(access = q5026) %>% filter(age >=50 & (diagnosis == 1 | crp < 5))  %>% as_tibble #Selecting only relevant variables, renaming for clarification, and filtering for people with a diabetes diagnosis and high levels of inflammation (crp).
+data <- data %>% 
+  select(sex, diagnosis, age, hba1c, crp, medication, dt_exrcse, q5026, q5027) %>% 
+  rename(access = q5026) %>% 
+  filter(age >=50 & diagnosis == 1 & crp < 5) %>% 
+  as_tibble() #Selecting only relevant variables, renaming for clarification, and filtering for people with a diabetes diagnosis and high levels of inflammation (crp).
 
 data <- data %>% mutate(med_dt_exrcse = medication*dt_exrcse, .after=dt_exrcse) %>% mutate(med_dt_exrcse = dplyr::recode(med_dt_exrcse, '4' = "1", '1' = "2", '2' = "2")) #Adding a new column for people who both take medication AND diet and exercise. 1 = yes for both, 2 = not yes for both
 
@@ -228,6 +234,8 @@ summary <- data %>%
 ```
 
 The descriptive statistics for our sample look as follows:
+
+\newpage
 
 |  |            |`r summary$country[1]` |
 |:-|:-----------|:----------------------|

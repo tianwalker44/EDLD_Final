@@ -161,6 +161,23 @@ knitr::include_graphics("circularplot.png")
 * I also want to produce appealing interactive maps that display information about voting, demographics, prevalence of illnesses, things like that. <br> &rarr; Excited for the data viz class!
 
 ---
+
+# Dominik Grätz - Findings
+
+I produced this table: 
+<div style= "float:right;position: relative;">
+```{r echo=FALSE, out.width = "80%"}
+knitr::include_graphics("descriptives_table.png") 
+```
+</div>
+* based on the representative WHO sample we used, after all cleaning and filtering has applied.
+* originally, we thought about comparing Mexico with China
+* filtered out people under 50, that's why the age is so high
+* Sex was "observed" by the investigators
+* Sex seems to be not adequately represented (although not tested for significance)
+  * could be problematic, especially with health variables
+* undiagnosed Diabetes defined as elevated blood sugar (hba1c > 6.5)
+---
   
   # Rachel Miller-Moudgil (1/3)
   
