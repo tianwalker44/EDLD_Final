@@ -61,9 +61,10 @@ source(file = here("scripts", "report_p.R"))
 #Rachel's note: This does not need re-run, as this was Tian joining two Mexico datasets and renaming variables and outputting mexico_raw_dat.csv. We should leave the code here so Joe can see how much initial data cleaning she worked on.
 #great idea #dg
 
-mex_survey <- import("Mexico_IND.sav")
+#Area of Improvement 1: This chunk would not run for me. It could be a quirk with my setup in R studio, but I suggest having multiple group members confirm that this runs for them to ensure it will work for Joe. -Megan
+mex_survey <- import('mexico_raw_dat.sav')
 
-mex_bio <- import("MexicoLabData.csv")
+mex_bio <- import("MexicoLabData.csv"))
 
 mex_survey$id <- as.numeric(mex_survey$id)
 mexico <- mex_survey %>%
@@ -77,6 +78,8 @@ write_csv(mexico_raw_dat, file = "mexico_raw_dat.csv")
 ```
 
 ```{r data-cleaning-rachel, echo=FALSE}
+
+#Area of Strength 1: Your code is very well documented and easy to follow. Great job making it readable and easy on reviewers :) - Megan
 #Rachel's code to drop irrelevant variables, filter, and add a medication*dt_exrcse variable.
 
 data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset
@@ -123,6 +126,10 @@ groups_med_dt_exrcse <- data %>%
 ```{r RQ1, echo=FALSE, render = 'normal print'}
 #RQ1: Does taking medication lower inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
 
+
+#Area of Strength 2: I like your approach of building a linear model using this data. Even though the results aren't significant, it was a really interesting idea! - Megan
+
+#Something I learned: I have been filtering things piecemeal, and I didn't know that you could use and/or operators to filter things all at once like you do below. So cool! - Megan
 RQ1_df <- data %>% 
   filter(!is.na(medication) | !is.na(hba1c) | !is.na(age) | !is.na(crp))
 
@@ -139,6 +146,7 @@ mod1 <- lm(crp~hba1c*dt_exrcse + age, data = RQ1_df)
 ```
 
 ```{r}
+#Area of Strength 3: This graph is really aesthetically nice, and it does a good job of showing the results of your model. 
 RQ1_df %>% 
   ggplot(aes(hba1c, crp)) + 
   geom_point(aes(color = medication), alpha = 0.5) + 
