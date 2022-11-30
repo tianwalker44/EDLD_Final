@@ -251,6 +251,7 @@ ggplot(groups_med_dt_exrcse, aes(medication, mean))+
 
 ```
 
+## This is amazing and far above my pay-grade in regards to the code used and data manipulation skills. The only suggestion I could make is that as a lay-person I am still unsure what CRP means in regards to diabetes and would recommend that you clarify this term as so much of the data is built upon it. I apologize in advance if it has been explained and I missed it.
 
 ```
 
