@@ -86,7 +86,9 @@ data <- data %>%
   filter(age >=50 & diagnosis == 1 & crp < 5) %>% 
   as_tibble() #Selecting only relevant variables, renaming for clarification, and filtering for people with a diabetes diagnosis and high levels of inflammation (crp).
 
-data <- data %>% mutate(med_dt_exrcse = medication*dt_exrcse, .after=dt_exrcse) %>% mutate(med_dt_exrcse = dplyr::recode(med_dt_exrcse, '4' = "1", '1' = "2", '2' = "2")) #Adding a new column for people who both take medication AND diet and exercise. 1 = yes for both, 2 = not yes for both
+data <- data %>% 
+  mutate(med_dt_exrcse = medication*dt_exrcse, .after=dt_exrcse) %>% 
+  mutate(med_dt_exrcse = dplyr::recode(med_dt_exrcse, '4' = "1", '1' = "2", '2' = "2")) #Adding a new column for people who both take medication AND diet and exercise. 1 = yes for both, 2 = not yes for both
 
 #making categorical variables factors
 data <- data %>%
