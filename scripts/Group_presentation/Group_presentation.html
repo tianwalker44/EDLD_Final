@@ -245,32 +245,93 @@ Into this:
 
 ---
 
-# Brittany Spinner
+# Brittany Spinner (1/3)
+**Journey**
+* This is my very first introduction to R. 
+  - I have previous experience working with SPSS only
+    + using data that was created from Qualtrics surveys and 
+  - I help collect and manage data for a longitudinal study 
+  - I'm in my second year of the MS program in Prevention Science
 
-INSERT BULLET POINTS ABOUT THE CODING CHALLENGES YOU FACED HERE
+**Challenges**
+* Trying to remember to contextual differences between the little things:
+  - filtering versus selecting
+  - knowing when to use + or %&gt;%, '' or "", or | or &amp;
+    + (or any of the many little changes from one function/{package} to another)
+    + Ultimately figuring out the one _little_ thing that didn't allow your code to run
+  - Not knowing all the functions
+    + and the appropriate layout for data, variable names, etc. for that function
+* Not having direct access to a codebook (or a good one)
 
-* Presentation cover the following:
+---
+
+**Successes**
+* Formatting in R
+* Basic R 
+* Statistical analysis/assumptions about data 
+* Active teammates:
+  - We all really cared about this project!
+  - Willing to answer each other's questions and help
   
-    * Share your journey (everyone, at least for a minute or two)
+---
 
-    * Discuss challenges you had along the way
+# Brittany Spinner (2/3)
+**RQ and Finding(s)**
+* RQ3: Are Mexicans 50 years of age and older, with diabetes, and utilizing the treatment diet and/or exercise, experiencing statistically significant differences in CRP (inflammation) levels between those that have been to a Dr. in the last year versus those that have not?
+  - Measuring healthcare access/utilization (IV) on CRP levels (DV)
+  - Conducting a Chi-square test of independence 
+    + looking at differences between observed versus expected values for this relationship
+* First I wanted to show the proportion differences of these individuals that had been to the Dr. in the last year or not 
+  - with a bar chart
+* Second show proportion differences in CRP levels (low vs. high) for this population 
+  - with a bar chart 
+* Then conduct a Chi-square analysis to measure differences 
 
-    * Celebrate your successes
+---
 
-    * Discuss challenges you are still facing
+**Challenges Ahead Still**
+* Finishing my Chi-square analysis 
+  - filtering my variables so they will represent what is reflective in my research question (RQ3)
+    + transforming crp into a dichotomous variable
+  - RQ3df$crp &lt;- factor(RQ3df$crp, 
+                    levels = c(0:3 &amp; 3.1:6.5), labels = c("Low", "High")) #need help getting this to work
+* Making a pretty table and bar chart
 
-    * Discuss substantive findings
-
-    * Show off your cool figures!
-  
-    * Discuss next R hurdle you want to address
-
+**Current R Figures and Code**
 
 ```r
-#INSERT ANY RELEVANT CODE YOU WANT TO SHOW HERE
-
-#knitr::include_graphics("image.png") &lt;-- use this code to insert any image you want
+#idk why this isn't working 
+knitr::include_graphics("proportion_access.png")
 ```
+
+![](proportion_access.png)&lt;!-- --&gt;
+
+*Chi-Square code*
+* chi_df &lt;- chisq.test(RQ3df$access, RQ3df$crp) run chi between dfs of data$care and data$crp, but this is the code 
+* chi_df
+* chi_df$expected
+* chi_df$observed 
+* Create table with observed and expected values 
+
+---
+
+#Brittany Spinner (3/3)
+**Code**
+* table(RQ3df$access)
+* table(RQ3df$crp)
+* prop &lt;- prop.table(table(RQ3df$access))
+* RQ3_barplot &lt;- barplot(prop, xlab = "Individuals 50yo or older with Diabetes that partake in Diet&amp;/Exercise and saw a Dr. in the Last Year", ylab = "Proportion of Individuals") #need to add title and subtitle(?)
+
+* chi_df &lt;- chisq.test(RQ3df$access, RQ3df$crp) #need to get rid of NA values in care and possible create two dfs with yes no and then run chi between dfs of data$care but this is the code 
+* chi_df
+* chi_df$expected
+* chi_df$observed 
+
+**Next R Hurdle**
+* Milestone paper
+* Specialization Data Science sequence
+* Apply for the Prev Sci PhD program and QRME PhD program
+* Do work! Apply what I've learned in meaningful ways
 
 ---
 
