@@ -52,7 +52,9 @@ library(tidyverse)
 library(rio)
 library(here)
 library(papaja)
+library(janitor)
 library(tidyr)
+library(stargazer)
 source(file = here("scripts", "report_p.R"))
 ```
 
@@ -165,27 +167,22 @@ apa_table(table1$table,
           note = paste("Model fit: $F$(", mod1_summary$fstatistic[2], ", ", mod1_summary$fstatistic[3], ") = ", round(mod1_summary$fstatistic[1], 2), ",", "$p$ ", report_p(get_model_p(mod1_summary)), ", ", "$R^2$ = ", round(mod1_summary$r.squared, 2), sep = ""))
 ```
 
-```{r RQ2, echo=FALSE, render = 'normal print'}
+```{r RQ2, echo=FALSE, comment = NA}
 #RQ2: Does diet and exercise predict inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
 RQ2_df <- data %>%
   filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age), !(is.na(crp)))
-mreg2 <- lm(crp ~ hba1c * dt_exrcse + age, data = data)
-mreg2_plot <- ggplot(data, aes(dt_exrcse, hba1c, age)) +         
-  geom_point() +                                     
-  stat_smooth(method = "lm",
-              formula = mreg2,
-              geom = "smooth") +
-  facet_wrap(~dt_exrcse) +
-  theme_classic()
-summary(mreg2)
+reg2 <- lm(crp ~ hba1c * dt_exrcse + age, data = data)
+stargazer(reg2, type = "text")
 
-mreg2_summary <- summary(mreg2)
-table2 <- apa_print(mreg2)
+#Could not get the summary table to work! (AS)
+reg2_summary <- summary(reg2)
+table2 <- apa_print(reg2)
 table2$table$predictor <- c('Intercept',
                             'Hba1c',
                             'dt_exrcse2',
                             'age',
                             'hba1c:dt_exrcse2')
+
 ```
 
 
@@ -231,6 +228,17 @@ summary <- data %>%
             diabetes_undiag_pct = round((diabetes_undiag/N)*100, 1),
             age_M = round(mean(age), 1),
             age_SD = round(sd(age), 1))
+```
+
+```{r table of crp medication + exercise}
+ggplot(groups_med_dt_exrcse, aes(medication, mean))+
+  geom_col(aes(fill = dt_exrcse),
+           position = "dodge")+
+  labs(x = "Medication",
+       y = "Mean CRP Level",
+       title = "Mean CRP levels for medication and exercise groups")+
+  scale_fill_discrete(name = "Exercise", labels = c("Yes", "No"))+
+  scale_x_discrete(labels=c("Medication", "No Medication"))
 ```
 
 The descriptive statistics for our sample look as follows:

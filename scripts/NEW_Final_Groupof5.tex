@@ -116,9 +116,9 @@
 
 % Create new environments so endfloat can handle them
 % \newenvironment{ltable}
-%   {\begin{landscape}\begin{center}\begin{threeparttable}}
-%   {\end{threeparttable}\end{center}\end{landscape}}
-\newenvironment{lltable}{\begin{landscape}\begin{center}\begin{ThreePartTable}}{\end{ThreePartTable}\end{center}\end{landscape}}
+%   {\begin{landscape}\centering\begin{threeparttable}}
+%   {\end{threeparttable}\end{landscape}}
+\newenvironment{lltable}{\begin{landscape}\centering\begin{ThreePartTable}}{\end{ThreePartTable}\end{landscape}}
 
 % Enables adjusting longtable caption width to table width
 % Solution found at http://golatex.de/longtable-mit-caption-so-breit-wie-die-tabelle-t15767.html
@@ -131,6 +131,20 @@
 % \setlength{\parindent}{0.5in}
 % \setlength{\parskip}{0pt plus 0pt minus 0pt}
 
+% Overwrite redefinition of paragraph and subparagraph by the default LaTeX template
+% See https://github.com/crsh/papaja/issues/292
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries\itshape\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{1em}%
+  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+  {-\z@\relax}%
+  {\normalfont\normalsize\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
 % \usepackage{etoolbox}
 \makeatletter
 \patchcmd{\HyOrg@maketitle}
@@ -142,7 +156,15 @@
   {\section*{\protect\normalfont{\@title}}}
   {}{\typeout{Failed to patch title.}}
 \makeatother
-\shorttitle{Inflammation, access to care and Diabetes in China and Mexico.}
+
+\usepackage{xpatch}
+\makeatletter
+\xapptocmd\appendix
+  {\xapptocmd\section
+    {\addcontentsline{toc}{section}{\appendixname\ifoneappendix\else~\theappendix\fi\\: #1}}
+    {}{\InnerPatchFailed}%
+  }
+{}{\PatchFailed}
 \keywords{Diabetes, access to care, inflammation, health, Mexico, China\newline\indent Word count: X (this cannot easily be done automatically, we can also just leave it out)}
 \usepackage{csquotes}
 \usepackage[titles]{tocloft}
@@ -177,11 +199,13 @@
 \date{}
 
 
+\shorttitle{Inflammation, access to care and Diabetes in China and Mexico.}
+
 \authornote{List of group members ordered by alphabet.}
 
 \affiliation{\vspace{0.5cm}\textsuperscript{1} University of Oregon}
 
-\abstract{
+\abstract{%
 \emph{Background.} Background goes here. \emph{Methods.} Methods go here. \emph{Results.} Results here. \emph{Conclusions.} Conclusions here.
 }
 
@@ -218,28 +242,35 @@
 \includegraphics{NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-1-1.pdf}
 
 \begin{verbatim}
-## 
-## Call:
-## lm(formula = crp ~ hba1c * dt_exrcse + age, data = data)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -1.6591 -0.7701 -0.3612  0.4871  3.3676 
-## 
-## Coefficients:
-##                   Estimate Std. Error t value Pr(>|t|)  
-## (Intercept)       1.335079   0.686390   1.945   0.0525 .
-## hba1c             0.066237   0.054890   1.207   0.2283  
-## dt_exrcse2        0.009813   0.572430   0.017   0.9863  
-## age              -0.002263   0.006978  -0.324   0.7458  
-## hba1c:dt_exrcse2 -0.032749   0.069211  -0.473   0.6364  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 1.103 on 366 degrees of freedom
-##   (3 observations deleted due to missingness)
-## Multiple R-squared:  0.02035,    Adjusted R-squared:  0.009643 
-## F-statistic: 1.901 on 4 and 366 DF,  p-value: 0.1097
+
+===============================================
+                        Dependent variable:    
+                    ---------------------------
+                                crp            
+-----------------------------------------------
+hba1c                          0.066           
+                              (0.055)          
+                                               
+dt_exrcse2                     0.010           
+                              (0.572)          
+                                               
+age                           -0.002           
+                              (0.007)          
+                                               
+hba1c:dt_exrcse2              -0.033           
+                              (0.069)          
+                                               
+Constant                      1.335*           
+                              (0.686)          
+                                               
+-----------------------------------------------
+Observations                    371            
+R2                             0.020           
+Adjusted R2                    0.010           
+Residual Std. Error      1.103 (df = 366)      
+F Statistic             1.901 (df = 4; 366)    
+===============================================
+Note:               *p<0.1; **p<0.05; ***p<0.01
 \end{verbatim}
 
 \begin{verbatim}
