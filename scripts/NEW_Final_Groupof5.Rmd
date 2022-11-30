@@ -167,6 +167,8 @@ apa_table(table1$table,
           note = paste("Model fit: $F$(", mod1_summary$fstatistic[2], ", ", mod1_summary$fstatistic[3], ") = ", round(mod1_summary$fstatistic[1], 2), ",", "$p$ ", report_p(get_model_p(mod1_summary)), ", ", "$R^2$ = ", round(mod1_summary$r.squared, 2), sep = ""))
 ```
 
+\newpage 
+
 ```{r RQ2, echo=FALSE, comment = NA}
 #RQ2: Does diet and exercise predict inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
 RQ2_df <- data %>%
@@ -239,6 +241,10 @@ ggplot(groups_med_dt_exrcse, aes(medication, mean))+
        title = "Mean CRP levels for medication and exercise groups")+
   scale_fill_discrete(name = "Exercise", labels = c("Yes", "No"))+
   scale_x_discrete(labels=c("Medication", "No Medication"))
+
+```
+
+
 ```
 
 The descriptive statistics for our sample look as follows:

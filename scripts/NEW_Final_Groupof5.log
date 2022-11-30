@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.11.20)  29 NOV 2022 20:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.11.20)  29 NOV 2022 23:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -702,21 +702,14 @@ Overfull \hbox (28.90639pt too wide) in paragraph at lines 242--243
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[3] [4 <./NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-1-1.pdf>] [5]
+[3] [4 <./NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-1-1.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[5]
 <NEW_Final_Groupof5_files/figure-latex/RQ3-brittany-1.pdf, id=68, 469.755pt x 325.215pt>
 File: NEW_Final_Groupof5_files/figure-latex/RQ3-brittany-1.pdf Graphic file (type pdf)
 <use NEW_Final_Groupof5_files/figure-latex/RQ3-brittany-1.pdf>
-Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/RQ3-brittany-1.pdf  used on input line 306.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-
-Overfull \hbox (28.90639pt too wide) in paragraph at lines 306--307
-[][]  
- []
-
-<NEW_Final_Groupof5_files/figure-latex/table of crp medication + exercise-1.pdf, id=69, 469.755pt x 325.215pt>
-File: NEW_Final_Groupof5_files/figure-latex/table of crp medication + exercise-1.pdf Graphic file (type pdf)
-<use NEW_Final_Groupof5_files/figure-latex/table of crp medication + exercise-1.pdf>
-Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/table of crp medication + exercise-1.pdf  used on input line 308.
+Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/RQ3-brittany-1.pdf  used on input line 308.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
 Overfull \hbox (28.90639pt too wide) in paragraph at lines 308--309
@@ -724,35 +717,49 @@ Overfull \hbox (28.90639pt too wide) in paragraph at lines 308--309
  []
 
 
-Underfull \vbox (badness 4819) has occurred while \output is active []
+Underfull \vbox (badness 1102) has occurred while \output is active []
 
-[6 <./NEW_Final_Groupof5_files/figure-latex/RQ3-brittany-1.pdf>] [7 <./NEW_Final_Groupof5_files/figure-latex/table of crp medication + exercise-1.pdf>]
-Overfull \hbox (3.19122pt too wide) in paragraph at lines 335--335
+[6]
+<NEW_Final_Groupof5_files/figure-latex/table of crp medication + exercise-1.pdf, id=73, 469.755pt x 325.215pt>
+File: NEW_Final_Groupof5_files/figure-latex/table of crp medication + exercise-1.pdf Graphic file (type pdf)
+<use NEW_Final_Groupof5_files/figure-latex/table of crp medication + exercise-1.pdf>
+Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/table of crp medication + exercise-1.pdf  used on input line 310.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+
+Overfull \hbox (28.90639pt too wide) in paragraph at lines 310--311
+[][]  
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[7 <./NEW_Final_Groupof5_files/figure-latex/RQ3-brittany-1.pdf>] [8 <./NEW_Final_Groupof5_files/figure-latex/table of crp medication + exercise-1.pdf>]
+Overfull \hbox (3.19122pt too wide) in paragraph at lines 339--339
 []|$\OML/lmm/m/it/12 N[]$|  
  []
 
 
-Overfull \hbox (20.50337pt too wide) in paragraph at lines 341--341
+Overfull \hbox (20.50337pt too wide) in paragraph at lines 345--345
 []|\T1/lmr/m/n/12 Diabetes|  
  []
 
-[8] [9] [10] [11] AED endfloat: Processing end Figures and Tables (./NEW_Final_Groupof5.aux)
+[9] [10] [11] [12] AED endfloat: Processing end Figures and Tables (./NEW_Final_Groupof5.aux)
 Package rerunfilecheck Info: File `NEW_Final_Groupof5.out' has not changed.
 (rerunfilecheck)             Checksum: 08E5B0B5AC908FA971A8CB658C5FEEA8;1218.
  ) 
 Here is how much of TeX's memory you used:
- 16119 strings out of 476931
- 265178 string characters out of 5824255
- 631073 words of memory out of 5000000
+ 16120 strings out of 476931
+ 265185 string characters out of 5824255
+ 630074 words of memory out of 5000000
  37042 multiletter control sequences out of 15000+600000
  507037 words of font info for 62 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  72i,12n,77p,1069b,654s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/Users/ambermarie/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/ambermarie/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}</Users/ambermarie/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/ambermarie/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></Users/ambermarie/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/ambermarie/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/ambermarie/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/ambermarie/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb></Users/ambermarie/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on NEW_Final_Groupof5.pdf (11 pages, 188387 bytes).
+Output written on NEW_Final_Groupof5.pdf (12 pages, 188809 bytes).
 PDF statistics:
- 184 PDF objects out of 1000 (max. 8388607)
- 149 compressed objects within 2 object streams
- 34 named destinations out of 1000 (max. 500000)
+ 188 PDF objects out of 1000 (max. 8388607)
+ 152 compressed objects within 2 object streams
+ 35 named destinations out of 1000 (max. 500000)
  72 words of extra memory for PDF output out of 10000 (max. 10000000)
 
