@@ -217,31 +217,6 @@ Into this:
 
 &lt;img src="EDLD_FP3.png" width="40%" style="display: block; margin: auto;" /&gt;
 * Moving forward, I hope to continue to be able to use R for my academic projects and beyond!
----
-
-
-* Presentation cover the following:
-  
-    * Share your journey (everyone, at least for a minute or two)
-
-    * Discuss challenges you had along the way
-
-    * Celebrate your successes
-
-    * Discuss challenges you are still facing
-
-    * Discuss substantive findings
-
-    * Show off your cool figures!
-  
-    * Discuss next R hurdle you want to address
-
-
-```r
-#INSERT ANY RELEVANT CODE YOU WANT TO SHOW HERE
-
-#knitr::include_graphics("image.png") &lt;-- use this code to insert any image you want
-```
 
 ---
 
@@ -384,7 +359,7 @@ ggplot(aes(hba1c,crp))  + geom_point(aes(color = as.factor(medication )) )+ face
 plot + font("xlab", size = 34) + font("ylab", size = 34)+ font("xy.text", size = 25, color = "black", face = "bold") + scale_color_manual(values = c("tomato1", "purple4"))
 ```
 
-![](Group_presentation_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+![](Group_presentation_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
 
 
 ---
@@ -403,7 +378,7 @@ data %&gt;%
   ggplot(aes(hba1c, crp)) + geom_point(aes(color = medication), alpha = 0.5) + geom_smooth(aes(color = medication), method = "lm") + scale_color_brewer(palette = 7) + theme_dark() + labs( title = "The Relationship Between Blood Sugar and Inflammation by Medication", caption =  "SAGE data from Mexico", x = "Blood Sugar (HbA1c)", y = "Inflammation (CRP)")
 ```
 
-![](Group_presentation_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+![](Group_presentation_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -435,13 +410,13 @@ filter(crp &lt;5, age &gt; 50) %&gt;%
 plot.a + font("xlab", size = 34) + font("ylab", size = 34)+ font("xy.text", size = 25, color = "black", face = "bold")
 ```
 
-![](Group_presentation_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+![](Group_presentation_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
 ---
 
 # Let's zoom in!
 
 
-![](Group_presentation_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+![](Group_presentation_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
 ---
 
 class: inverse, middle, center
@@ -459,7 +434,7 @@ class: inverse, middle, center
 * Make lots of bar charts
 * Publish a manuscript written in R
 
-![](Group_presentation_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+![](Group_presentation_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -475,7 +450,7 @@ filter(!is.na(medication)) %&gt;%
   geom_emoji(data = data [data$medication == 2,],emoji = "1f98b") + geom_smooth(se = FALSE, aes(group = medication, color = as.factor(medication)), size = 2, method = "lm") + scale_color_manual(values = c("dodgerblue", "black")) + theme_classic() + labs(title = "Does taking medication lower inflammation levels (controlling for age)? ")
 ```
 
-![](Group_presentation_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+![](Group_presentation_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
 
 ---
 

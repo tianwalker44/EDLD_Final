@@ -325,32 +325,6 @@ knitr::include_graphics("EDLD_FP2.png")
 knitr::include_graphics("EDLD_FP3.png")
 ```
 * Moving forward, I hope to continue to be able to use R for my academic projects and beyond!
----
-
-
-* Presentation cover the following:
-  
-    * Share your journey (everyone, at least for a minute or two)
-
-    * Discuss challenges you had along the way
-
-    * Celebrate your successes
-
-    * Discuss challenges you are still facing
-
-    * Discuss substantive findings
-
-    * Show off your cool figures!
-  
-    * Discuss next R hurdle you want to address
-
-```{r }
-
-#INSERT ANY RELEVANT CODE YOU WANT TO SHOW HERE
-
-#knitr::include_graphics("image.png") <-- use this code to insert any image you want
-
-```
 
 ---
 
