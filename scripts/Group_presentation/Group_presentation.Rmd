@@ -1,5 +1,5 @@
 ---
-title: "Final Project: Predicting Inflammation in the Older Mexican Population with Diabetes"
+title: "Final Project: Examining Inflammation in the Older Mexican Population with Diabetes"
 subtitle: "Progress, Challenges and Findings."
 author: "Dominik Grätz, Rachel Miller-Moudgil, Amber Somarriba, Brittany Spinner, and Tian Walker<br><span style = 'font-size: 50%;'>EDLD 651<br>Fall 2022</span>"
 output:
