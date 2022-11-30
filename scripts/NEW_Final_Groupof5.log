@@ -1,4 +1,12 @@
+<<<<<<< Updated upstream
 This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.11.20)  29 NOV 2022 23:30
+=======
+<<<<<<< Updated upstream
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.5.14)  29 NOV 2022 18:31
+=======
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.3.15)  29 NOV 2022 12:44
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -748,6 +756,7 @@ Package rerunfilecheck Info: File `NEW_Final_Groupof5.out' has not changed.
 (rerunfilecheck)             Checksum: 08E5B0B5AC908FA971A8CB658C5FEEA8;1218.
  ) 
 Here is how much of TeX's memory you used:
+<<<<<<< Updated upstream
  16120 strings out of 476931
  265185 string characters out of 5824255
  630074 words of memory out of 5000000
@@ -757,6 +766,41 @@ Here is how much of TeX's memory you used:
  72i,12n,77p,1069b,654s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/Users/ambermarie/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/ambermarie/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}</Users/ambermarie/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/ambermarie/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></Users/ambermarie/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/ambermarie/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/ambermarie/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/ambermarie/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb></Users/ambermarie/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
 Output written on NEW_Final_Groupof5.pdf (12 pages, 188809 bytes).
+=======
+ 16963 strings out of 492891
+ 257013 string characters out of 3122624
+ 384896 words of memory out of 3000000
+ 20495 multiletter control sequences out of 15000+200000
+ 44323 words of font info for 69 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+<<<<<<< Updated upstream
+ 43i,12n,47p,1356b,531s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/Dominik/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.
+enc}{C:/Users/Dominik/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-m
+athit.enc}{C:/Users/Dominik/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/l
+m/lm-ts1.enc}<C:/Users/Dominik/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
+blic/lm/lmbx12.pfb><C:/Users/Dominik/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
+pe1/public/lm/lmmi12.pfb><C:/Users/Dominik/AppData/Local/Programs/MiKTeX 2.9/fo
+nts/type1/public/lm/lmmi8.pfb><C:/Users/Dominik/AppData/Local/Programs/MiKTeX 2
+.9/fonts/type1/public/lm/lmr12.pfb><C:/Users/Dominik/AppData/Local/Programs/MiK
+TeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Users/Dominik/AppData/Local/Programs
+/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Users/Dominik/AppData/Local/Pr
+ograms/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
+Output written on NEW_Final_Groupof5.pdf (10 pages, 195174 bytes).
+=======
+ 85i,11n,88p,1354b,590s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/te
+xlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2021
+/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</usr/local/texlive/2021/texmf-dist/f
+onts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1
+/public/lm/lmmi12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm
+/lmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb>
+</usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/
+texlive/2021/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/20
+21/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
+Output written on NEW_Final_Groupof5.pdf (10 pages, 181054 bytes).
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 PDF statistics:
  188 PDF objects out of 1000 (max. 8388607)
  152 compressed objects within 2 object streams

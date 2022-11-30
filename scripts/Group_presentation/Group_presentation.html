@@ -216,7 +216,7 @@ Into this:
 * I also was able to learn how to make my first regression table (with the help of Dominik and Stack Overflow) using the {stargazer} package! 
 
 &lt;img src="EDLD_FP3.png" width="40%" style="display: block; margin: auto;" /&gt;
-* Moving forward, I hope to continue to be able to use R for my academic projects and beyond
+* Moving forward, I hope to continue to be able to use R for my academic projects and beyond!
 ---
 
 
@@ -301,10 +301,8 @@ Into this:
 
 ```r
 #idk why this isn't working 
-knitr::include_graphics("proportion_access.png")
+#knitr::include_graphics("proportion_access.png")
 ```
-
-![](proportion_access.png)&lt;!-- --&gt;
 
 *Chi-Square code*
 * chi_df &lt;- chisq.test(RQ3df$access, RQ3df$crp) run chi between dfs of data$care and data$crp, but this is the code 
@@ -335,52 +333,153 @@ knitr::include_graphics("proportion_access.png")
 
 ---
 
-# Tian Walker
+# Tian 
 
-Coding Challenges
+    Coding Challenges
 
   * create a variable with 3 levels (case_when)
   
   * creating bar graphs (geom_bar vs. geom_col)
   
+    * telling ggplot to color by a dichotomous variable that R thinks is continuous
+  
   * loading in duplicate variables that are empty
   
-  * learning how to read between the lines with error    messages 
+  * learning how to read between the lines with error messages 
   
 ---
 
+# Challenges
+--
 background-size: contain
 
 background-image: url("https://assets.entrepreneur.com/content/3x2/2000/1638079565-Untitleddesign-2021-11-28T100532825.png?auto=webp&amp;quality=95&amp;crop=16:9&amp;width=675")
 
 ---
-* Presentation cover the following:
-  
-    * Share your journey (everyone, at least for a minute or two)
 
-    * Discuss challenges you had along the way
+class: inverse, middle, center
 
-    * Celebrate your successes
+&lt;img src="github_fall.png" width="50%" /&gt;
 
-    * Discuss challenges you are still facing
+photo credit: Allison Horst(https://github.com/allisonhorst/stats-illustrations)
 
-    * Discuss substantive findings
+---
 
-    * Show off your cool figures!
-  
-    * Discuss next R hurdle you want to address
+
+background-size: contain
+
+background-image: url("https://www.mountsinai.on.ca/care/lscd/sweet-talk-1/images-and-resources/a1c_chart.gif")
+
+---
+
 
 
 ```r
-#INSERT ANY RELEVANT CODE YOU WANT TO SHOW HERE
+library(ggpubr)
 
-#knitr::include_graphics("image.png") &lt;-- use this code to insert any image you want
+plot &lt;- dat %&gt;% 
+filter(!is.na(diabetes_stat)) %&gt;% 
+ggplot(aes(hba1c,crp))  + geom_point(aes(color = as.factor(medication )) )+ facet_wrap(~diabetes_stat)
+
+plot + font("xlab", size = 34) + font("ylab", size = 34)+ font("xy.text", size = 25, color = "black", face = "bold") + scale_color_manual(values = c("tomato1", "purple4"))
 ```
+
+![](Group_presentation_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+
+
+---
+
+class: inverse, middle, center
+
+# Research Question
+Does taking medication lower inflammation levels (controlling for age)? 
+
+---
+Regression we ran: Do people taking medication have a stronger relationship between inflammation and diabetes?
+
+```r
+data %&gt;% 
+  filter(crp &lt;5) %&gt;% 
+  ggplot(aes(hba1c, crp)) + geom_point(aes(color = medication), alpha = 0.5) + geom_smooth(aes(color = medication), method = "lm") + scale_color_brewer(palette = 7) + theme_dark() + labs( title = "The Relationship Between Blood Sugar and Inflammation by Medication", caption =  "SAGE data from Mexico", x = "Blood Sugar (HbA1c)", y = "Inflammation (CRP)")
+```
+
+![](Group_presentation_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+
+---
+
+class: inverse, middle, center
+
+# Why were we looking at treatment to begin with?
+
+---
+class: inverse, middle, center
+
+
+```r
+data &lt;- data %&gt;% 
+  mutate(diabetes_treat=case_when(
+    medication== 1  ~ "medication",
+    dt_exrcse==1 ~ "dt_excercise",
+    medication == 2  &amp; dt_exrcse == 2 ~ "no_treatment"))
+```
+
 ---
 
 
 
+```r
+plot.a &lt;- data %&gt;% 
+filter(crp &lt;5, age &gt; 50) %&gt;% 
+ ggplot(aes(hba1c, crp)) + geom_point(aes(color = diabetes_treat), size = 5) + scale_color_brewer(palette = 15) + theme_dark()
+
+plot.a + font("xlab", size = 34) + font("ylab", size = 34)+ font("xy.text", size = 25, color = "black", face = "bold")
+```
+
+![](Group_presentation_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
 ---
+
+# Let's zoom in!
+
+
+![](Group_presentation_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+---
+
+class: inverse, middle, center
+
+&lt;img src="EDLD_FP2.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Looking Ahead
+* Change font size on facet wrap 
+* Continue getting comfortable with pivot_wider and pivot_longer
+* Qualtrics and R 
+* Become even better friends with google
+* Increase comfort going from statistical tests to graphs
+* Make lots of bar charts
+* Publish a manuscript written in R
+
+![](Group_presentation_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+
+---
+
+class: inverse, middle, center
+
+```r
+library(emoGG)
+
+data %&gt;% 
+filter(!is.na(medication)) %&gt;% 
+  ggplot(aes(age, crp) )+ geom_point()+ 
+  geom_emoji(data = data [ data$medication == 1,],emoji = "1f427") +
+  geom_emoji(data = data [data$medication == 2,],emoji = "1f98b") + geom_smooth(se = FALSE, aes(group = medication, color = as.factor(medication)), size = 2, method = "lm") + scale_color_manual(values = c("dodgerblue", "black")) + theme_classic() + labs(title = "Does taking medication lower inflammation levels (controlling for age)? ")
+```
+
+![](Group_presentation_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+
+---
+
+class: inverse, middle, center
 
 # **Questions?**
 
@@ -394,13 +493,17 @@ background-image: url("https://assets.entrepreneur.com/content/3x2/2000/16380795
 
 ```r
 #install.packages("here")
+library(xaringan)
+library(xaringanExtra)
+library(xaringanthemer)
+library(tidyverse)
+library(knitr)
 library(here)
 library(rio)
+library(kableExtra)
+library(ggpubr)
+library(emoGG)
 ```
-
----
-class: inverse, middle, center
-
 
 
 
