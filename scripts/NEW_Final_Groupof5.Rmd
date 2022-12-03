@@ -151,7 +151,7 @@ RQ1_df %>%
 ```
 
 
-```{r eval=FALSE, error=TRUE, message=TRUE, warning=TRUE, include=FALSE}
+```{r echo=TRUE}
 mod1_summary<- summary(mod1)
 table1 <- apa_print(mod1)
 table1$table$predictor <- c('Intercept', 
@@ -166,7 +166,7 @@ apa_table(table1$table,
 
 \newpage 
 
-```{r RQ2, echo=FALSE, comment = NA}
+```{r RQ2, echo=TRUE}
 #RQ2: Does diet and exercise predict inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
 RQ2_df <- data %>%
   filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age), !(is.na(crp)))
@@ -187,7 +187,7 @@ table2$table$predictor <- c('Intercept',
 
 
 
-```{r RQ3-brittany}
+```{r RQ3-brittany, eval=FALSE, include=FALSE}
 #RQ3: For those with vs. without access to medical care, what is the effect of diet and exercise on inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
 
 # data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset #From Rachel: I'm hashtagging this out, because if you re-import the dataset here, it loses all the cleaning from earlier. 

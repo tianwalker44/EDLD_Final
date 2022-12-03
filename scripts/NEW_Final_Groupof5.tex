@@ -33,6 +33,46 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -241,71 +281,106 @@
 
 \includegraphics{NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-1-1.pdf}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mod1\_summary}\OtherTok{\textless{}{-}} \FunctionTok{summary}\NormalTok{(mod1)}
+\NormalTok{table1 }\OtherTok{\textless{}{-}} \FunctionTok{apa\_print}\NormalTok{(mod1)}
+\NormalTok{table1}\SpecialCharTok{$}\NormalTok{table}\SpecialCharTok{$}\NormalTok{predictor }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Intercept\textquotesingle{}}\NormalTok{, }
+                            \StringTok{\textquotesingle{}Hba1c\textquotesingle{}}\NormalTok{,}
+                            \StringTok{\textquotesingle{}Diet\_Exercise\textquotesingle{}}\NormalTok{,}
+                            \StringTok{\textquotesingle{}Age\textquotesingle{}}\NormalTok{,}
+                            \StringTok{\textquotesingle{}variable\textquotesingle{}}\NormalTok{)}
+\FunctionTok{apa\_table}\NormalTok{(table1}\SpecialCharTok{$}\NormalTok{table,}
+          \AttributeTok{caption =} \StringTok{"Interaction of HbA1c and Medication on CRP "}\NormalTok{,}
+          \AttributeTok{note =} \FunctionTok{paste}\NormalTok{(}\StringTok{"Model fit: $F$("}\NormalTok{, mod1\_summary}\SpecialCharTok{$}\NormalTok{fstatistic[}\DecValTok{2}\NormalTok{], }\StringTok{", "}\NormalTok{, mod1\_summary}\SpecialCharTok{$}\NormalTok{fstatistic[}\DecValTok{3}\NormalTok{], }\StringTok{") = "}\NormalTok{, }\FunctionTok{round}\NormalTok{(mod1\_summary}\SpecialCharTok{$}\NormalTok{fstatistic[}\DecValTok{1}\NormalTok{], }\DecValTok{2}\NormalTok{), }\StringTok{","}\NormalTok{, }\StringTok{"$p$ "}\NormalTok{, }\FunctionTok{report\_p}\NormalTok{(}\FunctionTok{get\_model\_p}\NormalTok{(mod1\_summary)), }\StringTok{", "}\NormalTok{, }\StringTok{"$R\^{}2$ = "}\NormalTok{, }\FunctionTok{round}\NormalTok{(mod1\_summary}\SpecialCharTok{$}\NormalTok{r.squared, }\DecValTok{2}\NormalTok{), }\AttributeTok{sep =} \StringTok{""}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[tbp]
+
+\begin{center}
+\begin{threeparttable}
+
+\caption{\label{tab:unnamed-chunk-2}Interaction of HbA1c and Medication on CRP }
+
+\begin{tabular}{lllllll}
+\toprule
+Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t$} & \multicolumn{1}{c}{$\mathit{df}$} & \multicolumn{1}{c}{$p$} & \multicolumn{1}{c}{predictor}\\
+\midrule
+Intercept & 1.34 & {}[-0.01, 2.68] & 1.95 & 366 & .053 & Intercept\\
+Hba1c & 0.07 & {}[-0.04, 0.17] & 1.21 & 366 & .228 & Hba1c\\
+Dt exrcse2 & 0.01 & {}[-1.12, 1.14] & 0.02 & 366 & .986 & Diet_Exercise\\
+Age & 0.00 & {}[-0.02, 0.01] & -0.32 & 366 & .746 & Age\\
+Hba1c $\times$ Dt exrcse2 & -0.03 & {}[-0.17, 0.10] & -0.47 & 366 & .636 & variable\\
+\bottomrule
+\addlinespace
+\end{tabular}
+
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} Model fit: $F$(4, 366) = 1.9,$p$ = 0.11, $R^2$ = 0.02}
+\end{tablenotes}
+
+\end{threeparttable}
+\end{center}
+
+\end{table}
+
 \newpage
 
-\begin{verbatim}
-
-===============================================
-                        Dependent variable:    
-                    ---------------------------
-                                crp            
------------------------------------------------
-hba1c                          0.066           
-                              (0.055)          
-                                               
-dt_exrcse2                     0.010           
-                              (0.572)          
-                                               
-age                           -0.002           
-                              (0.007)          
-                                               
-hba1c:dt_exrcse2              -0.033           
-                              (0.069)          
-                                               
-Constant                      1.335*           
-                              (0.686)          
-                                               
------------------------------------------------
-Observations                    371            
-R2                             0.020           
-Adjusted R2                    0.010           
-Residual Std. Error      1.103 (df = 366)      
-F Statistic             1.901 (df = 4; 366)    
-===============================================
-Note:               *p<0.1; **p<0.05; ***p<0.01
-\end{verbatim}
-
-\begin{verbatim}
-## tibble [350 x 10] (S3: tbl_df/tbl/data.frame)
-##  $ sex          : Factor w/ 2 levels "1","2": 1 2 1 2 2 1 1 2 1 2 ...
-##  $ diagnosis    : Factor w/ 1 level "1": 1 1 1 1 1 1 1 1 1 1 ...
-##  $ age          : int [1:350] 67 62 75 87 65 62 60 60 67 57 ...
-##  $ hba1c        : num [1:350] 6.54 6.05 14.22 8.82 9.65 ...
-##  $ crp          : num [1:350] 0.95 3.15 1.29 1.29 1 ...
-##  $ medication   : Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 2 ...
-##  $ dt_exrcse    : Factor w/ 2 levels "1","2": 2 1 2 1 2 2 2 2 1 2 ...
-##  $ med_dt_exrcse: Factor w/ 2 levels "1","2": 2 2 2 2 2 2 2 2 2 1 ...
-##  $ access       : Factor w/ 2 levels "1","2": 2 2 2 2 2 1 1 1 1 2 ...
-##  $ q5027        : int [1:350] NA NA NA NA NA 1 12 12 1 NA ...
-\end{verbatim}
-
-\begin{verbatim}
-## tibble [350 x 6] (S3: tbl_df/tbl/data.frame)
-##  $ diagnosis: Factor w/ 1 level "1": 1 1 1 1 1 1 1 1 1 1 ...
-##  $ age      : int [1:350] 67 62 75 87 65 62 60 60 67 57 ...
-##  $ hba1c    : num [1:350] 6.54 6.05 14.22 8.82 9.65 ...
-##  $ crp      : num [1:350] 0.95 3.15 1.29 1.29 1 ...
-##  $ dt_exrcse: Factor w/ 2 levels "1","2": 2 1 2 1 2 2 2 2 1 2 ...
-##  $ access   : Factor w/ 2 levels "1","2": 2 2 2 2 2 1 1 1 1 2 ...
-\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#RQ2: Does diet and exercise predict inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)}
+\NormalTok{RQ2\_df }\OtherTok{\textless{}{-}}\NormalTok{ data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(dt\_exrcse) }\SpecialCharTok{\&} \SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(hba1c) }\SpecialCharTok{\&} \SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(age), }\SpecialCharTok{!}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(crp)))}
+\NormalTok{reg2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(crp }\SpecialCharTok{\textasciitilde{}}\NormalTok{ hba1c }\SpecialCharTok{*}\NormalTok{ dt\_exrcse }\SpecialCharTok{+}\NormalTok{ age, }\AttributeTok{data =}\NormalTok{ data)}
+\FunctionTok{stargazer}\NormalTok{(reg2, }\AttributeTok{type =} \StringTok{"text"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 ## 
-## Yes  No 
-## 158 192
+## ===============================================
+##                         Dependent variable:    
+##                     ---------------------------
+##                                 crp            
+## -----------------------------------------------
+## hba1c                          0.066           
+##                               (0.055)          
+##                                                
+## dt_exrcse2                     0.010           
+##                               (0.572)          
+##                                                
+## age                           -0.002           
+##                               (0.007)          
+##                                                
+## hba1c:dt_exrcse2              -0.033           
+##                               (0.069)          
+##                                                
+## Constant                      1.335*           
+##                               (0.686)          
+##                                                
+## -----------------------------------------------
+## Observations                    371            
+## R2                             0.020           
+## Adjusted R2                    0.010           
+## Residual Std. Error      1.103 (df = 366)      
+## F Statistic             1.901 (df = 4; 366)    
+## ===============================================
+## Note:               *p<0.1; **p<0.05; ***p<0.01
 \end{verbatim}
 
-\includegraphics{NEW_Final_Groupof5_files/figure-latex/RQ3-brittany-1.pdf}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Could not get the summary table to work! (AS)}
+\NormalTok{reg2\_summary }\OtherTok{\textless{}{-}} \FunctionTok{summary}\NormalTok{(reg2)}
+\NormalTok{table2 }\OtherTok{\textless{}{-}} \FunctionTok{apa\_print}\NormalTok{(reg2)}
+\NormalTok{table2}\SpecialCharTok{$}\NormalTok{table}\SpecialCharTok{$}\NormalTok{predictor }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Intercept\textquotesingle{}}\NormalTok{,}
+                            \StringTok{\textquotesingle{}Hba1c\textquotesingle{}}\NormalTok{,}
+                            \StringTok{\textquotesingle{}dt\_exrcse2\textquotesingle{}}\NormalTok{,}
+                            \StringTok{\textquotesingle{}age\textquotesingle{}}\NormalTok{,}
+                            \StringTok{\textquotesingle{}hba1c:dt\_exrcse2\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \includegraphics{NEW_Final_Groupof5_files/figure-latex/table of crp medication + exercise-1.pdf}
 
