@@ -55,6 +55,7 @@ library(papaja)
 library(janitor)
 library(tidyr)
 library(stargazer)
+library(ggpubr)
 source(file = here("scripts", "report_p.R"))
 ```
 
@@ -62,6 +63,7 @@ source(file = here("scripts", "report_p.R"))
 #code used to create extracted data file - Mexico 
 #Rachel's note: This does not need re-run, as this was Tian joining two Mexico datasets and renaming variables and outputting mexico_raw_dat.csv. We should leave the code here so Joe can see how much initial data cleaning she worked on.
 #great idea #dg
+
 
 mex_survey <- import("Mexico_IND.sav")
 
@@ -80,6 +82,7 @@ write_csv(mexico_raw_dat, file = "mexico_raw_dat.csv")
 
 ```{r data-cleaning-rachel, echo=FALSE}
 #Rachel's code to drop irrelevant variables, filter, and add a medication*dt_exrcse variable.
+dat <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble
 
 data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset
 data <- data %>% 
@@ -108,6 +111,58 @@ data_variables <- data.frame(col1, col2)
 
 ```
 
+```{r}
+data <- data %>% 
+  mutate(diabetes_treat=case_when(
+    medication== 1  ~ "medication",
+    dt_exrcse==1 ~ "dt_excercise",
+    medication == 2  & dt_exrcse == 2 ~ "no_treatment"))
+
+dat <- dat %>% 
+  mutate(diabetes_treat=case_when(
+    medication== 1  ~ "medication",
+    dt_exrcse==1 ~ "dt_excercise",
+    medication == 2  & dt_exrcse == 2 ~ "no_treatment"))
+
+
+#data <- data %>% 
+ # filter(diabetes_treat != "no_treatment" & hba1c < 6.5)
+
+#Ths above code filter isn't filtering the "and" with each line of data but first filtering all of those that don't equal no treatment and then filering out everyone with an hba1c below 6.5...which is not what we want 
+
+#So I made a new variable that we an use to filter:
+data <- data %>% 
+  mutate(treatment_info = if_else(diabetes_treat == "no_treatment" & hba1c < 6.5, "unknown_treat", "known_treat"))
+
+#This graph is to check that the correct data points were coded for and can be filtered out. It looks good. 
+data %>% 
+  ggplot(aes(hba1c, crp)) + geom_point(aes(color = treatment_info))
+
+
+data <- data %>% 
+  filter(treatment_info == "known_treat")
+
+
+table(data$treatment_info)  #check to be sure that the filter worked. It looks good
+
+```
+
+
+```{r}
+#this is a check to see that the code above worked. It did! (which we know because the dark green - no treatment category is removed from the plot below 6.5 but remain above 6.5)
+#AND it is super interesting to see what is left behind! only 3 data points in this group of people with healthy blood sugar levels were doing diet and exercise. 
+
+
+plot.a <- data %>% 
+filter(crp <5, age > 50) %>% 
+ ggplot(aes(hba1c, crp)) + geom_point(aes(color = diabetes_treat), size = 3) + scale_color_brewer(palette = 15) + theme_dark()
+
+plot.a + font("xlab", size = 34) + font("ylab", size = 34)+ font("xy.text", size = 25, color = "black", face = "bold")
+
+#?geom_abline
+```
+
+
 ```{r pivot-group_by, echo=FALSE}
 #Code to fulfill all of Joe's requirements.
 
@@ -128,25 +183,43 @@ groups_med_dt_exrcse <- data %>%
 #RQ1: Does taking medication lower inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
 
 RQ1_df <- data %>% 
-  filter(!is.na(medication & !is.na(hba1c) & !is.na(age) & is.na(crp))
+  filter(!is.na(medication & !is.na(hba1c) & !is.na(age) & is.na(crp)))
 
 mreg1 <- lm(crp~age + medication, data = RQ1_df)
 summary(mreg1) #No significant findings. Oh well!
 
 #mreg1_plot <- ggplot(RQ1_df, aes(medication, hba1c, age)) + geom_point() + stat_smooth(method = "lm", formula = mreg1, geom = "smooth") #This plot looks terrible right now, so I will see if we need to come back to it later.
-
+table(data$medication) #this a quick way to see the n in both categories
 ```
 
 ```{r}
 RQ1_df %>% 
-  ggplot(aes(hba1c, crp)) + 
+  ggplot(aes(age, crp)) + 
   geom_point(aes(color = medication), alpha = 0.5) + 
-  geom_smooth(aes(color = medication), method = "lm") + 
-  scale_color_brewer(palette = 7) + 
+  geom_smooth(aes(color = medication), method = "lm", se = FALSE) + 
+  scale_color_brewer(palette = 11) + 
   theme_dark() + 
   labs( title = "The Relationship Between Blood Sugar and Inflammation by Medication", 
         caption =  "SAGE data from Mexico", 
-        x = "Blood Sugar (HbA1c)", 
+        x = "Age", 
+        y = "Inflammation (CRP)")
+
+```
+
+```{r}
+
+#This visualization is the one that alerted me to the fact that my original attempt at filtering had removed all data above 6.5. We do not need to show this graph. 
+dat %>% 
+  filter(diabetes_treat != "no_treatment" & hba1c < 6.5) %>% 
+  filter(medication != 0) %>% 
+ggplot(aes(hba1c, crp)) + 
+  geom_point(aes(color = diabetes_treat), alpha = 0.5) + 
+  geom_smooth(aes(color = medication), method = "lm", se = FALSE) + 
+  scale_color_brewer(palette = 11) + 
+  theme_dark() + 
+  labs( title = "The Relationship Between Blood Sugar and Inflammation by Medication", 
+        caption =  "SAGE data from Mexico", 
+        x = "Age", 
         y = "Inflammation (CRP)")
 ```
 
@@ -183,6 +256,8 @@ table2$table$predictor <- c('Intercept',
                             'age',
                             'hba1c:dt_exrcse2')
 
+summary(reg2)
+table(data$dt_exrcse) #this a quick way to see the n in both categories
 ```
 
 
