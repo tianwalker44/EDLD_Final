@@ -63,6 +63,8 @@ source(file = here("scripts", "report_p.R"))
 #Rachel's note: This does not need re-run, as this was Tian joining two Mexico datasets and renaming variables and outputting mexico_raw_dat.csv. We should leave the code here so Joe can see how much initial data cleaning she worked on.
 #great idea #dg
 
+# I was very confused and spent a lot of time on this code chunk just because I couldn't find the two data sets as in lines 68 & 70, and Rstudio would not run. To make your Rmd understandable for reviewer, would you consider leaving some notes, such as "Our data sets cannot be pubslished because of xyz, yet we still included this code chunk to show our work. As you review, please start at line..."
+
 mex_survey <- import("Mexico_IND.sav")
 
 mex_bio <- import("MexicoLabData.csv")
@@ -129,15 +131,18 @@ groups_med_dt_exrcse <- data %>%
 
 RQ1_df <- data %>% 
   filter(!is.na(medication) | !is.na(hba1c) | !is.na(age) | !is.na(crp))
+#Your code is absolutely good here, I personally like to use drop_na because I find the syntax more intuitive.
 
 mreg1 <- lm(crp~hba1c * medication + age, data = RQ1_df)
 summary(mreg1) #No significant findings. Oh well!
 
-#mreg1_plot <- ggplot(RQ1_df, aes(medication, hba1c, age)) + geom_point() + stat_smooth(method = "lm", formula = mreg1, geom = "smooth") #This plot looks terrible right now, so I will see if we need to come back to it later.
+#This is more of a comment on methods than on your code, but you might want to explain why you use hba1c*medication as your IV to answer your research question. I think the use of hba1c * medication actually answer a different research question - "Does taking medication lower the impact of blood sugar level on inflamation?" - because it really is about the interaction between medication and blood sugar level (not just medication itself as your RQ1 suggests). Also, from my limited understanding in quantitative methods, if you do use hba1c*medication, would you have to code the medication variable as 0 & 1, or 1 & 2 is ok?
 
 RQ1_df <- data %>%
   filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age), !(is.na(crp)))
 mod1 <- lm(crp~hba1c*dt_exrcse + age, data = RQ1_df)
+
+#Thanks for showing me how to do a regression.
 
 
 ```
@@ -176,6 +181,8 @@ apa_table(table1$table,
 RQ2_df <- data %>%
   filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age), !(is.na(crp)))
 reg2 <- lm(crp ~ hba1c * dt_exrcse + age, data = data)
+#Same comment about the use of hba1c*dt_exrcse
+
 stargazer(reg2, type = "text")
 
 #Could not get the summary table to work! (AS)
@@ -195,6 +202,8 @@ table2$table$predictor <- c('Intercept',
 #RQ3: For those with vs. without access to medical care, what is the effect of diet and exercise on inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
 
 # data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset #From Rachel: I'm hashtagging this out, because if you re-import the dataset here, it loses all the cleaning from earlier. 
+# You might want to assign a different object name here to keep both data sets.
+
 RQ3df <- data %>% 
   filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age), !(is.na(crp)), !is.na(access)) #From Rachel: There were inconsistencies from the cleaning to here about the variable being called care vs. access. I switched them all to access, here and in the code below.
 str(RQ3df)  
@@ -203,8 +212,8 @@ str(RQ3df)
 RQ3df$access <- factor(RQ3df$access,
                       levels = c(1,2), labels = c("Yes","No")) 
 
-RQ3df$crp <- factor(RQ3df$crp, 
-                    levels = c(0:3 & 3.1:6.5), labels = c("Low", "High"))#need help getting this to work
+#RQ3df$crp <- factor(RQ3df$crp, 
+#                    levels = c(0:3 & 3.1:6.5), labels = c("Low", "High"))#need help getting this to work
 
 table(RQ3df$access)
 table(RQ3df$crp)
