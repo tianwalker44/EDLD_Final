@@ -33,46 +33,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -156,9 +116,9 @@
 
 % Create new environments so endfloat can handle them
 % \newenvironment{ltable}
-%   {\begin{landscape}\centering\begin{threeparttable}}
-%   {\end{threeparttable}\end{landscape}}
-\newenvironment{lltable}{\begin{landscape}\centering\begin{ThreePartTable}}{\end{ThreePartTable}\end{landscape}}
+%   {\begin{landscape}\begin{center}\begin{threeparttable}}
+%   {\end{threeparttable}\end{center}\end{landscape}}
+\newenvironment{lltable}{\begin{landscape}\begin{center}\begin{ThreePartTable}}{\end{ThreePartTable}\end{center}\end{landscape}}
 
 % Enables adjusting longtable caption width to table width
 % Solution found at http://golatex.de/longtable-mit-caption-so-breit-wie-die-tabelle-t15767.html
@@ -171,20 +131,6 @@
 % \setlength{\parindent}{0.5in}
 % \setlength{\parskip}{0pt plus 0pt minus 0pt}
 
-% Overwrite redefinition of paragraph and subparagraph by the default LaTeX template
-% See https://github.com/crsh/papaja/issues/292
-\makeatletter
-\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
-  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
-  {-1em}%
-  {\normalfont\normalsize\bfseries\itshape\typesectitle}}
-
-\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{1em}%
-  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
-  {-\z@\relax}%
-  {\normalfont\normalsize\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
-\makeatother
-
 % \usepackage{etoolbox}
 \makeatletter
 \patchcmd{\HyOrg@maketitle}
@@ -196,15 +142,7 @@
   {\section*{\protect\normalfont{\@title}}}
   {}{\typeout{Failed to patch title.}}
 \makeatother
-
-\usepackage{xpatch}
-\makeatletter
-\xapptocmd\appendix
-  {\xapptocmd\section
-    {\addcontentsline{toc}{section}{\appendixname\ifoneappendix\else~\theappendix\fi\\: #1}}
-    {}{\InnerPatchFailed}%
-  }
-{}{\PatchFailed}
+\shorttitle{Inflammation, access to care and Diabetes in Mexico.}
 \keywords{Diabetes, access to care, inflammation, health, Mexico, China\newline\indent Word count: X (this cannot easily be done automatically, we can also just leave it out)}
 \usepackage{csquotes}
 \usepackage[titles]{tocloft}
@@ -227,25 +165,23 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
-  pdftitle={Relations between Inflammation, access to care and Diabetes in two repesentative populations of China and Mexico.},
+  pdftitle={Relations between Inflammation, access to care and Diabetes in a repesentative population of Mexico.},
   pdfauthor={Dominik Grätz1, Rachel Miller-Moudgil1, Amber Somarriba1, Brittany Spinner1, \& Tian Walker1},
   pdflang={en-EN},
   pdfkeywords={Diabetes, access to care, inflammation, health, Mexico, China},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
-\title{Relations between Inflammation, access to care and Diabetes in two repesentative populations of China and Mexico.}
+\title{Relations between Inflammation, access to care and Diabetes in a repesentative population of Mexico.}
 \author{Dominik Grätz\textsuperscript{1}, Rachel Miller-Moudgil\textsuperscript{1}, Amber Somarriba\textsuperscript{1}, Brittany Spinner\textsuperscript{1}, \& Tian Walker\textsuperscript{1}}
 \date{}
 
-
-\shorttitle{Inflammation, access to care and Diabetes in China and Mexico.}
 
 \authornote{List of group members ordered by alphabet.}
 
 \affiliation{\vspace{0.5cm}\textsuperscript{1} University of Oregon}
 
-\abstract{%
+\abstract{
 \emph{Background.} Background goes here. \emph{Methods.} Methods go here. \emph{Results.} Results here. \emph{Conclusions.} Conclusions here.
 }
 
@@ -254,70 +190,74 @@
 \begin{document}
 \maketitle
 
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = crp ~ hba1c * medication + age, data = RQ1_df)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -1.5545 -0.7586 -0.3563  0.5011  3.5249 
-## 
-## Coefficients:
-##                    Estimate Std. Error t value Pr(>|t|)  
-## (Intercept)        1.170340   0.621564   1.883   0.0605 .
-## hba1c              0.069964   0.039064   1.791   0.0741 .
-## medication2        0.859571   0.655572   1.311   0.1906  
-## age               -0.002503   0.007024  -0.356   0.7218  
-## hba1c:medication2 -0.090588   0.079689  -1.137   0.2564  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 1.107 on 366 degrees of freedom
-##   (3 observations deleted due to missingness)
-## Multiple R-squared:  0.01194,    Adjusted R-squared:  0.001137 
-## F-statistic: 1.105 on 4 and 366 DF,  p-value: 0.3538
-\end{verbatim}
+\hypertarget{procedures-and-sample}{%
+\subsection{Procedures and Sample}\label{procedures-and-sample}}
 
-\includegraphics{NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-1-1.pdf}
+\hypertarget{variables}{%
+\section{Variables}\label{variables}}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{mod1\_summary}\OtherTok{\textless{}{-}} \FunctionTok{summary}\NormalTok{(mod1)}
-\NormalTok{table1 }\OtherTok{\textless{}{-}} \FunctionTok{apa\_print}\NormalTok{(mod1)}
-\NormalTok{table1}\SpecialCharTok{$}\NormalTok{table}\SpecialCharTok{$}\NormalTok{predictor }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Intercept\textquotesingle{}}\NormalTok{, }
-                            \StringTok{\textquotesingle{}Hba1c\textquotesingle{}}\NormalTok{,}
-                            \StringTok{\textquotesingle{}Diet\_Exercise\textquotesingle{}}\NormalTok{,}
-                            \StringTok{\textquotesingle{}Age\textquotesingle{}}\NormalTok{,}
-                            \StringTok{\textquotesingle{}variable\textquotesingle{}}\NormalTok{)}
-\FunctionTok{apa\_table}\NormalTok{(table1}\SpecialCharTok{$}\NormalTok{table,}
-          \AttributeTok{caption =} \StringTok{"Interaction of HbA1c and Medication on CRP "}\NormalTok{,}
-          \AttributeTok{note =} \FunctionTok{paste}\NormalTok{(}\StringTok{"Model fit: $F$("}\NormalTok{, mod1\_summary}\SpecialCharTok{$}\NormalTok{fstatistic[}\DecValTok{2}\NormalTok{], }\StringTok{", "}\NormalTok{, mod1\_summary}\SpecialCharTok{$}\NormalTok{fstatistic[}\DecValTok{3}\NormalTok{], }\StringTok{") = "}\NormalTok{, }\FunctionTok{round}\NormalTok{(mod1\_summary}\SpecialCharTok{$}\NormalTok{fstatistic[}\DecValTok{1}\NormalTok{], }\DecValTok{2}\NormalTok{), }\StringTok{","}\NormalTok{, }\StringTok{"$p$ "}\NormalTok{, }\FunctionTok{report\_p}\NormalTok{(}\FunctionTok{get\_model\_p}\NormalTok{(mod1\_summary)), }\StringTok{", "}\NormalTok{, }\StringTok{"$R\^{}2$ = "}\NormalTok{, }\FunctionTok{round}\NormalTok{(mod1\_summary}\SpecialCharTok{$}\NormalTok{r.squared, }\DecValTok{2}\NormalTok{), }\AttributeTok{sep =} \StringTok{""}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
+The original WHO dataset contains more than 1,600 variables, not all of which are relevant to our research questions. Therefore, we have limited our analysis to 10 variables, listed below in Table 1. In our analysis, we exclude participants who reported that they already have a formal diabetes diagnosis from a doctor, since we are interested in HBA1C values for people who do not have a diabetes diagnosis. We also exclude participants age 50 or older, since this group typically has high HbA1c levels regardless of the presence of diabetes, as well as participants with CRP levels above 5, since because such values indicate infection which would confound our analysis.
+
+\begin{figure}
+\centering
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/data-cleaning-tian2-1.pdf}
+\caption{\label{fig:data-cleaning-tian2}Figure \ref{fig:data-cleaning-tian2} caption goes here.}
+\end{figure}
+
+
+
+Here I point the reader to figure \ref{fig:data-cleaning-tian2}.
+
+\begin{figure}
+\centering
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/fig1-1.pdf}
+\caption{\label{fig:fig1}This is the caption of figure \ref{fig:fig1}.}
+\end{figure}
+
+
+
+Here, I want to point the reader to Figure \ref{fig:fig1}.
+
+\begin{figure}
+\centering
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/fig2-1.pdf}
+\caption{\label{fig:fig2}This is the caption of figure 2.}
+\end{figure}
+
+
+
+Here, I want to point the reader to Figure \ref{fig:fig2}.
+
+\begin{figure}
+\centering
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/fig3-1.pdf}
+\caption{\label{fig:fig3}This is the caption of figure \ref{fig:fig3}.}
+\end{figure}
+
+
+
+Here, I want to point the reader to Figure \ref{fig:fig3}.
 
 \begin{table}[tbp]
 
 \begin{center}
 \begin{threeparttable}
 
-\caption{\label{tab:unnamed-chunk-2}Interaction of HbA1c and Medication on CRP }
+\caption{\label{tab:unnamed-chunk-1}Effect of Medication on CRP, controlling for Age. }
 
-\begin{tabular}{lllllll}
+\begin{tabular}{lllll}
 \toprule
-Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t$} & \multicolumn{1}{c}{$\mathit{df}$} & \multicolumn{1}{c}{$p$} & \multicolumn{1}{c}{predictor}\\
+predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t(354)$} & \multicolumn{1}{c}{$p$}\\
 \midrule
-Intercept & 1.34 & {}[-0.01, 2.68] & 1.95 & 366 & .053 & Intercept\\
-Hba1c & 0.07 & {}[-0.04, 0.17] & 1.21 & 366 & .228 & Hba1c\\
-Dt exrcse2 & 0.01 & {}[-1.12, 1.14] & 0.02 & 366 & .986 & Diet_Exercise\\
-Age & 0.00 & {}[-0.02, 0.01] & -0.32 & 366 & .746 & Age\\
-Hba1c $\times$ Dt exrcse2 & -0.03 & {}[-0.17, 0.10] & -0.47 & 366 & .636 & variable\\
+Intercept & 2.00 & $[1.06$, $2.94]$ & 4.18 & < .001\\
+Age & -0.01 & $[-0.02$, $0.01]$ & -0.91 & .362\\
+Medication & 0.20 & $[-0.17$, $0.56]$ & 1.07 & .284\\
 \bottomrule
 \addlinespace
 \end{tabular}
 
 \begin{tablenotes}[para]
-\normalsize{\textit{Note.} Model fit: $F$(4, 366) = 1.9,$p$ = 0.11, $R^2$ = 0.02}
+\normalsize{\textit{Note.} Model fit: $F$(2, 354) = 1.06, $p$ = 0.35, $R^2$ = 0.01.}
 \end{tablenotes}
 
 \end{threeparttable}
@@ -325,70 +265,52 @@ Hba1c $\times$ Dt exrcse2 & -0.03 & {}[-0.17, 0.10] & -0.47 & 366 & .636 & varia
 
 \end{table}
 
+Demo of inline code usage. We found that this regression model using 357 participants was not significant \(F\)(2, 354) = 1.06, \(p\) = 0.35 with \(R^2\) = 0.01. The beta estimate for age was \(\beta_{age}\) = -0.01 (\(SE\) = 0.01, \(p\) = 0.36), and for use of medication \(\beta_{medication}\) = 0.20 (\(SE\) = 0.18, \(p\) = 0.28).
+
 \newpage
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#RQ2: Does diet and exercise predict inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)}
-\NormalTok{RQ2\_df }\OtherTok{\textless{}{-}}\NormalTok{ data }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(dt\_exrcse) }\SpecialCharTok{\&} \SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(hba1c) }\SpecialCharTok{\&} \SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(age), }\SpecialCharTok{!}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(crp)))}
-\NormalTok{reg2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(crp }\SpecialCharTok{\textasciitilde{}}\NormalTok{ hba1c }\SpecialCharTok{*}\NormalTok{ dt\_exrcse }\SpecialCharTok{+}\NormalTok{ age, }\AttributeTok{data =}\NormalTok{ data)}
-\FunctionTok{stargazer}\NormalTok{(reg2, }\AttributeTok{type =} \StringTok{"text"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{table}[tbp]
 
-\begin{verbatim}
-## 
-## ===============================================
-##                         Dependent variable:    
-##                     ---------------------------
-##                                 crp            
-## -----------------------------------------------
-## hba1c                          0.066           
-##                               (0.055)          
-##                                                
-## dt_exrcse2                     0.010           
-##                               (0.572)          
-##                                                
-## age                           -0.002           
-##                               (0.007)          
-##                                                
-## hba1c:dt_exrcse2              -0.033           
-##                               (0.069)          
-##                                                
-## Constant                      1.335*           
-##                               (0.686)          
-##                                                
-## -----------------------------------------------
-## Observations                    371            
-## R2                             0.020           
-## Adjusted R2                    0.010           
-## Residual Std. Error      1.103 (df = 366)      
-## F Statistic             1.901 (df = 4; 366)    
-## ===============================================
-## Note:               *p<0.1; **p<0.05; ***p<0.01
-\end{verbatim}
+\begin{center}
+\begin{threeparttable}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#Could not get the summary table to work! (AS)}
-\NormalTok{reg2\_summary }\OtherTok{\textless{}{-}} \FunctionTok{summary}\NormalTok{(reg2)}
-\NormalTok{table2 }\OtherTok{\textless{}{-}} \FunctionTok{apa\_print}\NormalTok{(reg2)}
-\NormalTok{table2}\SpecialCharTok{$}\NormalTok{table}\SpecialCharTok{$}\NormalTok{predictor }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Intercept\textquotesingle{}}\NormalTok{,}
-                            \StringTok{\textquotesingle{}Hba1c\textquotesingle{}}\NormalTok{,}
-                            \StringTok{\textquotesingle{}dt\_exrcse2\textquotesingle{}}\NormalTok{,}
-                            \StringTok{\textquotesingle{}age\textquotesingle{}}\NormalTok{,}
-                            \StringTok{\textquotesingle{}hba1c:dt\_exrcse2\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\caption{\label{tab:RQ2}Effect of Diet and Exercise on CRP, controlling for Age.}
 
-\includegraphics{NEW_Final_Groupof5_files/figure-latex/table of crp medication + exercise-1.pdf}
+\begin{tabular}{lllll}
+\toprule
+predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t(354)$} & \multicolumn{1}{c}{$p$}\\
+\midrule
+Intercept & 2.10 & $[1.17$, $3.04]$ & 4.43 & < .001\\
+Age & -0.01 & $[-0.02$, $0.01]$ & -0.83 & .408\\
+Diet and Exercise & -0.25 & $[-0.47$, $-0.02]$ & -2.11 & .036\\
+\bottomrule
+\addlinespace
+\end{tabular}
 
-```
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} Model fit: $F$(2, 354) = 2.71, $p$ = 0.07, $R^2$ = 0.02.}
+\end{tablenotes}
+
+\end{threeparttable}
+\end{center}
+
+\end{table}
+
+Demo of inline code usage. We found that this regression model using 354 participants was not significant \(F\)(2, 354) = 2.70, \(p\) = 0.07 with \(R^2\) = 0.01. The beta estimate for age was \(\beta_{age}\) = -0.01 (\(SE\) = 0.01, \(p\) = 0.41), and for diet and exercise \(\beta_{Diet}\) = -0.24 (\(SE\) = 0.12, \(p\) \textless{} 0.05).
+
+\begin{figure}
+\centering
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/tableofcrpmedicationandexercise-1.pdf}
+\caption{\label{fig:tableofcrpmedicationandexercise}Caption for Figure \ref{fig:tableofcrpmedicationandexercise} goes here.}
+\end{figure}
+
+
+
+Here I reference figure \ref{fig:tableofcrpmedicationandexercise}.
+
+\newpage
 
 The descriptive statistics for our sample look as follows:
-
-\newpage
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.0541}}
@@ -411,14 +333,14 @@ Mexico
 \end{minipage} \\
 \midrule()
 \endhead
-\(N_{total}\) & & 374 \\
+\(N_{total}\) & & 357 \\
 Sex & & \\
-& male & 119 (31.80 \%) \\
-& female & 254 (67.90 \%) \\
+& male & 115 (32.20 \%) \\
+& female & 241 (67.50 \%) \\
 & unknown & 1 (0.30 \%) \\
 Age & & 68 (\(SD\) = 8.40) \\
 Diabetes & & \\
-& diagnosed & 374 (100 \%) \\
+& diagnosed & 357 (100 \%) \\
 & undiagnosed & 0 (0 \%) \\
 \bottomrule()
 \end{longtable}
@@ -456,8 +378,10 @@ Cite R packages here
 We were not able to look at pills and insulin separately and some their effects have the potential to cancel each other out. The sex variable was established through interviewer discernment.
 
 \hypertarget{references}{%
-\section*{References}\label{references}}
-\addcontentsline{toc}{section}{References}
+\section{References}\label{references}}
+
+
+
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}
@@ -490,9 +414,9 @@ Yang, J., Zheng, Y., Gou, X., Pu, K., Chen, Z., Guo, Q., \ldots{} Zhou, Y. (2020
 
 \clearpage
 \renewcommand{\listfigurename}{Figure captions}
-
+\listoffigures
 \clearpage
 \renewcommand{\listtablename}{Table captions}
-
+\listoftables
 
 \end{document}

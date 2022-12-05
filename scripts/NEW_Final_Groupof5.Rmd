@@ -1,6 +1,6 @@
 ---
-title             : "Relations between Inflammation, access to care and Diabetes in two repesentative populations of China and Mexico."
-shorttitle        : "Inflammation, access to care and Diabetes in China and Mexico."
+title             : "Relations between Inflammation, access to care and Diabetes in a repesentative population of Mexico."
+shorttitle        : "Inflammation, access to care and Diabetes in Mexico."
 
 author: 
   - name          : "Dominik Grätz"
@@ -147,11 +147,11 @@ The original WHO dataset contains more than 1,600 variables, not all of which ar
 
 ```{r variables-table}
 
-data_variables
+#data_variables
 
 ```
 
-```{r data-cleaning-tian2}
+```{r data-cleaning-tian2, fig.cap = "(ref:fig0)"}
 data <- data %>% 
   mutate(diabetes_treat=case_when(
     medication== 1  ~ "medication",
@@ -183,12 +183,16 @@ data <- data %>%
   filter(treatment_info == "known_treat")
 
 
-table(data$treatment_info)  #check to be sure that the filter worked. It looks good
+#table(data$treatment_info)  #check to be sure that the filter worked. It looks good
 
 ```
 
+(ref:fig0) Figure \@ref(fig:data-cleaning-tian2) caption goes here.
 
-```{r}
+Here I point the reader to figure \@ref(fig:data-cleaning-tian2).
+
+
+```{r fig1, fig.cap = "(ref:fig1)"}
 #this is a check to see that the code above worked. It did! (which we know because the dark green - no treatment category is removed from the plot below 6.5 but remain above 6.5)
 #AND it is super interesting to see what is left behind! only 3 data points in this group of people with healthy blood sugar levels were doing diet and exercise. 
 
@@ -202,8 +206,12 @@ plot.a + font("xlab", size = 34) + font("ylab", size = 34)+ font("xy.text", size
 #?geom_abline
 ```
 
+(ref:fig1) This is the caption of figure \@ref(fig:fig1).
 
-```{r pivot-group_by, echo=FALSE}
+Here, I want to point the reader to Figure \@ref(fig:fig1).
+
+
+```{r pivot-group_by}
 #Code to fulfill all of Joe's requirements.
 
 #pivot_wider, to investigate crp levels by sex
@@ -219,20 +227,20 @@ groups_med_dt_exrcse <- data %>%
   as_tibble()
 ```
 
-```{r RQ1, echo=FALSE, render = 'normal print'}
+```{r RQ1, render = 'normal print'}
 #RQ1: Does taking medication lower inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
 
 RQ1_df <- data %>% 
   filter(!is.na(medication & !is.na(hba1c) & !is.na(age) & is.na(crp)))
 
 mreg1 <- lm(crp~age + medication, data = RQ1_df)
-summary(mreg1) #No significant findings. Oh well!
+#summary(mreg1) #No significant findings. Oh well!
 
 #mreg1_plot <- ggplot(RQ1_df, aes(medication, hba1c, age)) + geom_point() + stat_smooth(method = "lm", formula = mreg1, geom = "smooth") #This plot looks terrible right now, so I will see if we need to come back to it later.
-table(data$medication) #this a quick way to see the n in both categories
+#table(data$medication) #this a quick way to see the n in both categories
 ```
 
-```{r}
+```{r, fig2, fig.cap = "(ref:fig2)"}
 RQ1_df %>% 
   ggplot(aes(age, crp)) + 
   geom_point(aes(color = medication), alpha = 0.5) + 
@@ -246,7 +254,11 @@ RQ1_df %>%
 
 ```
 
-```{r}
+(ref:fig2) This is the caption of figure 2.
+
+Here, I want to point the reader to Figure \@ref(fig:fig2).
+
+```{r, fig3, fig.cap = "(ref:fig3)"}
 
 #This visualization is the one that alerted me to the fact that my original attempt at filtering had removed all data above 6.5. We do not need to show this graph. 
 dat %>% 
@@ -263,43 +275,102 @@ ggplot(aes(hba1c, crp)) +
         y = "Inflammation (CRP)")
 ```
 
+(ref:fig3) This is the caption of figure \@ref(fig:fig3).
 
-```{r echo=TRUE}
-mod1_summary<- summary(mod1)
-table1 <- apa_print(mod1)
+Here, I want to point the reader to Figure \@ref(fig:fig3).
+
+```{r}
+mreg1_summary<- summary(mreg1)
+table1 <- apa_print(mreg1)
 table1$table$predictor <- c('Intercept', 
-                            'Hba1c',
-                            'Diet_Exercise',
                             'Age',
-                            'variable')
+                            'Medication')
 apa_table(table1$table,
-          caption = "Interaction of HbA1c and Medication on CRP ",
-          note = paste("Model fit: $F$(", mod1_summary$fstatistic[2], ", ", mod1_summary$fstatistic[3], ") = ", round(mod1_summary$fstatistic[1], 2), ",", "$p$ ", report_p(get_model_p(mod1_summary)), ", ", "$R^2$ = ", round(mod1_summary$r.squared, 2), sep = ""))
+          caption = "Effect of Medication on CRP, controlling for Age. ",
+          note = paste0("Model fit: $F$(", mreg1_summary$fstatistic[2], ", ", mreg1_summary$fstatistic[3], ") = ", round(mreg1_summary$fstatistic[1], 2), ", $p$ ", report_p(get_model_p(mreg1_summary)), ", $R^2$ = ", round(mreg1_summary$r.squared, 2), "."))
+
+mreg1_N <- nrow(RQ1_df)
+
+#gets us the betas
+mreg1_inter <- mreg1_summary$coefficients[1, 1] %>% round(3)
+mreg1_age <- mreg1_summary$coefficients[2, 1] %>% round(3)
+mreg1_med <- mreg1_summary$coefficients[3, 1] %>% round(3)
+
+#gets us the standard errors
+mreg1_inter_se <- mreg1_summary$coefficients[1, 2] %>% round(3)
+mreg1_age_se <- mreg1_summary$coefficients[2, 2] %>% round(3)
+mreg1_med_se <- mreg1_summary$coefficients[3, 2] %>% round(3)
+
+#gets us the p values (the output is a string that uses conventions in reporting p values)
+mreg1_inter_p <- mreg1_summary$coefficients[1, 4] %>% report_p()
+mreg1_age_p <- mreg1_summary$coefficients[2, 4] %>% report_p()
+mreg1_med_p <- mreg1_summary$coefficients[3, 4] %>% report_p()
+
+#F test of the entire model
+mreg1_f <- mreg1_summary$fstatistic[1] %>% round(3)
+mreg1_f_df1 <- mreg1_summary$fstatistic[2] %>% round(3)
+mreg1_f_df2 <- mreg1_summary$fstatistic[3] %>% round(3)
+mreg1_f_p <- report_p(get_model_p(mreg1_summary))
+mreg1_r2 <- mreg1_summary$r.squared %>% round(3)
+
 ```
+
+
+Demo of inline code usage. We found that this regression model using `r mreg1_N` participants was not significant $F$(`r mreg1_f_df1`, `r mreg1_f_df2`) = `r mreg1_f`, $p$ `r mreg1_f_p` with $R^2$ = `r mreg1_r2`. The beta estimate for age was $\beta_{age}$ = `r mreg1_age` ($SE$ = `r mreg1_age_se`, $p$ `r mreg1_age_p`), and for use of medication $\beta_{medication}$ = `r mreg1_med` ($SE$ =  `r mreg1_med_se`, $p$ `r mreg1_med_p`).
+
 
 \newpage 
 
-```{r RQ2, echo=TRUE}
+```{r RQ2}
 #RQ2: Does diet and exercise predict inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
 RQ2_df <- data %>%
   filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age), !(is.na(crp)))
 
 reg2 <- lm(crp ~ age + dt_exrcse, data = data)
-stargazer(reg2, type = "text")
+#summary(reg2)
+#stargazer(reg2, type = "text")
 
 #Could not get the summary table to work! (AS)
 reg2_summary <- summary(reg2)
 table2 <- apa_print(reg2)
 table2$table$predictor <- c('Intercept',
-                            'Hba1c',
-                            'dt_exrcse2',
-                            'age',
-                            'hba1c:dt_exrcse2')
+                            'Age',
+                            'Diet and Exercise')
 
-summary(reg2)
-table(data$dt_exrcse) #this a quick way to see the n in both categories
+
+apa_table(table2$table,
+          caption = "Effect of Diet and Exercise on CRP, controlling for Age.",
+          note = paste0("Model fit: $F$(", reg2_summary$fstatistic[2], ", ", reg2_summary$fstatistic[3], ") = ", round(reg2_summary$fstatistic[1], 2), ", $p$ ", report_p(get_model_p(reg2_summary)), ", $R^2$ = ", round(reg2_summary$r.squared, 2), "."))
+
+#table(data$dt_exrcse) #this a quick way to see the n in both categories
+
+reg2_N <- nrow(RQ2_df)
+
+#gets us the betas
+reg2_inter <- reg2_summary$coefficients[1, 1] %>% round(3)
+reg2_age <- reg2_summary$coefficients[2, 1] %>% round(3)
+reg2_de <- reg2_summary$coefficients[3, 1] %>% round(3)
+
+#gets us the standard errors
+reg2_inter_se <- reg2_summary$coefficients[1, 2] %>% round(3)
+reg2_age_se <- reg2_summary$coefficients[2, 2] %>% round(3)
+reg2_de_se <- reg2_summary$coefficients[3, 2] %>% round(3)
+
+#gets us the p values (the output is a string that uses conventions in reporting p values)
+reg2_inter_p <- reg2_summary$coefficients[1, 4] %>% report_p()
+reg2_age_p <- reg2_summary$coefficients[2, 4] %>% report_p()
+reg2_de_p <- reg2_summary$coefficients[3, 4] %>% report_p()
+
+#F test of the entire model
+reg2_f <- reg2_summary$fstatistic[1] %>% round(3)
+reg2_f_df1 <- reg2_summary$fstatistic[2] %>% round(3)
+reg2_f_df2 <- reg2_summary$fstatistic[3] %>% round(3)
+reg2_f_p <- report_p(get_model_p(reg2_summary))
+reg2_r2 <- reg2_summary$r.squared %>% round(3)
+
 ```
 
+Demo of inline code usage. We found that this regression model using `r reg2_N` participants was not significant $F$(`r reg2_f_df1`, `r reg2_f_df2`) = `r reg2_f`, $p$ `r reg2_f_p` with $R^2$ = `r reg2_r2`. The beta estimate for age was $\beta_{age}$ = `r reg2_age` ($SE$ = `r reg2_age_se`, $p$ `r reg2_age_p`), and for diet and exercise $\beta_{Diet}$ = `r reg2_de` ($SE$ =  `r reg2_de_se`, $p$ `r reg2_de_p`).
 
 
 ```{r RQ3-brittany, eval=FALSE, include=FALSE}
@@ -374,10 +445,10 @@ summary <- data %>%
             diabetes_undiag_pct = round((diabetes_undiag/N)*100, 1),
             age_M = round(mean(age), 1),
             age_SD = round(sd(age), 1))
-summary
+
 ```
 
-```{r table of crp medication + exercise}
+```{r tableofcrpmedicationandexercise, fig.cap = "(ref:fig4)"}
 ggplot(groups_med_dt_exrcse, aes(medication, mean))+
   geom_col(aes(fill = dt_exrcse),
            position = "dodge")+
@@ -389,12 +460,15 @@ ggplot(groups_med_dt_exrcse, aes(medication, mean))+
 
 ```
 
+(ref:fig4) Caption for Figure \@ref(fig:tableofcrpmedicationandexercise) goes here.
 
-```
+Here I reference figure \@ref(fig:tableofcrpmedicationandexercise).
+
+
+\newpage
 
 The descriptive statistics for our sample look as follows:
 
-\newpage
 
 |  |            |`r summary$country[1]` |
 |:-|:-----------|:----------------------|
@@ -434,10 +508,14 @@ Cite R packages here
 
 # Discussion 
 
-
-
 ## Limitations
 
 We were not able to look at pills and insulin separately and some their effects have the potential to cancel each other out. The sex variable was established through interviewer discernment. 
 
 # References
+
+\listoffigures
+\listoftables
+
+
+
