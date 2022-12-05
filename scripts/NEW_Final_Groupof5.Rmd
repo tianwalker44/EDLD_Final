@@ -64,7 +64,6 @@ source(file = here("scripts", "report_p.R"))
 #Rachel's note: This does not need re-run, as this was Tian joining two Mexico datasets and renaming variables and outputting mexico_raw_dat.csv. We should leave the code here so Joe can see how much initial data cleaning she worked on.
 #great idea #dg
 
-
 mex_survey <- import("Mexico_IND.sav")
 
 mex_bio <- import("MexicoLabData.csv")
@@ -104,14 +103,55 @@ data <- data %>%
          med_dt_exrcse = as.factor(med_dt_exrcse),
          access = as.factor(access))
 
-#For our own sanity, this is a mini dataframe of variable descriptions and their coding criteria (if applicable).
-col1 <- c("sex","diagnosis","age","hba1c","crp","medication","dt_exrcse","med_dt_exrcse","access","num_care")
-col2 <- c("participant gender as reported by researcher (male = 1, female = 2)","whether the participant has been diagnosed with diabetes (yes = 1, no = 2)","participant age","participant blood sugar level","participant inflammation level","whether the participant is currently taking medication for diabetes inflammation (yes = 1, no = 2)","whether the participant is on a diabetes-specific diet and exercise plan (yes = 1, no = 2)","whether the participant is on BOTH medication and a diet and exercise plan (yes = 1, no = 2)","whether the participant has accessed medical care in the past year (1 = yes, 2 = no)","number of times the participant has accessed medical care in the past year")
-data_variables <- data.frame(col1, col2)
+#For our own sanity, this is a mini dataframe of variables,  descriptions, and  coding criteria (if applicable). NOTE TO ALL: If you add any new variable to the dataset, please update this or let me know so I can update it! -Rachel
+col1_var <- c("sex",
+              "diagnosis",
+              "age",
+              "hba1c",
+              "crp",
+              "medication",
+              "dt_exrcse",
+              "med_dt_exrcse",
+              "access",
+              "num_care")
+col2_desc <- c("participant gender (as reported by researcher)",
+               "whether the participant has been diagnosed with diabetes",
+               "participant age",
+               "participant blood sugar level over the past 3 months",
+               "participant inflammation level",
+               "whether the participant is currently taking medication for diabetes inflammation",
+               "whether the participant is on a diabetes-specific diet and exercise plan",
+               "whether the participant is on BOTH medication and a diet and exercise plan",
+               "whether the participant has accessed medical care in the past year",
+               "number of times the participant has accessed medical care in the past year")
+col3_code <- c("male = 1, female = 2",
+               "yes = 1, no = 2", 
+               "discrete variable",
+               "continuous variable",
+               "continuous variable",
+               "yes = 1, no = 2",
+               "yes = 1, no = 2",
+               "yes = 1, no = 2",
+               "yes = 1, no = 2",
+               "discrete variable")
+data_variables <- data.frame(col1_var, col2_desc, col3_code) %>% 
+  rename("Variable name" = col1_var, "Description" = col2_desc, "Coding criteria" = col3_code)
 
 ```
 
-```{r}
+## Procedures and Sample
+
+# Variables
+
+The original WHO dataset contains more than 1,600 variables, not all of which are relevant to our research questions. Therefore, we have limited our analysis to 10 variables, listed below in Table 1. In our analysis, we exclude participants who reported that they already have a formal diabetes diagnosis from a doctor, since we are interested in HBA1C values for people who do not have a diabetes diagnosis. We also exclude participants age 50 or older, since this group typically has high HbA1c levels regardless of the presence of diabetes, as well as participants with CRP levels above 5, since because such values indicate infection which would confound our analysis.
+
+```{r variables-table}
+
+data_variables
+
+```
+
+```{r data-cleaning-tian2}
 data <- data %>% 
   mutate(diabetes_treat=case_when(
     medication== 1  ~ "medication",
@@ -128,9 +168,9 @@ dat <- dat %>%
 #data <- data %>% 
  # filter(diabetes_treat != "no_treatment" & hba1c < 6.5)
 
-#Ths above code filter isn't filtering the "and" with each line of data but first filtering all of those that don't equal no treatment and then filering out everyone with an hba1c below 6.5...which is not what we want 
+#This above code filter isn't filtering the "and" with each line of data but first filtering all of those that don't equal no treatment and then filtering out everyone with an hba1c below 6.5...which is not what we want 
 
-#So I made a new variable that we an use to filter:
+#So I made a new variable that we can use to filter:
 data <- data %>% 
   mutate(treatment_info = if_else(diabetes_treat == "no_treatment" & hba1c < 6.5, "unknown_treat", "known_treat"))
 
