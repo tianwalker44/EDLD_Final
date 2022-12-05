@@ -325,6 +325,23 @@ knitr::include_graphics("EDLD_FP2.png")
 knitr::include_graphics("EDLD_FP3.png")
 ```
 * Moving forward, I hope to continue to be able to use R for my academic projects and beyond!
+<<<<<<< Updated upstream
+=======
+---
+
+
+* Presentation cover the following:
+  
+    * Share your journey (everyone, at least for a minute or two)
+
+    * Discuss challenges you had along the way
+
+    * Celebrate your successes
+
+    * Discuss challenges you are still facing
+
+    * Discuss substantive findings
+>>>>>>> Stashed changes
 
 ---
 
