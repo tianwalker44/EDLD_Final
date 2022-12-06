@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.5.14)  5 DEC 2022 18:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.5.14)  5 DEC 2022 18:27
 entering extended mode
 **./NEW_Final_Groupof5.tex
 (NEW_Final_Groupof5.tex
@@ -1182,11 +1182,11 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 457.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 457.
  ) 
 Here is how much of TeX's memory you used:
- 16949 strings out of 492891
- 257429 string characters out of 3122624
+ 16951 strings out of 492891
+ 257451 string characters out of 3122624
  387499 words of memory out of 3000000
  20459 multiletter control sequences out of 15000+200000
- 43790 words of font info for 68 fonts, out of 3000000 for 9000
+ 43881 words of font info for 69 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,11n,47p,1214b,550s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Dominik/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mat
@@ -1201,7 +1201,7 @@ TeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Users/Dominik/AppData/Local/Program
 s/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Users/Dominik/AppData/Local/Pro
 grams/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Users/Dominik/AppData/Loc
 al/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb>
-Output written on NEW_Final_Groupof5.pdf (14 pages, 253528 bytes).
+Output written on NEW_Final_Groupof5.pdf (14 pages, 253254 bytes).
 PDF statistics:
  260 PDF objects out of 1000 (max. 8388607)
  53 named destinations out of 1000 (max. 500000)

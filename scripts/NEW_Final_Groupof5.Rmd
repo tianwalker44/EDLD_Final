@@ -254,7 +254,7 @@ apa_table(table1$table,
           caption = "Effect of Medication on CRP, controlling for Age. ",
           note = paste0("Model fit: $F$(", mreg1_summary$fstatistic[2], ", ", mreg1_summary$fstatistic[3], ") = ", round(mreg1_summary$fstatistic[1], 2), ", $p$ ", report_p(get_model_p(mreg1_summary)), ", $R^2$ = ", round(mreg1_summary$r.squared, 2), "."))
 mreg1_N <- nrow(RQ1_df)
-#gets us the betas
+#gets us the reg weights
 mreg1_inter <- mreg1_summary$coefficients[1, 1] %>% round(3)
 mreg1_age <- mreg1_summary$coefficients[2, 1] %>% round(3)
 mreg1_med <- mreg1_summary$coefficients[3, 1] %>% round(3)
@@ -275,7 +275,7 @@ mreg1_r2 <- mreg1_summary$r.squared %>% round(3)
 ```
 
 
-Demo of inline code usage. We found that this regression model using `r mreg1_N` participants was not significant $F$(`r mreg1_f_df1`, `r mreg1_f_df2`) = `r mreg1_f`, $p$ `r mreg1_f_p` with $R^2$ = `r mreg1_r2`. The beta estimate for age was $\beta_{age}$ = `r mreg1_age` ($SE$ = `r mreg1_age_se`, $p$ `r mreg1_age_p`), and for use of medication $\beta_{medication}$ = `r mreg1_med` ($SE$ =  `r mreg1_med_se`, $p$ `r mreg1_med_p`).
+Demo of inline code usage. We found that this regression model using `r mreg1_N` participants was not significant $F$(`r mreg1_f_df1`, `r mreg1_f_df2`) = `r mreg1_f`, $p$ `r mreg1_f_p` with $R^2$ = `r mreg1_r2`. The regression coefficient for age was $b_{age}$ = `r mreg1_age` ($SE$ = `r mreg1_age_se`, $p$ `r mreg1_age_p`), and for use of medication $b_{medication}$ = `r mreg1_med` ($SE$ =  `r mreg1_med_se`, $p$ `r mreg1_med_p`).
 
 
 \newpage 
@@ -298,7 +298,7 @@ apa_table(table2$table,
           note = paste0("Model fit: $F$(", reg2_summary$fstatistic[2], ", ", reg2_summary$fstatistic[3], ") = ", round(reg2_summary$fstatistic[1], 2), ", $p$ ", report_p(get_model_p(reg2_summary)), ", $R^2$ = ", round(reg2_summary$r.squared, 2), "."))
 #table(data$dt_exrcse) #this a quick way to see the n in both categories
 reg2_N <- nrow(RQ2_df)
-#gets us the betas
+#gets us the reg weights
 reg2_inter <- reg2_summary$coefficients[1, 1] %>% round(3)
 reg2_age <- reg2_summary$coefficients[2, 1] %>% round(3)
 reg2_de <- reg2_summary$coefficients[3, 1] %>% round(3)
@@ -318,7 +318,7 @@ reg2_f_p <- report_p(get_model_p(reg2_summary))
 reg2_r2 <- reg2_summary$r.squared %>% round(3)
 ```
 
-Demo of inline code usage. We found that this regression model using `r reg2_N` participants was not significant $F$(`r reg2_f_df1`, `r reg2_f_df2`) = `r reg2_f`, $p$ `r reg2_f_p` with $R^2$ = `r reg2_r2`. The beta estimate for age was $\beta_{age}$ = `r reg2_age` ($SE$ = `r reg2_age_se`, $p$ `r reg2_age_p`), and for diet and exercise $\beta_{Diet}$ = `r reg2_de` ($SE$ =  `r reg2_de_se`, $p$ `r reg2_de_p`).
+Demo of inline code usage. We found that this regression model using `r reg2_N` participants was not significant $F$(`r reg2_f_df1`, `r reg2_f_df2`) = `r reg2_f`, $p$ `r reg2_f_p` with $R^2$ = `r reg2_r2`. The regression coefficient for age was $b_{age}$ = `r reg2_age` ($SE$ = `r reg2_age_se`, $p$ `r reg2_age_p`), and for diet and exercise $b_{Diet}$ = `r reg2_de` ($SE$ =  `r reg2_de_se`, $p$ `r reg2_de_p`).
 
 
 ```{r RQ3-brittany, eval=FALSE, include=FALSE}
