@@ -171,8 +171,14 @@ Here I point the reader to figure \@ref(fig:data-cleaning-tian2).
 #AND it is super interesting to see what is left behind! only 3 data points in this group of people with healthy blood sugar levels were doing diet and exercise. 
 plot.a <- data %>% 
 filter(crp <5, age > 50) %>% 
- ggplot(aes(hba1c, crp)) + geom_point(aes(color = diabetes_treat), size = 3) + scale_color_brewer(palette = 15) + theme_dark()
-plot.a + font("xlab", size = 34) + font("ylab", size = 34)+ font("xy.text", size = 25, color = "black", face = "bold")
+ ggplot(aes(hba1c, crp)) + geom_point(aes(color = diabetes_treat), size = 3) +
+  theme_minimal() +
+  scale_color_brewer(palette = 15, name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication", "No Treatment")) + theme_apa()
+plot.a + font("xlab", size = 14) + font("ylab", size = 14)+ font("xy.text", size = 14, color = "black", face = "bold") +
+  labs( title = "Relationship Between CRP and hba1c by Diabetes Treatment Type", 
+        caption =  "SAGE data from Mexico", 
+        x = "hba1c", 
+        y = "Inflammation (CRP)") 
 #?geom_abline
 ```
 
@@ -210,7 +216,7 @@ RQ1_df %>%
   geom_point(aes(color = medication), alpha = 0.5) + 
   geom_smooth(aes(color = medication), method = "lm", se = FALSE) + 
   scale_color_brewer(palette = 11) + 
-  theme_dark() + 
+  theme_apa() + 
   labs( title = "The Relationship Between Blood Sugar and Inflammation by Medication", 
         caption =  "SAGE data from Mexico", 
         x = "Age", 
@@ -230,7 +236,7 @@ ggplot(aes(hba1c, crp)) +
   geom_point(aes(color = diabetes_treat), alpha = 0.5) + 
   geom_smooth(aes(color = medication), method = "lm", se = FALSE) + 
   scale_color_brewer(palette = 11) + 
-  theme_dark() + 
+  theme_apa() +
   labs( title = "The Relationship Between Blood Sugar and Inflammation by Medication", 
         caption =  "SAGE data from Mexico", 
         x = "Age", 
@@ -386,6 +392,7 @@ chi <- chisq.test(table(data$sex))
 
 ```{r tableofcrpmedicationandexercise, fig.cap = "(ref:fig4)"}
 ggplot(groups_med_dt_exrcse, aes(medication, mean))+
+  theme_apa() + 
   geom_col(aes(fill = dt_exrcse),
            position = "dodge")+
   labs(x = "Medication",
