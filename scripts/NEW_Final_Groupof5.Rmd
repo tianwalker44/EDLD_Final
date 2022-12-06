@@ -131,11 +131,6 @@ data_variables <- data.frame(col1_var, col2_desc, col3_code) %>%
   rename("Variable name" = col1_var, "Description" = col2_desc, "Coding criteria" = col3_code)
 ```
 
-## Procedures and Sample
-
-# Variables
-
-The original WHO dataset contains more than 1,600 variables, not all of which are relevant to our research questions. Therefore, we have limited our analysis to 10 variables, listed below in Table 1. In our analysis, we exclude participants who reported that they already have a formal diabetes diagnosis from a doctor, since we are interested in HBA1C values for people who do not have a diabetes diagnosis. We also exclude participants age 50 or older, since this group typically has high HbA1c levels regardless of the presence of diabetes, as well as participants with CRP levels above 5, since because such values indicate infection which would confound our analysis.
 
 ```{r variables-table}
 #data_variables
@@ -222,7 +217,7 @@ RQ1_df %>%
         y = "Inflammation (CRP)")
 ```
 
-(ref:fig2) This is the caption of figure 2.
+(ref:fig2) This is the caption this figure.
 
 Here, I want to point the reader to Figure \@ref(fig:fig2).
 
@@ -405,12 +400,6 @@ ggplot(groups_med_dt_exrcse, aes(medication, mean))+
 Here I reference figure \@ref(fig:tableofcrpmedicationandexercise).
 
 
-## Participants
-
-`r summary$N` participants were included in our analyses. Of those, `r summary$N_male` were assessed to be male (`r summary$N_male_pct` %), `r summary$N_female` were identified to be female (`r summary$N_female_pct` %). Sex data for `r summary$N_unknown` participant was missing (see Table \@ref(tab:descriptives)). This indicates that females were overrepresented in our sample, assuming binary sexes are represented equally in the population ($\chi$(`r chi$parameter`) = `r chi$statistic`, $p$ `r report_p(chi$p.value)`). The age in our sample was $M$ = `r summary$age_M` years (SD = `r summary$age_SD` years).
-Because of missing values in the variables of interest in some of our analyses, subjects were excluded. Thus, $N$ is reported separately for each analysis.
-
-
 |  |            |`r summary$country[1]` |
 |:-|:-----------|:----------------------|
 |$N_{total}$|           |`r summary$N[1]`                                                     |
@@ -437,6 +426,16 @@ The ability of cells to absorb insulin can be increased through diet, exercise, 
 
 # Methods
 
+## Procedures and Sample
+
+`r summary$N` participants were included in our analyses. Of those, `r summary$N_male` were assessed to be male (`r summary$N_male_pct` %), `r summary$N_female` were identified to be female (`r summary$N_female_pct` %). Sex data for `r summary$N_unknown` participant was missing (see Table \@ref(tab:descriptives)). This indicates that females were overrepresented in our sample, assuming binary sexes are represented equally in the population ($\chi$(`r chi$parameter`) = `r chi$statistic`, $p$ `r report_p(chi$p.value)`). The age in our sample was $M$ = `r summary$age_M` years (SD = `r summary$age_SD` years).
+Because of missing values in the variables of interest in some of our analyses, subjects were excluded. Thus, $N$ is reported separately for each analysis.
+
+## Variables
+
+The original WHO dataset contains more than 1,600 variables, not all of which are relevant to our research questions. Therefore, we have limited our analysis to 10 variables, listed below in Table 1. In our analysis, we exclude participants who reported that they already have a formal diabetes diagnosis from a doctor, since we are interested in HBA1C values for people who do not have a diabetes diagnosis. We also exclude participants age 50 or older, since this group typically has high HbA1c levels regardless of the presence of diabetes, as well as participants with CRP levels above 5, since because such values indicate infection which would confound our analysis.
+
+
 C-reactive protein and hba1c measured through dried bloodspots (minimally invasive biomarkers) [@10.1353/dem.2007.0038]). 
 
 Self-report surveys conducted by trained interviewers. 
@@ -444,6 +443,8 @@ Self-report surveys conducted by trained interviewers.
 Data are from the World Health Organization's Study on Adult Health and Ageing (SAGE). Our data is from 1 of 5 countries where the data were collected.
 
 Cite R packages here
+
+# Results
 
 # Discussion 
 
