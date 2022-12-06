@@ -252,6 +252,9 @@ table1 <- apa_print(mreg1)
 table1$table$predictor <- c('Intercept', 
                             'Age',
                             'Medication')
+
+colnames(table1$table)[1] <- "Predictor"
+
 apa_table(table1$table,
           caption = "Effect of Medication on CRP, controlling for Age. ",
           note = paste0("Model fit: $F$(", mreg1_summary$fstatistic[2], ", ", mreg1_summary$fstatistic[3], ") = ", round(mreg1_summary$fstatistic[1], 2), ", $p$ ", report_p(get_model_p(mreg1_summary)), ", $R^2$ = ", round(mreg1_summary$r.squared, 2), "."))
@@ -294,6 +297,9 @@ table2 <- apa_print(reg2)
 table2$table$predictor <- c('Intercept',
                             'Age',
                             'Diet and Exercise')
+
+colnames(table2$table)[1] <- "Predictor"
+
 apa_table(table2$table,
           caption = "Effect of Diet and Exercise on CRP, controlling for Age.",
           note = paste0("Model fit: $F$(", reg2_summary$fstatistic[2], ", ", reg2_summary$fstatistic[3], ") = ", round(reg2_summary$fstatistic[1], 2), ", $p$ ", report_p(get_model_p(reg2_summary)), ", $R^2$ = ", round(reg2_summary$r.squared, 2), "."))
