@@ -33,16 +33,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Relations between Inflammation, access to care and Diabetes in two repesentative populations of China and Mexico.},
-  pdfauthor={Dominik Grätz1, Rachel Miller-Moudgil1, Amber Somarriba1, Brittany Spinner1, \& Tian Walker1},
-  pdflang={en-EN},
-  pdfkeywords={Diabetes, access to care, inflammation, health, Mexico, China},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -79,6 +69,29 @@
   \let\oldsubparagraph\subparagraph
   \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
 \fi
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 \ifLuaTeX
 \usepackage[bidi=basic]{babel}
 \else
@@ -103,9 +116,9 @@
 
 % Create new environments so endfloat can handle them
 % \newenvironment{ltable}
-%   {\begin{landscape}\centering\begin{threeparttable}}
-%   {\end{threeparttable}\end{landscape}}
-\newenvironment{lltable}{\begin{landscape}\centering\begin{ThreePartTable}}{\end{ThreePartTable}\end{landscape}}
+%   {\begin{landscape}\begin{center}\begin{threeparttable}}
+%   {\end{threeparttable}\end{center}\end{landscape}}
+\newenvironment{lltable}{\begin{landscape}\begin{center}\begin{ThreePartTable}}{\end{ThreePartTable}\end{center}\end{landscape}}
 
 % Enables adjusting longtable caption width to table width
 % Solution found at http://golatex.de/longtable-mit-caption-so-breit-wie-die-tabelle-t15767.html
@@ -118,20 +131,6 @@
 % \setlength{\parindent}{0.5in}
 % \setlength{\parskip}{0pt plus 0pt minus 0pt}
 
-% Overwrite redefinition of paragraph and subparagraph by the default LaTeX template
-% See https://github.com/crsh/papaja/issues/292
-\makeatletter
-\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
-  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
-  {-1em}%
-  {\normalfont\normalsize\bfseries\itshape\typesectitle}}
-
-\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{1em}%
-  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
-  {-\z@\relax}%
-  {\normalfont\normalsize\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
-\makeatother
-
 % \usepackage{etoolbox}
 \makeatletter
 \patchcmd{\HyOrg@maketitle}
@@ -143,15 +142,7 @@
   {\section*{\protect\normalfont{\@title}}}
   {}{\typeout{Failed to patch title.}}
 \makeatother
-
-\usepackage{xpatch}
-\makeatletter
-\xapptocmd\appendix
-  {\xapptocmd\section
-    {\addcontentsline{toc}{section}{\appendixname\ifoneappendix\else~\theappendix\fi\\: #1}}
-    {}{\InnerPatchFailed}%
-  }
-{}{\PatchFailed}
+\shorttitle{Inflammation, access to care and Diabetes in Mexico.}
 \keywords{Diabetes, access to care, inflammation, health, Mexico, China\newline\indent Word count: X (this cannot easily be done automatically, we can also just leave it out)}
 \usepackage{csquotes}
 \usepackage[titles]{tocloft}
@@ -170,19 +161,27 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Relations between Inflammation, access to care and Diabetes in a repesentative population of Mexico.},
+  pdfauthor={Dominik Grätz1, Rachel Miller-Moudgil1, Amber Somarriba1, Brittany Spinner1, \& Tian Walker1},
+  pdflang={en-EN},
+  pdfkeywords={Diabetes, access to care, inflammation, health, Mexico, China},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
 
-\title{Relations between Inflammation, access to care and Diabetes in two repesentative populations of China and Mexico.}
+\title{Relations between Inflammation, access to care and Diabetes in a repesentative population of Mexico.}
 \author{Dominik Grätz\textsuperscript{1}, Rachel Miller-Moudgil\textsuperscript{1}, Amber Somarriba\textsuperscript{1}, Brittany Spinner\textsuperscript{1}, \& Tian Walker\textsuperscript{1}}
 \date{}
 
-
-\shorttitle{Inflammation, access to care and Diabetes in China and Mexico.}
 
 \authornote{List of group members ordered by alphabet.}
 
 \affiliation{\vspace{0.5cm}\textsuperscript{1} University of Oregon}
 
-\abstract{%
+\abstract{
 \emph{Background.} Background goes here. \emph{Methods.} Methods go here. \emph{Results.} Results here. \emph{Conclusions.} Conclusions here.
 }
 
@@ -191,212 +190,125 @@
 \begin{document}
 \maketitle
 
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = crp ~ hba1c * medication + age, data = RQ1_df)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -1.5545 -0.7586 -0.3563  0.5011  3.5249 
-## 
-## Coefficients:
-##                    Estimate Std. Error t value Pr(>|t|)  
-## (Intercept)        1.170340   0.621564   1.883   0.0605 .
-## hba1c              0.069964   0.039064   1.791   0.0741 .
-## medication2        0.859571   0.655572   1.311   0.1906  
-## age               -0.002503   0.007024  -0.356   0.7218  
-## hba1c:medication2 -0.090588   0.079689  -1.137   0.2564  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 1.107 on 366 degrees of freedom
-##   (1820 observations deleted due to missingness)
-## Multiple R-squared:  0.01194,    Adjusted R-squared:  0.001137 
-## F-statistic: 1.105 on 4 and 366 DF,  p-value: 0.3538
-\end{verbatim}
+\hypertarget{procedures-and-sample}{%
+\subsection{Procedures and Sample}\label{procedures-and-sample}}
 
-\begin{verbatim}
-===============================================
-                        Dependent variable:    
-                    ---------------------------
-                                crp            
------------------------------------------------
-hba1c                          0.066           
-                              (0.055)          
-                                               
-dt_exrcse2                     0.010           
-                              (0.572)          
-                                               
-age                           -0.002           
-                              (0.007)          
-                                               
-hba1c:dt_exrcse2              -0.033           
-                              (0.069)          
-                                               
-Constant                      1.335*           
-                              (0.686)          
-                                               
------------------------------------------------
-Observations                    371            
-R2                             0.020           
-Adjusted R2                    0.010           
-Residual Std. Error      1.103 (df = 366)      
-F Statistic             1.901 (df = 4; 366)    
-===============================================
-Note:               *p<0.1; **p<0.05; ***p<0.01
-\end{verbatim}
+\hypertarget{variables}{%
+\section{Variables}\label{variables}}
 
-\begin{verbatim}
-## tibble [350 x 10] (S3: tbl_df/tbl/data.frame)
-##  $ sex          : Factor w/ 2 levels "1","2": 1 2 1 2 2 1 1 2 1 2 ...
-##  $ diagnosis    : Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
-##  $ age          : int [1:350] 67 62 75 87 65 62 60 60 67 57 ...
-##  $ hba1c        : num [1:350] 6.54 6.05 14.22 8.82 9.65 ...
-##  $ crp          : num [1:350] 0.95 3.15 1.29 1.29 1 ...
-##  $ medication   : Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 2 ...
-##  $ dt_exrcse    : Factor w/ 2 levels "1","2": 2 1 2 1 2 2 2 2 1 2 ...
-##  $ med_dt_exrcse: Factor w/ 2 levels "1","2": 2 2 2 2 2 2 2 2 2 1 ...
-##  $ access       : Factor w/ 2 levels "1","2": 2 2 2 2 2 1 1 1 1 2 ...
-##  $ q5027        : int [1:350] NA NA NA NA NA 1 12 12 1 NA ...
-\end{verbatim}
+The original WHO dataset contains more than 1,600 variables, not all of which are relevant to our research questions. Therefore, we have limited our analysis to 10 variables, listed below in Table 1. In our analysis, we exclude participants who reported that they already have a formal diabetes diagnosis from a doctor, since we are interested in HBA1C values for people who do not have a diabetes diagnosis. We also exclude participants age 50 or older, since this group typically has high HbA1c levels regardless of the presence of diabetes, as well as participants with CRP levels above 5, since because such values indicate infection which would confound our analysis.
 
-\begin{verbatim}
-## tibble [350 x 6] (S3: tbl_df/tbl/data.frame)
-##  $ diagnosis: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
-##  $ age      : int [1:350] 67 62 75 87 65 62 60 60 67 57 ...
-##  $ hba1c    : num [1:350] 6.54 6.05 14.22 8.82 9.65 ...
-##  $ crp      : num [1:350] 0.95 3.15 1.29 1.29 1 ...
-##  $ dt_exrcse: Factor w/ 2 levels "1","2": 2 1 2 1 2 2 2 2 1 2 ...
-##  $ access   : Factor w/ 2 levels "1","2": 2 2 2 2 2 1 1 1 1 2 ...
-\end{verbatim}
+\begin{figure}
+\centering
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/data-cleaning-tian2-1.pdf}
+\caption{\label{fig:data-cleaning-tian2}Figure \ref{fig:data-cleaning-tian2} caption goes here.}
+\end{figure}
 
-\begin{verbatim}
-## 
-## Yes  No 
-## 158 192
-\end{verbatim}
 
-\includegraphics{NEW_Final_Groupof5_files/figure-latex/RQ3-brittany-1.pdf}
 
-\begin{verbatim}
-## 
-## To cite package 'tidyverse' in publications use:
-## 
-##   Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R,
-##   Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller
-##   E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V,
-##   Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). "Welcome to
-##   the tidyverse." _Journal of Open Source Software_, *4*(43), 1686.
-##   doi:10.21105/joss.01686 <https://doi.org/10.21105/joss.01686>.
-## 
-## A BibTeX entry for LaTeX users is
-## 
-##   @Article{,
-##     title = {Welcome to the {tidyverse}},
-##     author = {Hadley Wickham and Mara Averick and Jennifer Bryan and Winston Chang and Lucy D'Agostino McGowan and Romain François and Garrett Grolemund and Alex Hayes and Lionel Henry and Jim Hester and Max Kuhn and Thomas Lin Pedersen and Evan Miller and Stephan Milton Bache and Kirill Müller and Jeroen Ooms and David Robinson and Dana Paige Seidel and Vitalie Spinu and Kohske Takahashi and Davis Vaughan and Claus Wilke and Kara Woo and Hiroaki Yutani},
-##     year = {2019},
-##     journal = {Journal of Open Source Software},
-##     volume = {4},
-##     number = {43},
-##     pages = {1686},
-##     doi = {10.21105/joss.01686},
-##   }
-\end{verbatim}
+Here I point the reader to figure \ref{fig:data-cleaning-tian2}.
 
-\begin{verbatim}
-## 
-## To cite package 'rio' in publications use:
-## 
-##   Chung-hong Chan, Geoffrey CH Chan, Thomas J. Leeper, and Jason Becker
-##   (2021). rio: A Swiss-army knife for data file I/O. R package version
-##   0.5.29.
-## 
-## A BibTeX entry for LaTeX users is
-## 
-##   @Manual{,
-##     title = {rio: A Swiss-army knife for data file I/O},
-##     author = {Chung-hong Chan and Geoffrey CH Chan and Thomas J. Leeper and Jason Becker},
-##     year = {2021},
-##     note = {R package version 0.5.29},
-##   }
-\end{verbatim}
+\begin{figure}
+\centering
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/fig1-1.pdf}
+\caption{\label{fig:fig1}This is the caption of figure \ref{fig:fig1}.}
+\end{figure}
 
-\begin{verbatim}
-## 
-## To cite package 'here' in publications use:
-## 
-##   Müller K (2020). _here: A Simpler Way to Find Your Files_. R package
-##   version 1.0.1, <https://CRAN.R-project.org/package=here>.
-## 
-## A BibTeX entry for LaTeX users is
-## 
-##   @Manual{,
-##     title = {here: A Simpler Way to Find Your Files},
-##     author = {Kirill Müller},
-##     year = {2020},
-##     note = {R package version 1.0.1},
-##     url = {https://CRAN.R-project.org/package=here},
-##   }
-\end{verbatim}
 
-\begin{verbatim}
-## 
-## To cite package 'papaja' in publications use:
-## 
-##   Aust, F. & Barth, M. (2022). papaja: Prepare reproducible APA journal
-##   articles with R Markdown. R package version 0.1.1. Retrieved from
-##   https://github.com/crsh/papaja
-## 
-## A BibTeX entry for LaTeX users is
-## 
-##   @Manual{,
-##     title = {{papaja}: {Prepare} reproducible {APA} journal articles with {R Markdown}},
-##     author = {Frederik Aust and Marius Barth},
-##     year = {2022},
-##     note = {R package version 0.1.1},
-##     url = {https://github.com/crsh/papaja},
-##   }
-\end{verbatim}
 
-\begin{verbatim}
-## 
-## To cite package 'tidyr' in publications use:
-## 
-##   Wickham H, Girlich M (2022). _tidyr: Tidy Messy Data_. R package
-##   version 1.2.1, <https://CRAN.R-project.org/package=tidyr>.
-## 
-## A BibTeX entry for LaTeX users is
-## 
-##   @Manual{,
-##     title = {tidyr: Tidy Messy Data},
-##     author = {Hadley Wickham and Maximilian Girlich},
-##     year = {2022},
-##     note = {R package version 1.2.1},
-##     url = {https://CRAN.R-project.org/package=tidyr},
-##   }
-\end{verbatim}
+Here, I want to point the reader to Figure \ref{fig:fig1}.
 
-\begin{verbatim}
-## 
-## Please cite stargazer in publications as:
-## 
-##   Hlavac, Marek (2022). stargazer: Well-Formatted Regression and
-##   Summary Statistics Tables. R package version 5.2.3.
-##   https://CRAN.R-project.org/package=stargazer
-## 
-## A BibTeX entry for LaTeX users is
-## 
-##   @Manual{,
-##     title = {stargazer: Well-Formatted Regression and Summary Statistics Tables},
-##     author = {Marek Hlavac},
-##     year = {2022},
-##     note = {R package version 5.2.3},
-##     organization = {Social Policy Institute},
-##     address = {Bratislava, Slovakia},
-##     url = {https://CRAN.R-project.org/package=stargazer},
-##   }
-\end{verbatim}
+\begin{figure}
+\centering
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/fig2-1.pdf}
+\caption{\label{fig:fig2}This is the caption of figure 2.}
+\end{figure}
+
+
+
+Here, I want to point the reader to Figure \ref{fig:fig2}.
+
+\begin{figure}
+\centering
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/fig3-1.pdf}
+\caption{\label{fig:fig3}This is the caption of figure \ref{fig:fig3}.}
+\end{figure}
+
+
+
+Here, I want to point the reader to Figure \ref{fig:fig3}.
+
+\begin{table}[tbp]
+
+\begin{center}
+\begin{threeparttable}
+
+\caption{\label{tab:unnamed-chunk-1}Effect of Medication on CRP, controlling for Age. }
+
+\begin{tabular}{lllll}
+\toprule
+predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t(354)$} & \multicolumn{1}{c}{$p$}\\
+\midrule
+Intercept & 2.00 & $[1.06$, $2.94]$ & 4.18 & < .001\\
+Age & -0.01 & $[-0.02$, $0.01]$ & -0.91 & .362\\
+Medication & 0.20 & $[-0.17$, $0.56]$ & 1.07 & .284\\
+\bottomrule
+\addlinespace
+\end{tabular}
+
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} Model fit: $F$(2, 354) = 1.06, $p$ = 0.35, $R^2$ = 0.01.}
+\end{tablenotes}
+
+\end{threeparttable}
+\end{center}
+
+\end{table}
+
+Demo of inline code usage. We found that this regression model using 357 participants was not significant \(F\)(2, 354) = 1.06, \(p\) = 0.35 with \(R^2\) = 0.01. The beta estimate for age was \(\beta_{age}\) = -0.01 (\(SE\) = 0.01, \(p\) = 0.36), and for use of medication \(\beta_{medication}\) = 0.20 (\(SE\) = 0.18, \(p\) = 0.28).
+
+\newpage
+
+\begin{table}[tbp]
+
+\begin{center}
+\begin{threeparttable}
+
+\caption{\label{tab:RQ2}Effect of Diet and Exercise on CRP, controlling for Age.}
+
+\begin{tabular}{lllll}
+\toprule
+predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t(354)$} & \multicolumn{1}{c}{$p$}\\
+\midrule
+Intercept & 2.10 & $[1.17$, $3.04]$ & 4.43 & < .001\\
+Age & -0.01 & $[-0.02$, $0.01]$ & -0.83 & .408\\
+Diet and Exercise & -0.25 & $[-0.47$, $-0.02]$ & -2.11 & .036\\
+\bottomrule
+\addlinespace
+\end{tabular}
+
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} Model fit: $F$(2, 354) = 2.71, $p$ = 0.07, $R^2$ = 0.02.}
+\end{tablenotes}
+
+\end{threeparttable}
+\end{center}
+
+\end{table}
+
+Demo of inline code usage. We found that this regression model using 354 participants was not significant \(F\)(2, 354) = 2.70, \(p\) = 0.07 with \(R^2\) = 0.01. The beta estimate for age was \(\beta_{age}\) = -0.01 (\(SE\) = 0.01, \(p\) = 0.41), and for diet and exercise \(\beta_{Diet}\) = -0.24 (\(SE\) = 0.12, \(p\) \textless{} 0.05).
+
+\begin{figure}
+\centering
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/tableofcrpmedicationandexercise-1.pdf}
+\caption{\label{fig:tableofcrpmedicationandexercise}Caption for Figure \ref{fig:tableofcrpmedicationandexercise} goes here.}
+\end{figure}
+
+
+
+Here I reference figure \ref{fig:tableofcrpmedicationandexercise}.
+
+\newpage
 
 The descriptive statistics for our sample look as follows:
 
@@ -405,40 +317,141 @@ The descriptive statistics for our sample look as follows:
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3243}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.6216}}@{}}
 \caption{Descriptive statistics.}\tabularnewline
-\toprule
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Mexico
 \end{minipage} \\
-\midrule
+\midrule()
 \endfirsthead
-\toprule
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Mexico
 \end{minipage} \\
-\midrule
+\midrule()
 \endhead
-\(N_{total}\) & & 2191 \\
+\(N_{total}\) & & 357 \\
 Sex & & \\
-& male & 869 (39.70 \%) \\
-& female & 1317 (60.10 \%) \\
-& unknown & 5 (0.20 \%) \\
-Age & & 68.20 (\(SD\) = 9.30) \\
+& male & 115 (32.20 \%) \\
+& female & 241 (67.50 \%) \\
+& unknown & 1 (0.30 \%) \\
+Age & & 68 (\(SD\) = 8.40) \\
 Diabetes & & \\
-& diagnosed & 374 (17.10 \%) \\
-& undiagnosed & 205 (9.40 \%) \\
-\bottomrule
+& diagnosed & 357 (100 \%) \\
+& undiagnosed & 0 (0 \%) \\
+\bottomrule()
 \end{longtable}
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+Diabetes and its insidious complications continue to expand as a global health burden at an alarming rate. As of 2021, there were approximately 537 million adults living with diabetes in the world and this number is expected to jump to 783 million by 2045. A disproportionate percentage of these people live in low to middle income countries (LMICs). In light of the Covid pandemic, it is also of great import that we better understand the relationships between diabetes and infectious diseases as diabetes both increased the severity of Covid (in people with elevated a1c levels) and has increased in incidence during the Covid 19 pandemic (\protect\hyperlink{ref-yangPrevalenceComorbiditiesIts2020}{Yang et al., 2020}) (\protect\hyperlink{ref-rohmInflammationObesityDiabetes2022}{Rohm, Meier, Olefsky, \& Donath, 2022}).
+
+Additionally, diabetes is associated with a steep increase in cardiovascular disease risk and is a leading cause of death in many low to middle income countries (LMICs) including Mexico. Although the precise classification of diabetes remains controversial because of the complex nature of its pathogenesis, there are three universally acknowledged subtypes: type 1 diabetes, type 2 diabetes, and gestational diabetes. Diabetes is a progressive disease in that the longer one has it, the more complications ensue. Therefore, it is helpful to conceptualize diabetes as a process that can be stopped, but not reversed. Research that contributes to slowing down or stopping the process can be extremely valuable to global health regardless of its contribution to cure and prevention because of the astronomical rates of diabetes in our world today.
+
+Inflammation is a strong indicator of diabetes development and progression. Inflammation predicts the development of diabetes (\protect\hyperlink{ref-freemanCreactiveProteinIndependent2002}{Dilys J. Freeman et al., 2002}) (\protect\hyperlink{ref-10.1161ux2f01.cir.103.3.357}{Dilys J. Freeman et al., 2001}) (\protect\hyperlink{ref-schmidtMarkersInflammationPrediction1999}{Schmidt et al., 1999}). Specifically, trials for drugs directed at inflammation among people with type 2 diabetes have indicated that drugs targeted at inflammation may be a therapeutic option for preventing diabetes (\protect\hyperlink{ref-10.4239ux2fwjd.v5.i5.697}{Agrawal \& Kant, 2014}).Retinopathy and focal neuropathy (\protect\hyperlink{ref-saidDiabeticNeuropathyReview2007}{Said, 2007}) have also been linked to inflammatory processes. Additionally, the direct damage caused by high blood glucose leads to more inflammation and creates a nasty feedback loop wherein inflammation causes more insulin resistance which leads to high blood glucose.
+
+Diabetes treatment and inflammation
+
+The ability of cells to absorb insulin can be increased through diet, exercise, and oral pills.Increasing exercise and dieting can cause major decreases in inflammation. Some of the drugs for type 2 diabetes aimed at increasing insulin sensitivity also decrease inflammation (e.g., drugs that cause weight loss). In the opposite direction, insulin can cause severe low blood glucose levels that initiate a stress response causing more inflammation.
+
+\hypertarget{methods}{%
+\section{Methods}\label{methods}}
+
+C-reactive protein and hba1c measured through dried bloodspots (minimally invasive biomarkers) {[}McDade, Williams, and Snodgrass (\protect\hyperlink{ref-10.1353ux2fdem.2007.0038}{2007})).
+
+Self-report surveys conducted by trained interviewers.
+
+Data are from the World Health Organization's Study on Adult Health and Ageing (SAGE). Our data is from 1 of 5 countries where the data were collected.
+
+Cite R packages here
+
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
+
+\hypertarget{limitations}{%
+\subsection{Limitations}\label{limitations}}
+
+We were not able to look at pills and insulin separately and some their effects have the potential to cancel each other out. The sex variable was established through interviewer discernment.
+
+\hypertarget{references}{%
+\section{References}\label{references}}
+
+
+
+
+The descriptive statistics for our sample look as follows:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.0541}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3243}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.6216}}@{}}
+\caption{Descriptive statistics.}\tabularnewline
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Mexico
+\end{minipage} \\
+\midrule()
+\endfirsthead
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Mexico
+\end{minipage} \\
+\midrule()
+\endhead
+\(N_{total}\) & & 357 \\
+Sex & & \\
+& male & 115 (32.20 \%) \\
+& female & 241 (67.50 \%) \\
+& unknown & 1 (0.30 \%) \\
+Age & & 68 (\(SD\) = 8.40) \\
+Diabetes & & \\
+& diagnosed & 357 (100 \%) \\
+& undiagnosed & 0 (0 \%) \\
+\bottomrule()
+\end{longtable}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\vadjust pre{\hypertarget{ref-10.4239ux2fwjd.v5.i5.697}{}}%
+Agrawal, N. K., \& Kant, S. (2014). Targeting inflammation in diabetes: {Newer} therapeutic options. \emph{World Journal of Diabetes}, \emph{5}(5), 697. \url{https://doi.org/10.4239/wjd.v5.i5.697}
+
+\leavevmode\vadjust pre{\hypertarget{ref-freemanCreactiveProteinIndependent2002}{}}%
+Freeman, Dilys J., Norrie, J., Caslake, M. J., Gaw, A., Ford, I., Lowe, G. D. O., \ldots{} Study, W. of S. C. P. (2002). C-reactive protein is an independent predictor of risk for the development of diabetes in the west of scotland coronary prevention study. \emph{Diabetes}, \emph{51}(5), 1596--1600. \url{https://doi.org/10.2337/diabetes.51.5.1596}
+
+\leavevmode\vadjust pre{\hypertarget{ref-10.1161ux2f01.cir.103.3.357}{}}%
+Freeman, Dilys J., Norrie, J., Sattar, N., Neely, R. D. G., Cobbe, S. M., Ford, I., \ldots{} Gaw, A. (2001). Pravastatin and the development of diabetes mellitus. \emph{Circulation}, \emph{103}(3), 357--362. \url{https://doi.org/10.1161/01.cir.103.3.357}
+
+\leavevmode\vadjust pre{\hypertarget{ref-10.1353ux2fdem.2007.0038}{}}%
+McDade, T. W., Williams, S., \& Snodgrass, J. J. (2007). What a drop can do: {Dried} blood spots as a minimally invasive method for integrating biomarkers into population-based research. \emph{Demography}, \emph{44}(4), 899--925. \url{https://doi.org/10.1353/dem.2007.0038}
+
+\leavevmode\vadjust pre{\hypertarget{ref-rohmInflammationObesityDiabetes2022}{}}%
+Rohm, T. V., Meier, D. T., Olefsky, J. M., \& Donath, M. Y. (2022). Inflammation in obesity, diabetes, and related disorders. \emph{Immunity}, \emph{55}(1), 31--55. \url{https://doi.org/10.1016/j.immuni.2021.12.013}
+
+\leavevmode\vadjust pre{\hypertarget{ref-saidDiabeticNeuropathyReview2007}{}}%
+Said, G. (2007). Diabetic neuropathy---a review. \emph{Nature Clinical Practice Neurology}, \emph{3}(6, 6), 331--340. \url{https://doi.org/10.1038/ncpneuro0504}
+
+\leavevmode\vadjust pre{\hypertarget{ref-schmidtMarkersInflammationPrediction1999}{}}%
+Schmidt, M. I., Duncan, B. B., Sharrett, A. R., Lindberg, G., Savage, P. J., Offenbacher, S., \ldots{} Heiss, G. (1999). Markers of inflammation and prediction of diabetes mellitus in adults ({Atherosclerosis Risk} in {Communities} study): A cohort study. \emph{The Lancet}, \emph{353}(9165), 1649--1652. \url{https://doi.org/10.1016/S0140-6736(99)01046-6}
+
+\leavevmode\vadjust pre{\hypertarget{ref-yangPrevalenceComorbiditiesIts2020}{}}%
+Yang, J., Zheng, Y., Gou, X., Pu, K., Chen, Z., Guo, Q., \ldots{} Zhou, Y. (2020). Prevalence of comorbidities and its effects in patients infected with {SARS-CoV-2}: A systematic review and meta-analysis. \emph{International Journal of Infectious Diseases}, \emph{94}, 91--95. \url{https://doi.org/10.1016/j.ijid.2020.03.017}
+
+\end{CSLReferences}
 
 
 \clearpage
 \renewcommand{\listfigurename}{Figure captions}
-
+\listoffigures
 \clearpage
 \renewcommand{\listtablename}{Table captions}
-
+\listoftables
 
 \end{document}
