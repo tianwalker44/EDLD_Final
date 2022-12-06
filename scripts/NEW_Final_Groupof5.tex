@@ -198,40 +198,32 @@
 
 The original WHO dataset contains more than 1,600 variables, not all of which are relevant to our research questions. Therefore, we have limited our analysis to 10 variables, listed below in Table 1. In our analysis, we exclude participants who reported that they already have a formal diabetes diagnosis from a doctor, since we are interested in HBA1C values for people who do not have a diabetes diagnosis. We also exclude participants age 50 or older, since this group typically has high HbA1c levels regardless of the presence of diabetes, as well as participants with CRP levels above 5, since because such values indicate infection which would confound our analysis.
 
-\begin{figure}
-\centering
-\includegraphics{NEW_Final_Groupof5_files/figure-latex/data-cleaning-tian2-1.pdf}
-\caption{\label{fig:data-cleaning-tian2}Figure \ref{fig:data-cleaning-tian2} caption goes here.}
+\begin{figure}[H]
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/data-cleaning-tian2-1} \caption{Figure \ref{fig:data-cleaning-tian2} caption goes here.}\label{fig:data-cleaning-tian2}
 \end{figure}
 
 
 
 Here I point the reader to figure \ref{fig:data-cleaning-tian2}.
 
-\begin{figure}
-\centering
-\includegraphics{NEW_Final_Groupof5_files/figure-latex/fig1-1.pdf}
-\caption{\label{fig:fig1}This is the caption of figure \ref{fig:fig1}.}
+\begin{figure}[H]
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/fig1-1} \caption{This is the caption of figure \ref{fig:fig1}.}\label{fig:fig1}
 \end{figure}
 
 
 
 Here, I want to point the reader to Figure \ref{fig:fig1}.
 
-\begin{figure}
-\centering
-\includegraphics{NEW_Final_Groupof5_files/figure-latex/fig2-1.pdf}
-\caption{\label{fig:fig2}This is the caption of figure 2.}
+\begin{figure}[H]
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/fig2-1} \caption{This is the caption of figure 2.}\label{fig:fig2}
 \end{figure}
 
 
 
 Here, I want to point the reader to Figure \ref{fig:fig2}.
 
-\begin{figure}
-\centering
-\includegraphics{NEW_Final_Groupof5_files/figure-latex/fig3-1.pdf}
-\caption{\label{fig:fig3}This is the caption of figure \ref{fig:fig3}.}
+\begin{figure}[H]
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/fig3-1} \caption{This is the caption of figure \ref{fig:fig3}.}\label{fig:fig3}
 \end{figure}
 
 
@@ -243,7 +235,7 @@ Here, I want to point the reader to Figure \ref{fig:fig3}.
 \begin{center}
 \begin{threeparttable}
 
-\caption{\label{tab:unnamed-chunk-1}Effect of Medication on CRP, controlling for Age. }
+\caption{\label{tab:regtab1}Effect of Medication on CRP, controlling for Age. }
 
 \begin{tabular}{lllll}
 \toprule
@@ -265,7 +257,7 @@ Medication & 0.20 & $[-0.17$, $0.56]$ & 1.07 & .284\\
 
 \end{table}
 
-Demo of inline code usage. We found that this regression model using 357 participants was not significant \(F\)(2, 354) = 1.06, \(p\) = 0.35 with \(R^2\) = 0.01. The regression coefficient for age was \(b_{age}\) = -0.01 (\(SE\) = 0.01, \(p\) = 0.36), and for use of medication \(b_{medication}\) = 0.20 (\(SE\) = 0.18, \(p\) = 0.28).
+Demo of inline code usage. We found that this regression model (Table \ref{tab:regtab1}) using 357 participants was not significant \(F\)(2, 354) = 1.06, \(p\) = 0.35 with \(R^2\) = 0.01. The regression coefficient for age was \(b_{age}\) = -0.01 (\(SE\) = 0.01, \(p\) = 0.36), and for use of medication \(b_{medication}\) = 0.20 (\(SE\) = 0.18, \(p\) = 0.28).
 
 \newpage
 
@@ -296,27 +288,27 @@ Diet and Exercise & -0.25 & $[-0.47$, $-0.02]$ & -2.11 & .036\\
 
 \end{table}
 
-Demo of inline code usage. We found that this regression model using 354 participants was not significant \(F\)(2, 354) = 2.70, \(p\) = 0.07 with \(R^2\) = 0.01. The regression coefficient for age was \(b_{age}\) = -0.01 (\(SE\) = 0.01, \(p\) = 0.41), and for diet and exercise \(b_{Diet}\) = -0.24 (\(SE\) = 0.12, \(p\) \textless{} 0.05).
+Demo of inline code usage. We found that this regression model (Table \ref{tab:RQ2}) using 354 participants was not significant \(F\)(2, 354) = 2.70, \(p\) = 0.07 with \(R^2\) = 0.01. The regression coefficient for age was \(b_{age}\) = -0.01 (\(SE\) = 0.01, \(p\) = 0.41), and for diet and exercise \(b_{Diet}\) = -0.24 (\(SE\) = 0.12, \(p\) \textless{} 0.05).
 
-\begin{figure}
-\centering
-\includegraphics{NEW_Final_Groupof5_files/figure-latex/tableofcrpmedicationandexercise-1.pdf}
-\caption{\label{fig:tableofcrpmedicationandexercise}Caption for Figure \ref{fig:tableofcrpmedicationandexercise} goes here.}
+\begin{figure}[H]
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/tableofcrpmedicationandexercise-1} \caption{Caption for Figure \ref{fig:tableofcrpmedicationandexercise} goes here.}\label{fig:tableofcrpmedicationandexercise}
 \end{figure}
 
 
 
 Here I reference figure \ref{fig:tableofcrpmedicationandexercise}.
 
-\newpage
+\hypertarget{participants}{%
+\subsection{Participants}\label{participants}}
 
-The descriptive statistics for our sample look as follows:
+357 participants were included in our analyses. Of those, 115 were assessed to be male (32.20 \%), 241 were identified to be female (67.50 \%). Sex data for 1 participant was missing (see Table \ref{tab:descriptives}). This indicates that females were overrepresented in our sample, assuming binary sexes are represented equally in the population (\(\chi\)(1) = 44.60, \(p\) \textless{} 0.0001). The age in our sample was \(M\) = 68 years (SD = 8.40 years).
+Because of missing values in the variables of interest in some of our analyses, subjects were excluded. Thus, \(N\) is reported separately for each analysis.
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.0541}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3243}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.6216}}@{}}
-\caption{Descriptive statistics.}\tabularnewline
+\caption{\label{tab:descriptives} Descriptive statistics.}\tabularnewline
 \toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -339,9 +331,6 @@ Sex & & \\
 & female & 241 (67.50 \%) \\
 & unknown & 1 (0.30 \%) \\
 Age & & 68 (\(SD\) = 8.40) \\
-Diabetes & & \\
-& diagnosed & 357 (100 \%) \\
-& undiagnosed & 0 (0 \%) \\
 \bottomrule()
 \end{longtable}
 
@@ -382,41 +371,6 @@ We were not able to look at pills and insulin separately and some their effects 
 
 
 
-
-The descriptive statistics for our sample look as follows:
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.0541}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3243}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.6216}}@{}}
-\caption{Descriptive statistics.}\tabularnewline
-\toprule()
-\begin{minipage}[b]{\linewidth}\raggedright
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Mexico
-\end{minipage} \\
-\midrule()
-\endfirsthead
-\toprule()
-\begin{minipage}[b]{\linewidth}\raggedright
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Mexico
-\end{minipage} \\
-\midrule()
-\endhead
-\(N_{total}\) & & 357 \\
-Sex & & \\
-& male & 115 (32.20 \%) \\
-& female & 241 (67.50 \%) \\
-& unknown & 1 (0.30 \%) \\
-Age & & 68 (\(SD\) = 8.40) \\
-Diabetes & & \\
-& diagnosed & 357 (100 \%) \\
-& undiagnosed & 0 (0 \%) \\
-\bottomrule()
-\end{longtable}
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}

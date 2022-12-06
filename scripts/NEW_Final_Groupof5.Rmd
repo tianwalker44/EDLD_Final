@@ -43,11 +43,13 @@ draft             : no
 
 documentclass     : "apa6"
 classoption       : "man"
-output            : papaja::apa6_pdf
+output            : 
+  papaja::apa6_pdf:
+    extra_dependencies: ["float"]
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache = FALSE, warning = FALSE, echo = FALSE)
+knitr::opts_chunk$set(cache = FALSE, warning = FALSE, echo = FALSE, fig.pos = "H", out.extra = "")
 library(tidyverse)
 library(rio)
 library(here)
@@ -244,7 +246,7 @@ ggplot(aes(hba1c, crp)) +
 
 Here, I want to point the reader to Figure \@ref(fig:fig3).
 
-```{r}
+```{r regtab1}
 mreg1_summary<- summary(mreg1)
 table1 <- apa_print(mreg1)
 table1$table$predictor <- c('Intercept', 
@@ -274,8 +276,7 @@ mreg1_f_p <- report_p(get_model_p(mreg1_summary))
 mreg1_r2 <- mreg1_summary$r.squared %>% round(3)
 ```
 
-
-Demo of inline code usage. We found that this regression model using `r mreg1_N` participants was not significant $F$(`r mreg1_f_df1`, `r mreg1_f_df2`) = `r mreg1_f`, $p$ `r mreg1_f_p` with $R^2$ = `r mreg1_r2`. The regression coefficient for age was $b_{age}$ = `r mreg1_age` ($SE$ = `r mreg1_age_se`, $p$ `r mreg1_age_p`), and for use of medication $b_{medication}$ = `r mreg1_med` ($SE$ =  `r mreg1_med_se`, $p$ `r mreg1_med_p`).
+Demo of inline code usage. We found that this regression model (Table \@ref(tab:regtab1)) using `r mreg1_N` participants was not significant $F$(`r mreg1_f_df1`, `r mreg1_f_df2`) = `r mreg1_f`, $p$ `r mreg1_f_p` with $R^2$ = `r mreg1_r2`. The regression coefficient for age was $b_{age}$ = `r mreg1_age` ($SE$ = `r mreg1_age_se`, $p$ `r mreg1_age_p`), and for use of medication $b_{medication}$ = `r mreg1_med` ($SE$ =  `r mreg1_med_se`, $p$ `r mreg1_med_p`).
 
 
 \newpage 
@@ -318,7 +319,7 @@ reg2_f_p <- report_p(get_model_p(reg2_summary))
 reg2_r2 <- reg2_summary$r.squared %>% round(3)
 ```
 
-Demo of inline code usage. We found that this regression model using `r reg2_N` participants was not significant $F$(`r reg2_f_df1`, `r reg2_f_df2`) = `r reg2_f`, $p$ `r reg2_f_p` with $R^2$ = `r reg2_r2`. The regression coefficient for age was $b_{age}$ = `r reg2_age` ($SE$ = `r reg2_age_se`, $p$ `r reg2_age_p`), and for diet and exercise $b_{Diet}$ = `r reg2_de` ($SE$ =  `r reg2_de_se`, $p$ `r reg2_de_p`).
+Demo of inline code usage. We found that this regression model  (Table \@ref(tab:RQ2)) using `r reg2_N` participants was not significant $F$(`r reg2_f_df1`, `r reg2_f_df2`) = `r reg2_f`, $p$ `r reg2_f_p` with $R^2$ = `r reg2_r2`. The regression coefficient for age was $b_{age}$ = `r reg2_age` ($SE$ = `r reg2_age_se`, $p$ `r reg2_age_p`), and for diet and exercise $b_{Diet}$ = `r reg2_de` ($SE$ =  `r reg2_de_se`, $p$ `r reg2_de_p`).
 
 
 ```{r RQ3-brittany, eval=FALSE, include=FALSE}
@@ -377,6 +378,9 @@ summary <- data %>%
             diabetes_undiag_pct = round((diabetes_undiag/N)*100, 1),
             age_M = round(mean(age), 1),
             age_SD = round(sd(age), 1))
+
+chi <- chisq.test(table(data$sex))
+
 ```
 
 ```{r tableofcrpmedicationandexercise, fig.cap = "(ref:fig4)"}
@@ -395,9 +399,10 @@ ggplot(groups_med_dt_exrcse, aes(medication, mean))+
 Here I reference figure \@ref(fig:tableofcrpmedicationandexercise).
 
 
-\newpage
+## Participants
 
-The descriptive statistics for our sample look as follows:
+`r summary$N` participants were included in our analyses. Of those, `r summary$N_male` were assessed to be male (`r summary$N_male_pct` %), `r summary$N_female` were identified to be female (`r summary$N_female_pct` %). Sex data for `r summary$N_unknown` participant was missing (see Table \@ref(tab:descriptives)). This indicates that females were overrepresented in our sample, assuming binary sexes are represented equally in the population ($\chi$(`r chi$parameter`) = `r chi$statistic`, $p$ `r report_p(chi$p.value)`). The age in our sample was $M$ = `r summary$age_M` years (SD = `r summary$age_SD` years).
+Because of missing values in the variables of interest in some of our analyses, subjects were excluded. Thus, $N$ is reported separately for each analysis.
 
 
 |  |            |`r summary$country[1]` |
@@ -408,10 +413,8 @@ The descriptive statistics for our sample look as follows:
 |           |female     |`r summary$N_female[1]` (`r summary$N_female_pct[1]` %)              |
 |           |unknown    |`r summary$N_unknown[1]` (`r summary$N_unknown_pct[1]` %)            |
 |Age        |           |`r summary$age_M[1]` ($SD$ = `r summary$age_SD[1]`)                  |
-|Diabetes   |           |                                                                     |
-|           |diagnosed  |`r summary$diabetes_diag[1]` (`r summary$diabetes_diag_pct[1]` %)    |
-|           |undiagnosed|`r summary$diabetes_undiag[1]` (`r summary$diabetes_undiag_pct[1]` %)|
-Table: Descriptive statistics.
+
+Table: (\#tab:descriptives) Descriptive statistics.
 
 
 # Introduction
@@ -459,18 +462,6 @@ citation("stargazer")
 \listoftables
 
 
-The descriptive statistics for our sample look as follows:
 
-|  |            |`r summary$country[1]` |
-|:-|:-----------|:----------------------|
-|$N_{total}$|           |`r summary$N[1]`                                                     |
-|Sex        |           |                                                                     |
-|           |male       |`r summary$N_male[1]` (`r summary$N_male_pct[1]` %)                  |
-|           |female     |`r summary$N_female[1]` (`r summary$N_female_pct[1]` %)              |
-|           |unknown    |`r summary$N_unknown[1]` (`r summary$N_unknown_pct[1]` %)            |
-|Age        |           |`r summary$age_M[1]` ($SD$ = `r summary$age_SD[1]`)                  |
-|Diabetes   |           |                                                                     |
-|           |diagnosed  |`r summary$diabetes_diag[1]` (`r summary$diabetes_diag_pct[1]` %)    |
-|           |undiagnosed|`r summary$diabetes_undiag[1]` (`r summary$diabetes_undiag_pct[1]` %)|
-Table: Descriptive statistics.
+
 
