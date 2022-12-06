@@ -428,7 +428,7 @@ The ability of cells to absorb insulin can be increased through diet, exercise, 
 
 # Methods
 
-C-reactive protein and hba1c measured through dried bloodspots (minimally invasive biomarkers) [@10.1353/dem.2007.0038). 
+C-reactive protein and hba1c measured through dried bloodspots (minimally invasive biomarkers) [@10.1353/dem.2007.0038]). 
 
 Self-report surveys conducted by trained interviewers. 
 
