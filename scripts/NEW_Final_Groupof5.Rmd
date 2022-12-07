@@ -180,8 +180,9 @@ data %>%
   filter(!is.na(diabetes_stat)) %>% 
   ggplot(aes(hba1c,crp))  + 
   geom_point(aes(color = as.factor(medication )) )+ 
-  facet_wrap(~diabetes_stat)+ 
-  scale_color_manual(values = c("tomato1", "purple4")))
+  facet_wrap(~diabetes_stat) +
+  theme_apa() +
+  scale_color_manual(values = c("tomato1", "purple4"), name = "Medication?", labels = c("Yes", "No", "N/A")))
 
 ```
 
@@ -194,9 +195,11 @@ data %>%
   filter(!is.na(diabetes_treat)) %>% 
   ggplot(aes(hba1c, crp)) + geom_point(aes(color = diabetes_treat), size = 3) + 
   geom_vline(xintercept = 6.5, color = "dodgerblue")+ 
-  scale_color_brewer(palette = 15) + 
+  scale_color_brewer(palette = 15, name = "Type of Treatment", labels = c("Diet & Exercise", "Medication", "No Treatment")) + 
   theme_apa() + 
-  labs(caption = "dark green points should not be there"))
+  labs(title = "The Relationship Between Inflammation and HbA1c by Diabetes Treatment", caption = "dark green points should not be there",
+       x = "HbA1c",
+       y = "Inflammation (CRP)"))
 
 ```
 
@@ -252,7 +255,14 @@ groups_med_dt_exrcse <- data %>%
 #include this in final product
 crp_by_sex %>% 
   ggplot(aes(diabetes_treat, male)) + 
-  geom_col(aes(fill = a1c_dichot_words), position = "dodge")
+  geom_col(aes(fill = a1c_dichot_words), position = "dodge") +
+  labs(x = "Diabetes Treatment",
+       y = "CRP Level (Male)",
+       title = "Relationship Between Diabetes Treatment and Male CRP by HbA1c")+
+  theme(plot.title = element_text(hjust = 0.5))+
+  scale_x_discrete(labels = c("Diet & Exerc.", "Medication", "No Treatment"))+
+  scale_fill_brewer(palette = "Blues", name = "HbA1c Levels", labels = c("Elevated", "In Range"))+
+  theme_apa()
 ```
 
 (ref:crp-by-sex-male) Here goes the caption.
@@ -262,7 +272,14 @@ crp_by_sex %>%
 #include this in final product
 crp_by_sex %>% 
   ggplot(aes(diabetes_treat, female)) + 
-  geom_col(aes(fill = a1c_dichot_words), position = "dodge")
+  geom_col(aes(fill = a1c_dichot_words), position = "dodge")+
+  labs(x = "Diabetes Treatment",
+       y = "CRP Level (Female)",
+       title = "Relationship Between Diabetes Treatment and Female CRP by HbA1c")+
+   theme(plot.title = element_text(hjust = 0.5))+
+  scale_x_discrete(labels = c("Diet & Exerc.", "Medication", "No Treatment"))+
+  scale_fill_brewer(palette = "RdPu", name = "HbA1c Levels", labels = c("Elevated", "In Range"))+
+  theme_apa()
 ```
 
 (ref:crp-by-sex-female) Here goes the caption.
@@ -278,14 +295,13 @@ mreg1 <- lm(crp~age + medication, data = RQ1_df)
 ```
 
 ```{r, RQ1plot, fig.cap = "(ref:RQ1plot)"}
-
 RQ1_df %>% 
   ggplot(aes(age, crp)) + 
   geom_point(aes(color = medication), alpha = 0.5) + 
   geom_smooth(aes(color = medication), method = "lm", se = FALSE) + 
   scale_color_brewer(palette = 11, name = "Taking Medication?", labels = c("Yes", "No")) + 
   theme_apa() + 
-  labs( title = "The Relationship Between Blood Sugar and Inflammation by Medication", 
+  labs( title = "The Relationship Between Age and Inflammation by Medication", 
         caption =  "SAGE data from Mexico", 
         x = "Age", 
         y = "Inflammation (CRP)")

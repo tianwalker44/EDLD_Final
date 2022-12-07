@@ -33,6 +33,16 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Relations between Inflammation and Access to care, Treatment, and Diabetes in Older Mexicans},
+  pdfauthor={Dominik Grätz1, Rachel Miller-Moudgil1, Amber Somarriba1, Brittany Spinner1, \& Tian Walker1},
+  pdflang={en-EN},
+  pdfkeywords={Diabetes, access to care, inflammation, health, Mexico, China},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -116,9 +126,9 @@
 
 % Create new environments so endfloat can handle them
 % \newenvironment{ltable}
-%   {\begin{landscape}\begin{center}\begin{threeparttable}}
-%   {\end{threeparttable}\end{center}\end{landscape}}
-\newenvironment{lltable}{\begin{landscape}\begin{center}\begin{ThreePartTable}}{\end{ThreePartTable}\end{center}\end{landscape}}
+%   {\begin{landscape}\centering\begin{threeparttable}}
+%   {\end{threeparttable}\end{landscape}}
+\newenvironment{lltable}{\begin{landscape}\centering\begin{ThreePartTable}}{\end{ThreePartTable}\end{landscape}}
 
 % Enables adjusting longtable caption width to table width
 % Solution found at http://golatex.de/longtable-mit-caption-so-breit-wie-die-tabelle-t15767.html
@@ -131,6 +141,20 @@
 % \setlength{\parindent}{0.5in}
 % \setlength{\parskip}{0pt plus 0pt minus 0pt}
 
+% Overwrite redefinition of paragraph and subparagraph by the default LaTeX template
+% See https://github.com/crsh/papaja/issues/292
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries\itshape\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{1em}%
+  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+  {-\z@\relax}%
+  {\normalfont\normalsize\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
 % \usepackage{etoolbox}
 \makeatletter
 \patchcmd{\HyOrg@maketitle}
@@ -142,7 +166,15 @@
   {\section*{\protect\normalfont{\@title}}}
   {}{\typeout{Failed to patch title.}}
 \makeatother
-\shorttitle{Inflammation, Access to care, and Treatment among Older Mexicans with Diabetes}
+
+\usepackage{xpatch}
+\makeatletter
+\xapptocmd\appendix
+  {\xapptocmd\section
+    {\addcontentsline{toc}{section}{\appendixname\ifoneappendix\else~\theappendix\fi\\: #1}}
+    {}{\InnerPatchFailed}%
+  }
+{}{\PatchFailed}
 \keywords{Diabetes, access to care, inflammation, health, Mexico, China\newline\indent Word count: X (this cannot easily be done automatically, we can also just leave it out)}
 \DeclareDelayedFloatFlavor{ThreePartTable}{table}
 \DeclareDelayedFloatFlavor{lltable}{table}
@@ -167,27 +199,19 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
-\hypersetup{
-  pdftitle={Relations between Inflammation and Access to care, Treatment, and Diabetes in Older Mexicans},
-  pdfauthor={Dominik Grätz1, Rachel Miller-Moudgil1, Amber Somarriba1, Brittany Spinner1, \& Tian Walker1},
-  pdflang={en-EN},
-  pdfkeywords={Diabetes, access to care, inflammation, health, Mexico, China},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
 
 \title{Relations between Inflammation and Access to care, Treatment, and Diabetes in Older Mexicans}
 \author{Dominik Grätz\textsuperscript{1}, Rachel Miller-Moudgil\textsuperscript{1}, Amber Somarriba\textsuperscript{1}, Brittany Spinner\textsuperscript{1}, \& Tian Walker\textsuperscript{1}}
 \date{}
 
 
+\shorttitle{Inflammation, Access to care, and Treatment among Older Mexicans with Diabetes}
+
 \authornote{List of group members ordered by alphabet.}
 
 \affiliation{\vspace{0.5cm}\textsuperscript{1} University of Oregon}
 
-\abstract{
+\abstract{%
 \emph{Background.} Background goes here. \emph{Methods.} Methods go here. \emph{Results.} Results here. \emph{Conclusions.} Conclusions here.
 }
 
@@ -259,13 +283,13 @@
 
 \caption{\label{tab:regtab1}Effect of Medication on CRP, controlling for Age. }
 
-\begin{tabular}{lllll}
+\begin{tabular}{lllllll}
 \toprule
-Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t(354)$} & \multicolumn{1}{c}{$p$}\\
+Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t$} & \multicolumn{1}{c}{$\mathit{df}$} & \multicolumn{1}{c}{$p$} & \multicolumn{1}{c}{predictor}\\
 \midrule
-Intercept & 2.00 & $[1.06$, $2.94]$ & 4.18 & < .001\\
-Age & -0.01 & $[-0.02$, $0.01]$ & -0.91 & .362\\
-Medication & 0.20 & $[-0.17$, $0.56]$ & 1.07 & .284\\
+Intercept & 2.00 & {}[1.06, 2.94] & 4.18 & 354 & < .001 & Intercept\\
+Age & -0.01 & {}[-0.02, 0.01] & -0.91 & 354 & .362 & Age\\
+Medication2 & 0.20 & {}[-0.17, 0.56] & 1.07 & 354 & .284 & Medication\\
 \bottomrule
 \addlinespace
 \end{tabular}
@@ -286,13 +310,13 @@ Medication & 0.20 & $[-0.17$, $0.56]$ & 1.07 & .284\\
 
 \caption{\label{tab:RQ2}Effect of Diet and Exercise on CRP, controlling for Age.}
 
-\begin{tabular}{lllll}
+\begin{tabular}{lllllll}
 \toprule
-Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t(354)$} & \multicolumn{1}{c}{$p$}\\
+Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t$} & \multicolumn{1}{c}{$\mathit{df}$} & \multicolumn{1}{c}{$p$} & \multicolumn{1}{c}{predictor}\\
 \midrule
-Intercept & 2.10 & $[1.17$, $3.04]$ & 4.43 & < .001\\
-Age & -0.01 & $[-0.02$, $0.01]$ & -0.83 & .408\\
-Diet and Exercise & -0.25 & $[-0.47$, $-0.02]$ & -2.11 & .036\\
+Intercept & 2.10 & {}[1.17, 3.04] & 4.43 & 354 & < .001 & Intercept\\
+Age & -0.01 & {}[-0.02, 0.01] & -0.83 & 354 & .408 & Age\\
+Dt exrcse2 & -0.25 & {}[-0.47, -0.02] & -2.11 & 354 & .036 & Diet and Exercise\\
 \bottomrule
 \addlinespace
 \end{tabular}
@@ -354,21 +378,21 @@ Diet and Exercise & -0.25 & $[-0.47$, $-0.02]$ & -2.11 & .036\\
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3243}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.6216}}@{}}
 \caption{\label{tab:descriptives} Descriptive statistics.}\tabularnewline
-\toprule()
+\toprule
 \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Mexico
 \end{minipage} \\
-\midrule()
+\midrule
 \endfirsthead
-\toprule()
+\toprule
 \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Mexico
 \end{minipage} \\
-\midrule()
+\midrule
 \endhead
 \(N_{total}\) & & 357 \\
 Sex & & \\
@@ -376,7 +400,7 @@ Sex & & \\
 & female & 241 (67.50 \%) \\
 & unknown & 1 (0.30 \%) \\
 Age & & 68 (\(SD\) = 8.40) \\
-\bottomrule()
+\bottomrule
 \end{longtable}
 
 \hypertarget{figure-references-to-copy}{%
@@ -473,7 +497,7 @@ Demo of inline code usage. We found that this regression model (Table \ref{tab:r
 \hypertarget{regression-2}{%
 \subsection{Regression 2}\label{regression-2}}
 
-Demo of inline code usage. We found that this regression model (Table \ref{tab:RQ2}) using 357 participants was not significant \(F\)(2, 354) = 2.70, \(p\) = 0.07 with \(R^2\) = 0.01. The regression coefficient for age was \(b_{age}\) = -0.01 (\(SE\) = 0.01, \(p\) = 0.41), and for diet and exercise \(b_{Diet}\) = -0.24 (\(SE\) = 0.12, \(p\) \textless{} 0.05).
+Demo of inline code usage. We found that this regression model (Table \ref{tab:RQ2}) using 357 participants was not significant \(F\)(2, 354) = 2.70, \(p\) = 0.07 with \(R^2\) = 0.02. The regression coefficient for age was \(b_{age}\) = -0.01 (\(SE\) = 0.01, \(p\) = 0.41), and for diet and exercise \(b_{Diet}\) = -0.24 (\(SE\) = 0.12, \(p\) \textless{} 0.05).
 
 \hypertarget{chi-square-test}{%
 \subsection{Chi Square Test}\label{chi-square-test}}
@@ -518,7 +542,7 @@ Freeman, Dilys J., Norrie, J., Caslake, M. J., Gaw, A., Ford, I., Lowe, G. D. O.
 Freeman, Dilys J., Norrie, J., Sattar, N., Neely, R. D. G., Cobbe, S. M., Ford, I., \ldots{} Gaw, A. (2001). Pravastatin and the development of diabetes mellitus. \emph{Circulation}, \emph{103}(3), 357--362. \url{https://doi.org/10.1161/01.cir.103.3.357}
 
 \leavevmode\vadjust pre{\hypertarget{ref-here}{}}%
-Müller, K. (2020). \emph{Here: {A} simpler way to find your files}. manual. Retrieved from \url{https://CRAN.R-project.org/package=here}
+Müller, K. (2020). \emph{Here: {A} simpler way to find your files} {[}Manual{]}. Retrieved from \url{https://CRAN.R-project.org/package=here}
 
 \leavevmode\vadjust pre{\hypertarget{ref-rohmInflammationObesityDiabetes2022}{}}%
 Rohm, T. V., Meier, D. T., Olefsky, J. M., \& Donath, M. Y. (2022). Inflammation in obesity, diabetes, and related disorders. \emph{Immunity}, \emph{55}(1), 31--55. \url{https://doi.org/10.1016/j.immuni.2021.12.013}

@@ -7,13 +7,13 @@
 
 \caption{\label{tab:regtab1}Effect of Medication on CRP, controlling for Age. }
 
-\begin{tabular}{lllll}
+\begin{tabular}{lllllll}
 \toprule
-Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t(354)$} & \multicolumn{1}{c}{$p$}\\
+Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t$} & \multicolumn{1}{c}{$\mathit{df}$} & \multicolumn{1}{c}{$p$} & \multicolumn{1}{c}{predictor}\\
 \midrule
-Intercept & 2.00 & $[1.06$, $2.94]$ & 4.18 & < .001\\
-Age & -0.01 & $[-0.02$, $0.01]$ & -0.91 & .362\\
-Medication & 0.20 & $[-0.17$, $0.56]$ & 1.07 & .284\\
+Intercept & 2.00 & {}[1.06, 2.94] & 4.18 & 354 & < .001 & Intercept\\
+Age & -0.01 & {}[-0.02, 0.01] & -0.91 & 354 & .362 & Age\\
+Medication2 & 0.20 & {}[-0.17, 0.56] & 1.07 & 354 & .284 & Medication\\
 \bottomrule
 \addlinespace
 \end{tabular}
@@ -35,13 +35,13 @@ Medication & 0.20 & $[-0.17$, $0.56]$ & 1.07 & .284\\
 
 \caption{\label{tab:RQ2}Effect of Diet and Exercise on CRP, controlling for Age.}
 
-\begin{tabular}{lllll}
+\begin{tabular}{lllllll}
 \toprule
-Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t(354)$} & \multicolumn{1}{c}{$p$}\\
+Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t$} & \multicolumn{1}{c}{$\mathit{df}$} & \multicolumn{1}{c}{$p$} & \multicolumn{1}{c}{predictor}\\
 \midrule
-Intercept & 2.10 & $[1.17$, $3.04]$ & 4.43 & < .001\\
-Age & -0.01 & $[-0.02$, $0.01]$ & -0.83 & .408\\
-Diet and Exercise & -0.25 & $[-0.47$, $-0.02]$ & -2.11 & .036\\
+Intercept & 2.10 & {}[1.17, 3.04] & 4.43 & 354 & < .001 & Intercept\\
+Age & -0.01 & {}[-0.02, 0.01] & -0.83 & 354 & .408 & Age\\
+Dt exrcse2 & -0.25 & {}[-0.47, -0.02] & -2.11 & 354 & .036 & Diet and Exercise\\
 \bottomrule
 \addlinespace
 \end{tabular}
@@ -61,21 +61,21 @@ Diet and Exercise & -0.25 & $[-0.47$, $-0.02]$ & -2.11 & .036\\
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3243}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.6216}}@{}}
 \caption{\label{tab:descriptives} Descriptive statistics.}\tabularnewline
-\toprule()
+\toprule
 \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Mexico
 \end{minipage} \\
-\midrule()
+\midrule
 \endfirsthead
-\toprule()
+\toprule
 \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Mexico
 \end{minipage} \\
-\midrule()
+\midrule
 \endhead
 \(N_{total}\) & & 357 \\
 Sex & & \\
@@ -83,5 +83,5 @@ Sex & & \\
 & female & 241 (67.50 \%) \\
 & unknown & 1 (0.30 \%) \\
 Age & & 68 (\(SD\) = 8.40) \\
-\bottomrule()
+\bottomrule
 \end{longtable}
