@@ -321,9 +321,9 @@ dat %>%
   theme_apa() +
   labs( title = "The Relationship Between Blood Sugar and Inflammation by Treatment", 
         caption =  "SAGE data from Mexico", 
-        x = "Age", 
+        x = "HbA1c", 
         y = "Inflammation (CRP)") +
-  scale_color_manual(values = c("magenta", "limegreen"))
+  scale_color_manual(name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication"), values = c("magenta", "limegreen"))
   #scale_color_brewer(  name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication")) 
 
 #change colors freely. none of the palettes are working 
@@ -470,8 +470,9 @@ chi_df_access$observed
 prop_access_bar <- ggplot(data = RQ4df, aes(x = access, fill = crp2))+
   geom_bar(position = "dodge")+
   labs(title = "Relation of Inflamation Levels low/high and Seeing a Doctor in the Last Year Y/N", subtitle= "Among Individuals with Diabetes that use Diet and Exercise as Treatment", x = "Saw a doctor in the last year Y/N", y = "Frequency")
-prop_access_bar
-
+prop_access_bar+
+  scale_fill_brewer(palette = "Spectral", name = "CRP Levels", labels = c("Low", "High"))
+  
 #prop4
 #For those with vs. without access to medical care, what is the effect of diet and exercise on inflammation levels? 
 ```
@@ -566,7 +567,8 @@ dat2_long %>%
   filter(crp < 5) %>% 
   group_by(id) %>% 
   summarize(mean_hs = mean(hs_score, na.rm = TRUE), crp, levels_dbts, a1c_dichot_words) %>% 
-  ggplot(aes(mean_hs, crp)) + geom_point(aes(color = levels_dbts)) + geom_smooth(aes(color = levels_dbts), method = "lm") + scale_color_brewer(type = "div", palette = 4) + labs(title = "CRP and Health Score by Diabetes", caption = "Mean health score is calculated such that higher scores = worse health") + theme_apa()
+  ggplot(aes(mean_hs, crp)) + geom_point(aes(color = levels_dbts)) + geom_smooth(aes(color = levels_dbts), method = "lm") + scale_color_brewer(type = "div", palette = 4, name = "Diabetes Level", labels = c("No Diabetes", "Treated Diabetes", "Undiagnosed Diabetes", "Untreated Diabetes")) + labs(title = "CRP and Health Score by Diabetes", caption = "Mean health score is calculated such that higher scores = worse health", x = "Mean Health Score", y = "Inflammation (CRP) Levels")+
+  theme_apa()
 
 ```
 
@@ -583,7 +585,7 @@ dat2_long %>%
   filter(crp < 5) %>% 
   group_by(id) %>% 
   summarize(mean_hs = mean(hs_score, na.rm = TRUE), crp, levels_dbts, a1c_dichot_words) %>% 
-  ggplot(aes(mean_hs, crp)) + geom_point(aes(color = levels_dbts)) + geom_smooth(aes(color = levels_dbts), method = "lm") + scale_color_brewer(type = "div", palette = 4) + labs(title = "CRP and Health Score by Diabetes", caption = "Mean health score is calculated such that higher scores = worse health") + theme_apa()
+  ggplot(aes(mean_hs, crp)) + geom_point(aes(color = levels_dbts)) + geom_smooth(aes(color = levels_dbts), method = "lm") + scale_color_brewer(type = "div", palette = 4, name = "Diabetes Level", labels = c("No Diabetes", "Treated Diabetes", "Undiagnosed Diabetes", "Untreated Diabetes")) + labs(title = "CRP and Health Score by Diabetes", caption = "Mean health score is calculated such that higher scores = worse health", x = "Mean Health Score", y = "Inflammation (CRP) Levels") + theme_apa()
 
 ```
 
@@ -605,8 +607,14 @@ dat2_long %>%
   filter(!is.na(a1c_dichot_words)) %>% 
   filter(crp < 5) %>% 
   group_by(id) %>% 
+  mutate(diabetes_treat = recode(diabetes_treat, "dt_excercise" = "Diet & Exercise", "medication" = "Medication", "no_treatment" = "No Treatment")) %>% 
   summarize(mean_hs = mean(hs_score, na.rm = TRUE), crp, diabetes_treat, a1c_dichot_words) %>% 
-  ggplot(aes(mean_hs, crp)) + geom_col(aes(fill= a1c_dichot_words, position = "dodge"), method = "lm") + facet_wrap(~diabetes_treat) + scale_fill_manual(values = c("salmon","springgreen"))
+  ggplot(aes(mean_hs, crp)) + geom_col(aes(fill= a1c_dichot_words, position = "dodge"), method = "lm") + facet_wrap(~diabetes_treat) + scale_fill_manual(values = c("salmon","springgreen"), name = "HbA1c Levels", labels = c("Elevated", "In Range"))+
+  theme_apa()+
+  theme(plot.title = element_text(hjust = 0.5))+
+  labs(title = "CRP Frequency and Health Score by HbA1c for Treatment Groups",
+       x = "Mean Health Score",
+       y = "CRP Frequency")
 
 ```
 
@@ -618,7 +626,9 @@ dat2_long %>%
   filter(!is.na(diabetes_treat)) %>% 
   group_by(id) %>% 
   summarize(mean_hs = mean(hs_score, na.rm = TRUE), hba1c, diabetes_treat) %>% 
-  ggplot(aes(mean_hs, hba1c)) + geom_point(aes(color = diabetes_treat)) + geom_smooth(aes(color = diabetes_treat), method = "lm") + scale_color_brewer(palette = 3) + theme_apa()
+  ggplot(aes(mean_hs, hba1c)) + geom_point(aes(color = diabetes_treat)) + geom_smooth(aes(color = diabetes_treat), method = "lm") + labs(title = "Relationship between HbA1c and Mean Health Score by Treatment", x = "Mean Helth Score", y = "HbA1c") +
+  scale_color_brewer(palette = 3, name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication", "No Treatment")) +
+  theme_apa()
 ```
 
 (ref:appendix-fig4) Here goes the caption.
