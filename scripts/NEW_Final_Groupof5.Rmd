@@ -129,6 +129,9 @@ col3_code <- c("male = 1, female = 2",
                "discrete variable")
 data_variables <- data.frame(col1_var, col2_desc, col3_code) %>% 
   rename("Variable name" = col1_var, "Description" = col2_desc, "Coding criteria" = col3_code)
+
+#random comment from Tian
+#testing pushing and pulling at the same time to different chunks
 ```
 
 
@@ -174,6 +177,7 @@ Here I point the reader to figure \@ref(fig:data-cleaning-tian2).
 
 
 ```{r fig1, fig.cap = "(ref:fig1)"}
+#testdg
 #this is a check to see that the code above worked. It did! (which we know because the dark green - no treatment category is removed from the plot below 6.5 but remain above 6.5)
 #AND it is super interesting to see what is left behind! only 3 data points in this group of people with healthy blood sugar levels were doing diet and exercise. 
 plot.a <- data %>% 
