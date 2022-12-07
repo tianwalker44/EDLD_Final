@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.5.14)  6 DEC 2022 22:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.5.14)  6 DEC 2022 22:57
 entering extended mode
 **./NEW_Final_Groupof5.tex
 (NEW_Final_Groupof5.tex
@@ -1102,177 +1102,173 @@ This may cause the page layout to be inconsistent, however.
 \openout3 = `NEW_Final_Groupof5.ttt'.
 
 (NEW_Final_Groupof5.ttt)
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 295.
+<NEW_Final_Groupof5_files/figure-latex/prop-access-bar-1.pdf, id=16, 469.755pt 
+x 325.215pt>
+File: NEW_Final_Groupof5_files/figure-latex/prop-access-bar-1.pdf Graphic file 
+(type pdf)
+<use NEW_Final_Groupof5_files/figure-latex/prop-access-bar-1.pdf>
+Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/prop-access-bar-
+1.pdf  used on input line 309.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\t1lmtt.fd"
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 310
-.
-("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ts1lmtt.fd"
-File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-Underfull \vbox (badness 8113) has occurred while \output is active []
+Overfull \hbox (28.90639pt too wide) in paragraph at lines 309--310
+[][]  
+ []
 
-[3] [4]
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[5] [6]
+LaTeX Warning: Reference `fig:prop-access-bar' on page 3 undefined on input lin
+e 392.
+
+[3 <./NEW_Final_Groupof5_files/figure-latex/prop-access-bar-1.pdf>] [4] [5]
 Underfull \vbox (badness 2384) has occurred while \output is active []
 
-[7]
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 471.
+[6]
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 453.
 
 ("C:\Users\Dominik\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ts1lmr.fd"
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [8] [9] [10] [11] AED endfloat: Processing end Figures and Tables (NEW_Final_
-Groupof5.ttt [12
+) [7] [8] [9] [10] [11] [12] AED endfloat: Processing end Figures and Tables (N
+EW_Final_Groupof5.ttt [13
 
 
 
 
-] [13]
+] [14]
 Overfull \hbox (3.19122pt too wide) in paragraph at lines 80--80
 []|$\OML/lmm/m/it/12 N[]$|  
  []
 
-) [14
+) [15
 
 ] (NEW_Final_Groupof5.fff
-<NEW_Final_Groupof5_files/figure-latex/plot-all-1.pdf, id=188, 469.755pt x 325.
+<NEW_Final_Groupof5_files/figure-latex/plot-all-1.pdf, id=194, 469.755pt x 325.
 215pt>
 File: NEW_Final_Groupof5_files/figure-latex/plot-all-1.pdf Graphic file (type p
 df)
 <use NEW_Final_Groupof5_files/figure-latex/plot-all-1.pdf>
 Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/plot-all-1.pdf  
-used on input line 4.
+used on input line 5.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<NEW_Final_Groupof5_files/figure-latex/plot-all2-1.pdf, id=189, 469.755pt x 325
+<NEW_Final_Groupof5_files/figure-latex/plot-all2-1.pdf, id=195, 469.755pt x 325
 .215pt>
 File: NEW_Final_Groupof5_files/figure-latex/plot-all2-1.pdf Graphic file (type 
 pdf)
 <use NEW_Final_Groupof5_files/figure-latex/plot-all2-1.pdf>
 Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/plot-all2-1.pdf 
- used on input line 9.
+ used on input line 12.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<NEW_Final_Groupof5_files/figure-latex/tian-fig-hba1c-65-1.pdf, id=190, 469.755
+<NEW_Final_Groupof5_files/figure-latex/tian-fig-hba1c-65-1.pdf, id=196, 469.755
 pt x 325.215pt>
 File: NEW_Final_Groupof5_files/figure-latex/tian-fig-hba1c-65-1.pdf Graphic fil
 e (type pdf)
 <use NEW_Final_Groupof5_files/figure-latex/tian-fig-hba1c-65-1.pdf>
 Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/tian-fig-hba1c-6
-5-1.pdf  used on input line 14.
+5-1.pdf  used on input line 19.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<NEW_Final_Groupof5_files/figure-latex/crp-by-sex-male-1.pdf, id=191, 469.755pt
+<NEW_Final_Groupof5_files/figure-latex/crp-by-sex-male-1.pdf, id=197, 469.755pt
  x 325.215pt>
 File: NEW_Final_Groupof5_files/figure-latex/crp-by-sex-male-1.pdf Graphic file 
 (type pdf)
 <use NEW_Final_Groupof5_files/figure-latex/crp-by-sex-male-1.pdf>
 Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/crp-by-sex-male-
-1.pdf  used on input line 19.
+1.pdf  used on input line 26.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<NEW_Final_Groupof5_files/figure-latex/crp-by-sex-female-1.pdf, id=192, 469.755
+<NEW_Final_Groupof5_files/figure-latex/crp-by-sex-female-1.pdf, id=198, 469.755
 pt x 325.215pt>
 File: NEW_Final_Groupof5_files/figure-latex/crp-by-sex-female-1.pdf Graphic fil
 e (type pdf)
 <use NEW_Final_Groupof5_files/figure-latex/crp-by-sex-female-1.pdf>
 Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/crp-by-sex-femal
-e-1.pdf  used on input line 24.
+e-1.pdf  used on input line 33.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<NEW_Final_Groupof5_files/figure-latex/RQ1plot-1.pdf, id=193, 469.755pt x 325.2
+<NEW_Final_Groupof5_files/figure-latex/RQ1plot-1.pdf, id=199, 469.755pt x 325.2
 15pt>
 File: NEW_Final_Groupof5_files/figure-latex/RQ1plot-1.pdf Graphic file (type pd
 f)
 <use NEW_Final_Groupof5_files/figure-latex/RQ1plot-1.pdf>
 Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/RQ1plot-1.pdf  u
-sed on input line 29.
+sed on input line 40.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<NEW_Final_Groupof5_files/figure-latex/tian-filtering-1.pdf, id=194, 469.755pt 
+<NEW_Final_Groupof5_files/figure-latex/tian-filtering-1.pdf, id=200, 469.755pt 
 x 325.215pt>
 File: NEW_Final_Groupof5_files/figure-latex/tian-filtering-1.pdf Graphic file (
 type pdf)
 <use NEW_Final_Groupof5_files/figure-latex/tian-filtering-1.pdf>
 Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/tian-filtering-1
-.pdf  used on input line 34.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<NEW_Final_Groupof5_files/figure-latex/prop-access-bar-1.pdf, id=195, 469.755pt
- x 325.215pt>
-File: NEW_Final_Groupof5_files/figure-latex/prop-access-bar-1.pdf Graphic file 
-(type pdf)
-<use NEW_Final_Groupof5_files/figure-latex/prop-access-bar-1.pdf>
-Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/prop-access-bar-
-1.pdf  used on input line 39.
+.pdf  used on input line 47.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 <NEW_Final_Groupof5_files/figure-latex/tableofcrpmedicationandexercise-1.pdf, i
-d=196, 469.755pt x 325.215pt>
+d=201, 469.755pt x 325.215pt>
 File: NEW_Final_Groupof5_files/figure-latex/tableofcrpmedicationandexercise-1.p
 df Graphic file (type pdf)
 <use NEW_Final_Groupof5_files/figure-latex/tableofcrpmedicationandexercise-1.pd
 f>
 Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/tableofcrpmedica
-tionandexercise-1.pdf  used on input line 44.
+tionandexercise-1.pdf  used on input line 54.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<NEW_Final_Groupof5_files/figure-latex/appendix-fig1-1.pdf, id=197, 469.755pt x
+<NEW_Final_Groupof5_files/figure-latex/appendix-fig1-1.pdf, id=202, 469.755pt x
  325.215pt>
 File: NEW_Final_Groupof5_files/figure-latex/appendix-fig1-1.pdf Graphic file (t
 ype pdf)
 <use NEW_Final_Groupof5_files/figure-latex/appendix-fig1-1.pdf>
 Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/appendix-fig1-1.
-pdf  used on input line 49.
+pdf  used on input line 61.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<NEW_Final_Groupof5_files/figure-latex/appendix-fig2-1.pdf, id=198, 469.755pt x
+<NEW_Final_Groupof5_files/figure-latex/appendix-fig2-1.pdf, id=203, 469.755pt x
  325.215pt>
 File: NEW_Final_Groupof5_files/figure-latex/appendix-fig2-1.pdf Graphic file (t
 ype pdf)
 <use NEW_Final_Groupof5_files/figure-latex/appendix-fig2-1.pdf>
 Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/appendix-fig2-1.
-pdf  used on input line 54.
+pdf  used on input line 68.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<NEW_Final_Groupof5_files/figure-latex/appendix-fig3-1.pdf, id=199, 469.755pt x
+<NEW_Final_Groupof5_files/figure-latex/appendix-fig3-1.pdf, id=204, 469.755pt x
  325.215pt>
 File: NEW_Final_Groupof5_files/figure-latex/appendix-fig3-1.pdf Graphic file (t
 ype pdf)
 <use NEW_Final_Groupof5_files/figure-latex/appendix-fig3-1.pdf>
 Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/appendix-fig3-1.
-pdf  used on input line 59.
+pdf  used on input line 75.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<NEW_Final_Groupof5_files/figure-latex/appendix-fig4-1.pdf, id=200, 469.755pt x
+<NEW_Final_Groupof5_files/figure-latex/appendix-fig4-1.pdf, id=205, 469.755pt x
  325.215pt>
 File: NEW_Final_Groupof5_files/figure-latex/appendix-fig4-1.pdf Graphic file (t
 ype pdf)
 <use NEW_Final_Groupof5_files/figure-latex/appendix-fig4-1.pdf>
 Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/appendix-fig4-1.
-pdf  used on input line 64.
+pdf  used on input line 82.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 562.
-[15
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 550.
+[16
 
- <./NEW_Final_Groupof5_files/figure-latex/plot-all-1.pdf>] [16 <./NEW_Final_Gro
-upof5_files/figure-latex/plot-all2-1.pdf>] [17 <./NEW_Final_Groupof5_files/figu
-re-latex/tian-fig-hba1c-65-1.pdf>] [18 <./NEW_Final_Groupof5_files/figure-latex
-/crp-by-sex-male-1.pdf>] [19 <./NEW_Final_Groupof5_files/figure-latex/crp-by-se
-x-female-1.pdf>] [20 <./NEW_Final_Groupof5_files/figure-latex/RQ1plot-1.pdf>] [
-21 <./NEW_Final_Groupof5_files/figure-latex/tian-filtering-1.pdf>] [22 <./NEW_F
-inal_Groupof5_files/figure-latex/prop-access-bar-1.pdf>] [23 <./NEW_Final_Group
-of5_files/figure-latex/tableofcrpmedicationandexercise-1.pdf>] [24 <./NEW_Final
-_Groupof5_files/figure-latex/appendix-fig1-1.pdf>] [25 <./NEW_Final_Groupof5_fi
-les/figure-latex/appendix-fig2-1.pdf>] [26 <./NEW_Final_Groupof5_files/figure-l
-atex/appendix-fig3-1.pdf>] [27 <./NEW_Final_Groupof5_files/figure-latex/appendi
-x-fig4-1.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 562.
+ <./NEW_Final_Groupof5_files/figure-latex/plot-all-1.pdf>] [17 <./NEW_Final_Gro
+upof5_files/figure-latex/plot-all2-1.pdf>] [18 <./NEW_Final_Groupof5_files/figu
+re-latex/tian-fig-hba1c-65-1.pdf>] [19 <./NEW_Final_Groupof5_files/figure-latex
+/crp-by-sex-male-1.pdf>] [20 <./NEW_Final_Groupof5_files/figure-latex/crp-by-se
+x-female-1.pdf>] [21 <./NEW_Final_Groupof5_files/figure-latex/RQ1plot-1.pdf>] [
+22 <./NEW_Final_Groupof5_files/figure-latex/tian-filtering-1.pdf>] [23 <./NEW_F
+inal_Groupof5_files/figure-latex/tableofcrpmedicationandexercise-1.pdf>] [24 <.
+/NEW_Final_Groupof5_files/figure-latex/appendix-fig1-1.pdf>] [25 <./NEW_Final_G
+roupof5_files/figure-latex/appendix-fig2-1.pdf>] [26 <./NEW_Final_Groupof5_file
+s/figure-latex/appendix-fig3-1.pdf>] [27 <./NEW_Final_Groupof5_files/figure-lat
+ex/appendix-fig4-1.pdf>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 550.
 (NEW_Final_Groupof5.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 562.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 562.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 550.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 550.
+
+LaTeX Warning: There were undefined references.
+
  ) 
 Here is how much of TeX's memory you used:
- 17146 strings out of 492891
- 262307 string characters out of 3122624
- 386124 words of memory out of 3000000
- 20586 multiletter control sequences out of 15000+200000
- 48141 words of font info for 76 fonts, out of 3000000 for 9000
+ 17065 strings out of 492891
+ 260891 string characters out of 3122624
+ 385069 words of memory out of 3000000
+ 20515 multiletter control sequences out of 15000+200000
+ 47517 words of font info for 74 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,11n,47p,1486b,580s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 43i,12n,47p,1486b,580s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{ref-asadaMedicalTechnologiesNonhuman2005} has bee
 n referenced but does not exist, replaced by a fixed one
 
@@ -1306,11 +1302,10 @@ nts/type1/public/lm/lmmi12.pfb><C:/Users/Dominik/AppData/Local/Programs/MiKTeX
 KTeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Users/Dominik/AppData/Local/Progra
 ms/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Users/Dominik/AppData/Local/Pr
 ograms/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Users/Dominik/AppData/Lo
-cal/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Dominik/AppD
-ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
-Output written on NEW_Final_Groupof5.pdf (27 pages, 798223 bytes).
+cal/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb>
+Output written on NEW_Final_Groupof5.pdf (27 pages, 769347 bytes).
 PDF statistics:
- 452 PDF objects out of 1000 (max. 8388607)
- 98 named destinations out of 1000 (max. 500000)
+ 444 PDF objects out of 1000 (max. 8388607)
+ 97 named destinations out of 1000 (max. 500000)
  6362 words of extra memory for PDF output out of 10000 (max. 10000000)
 
