@@ -25,7 +25,7 @@ affiliation:
     
 authornote: "List of group members ordered by alphabet."
 
-abstract: "*Background.* Background goes here. *Methods.* Methods go here. *Results.* Results here. *Conclusions.* Conclusions here."
+abstract: "Diabetes is a leading cause of death in Mexico and is closely linked to the obesity epidemic. Previous studies indicate that inflammation predicts the development of diabetes and is found to be a strong indicator of diabetes development and progression. However,  there are limited studies investigating the extent to which inflammation levels relate to the different treatment options among those with diabetes among Mexicans. To gain insight on the extent to which inflammation levels relate to medication, diet, and exercise we conducted a cross-sectional, secondary analysis using linear regression modeling and Chi-square tests of independence. Medication model fit parameter included (N = 357) F(2,354) = 1.06, p= 0.35, with R2= 0.01. Diet and exercise model fit parameters included (N= ) F(2, 354) = 2.70,p= 0.07 withR2= 0.02. And evaluating diet and exercise with access to care results included X2 results: X2(1) = 0.57, p= 0.45. Results indicate that among older Mexicans with diabetes there were no direct effects of treatment and access to inflammation levels."
 
 keywords          : "Diabetes, access to care, inflammation, health, Mexico, China"
 wordcount         : "X (this cannot easily be done automatically, we can also just leave it out)"
@@ -679,17 +679,17 @@ Table \@ref(tab:descriptives) (Descriptives Table)
 
 # Introduction
 
-Diabetes and its insidious complications continue to expand as a global health burden at an alarming rate. As of 2021, there were approximately 537 million adults living with diabetes in the world and this number is expected to jump to 783 million by 2045. A disproportionate percentage of these people live in low to middle income countries (LMICs). In light of the COVID-19 pandemic, it is also of great import that we better understand the relationships between diabetes and infectious diseases as diabetes both increased the severity of Covid (in people with elevated a1c levels) and has increased in incidence during the Covid 19 pandemic [@yangPrevalenceComorbiditiesIts2020] [@rohmInflammationObesityDiabetes2022].
+Diabetes and its insidious complications continue to expand as a global health burden at an alarming rate. In 2021, there were approximately 537 million adults living with diabetes in the world and this number is expected to jump to 783 million by 2045. A disproportionate percentage of these people live in low to middle income countries (LMICs). Given this predicted jump in incidence and in light of the COVID-19 pandemic, there is a heightened need in better understanding diabetes. During COVID-19, diabetes was found to both increase the severity of COVID-19 symptoms (in people with elevated a1c levels) and increase in incidence [@yangPrevalenceComorbiditiesIts2020] [@rohmInflammationObesityDiabetes2022]. Additionally, diabetes is associated with a steep increase in cardiovascular disease risk and is a leading cause of death in many low to middle income countries (LMICs) including Mexico. 
 
-Additionally, diabetes is associated with a steep increase in cardiovascular disease risk and is a leading cause of death in many low to middle income countries (LMICs) including Mexico. Although the precise classification of diabetes remains controversial because of the complex nature of its pathogenesis, there are three universally acknowledged subtypes: type 1 diabetes, type 2 diabetes, and gestational diabetes. Diabetes is a progressive disease in that the longer one has it, the more complications ensue. Therefore, it is helpful to conceptualize diabetes as a process that can be stopped, but not reversed. Research that contributes to slowing down or stopping the process can be extremely valuable to global health regardless of its contribution to cure and prevention because of the astronomical rates of diabetes in our world today. 
+Although the precise classification of diabetes remains controversial because of the complex nature of its pathogenesis, there are three universally acknowledged subtypes: type 1 diabetes, type 2 diabetes, and gestational diabetes. Diabetes is a progressive disease in that the longer one has it, the more complications ensue. Therefore, it is helpful to conceptualize diabetes as a process that can be stopped, but not reversed. Research that contributes to slowing down or stopping the process can be extremely valuable to global health regardless of its contribution to cure and prevention because of the astronomical rates of diabetes in our world today. 
 
-Inflammation is a strong indicator of diabetes development and progression. Inflammation predicts the development of diabetes [@freemanCreactiveProteinIndependent2002] [@10.1161/01.cir.103.3.357] [@schmidtMarkersInflammationPrediction1999]. Specifically, trials for drugs directed at inflammation among people with type 2 diabetes have indicated that drugs targeted at inflammation may be a therapeutic option for preventing diabetes [@10.4239/wjd.v5.i5.697].Retinopathy and focal neuropathy [@saidDiabeticNeuropathyReview2007] have also been linked to inflammatory processes. Additionally, the direct damage caused by high blood glucose leads to more inflammation and creates a nasty feedback loop wherein inflammation causes more insulin resistance which leads to high blood glucose. 
+Research shows that inflammation predicts the development of diabetes and is found to be a strong indicator of diabetes development and progression.[@freemanCreactiveProteinIndependent2002] [@10.1161/01.cir.103.3.357] [@schmidtMarkersInflammationPrediction1999]. Specifically, trials for drugs directed at inflammation among people with type 2 diabetes have indicated that drugs targeted at inflammation may be a therapeutic option for preventing diabetes [@10.4239/wjd.v5.i5.697]. In addition, retinopathy and focal neuropathy [@saidDiabeticNeuropathyReview2007] have also been linked to inflammatory processes. Conversely, when left untreated, the direct damage caused by high blood glucose leads to more inflammation and creates a nasty feedback loop wherein inflammation causes more insulin resistance which leads to high blood glucose. Furthermore, it has been found that the ability of cells to absorb insulin can be increased through diet, exercise, and oral pills. 
 
-Diabetes treatment and inflammation
-
-The ability of cells to absorb insulin can be increased through diet, exercise, and oral pills.Increasing exercise and dieting can cause major decreases in inflammation. Some of the drugs for type 2 diabetes aimed at increasing insulin sensitivity also decrease inflammation (e.g., drugs that cause weight loss). In the opposite direction, insulin can cause severe low blood glucose levels that initiate a stress response causing more inflammation.
+A current gap in literature exists investigating the relationship between inflammation levels and the different treatments offered to those with diabetes, such as diet, exercise, and medication. This study seeks to fill this gap by investigating the extent to which inflammation levels relate to medication and diet and exercise among older Mexicans with diabetes.
 
 # Methods
+## Data
+To examine the extent to which inflammation relates to medication, diet, and exercise among older Mexicans, we performed secondary data analyses using the two datasets from from the Wave 1 Study on Global Ageing (SAGE) from the World Health Organization (WHO). Cross-sectional baseline data was originally collected in 2016 through in-person interviews lasting on average between 90-120 minutes among Mexicans (age range) in Mexico. 
 
 ## Procedures and Sample
 
@@ -715,7 +715,8 @@ A variable was then created that indicated "unknown treatment" if the diabetes t
 
 ### Biomarkers
 
-A subset of people participating in the SAGE study underwent biomarker analysis in Mexico (n = 1831) and in China (n = 12,077). Exclusions included ## people for incomplete data, ### people for having an elevated CRP value that might indicate injury or infection. The sample was ##% female and ##% male. Participant ages for this analysis ranged from 50 to 105 years old  (M = 68.27, SD = 9.23). 
+Biomarkers.A subset of people participating in the SAGE study underwentbiomarker analysis in Mexico (n = 1831) and in China (n = 12,077). Exclusions included## people for incomplete data, ### people for having an elevated CRP value that might indicate injury or infection. The sample was ##% female and ##% male. Participant ages for this analysis ranged from 50 to 105 years old (M = 68.27, SD = 9.23).
+
 
 Biomarkers were analyzed using dried blood spot (DBS) procedures, and collected via standard venipuncture into an EDTA tube. In order to go from venous blood to DBS, the samples of whole blood were homogenized and then pipetted in 20uL aliquots onto standard Whatman 903 filter paper. The samples were left to dry for 24 hours at room temperature before they were analyzed. We punched out a 6mm spot from the DBS card and used 250 uL of PBS buffer pH = 7 to elute for 14 hours. The Abbott Architect CI8200 chemistry analyzer was used to analyzed the DBS eluates in order to obtain CRP values and it was used for HbA1c as well. 
 
@@ -736,16 +737,16 @@ comment 495
 # Results
 
 ## Regression 1
-Demo of inline code usage. We found that this regression model (Table \@ref(tab:regtab1)) using `r mreg1_N` participants was not significant $F$(`r mreg1_f_df1`, `r mreg1_f_df2`) = `r mreg1_f`, $p$ `r mreg1_f_p` with $R^2$ = `r mreg1_r2`. The regression coefficient for age was $b_{age}$ = `r mreg1_age` ($SE$ = `r mreg1_age_se`, $p$ `r mreg1_age_p`), and for use of medication $b_{medication}$ = `r mreg1_med` ($SE$ =  `r mreg1_med_se`, $p$ `r mreg1_med_p`).
+For our first research question, does taking medication lower inflammation levels, we found that this regression model (Table \@ref(tab:regtab1)) using `r mreg1_N` participants was not significant $F$(`r mreg1_f_df1`, `r mreg1_f_df2`) = `r mreg1_f`, $p$ `r mreg1_f_p` with $R^2$ = `r mreg1_r2`. The regression coefficient for age was $b_{age}$ = `r mreg1_age` ($SE$ = `r mreg1_age_se`, $p$ `r mreg1_age_p`), and for use of medication $b_{medication}$ = `r mreg1_med` ($SE$ =  `r mreg1_med_se`, $p$ `r mreg1_med_p`). Therefore, based on these results we fail to reject our null hypothesis and we cannot conclude that there is a relationship between medication and inflammation levels on average in this population. 
 
 ## Regression 2
 
-Demo of inline code usage. We found that this regression model  (Table \@ref(tab:RQ2)) using `r reg2_N` participants was not significant $F$(`r reg2_f_df1`, `r reg2_f_df2`) = `r reg2_f`, $p$ `r reg2_f_p` with $R^2$ = `r reg2_r2`. The regression coefficient for age was $b_{age}$ = `r reg2_age` ($SE$ = `r reg2_age_se`, $p$ `r reg2_age_p`), and for diet and exercise $b_{Diet}$ = `r reg2_de` ($SE$ =  `r reg2_de_se`, $p$ `r reg2_de_p`).
+Our research question two looked at diet and exercise as a treatment for diabetes on predicting inflammation levels. We found that this regression model  (Table \@ref(tab:RQ2)) using `r reg2_N` participants was not significant $F$(`r reg2_f_df1`, `r reg2_f_df2`) = `r reg2_f`, $p$ `r reg2_f_p` with $R^2$ = `r reg2_r2`. The regression coefficient for age was $b_{age}$ = `r reg2_age` ($SE$ = `r reg2_age_se`, $p$ `r reg2_age_p`), and for diet and exercise $b_{Diet}$ = `r reg2_de` ($SE$ =  `r reg2_de_se`, $p$ `r reg2_de_p`). Based on these results, fail to reject our null hypothesis and conclude that diet and exercise does not predict inflammation levels on average in this population. 
 
 ## Chi Square Test
+To better understand differences in outcomes in health among those partaking in diet and exercise versus those that are not to treat diabetes, we seek to understand if there is difference in those that accessed health care in the last year and those that use diet and exercise as a treatment option for diabetes. $\chi^2$ results: ($\chi^2$(`r chi_df$parameter`) = `r chi_df$statistic`, $p$ `r report_p(chi_df$p.value)`). Based on these results we fail to reject the null hypothesis, and cannot conclude seeing a doctor in the last year relates to individuals using diet and exercise as treatment for diabetes in this population sample. 
 
-First $\chi^2$ results: ($\chi^2$(`r chi_df$parameter`) = `r chi_df$statistic`, $p$ `r report_p(chi_df$p.value)`).
-Second $\chi^2$ results: ($\chi^2$(`r chi_df_access$parameter`) = `r chi_df_access$statistic`, $p$ `r report_p(chi_df_access$p.value)`).
+Looking at individuals who partake in diet and exercise only as a treatment for diabetes, we seek to answer the extent to which seeing a doctor in the last year relates to inflammation levels. $\chi^2$ results: ($\chi^2$(`r chi_df_access$parameter`) = `r chi_df_access$statistic`, $p$ `r report_p(chi_df_access$p.value)`). Based on these results, we fail to reject our null hypothesis and cannot conclude that seeing a doctor in the last year relates to inflammation levels in this populaiton sample. 
 
 # Discussion 
 
@@ -755,8 +756,9 @@ Ultimately we see that inflammation is impacted by diabetes treatments. Access t
 
 ## Limitations
 
-We were not able to look at pills and insulin separately and some their effects have the potential to cancel each other out. The sex variable was established through interviewer discernment. 
-* combination therapy is a possibility that we could not account for. Additionally we do not know exactly which medications people were taking. 
+Among the different treatment options for diabetes, medication can mean either pills or insulin. There are different implications for these representative treatment options for inflammation and diabetes. However, we were not able to look at pills and insulin separately, or medication combinations, and some of their effects have the potential to cancel each other out.Given that we do not know exactly which medication people were taking, combination therapy is a possibility we could not account for. In addition, the sex variable was established through interviewer discernment and was not self reported. 
+
+Because data analyzed are from cross-sectional studies only, we cannot infer causality and there are likely many factors that account for significant differences in inflammation levels among older Mexicans. 
 
 \newpage
 
