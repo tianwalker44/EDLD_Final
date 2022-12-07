@@ -180,7 +180,7 @@ data %>%
   mutate(diabetes_stat = recode(diabetes_stat, "diagnosed" = "Diagnosed", "no_diabetes" = "No Diabetes", "undiagnosed" = "Undiagnosed")) %>%
   filter(!is.na(diabetes_stat)) %>% 
   ggplot(aes(hba1c,crp))  + 
-  labs(title = "Relationship between CRP and HbA1c by Medication for Diagnosis", x = "HbA1c", y = "CRP")+
+  labs(title = "CRP and HbA1c by Medication for Diagnosis", x = "HbA1c", y = "CRP")+
   geom_point(aes(color = as.factor(medication )) )+ 
   facet_wrap(~diabetes_stat) +
   theme_apa() +
@@ -199,7 +199,7 @@ data %>%
   geom_vline(xintercept = 6.5, color = "dodgerblue")+ 
   scale_color_brewer(palette = 15, name = "Type of Treatment", labels = c("Diet & Exercise", "Medication", "No Treatment")) + 
   theme_apa() + 
-  labs(title = "The Relationship Between Inflammation and HbA1c by Diabetes Treatment", caption = "dark green points should not be there",
+  labs(title = "Inflammation and HbA1c by Diabetes Treatment", caption = "dark green points should not be there",
        x = "HbA1c",
        y = "Inflammation (CRP)"))
 
@@ -229,7 +229,7 @@ plot.a <- data %>%
 (tian_hba1c_65 <- plot.a + 
     font("xlab", size = 14) + font("ylab", size = 14)+
     font("xy.text", size = 14, color = "black", face = "bold") +
-  labs( title = "Relationship Between CRP and HbA1c by Diabetes Treatment", 
+  labs( title = "CRP and HbA1c by Diabetes Treatment", 
         caption =  "Note that all data points with No Treatment were removed from below HbA1c 6.5", 
         x = "HbA1c", 
         y = "Inflammation (CRP)") + 
@@ -264,7 +264,7 @@ crp_by_sex %>%
   geom_col(aes(fill = a1c_dichot_words), position = "dodge") +
   labs(x = "Diabetes Treatment",
        y = "CRP Level (Male)",
-       title = "Relationship Between Diabetes Treatment and Male CRP by HbA1c")+
+       title = "Diabetes Treatment and Male CRP by HbA1c")+
   theme(plot.title = element_text(hjust = 0.5))+
   scale_x_discrete(labels = c("Diet & Exerc.", "Medication", "No Treatment"))+
   scale_fill_brewer(palette = "Blues", name = "HbA1c Levels", labels = c("Elevated", "In Range"))+
@@ -281,7 +281,7 @@ crp_by_sex %>%
   geom_col(aes(fill = a1c_dichot_words), position = "dodge")+
   labs(x = "Diabetes Treatment",
        y = "CRP Level (Female)",
-       title = "Relationship Between Diabetes Treatment and Female CRP by HbA1c")+
+       title = "Diabetes Treatment and Female CRP by HbA1c")+
    theme(plot.title = element_text(hjust = 0.5))+
   scale_x_discrete(labels = c("Diet & Exerc.", "Medication", "No Treatment"))+
   scale_fill_brewer(palette = "RdPu", name = "HbA1c Levels", labels = c("Elevated", "In Range"))+
@@ -307,7 +307,7 @@ RQ1_df %>%
   geom_smooth(aes(color = medication), method = "lm", se = FALSE) + 
   scale_color_brewer(palette = 11, name = "Taking Medication?", labels = c("Yes", "No")) + 
   theme_apa() + 
-  labs( title = "The Relationship Between Age and Inflammation by Medication", 
+  labs( title = "Age and Inflammation by Medication", 
         caption =  "SAGE data from Mexico", 
         x = "Age", 
         y = "Inflammation (CRP)")
@@ -325,7 +325,7 @@ dat %>%
   geom_smooth(aes(color = medication), method = "lm", se = FALSE, color = "gray") + 
   #scale_color_brewer(palette = 14, name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication")) + 
   theme_apa() +
-  labs( title = "The Relationship Between Blood Sugar and Inflammation by Treatment", 
+  labs( title = "Blood Sugar and Inflammation by Treatment", 
         caption =  "SAGE data from Mexico", 
         x = "HbA1c", 
         y = "Inflammation (CRP)") +
@@ -573,14 +573,14 @@ dat2_long %>%
   filter(crp < 5) %>% 
   group_by(id) %>% 
   summarize(mean_hs = mean(hs_score, na.rm = TRUE), crp, levels_dbts, a1c_dichot_words) %>% 
-  ggplot(aes(mean_hs, crp)) + geom_point(aes(color = levels_dbts)) + geom_smooth(aes(color = levels_dbts), method = "lm") + scale_color_brewer(type = "div", palette = 4, name = "Diabetes Level", labels = c("No Diabetes", "Treated Diabetes", "Undiagnosed Diabetes", "Untreated Diabetes")) + labs(title = "CRP and Health Score by Diabetes", caption = "Mean health score is calculated such that higher scores = worse health", x = "Mean Health Score", y = "Inflammation (CRP) Levels")+
+  ggplot(aes(mean_hs, crp)) + geom_point(aes(color = levels_dbts)) + geom_smooth(aes(color = levels_dbts), method = "lm") + scale_color_brewer(type = "div", palette = 4, name = "Diabetes Level", labels = c("No Diabetes", "Treated Diabetes", "Undiagnosed Diabetes", "Untreated Diabetes")) + labs(title = "CRP and Health Score by Diabetes", caption = "Health score is calculated such that higher scores = worse health", x = "Mean Health Score", y = "Inflammation (CRP) Levels")+
   theme_apa()
 
 ```
 
 (ref:appendix-fig1) Here goes the caption.
 
-```{r, appendix-fig2, fig.cap="(ref:appendix-fig2)"}
+```{r eval=FALSE, appendix-fig2, fig.cap="(ref:appendix-fig2)", include=FALSE}
 #Why is this repeated?
 #pivoting the data
 dat2_long <- dat2 %>% 
@@ -633,7 +633,7 @@ dat2_long %>%
   filter(!is.na(diabetes_treat)) %>% 
   group_by(id) %>% 
   summarize(mean_hs = mean(hs_score, na.rm = TRUE), hba1c, diabetes_treat) %>% 
-  ggplot(aes(mean_hs, hba1c)) + geom_point(aes(color = diabetes_treat)) + geom_smooth(aes(color = diabetes_treat), method = "lm") + labs(title = "Relationship between HbA1c and Mean Health Score by Treatment", x = "Mean Helth Score", y = "HbA1c") +
+  ggplot(aes(mean_hs, hba1c)) + geom_point(aes(color = diabetes_treat)) + geom_smooth(aes(color = diabetes_treat), method = "lm") + labs(title = "HbA1c and Mean Health Score by Treatment", x = "Mean Helth Score", y = "HbA1c") +
   scale_color_brewer(palette = 3, name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication", "No Treatment")) +
   theme_apa()
 ```
