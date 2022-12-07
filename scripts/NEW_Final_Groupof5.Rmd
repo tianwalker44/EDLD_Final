@@ -177,8 +177,10 @@ data %>%
 
 ```{r, plot-all, fig.cap = "(ref:plot-all)"}
 (plot_all <- dat %>% 
+  mutate(diabetes_stat = recode(diabetes_stat, "diagnosed" = "Diagnosed", "no_diabetes" = "No Diabetes", "undiagnosed" = "Undiagnosed")) %>%
   filter(!is.na(diabetes_stat)) %>% 
   ggplot(aes(hba1c,crp))  + 
+  labs(title = "Relationship between CRP and HbA1c by Medication for Diagnosis", x = "HbA1c", y = "CRP")+
   geom_point(aes(color = as.factor(medication )) )+ 
   facet_wrap(~diabetes_stat) +
   theme_apa() +
@@ -575,6 +577,7 @@ dat2_long %>%
 (ref:appendix-fig1) Here goes the caption.
 
 ```{r, appendix-fig2, fig.cap="(ref:appendix-fig2)"}
+#Why is this repeated?
 #pivoting the data
 dat2_long <- dat2 %>% 
   pivot_longer(cols = 5:10, names_to = "health_state_vars", values_to = "hs_score")
