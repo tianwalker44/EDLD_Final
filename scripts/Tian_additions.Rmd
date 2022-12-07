@@ -1,0 +1,474 @@
+---
+title             : "Relations between Inflammation, access to care and Diabetes in a repesentative population of Mexico."
+shorttitle        : "Inflammation, access to care and Diabetes in Mexico."
+
+author: 
+  - name          : "Dominik Grätz"
+    affiliation   : "1"
+    email         : "dgrtz@uoregon.edu"
+  - name          : "Rachel Miller-Moudgil"
+    affiliation   : "1"
+    email         : "rmillerm@uoregon.edu"
+  - name          : "Amber Somarriba"
+    affiliation   : "1"
+    email         : "asomarri@uoregon.edu"
+  - name          : "Brittany Spinner"
+    affiliation   : "1"
+    email         : "bspinner@uoregon.edu"
+  - name          : "Tian Walker"
+    affiliation   : "1"
+    email         : "twalker@uoregon.edu"
+
+affiliation:
+  - id            : "1"
+    institution   : "University of Oregon"
+    
+authornote: "List of group members ordered by alphabet."
+
+abstract: "*Background.* Background goes here. *Methods.* Methods go here. *Results.* Results here. *Conclusions.* Conclusions here."
+
+keywords          : "Diabetes, access to care, inflammation, health, Mexico, China"
+wordcount         : "X (this cannot easily be done automatically, we can also just leave it out)"
+
+bibliography      : [references.bib]
+link-citations    : true
+
+floatsintext      : yes
+figurelist        : yes
+tablelist         : yes
+footnotelist      : no
+linenumbers       : no
+mask              : no
+draft             : no
+
+documentclass     : "apa6"
+classoption       : "man"
+output            : 
+  papaja::apa6_pdf:
+    extra_dependencies: ["float"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, warning = FALSE, echo = FALSE, fig.pos = "H", out.extra = "")
+library(tidyverse)
+library(rio)
+library(here)
+library(papaja)
+library(janitor)
+library(tidyr)
+library(stargazer)
+library(ggpubr)
+source(file = here("scripts", "report_p.R"))
+```
+
+```{r data-cleaning-tian, echo=FALSE, eval=FALSE}
+#code used to create extracted data file - Mexico 
+#Rachel's note: This does not need re-run, as this was Tian joining two Mexico datasets and renaming variables and outputting mexico_raw_dat.csv. We should leave the code here so Joe can see how much initial data cleaning she worked on.
+#great idea #dg
+mex_survey <- import("Mexico_IND.sav")
+mex_bio <- import("MexicoLabData.csv")
+mex_survey$id <- as.numeric(mex_survey$id)
+mexico <- mex_survey %>%
+  left_join(mex_bio, by = 'id')
+mexico_raw_dat <- mexico %>% 
+  select(income, q4022,  sex = q0406 , q0407, hba1c, crp, q4023a, q4024, weight = q2507, height = q2506, waist = q2508, marriage = q0408, q2000:q2024) %>% 
+  rename(diagnosis = q4022, age = q0407, medication = q4023a, dt_exrcse = q4024)
+write_csv(mexico_raw_dat, file = "mexico_raw_dat.csv")
+```
+
+```{r data-cleaning-rachel, echo=FALSE}
+#Rachel's code to drop irrelevant variables, filter, and add a medication*dt_exrcse variable.
+dat <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble
+data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset
+data <- data %>% 
+  select(sex, diagnosis, age, hba1c, crp, medication, dt_exrcse, q5026) %>% 
+  rename(access = q5026) %>% 
+  filter(age >=50 & diagnosis == 1 & crp < 5) %>% 
+  as_tibble() #Selecting only relevant variables, renaming for clarification, and filtering for people with a diabetes diagnosis and high levels of inflammation (crp).
+data <- data %>% 
+  mutate(med_dt_exrcse = medication*dt_exrcse, .after=dt_exrcse) %>% 
+  mutate(med_dt_exrcse = dplyr::recode(med_dt_exrcse, '4' = "1", '1' = "2", '2' = "2")) #Adding a new column for people who both take medication AND diet and exercise. 1 = yes for both, 2 = not yes for both
+#making categorical variables factors
+data <- data %>%
+  mutate(sex = as.factor(sex),
+         diagnosis = as.factor(diagnosis),
+         medication = as.factor(medication),
+         dt_exrcse = as.factor(dt_exrcse),
+         med_dt_exrcse = as.factor(med_dt_exrcse),
+         access = as.factor(access))
+#For our own sanity, this is a mini dataframe of variables,  descriptions, and  coding criteria (if applicable). NOTE TO ALL: If you add any new variable to the dataset, please update this or let me know so I can update it! -Rachel
+col1_var <- c("sex",
+              "diagnosis",
+              "age",
+              "hba1c",
+              "crp",
+              "medication",
+              "dt_exrcse",
+              "med_dt_exrcse",
+              "access",
+              "num_care")
+col2_desc <- c("participant gender (as reported by researcher)",
+               "whether the participant has been diagnosed with diabetes",
+               "participant age",
+               "participant blood sugar level over the past 3 months",
+               "participant inflammation level",
+               "whether the participant is currently taking medication for diabetes inflammation",
+               "whether the participant is on a diabetes-specific diet and exercise plan",
+               "whether the participant is on BOTH medication and a diet and exercise plan",
+               "whether the participant has accessed medical care in the past year",
+               "number of times the participant has accessed medical care in the past year")
+col3_code <- c("male = 1, female = 2",
+               "yes = 1, no = 2", 
+               "discrete variable",
+               "continuous variable",
+               "continuous variable",
+               "yes = 1, no = 2",
+               "yes = 1, no = 2",
+               "yes = 1, no = 2",
+               "yes = 1, no = 2",
+               "discrete variable")
+data_variables <- data.frame(col1_var, col2_desc, col3_code) %>% 
+  rename("Variable name" = col1_var, "Description" = col2_desc, "Coding criteria" = col3_code)
+```
+
+
+```{r variables-table}
+#data_variables
+```
+
+```{r data-cleaning-tian2, fig.cap = "(ref:fig0)"}
+data <- data %>% 
+  mutate(diabetes_treat=case_when(
+    medication== 1  ~ "medication",
+    dt_exrcse==1 ~ "dt_excercise",
+    medication == 2  & dt_exrcse == 2 ~ "no_treatment"))
+dat <- dat %>% 
+  mutate(diabetes_treat=case_when(
+    medication== 1  ~ "medication",
+    dt_exrcse==1 ~ "dt_excercise",
+    medication == 2  & dt_exrcse == 2 ~ "no_treatment"))
+#data <- data %>% 
+ # filter(diabetes_treat != "no_treatment" & hba1c < 6.5)
+#This above code filter isn't filtering the "and" with each line of data but first filtering all of those that don't equal no treatment and then filtering out everyone with an hba1c below 6.5...which is not what we want 
+#So I made a new variable that we can use to filter:
+data <- data %>% 
+  mutate(treatment_info = if_else(diabetes_treat == "no_treatment" & hba1c < 6.5, "unknown_treat", "known_treat"))
+#This graph is to check that the correct data points were coded for and can be filtered out. It looks good. 
+data %>% 
+  ggplot(aes(hba1c, crp)) + geom_point(aes(color = treatment_info))
+data <- data %>% 
+  filter(treatment_info == "known_treat")
+#table(data$treatment_info)  #check to be sure that the filter worked. It looks good
+```
+
+(ref:fig0) Figure \@ref(fig:data-cleaning-tian2) caption goes here.
+
+Here I point the reader to figure \@ref(fig:data-cleaning-tian2).
+
+
+```{r fig1, fig.cap = "(ref:fig1)"}
+#this is a check to see that the code above worked. It did! (which we know because the dark green - no treatment category is removed from the plot below 6.5 but remain above 6.5)
+#AND it is super interesting to see what is left behind! only 3 data points in this group of people with healthy blood sugar levels were doing diet and exercise. 
+plot.a <- data %>% 
+filter(crp <5, age > 50) %>% 
+ ggplot(aes(hba1c, crp)) + geom_point(aes(color = diabetes_treat), size = 3) + scale_color_brewer(palette = 15) + theme_dark()
+plot.a + font("xlab", size = 34) + font("ylab", size = 34)+ font("xy.text", size = 25, color = "black", face = "bold")
+#?geom_abline
+```
+
+(ref:fig1) This is the caption of figure \@ref(fig:fig1).
+
+Here, I want to point the reader to Figure \@ref(fig:fig1).
+
+
+```{r pivot-group_by}
+#Code to fulfill all of Joe's requirements.
+#pivot_wider, to investigate crp levels by sex
+crp_by_sex <- data %>% pivot_wider(names_from="sex", values_from="crp") %>% rename(male="1",female="2") %>% as_tibble
+#pivot_longer, to investigate medication by crp level
+medication_by_crp <- data %>% pivot_longer(cols = "crp", "medication", values_to = "crp","on medication?", names_repair = "unique") #This isn't really doing what I want it to, but I'm out of time for now. -Rachel
+#group_by, to look at the mean crp of participants who both take medicine and diet and exercise, versus those who don't.
+groups_med_dt_exrcse <- data %>%
+  group_by(medication, dt_exrcse) %>% 
+  dplyr::summarize(mean = mean(crp)) %>% 
+  as_tibble()
+```
+
+```{r RQ1, render = 'normal print'}
+#RQ1: Does taking medication lower inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
+RQ1_df <- data %>% 
+  filter(!is.na(medication & !is.na(hba1c) & !is.na(age) & is.na(crp)))
+mreg1 <- lm(crp~age + medication, data = RQ1_df)
+#summary(mreg1) #No significant findings. Oh well!
+#mreg1_plot <- ggplot(RQ1_df, aes(medication, hba1c, age)) + geom_point() + stat_smooth(method = "lm", formula = mreg1, geom = "smooth") #This plot looks terrible right now, so I will see if we need to come back to it later.
+#table(data$medication) #this a quick way to see the n in both categories
+```
+
+```{r, fig2, fig.cap = "(ref:fig2)"}
+RQ1_df %>% 
+  ggplot(aes(age, crp)) + 
+  geom_point(aes(color = medication), alpha = 0.5) + 
+  geom_smooth(aes(color = medication), method = "lm", se = FALSE) + 
+  scale_color_brewer(palette = 11) + 
+  theme_dark() + 
+  labs( title = "The Relationship Between Blood Sugar and Inflammation by Medication", 
+        caption =  "SAGE data from Mexico", 
+        x = "Age", 
+        y = "Inflammation (CRP)")
+```
+
+(ref:fig2) This is the caption this figure.
+
+Here, I want to point the reader to Figure \@ref(fig:fig2).
+
+```{r, fig3, fig.cap = "(ref:fig3)"}
+#This visualization is the one that alerted me to the fact that my original attempt at filtering had removed all data above 6.5. We do not need to show this graph. 
+dat %>% 
+  filter(diabetes_treat != "no_treatment" & hba1c < 6.5) %>% 
+  filter(medication != 0) %>% 
+ggplot(aes(hba1c, crp)) + 
+  geom_point(aes(color = diabetes_treat), alpha = 0.5) + 
+  geom_smooth(aes(color = medication), method = "lm", se = FALSE) + 
+  scale_color_brewer(palette = 11) + 
+  theme_dark() + 
+  labs( title = "The Relationship Between Blood Sugar and Inflammation by Medication", 
+        caption =  "SAGE data from Mexico", 
+        x = "Age", 
+        y = "Inflammation (CRP)")
+```
+
+(ref:fig3) This is the caption of figure \@ref(fig:fig3).
+
+Here, I want to point the reader to Figure \@ref(fig:fig3).
+
+```{r regtab1}
+mreg1_summary<- summary(mreg1)
+table1 <- apa_print(mreg1)
+table1$table$predictor <- c('Intercept', 
+                            'Age',
+                            'Medication')
+
+colnames(table1$table)[1] <- "Predictor"
+
+apa_table(table1$table,
+          caption = "Effect of Medication on CRP, controlling for Age. ",
+          note = paste0("Model fit: $F$(", mreg1_summary$fstatistic[2], ", ", mreg1_summary$fstatistic[3], ") = ", round(mreg1_summary$fstatistic[1], 2), ", $p$ ", report_p(get_model_p(mreg1_summary)), ", $R^2$ = ", round(mreg1_summary$r.squared, 2), "."))
+mreg1_N <- nrow(RQ1_df)
+#gets us the reg weights
+mreg1_inter <- mreg1_summary$coefficients[1, 1] %>% round(3)
+mreg1_age <- mreg1_summary$coefficients[2, 1] %>% round(3)
+mreg1_med <- mreg1_summary$coefficients[3, 1] %>% round(3)
+#gets us the standard errors
+mreg1_inter_se <- mreg1_summary$coefficients[1, 2] %>% round(3)
+mreg1_age_se <- mreg1_summary$coefficients[2, 2] %>% round(3)
+mreg1_med_se <- mreg1_summary$coefficients[3, 2] %>% round(3)
+#gets us the p values (the output is a string that uses conventions in reporting p values)
+mreg1_inter_p <- mreg1_summary$coefficients[1, 4] %>% report_p()
+mreg1_age_p <- mreg1_summary$coefficients[2, 4] %>% report_p()
+mreg1_med_p <- mreg1_summary$coefficients[3, 4] %>% report_p()
+#F test of the entire model
+mreg1_f <- mreg1_summary$fstatistic[1] %>% round(3)
+mreg1_f_df1 <- mreg1_summary$fstatistic[2] %>% round(3)
+mreg1_f_df2 <- mreg1_summary$fstatistic[3] %>% round(3)
+mreg1_f_p <- report_p(get_model_p(mreg1_summary))
+mreg1_r2 <- mreg1_summary$r.squared %>% round(3)
+```
+
+Demo of inline code usage. We found that this regression model (Table \@ref(tab:regtab1)) using `r mreg1_N` participants was not significant $F$(`r mreg1_f_df1`, `r mreg1_f_df2`) = `r mreg1_f`, $p$ `r mreg1_f_p` with $R^2$ = `r mreg1_r2`. The regression coefficient for age was $b_{age}$ = `r mreg1_age` ($SE$ = `r mreg1_age_se`, $p$ `r mreg1_age_p`), and for use of medication $b_{medication}$ = `r mreg1_med` ($SE$ =  `r mreg1_med_se`, $p$ `r mreg1_med_p`).
+
+
+\newpage 
+
+```{r RQ2}
+#RQ2: Does diet and exercise predict inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
+RQ2_df <- data %>%
+  filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age), !(is.na(crp)))
+reg2 <- lm(crp ~ age + dt_exrcse, data = data)
+#summary(reg2)
+#stargazer(reg2, type = "text")
+#Could not get the summary table to work! (AS)
+reg2_summary <- summary(reg2)
+table2 <- apa_print(reg2)
+table2$table$predictor <- c('Intercept',
+                            'Age',
+                            'Diet and Exercise')
+
+colnames(table2$table)[1] <- "Predictor"
+
+apa_table(table2$table,
+          caption = "Effect of Diet and Exercise on CRP, controlling for Age.",
+          note = paste0("Model fit: $F$(", reg2_summary$fstatistic[2], ", ", reg2_summary$fstatistic[3], ") = ", round(reg2_summary$fstatistic[1], 2), ", $p$ ", report_p(get_model_p(reg2_summary)), ", $R^2$ = ", round(reg2_summary$r.squared, 2), "."))
+#table(data$dt_exrcse) #this a quick way to see the n in both categories
+reg2_N <- nrow(RQ2_df)
+#gets us the reg weights
+reg2_inter <- reg2_summary$coefficients[1, 1] %>% round(3)
+reg2_age <- reg2_summary$coefficients[2, 1] %>% round(3)
+reg2_de <- reg2_summary$coefficients[3, 1] %>% round(3)
+#gets us the standard errors
+reg2_inter_se <- reg2_summary$coefficients[1, 2] %>% round(3)
+reg2_age_se <- reg2_summary$coefficients[2, 2] %>% round(3)
+reg2_de_se <- reg2_summary$coefficients[3, 2] %>% round(3)
+#gets us the p values (the output is a string that uses conventions in reporting p values)
+reg2_inter_p <- reg2_summary$coefficients[1, 4] %>% report_p()
+reg2_age_p <- reg2_summary$coefficients[2, 4] %>% report_p()
+reg2_de_p <- reg2_summary$coefficients[3, 4] %>% report_p()
+#F test of the entire model
+reg2_f <- reg2_summary$fstatistic[1] %>% round(3)
+reg2_f_df1 <- reg2_summary$fstatistic[2] %>% round(3)
+reg2_f_df2 <- reg2_summary$fstatistic[3] %>% round(3)
+reg2_f_p <- report_p(get_model_p(reg2_summary))
+reg2_r2 <- reg2_summary$r.squared %>% round(3)
+```
+
+Demo of inline code usage. We found that this regression model  (Table \@ref(tab:RQ2)) using `r reg2_N` participants was not significant $F$(`r reg2_f_df1`, `r reg2_f_df2`) = `r reg2_f`, $p$ `r reg2_f_p` with $R^2$ = `r reg2_r2`. The regression coefficient for age was $b_{age}$ = `r reg2_age` ($SE$ = `r reg2_age_se`, $p$ `r reg2_age_p`), and for diet and exercise $b_{Diet}$ = `r reg2_de` ($SE$ =  `r reg2_de_se`, $p$ `r reg2_de_p`).
+
+
+```{r RQ3-brittany, eval=FALSE, include=FALSE}
+#RQ3: For those with vs. without access to medical care, what is the effect of diet and exercise on inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
+# data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset #From Rachel: I'm hashtagging this out, because if you re-import the dataset here, it loses all the cleaning from earlier. 
+ #filter(!is.na(medication) | !is.na(hba1c) | !is.na(age) | !is.na(crp))
+RQ3df <- data %>% 
+  filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age), !(is.na(crp)), !is.na(access)) #From Rachel: There were inconsistencies from the cleaning to here about the variable being called care vs. access. I switched them all to access, here and in the code below.
+RQ3df <- RQ3df %>% select(diagnosis, age, crp, dt_exrcse, access) %>%  
+  filter(age >=50 & (diagnosis == 1 | crp < 5))
+RQ3df$access <- factor(RQ3df$access,
+                      levels = c(1,2), labels = c("Yes","No")) 
+table(RQ3df$access)
+tibble(RQ3df)
+RQ3df$crp[RQ3df$crp < 2.5] <- "low"
+RQ3df$crp[RQ3df$crp > 2.6] <- "high"
+tibble(RQ3df$crp)
+RQ3df$crp <- RQ3df %>% mutate(category=cut(crp, 
+                                           breaks=c(2.5, 2.6), 
+                                           labels=c("low","high")))
+min(RQ3)
+tibble(RQ3df$crp)
+#if_else <3 low, otherwise 
+table(RQ3df$crp)
+prop <- prop.table(table(RQ3df$access))
+prop2 <- prop.table(table(RQ3df$crp))
+prop
+prop2
+RQ3_barplot <- barplot(prop, xlab = "Individuals 50yo or older with Diabetes that partake in Diet&/Exercise and saw a Dr. in the Last Year", ylab = "Proportion of Individuals", main = "L") #need to add title and subtitle(?)
+#chi_df <- chisq.test(RQ3df$access, RQ3df$crp) #need to get rid of NA values in care and possible create two dfs with yes no and then run chi between dfs of data$care but this is the code 
+#chi_df
+#chi_df$expected
+#chi_df$observed 
+#w/ hba1c
+RQ4df <- RQ3df %>% select(diagnosis, age, hba1c, crp, dt_exrcse, access) %>%  filter(age >=50 & (diagnosis == 1 | crp < 5 | hba1c >= 6.5)) 
+RQ4df$access <- factor(RQ4df$access,
+                      levels = c(1,2), labels = c("Yes","No")) 
+RQ4df$crp <- RQ4df %>% 
+  mutate(crp2 = factor(ifelse(crp <= 3.0, "low", "high"), levels = c("low", "high")))
+```
+
+
+```{r descriptives table prep}
+summary <- data %>%
+  summarize(country = "Mexico",
+            N = n(),
+            N_male = sum(sex == 1, na.rm = TRUE), #1 is male
+            N_male_pct = round((N_male/N*100), 1),
+            N_female = sum(sex == 2, na.rm = TRUE),
+            N_female_pct = round((N_female/N)*100, 1),
+            N_unknown = sum(is.na(sex)),
+            N_unknown_pct = round((N_unknown/N)*100, 1),
+            diabetes_diag = sum(diagnosis == 1, na.rm = TRUE),
+            diabetes_diag_pct = round((diabetes_diag/N)*100, 1),
+            diabetes_undiag = sum(hba1c >= 6.5 & diagnosis == 2, na.rm = TRUE),
+            diabetes_undiag_pct = round((diabetes_undiag/N)*100, 1),
+            age_M = round(mean(age), 1),
+            age_SD = round(sd(age), 1))
+
+chi <- chisq.test(table(data$sex))
+
+```
+
+```{r tableofcrpmedicationandexercise, fig.cap = "(ref:fig4)"}
+ggplot(groups_med_dt_exrcse, aes(medication, mean))+
+  geom_col(aes(fill = dt_exrcse),
+           position = "dodge")+
+  labs(x = "Medication",
+       y = "Mean CRP Level",
+       title = "Mean CRP levels for medication and exercise groups")+
+  scale_fill_discrete(name = "Exercise", labels = c("Yes", "No"))+
+  scale_x_discrete(labels=c("Medication", "No Medication"))
+```
+
+(ref:fig4) Caption for Figure \@ref(fig:tableofcrpmedicationandexercise) goes here.
+
+Here I reference figure \@ref(fig:tableofcrpmedicationandexercise).
+
+
+|  |            |`r summary$country[1]` |
+|:-|:-----------|:----------------------|
+|$N_{total}$|           |`r summary$N[1]`                                                     |
+|Sex        |           |                                                                     |
+|           |male       |`r summary$N_male[1]` (`r summary$N_male_pct[1]` %)                  |
+|           |female     |`r summary$N_female[1]` (`r summary$N_female_pct[1]` %)              |
+|           |unknown    |`r summary$N_unknown[1]` (`r summary$N_unknown_pct[1]` %)            |
+|Age        |           |`r summary$age_M[1]` ($SD$ = `r summary$age_SD[1]`)                  |
+
+Table: (\#tab:descriptives) Descriptive statistics.
+
+
+# Introduction
+
+Diabetes and its insidious complications continue to expand as a global health burden at an alarming rate. As of 2021, there were approximately 537 million adults living with diabetes in the world and this number is expected to jump to 783 million by 2045. A disproportionate percentage of these people live in low to middle income countries (LMICs). In light of the Covid pandemic, it is also of great import that we better understand the relationships between diabetes and infectious diseases as diabetes both increased the severity of Covid (in people with elevated a1c levels) and has increased in incidence during the Covid 19 pandemic [@yangPrevalenceComorbiditiesIts2020] [@rohmInflammationObesityDiabetes2022].
+
+Additionally, diabetes is associated with a steep increase in cardiovascular disease risk and is a leading cause of death in many low to middle income countries (LMICs) including Mexico. Although the precise classification of diabetes remains controversial because of the complex nature of its pathogenesis, there are three universally acknowledged subtypes: type 1 diabetes, type 2 diabetes, and gestational diabetes. Diabetes is a progressive disease in that the longer one has it, the more complications ensue. Therefore, it is helpful to conceptualize diabetes as a process that can be stopped, but not reversed. Research that contributes to slowing down or stopping the process can be extremely valuable to global health regardless of its contribution to cure and prevention because of the astronomical rates of diabetes in our world today. 
+
+Inflammation is a strong indicator of diabetes development and progression. Inflammation predicts the development of diabetes [@freemanCreactiveProteinIndependent2002] [@10.1161/01.cir.103.3.357] [@schmidtMarkersInflammationPrediction1999]. Specifically, trials for drugs directed at inflammation among people with type 2 diabetes have indicated that drugs targeted at inflammation may be a therapeutic option for preventing diabetes [@10.4239/wjd.v5.i5.697].Retinopathy and focal neuropathy [@saidDiabeticNeuropathyReview2007] have also been linked to inflammatory processes. Additionally, the direct damage caused by high blood glucose leads to more inflammation and creates a nasty feedback loop wherein inflammation causes more insulin resistance which leads to high blood glucose. 
+
+Diabetes treatment and inflammation
+
+The ability of cells to absorb insulin can be increased through diet, exercise, and oral pills.Increasing exercise and dieting can cause major decreases in inflammation. Some of the drugs for type 2 diabetes aimed at increasing insulin sensitivity also decrease inflammation (e.g., drugs that cause weight loss). In the opposite direction, insulin can cause severe low blood glucose levels that initiate a stress response causing more inflammation.
+
+# Methods
+
+## Procedures and Sample
+
+`r summary$N` participants were included in our analyses. Of those, `r summary$N_male` were assessed to be male (`r summary$N_male_pct` %), `r summary$N_female` were identified to be female (`r summary$N_female_pct` %). Sex data for `r summary$N_unknown` participant was missing (see Table \@ref(tab:descriptives)). This indicates that females were overrepresented in our sample, assuming binary sexes are represented equally in the population ($\chi$(`r chi$parameter`) = `r chi$statistic`, $p$ `r report_p(chi$p.value)`). The age in our sample was $M$ = `r summary$age_M` years (SD = `r summary$age_SD` years).
+Because of missing values in the variables of interest in some of our analyses, subjects were excluded. Thus, $N$ is reported separately for each analysis.
+
+## Variables
+
+The original WHO dataset contains more than 1,600 variables, not all of which are relevant to our research questions. Therefore, we have limited our analysis to 10 variables, listed below in Table 1. In our analysis, we exclude participants who reported that they already have a formal diabetes diagnosis from a doctor, since we are interested in HBA1C values for people who do not have a diabetes diagnosis. We also exclude participants age 50 or older, since this group typically has high HbA1c levels regardless of the presence of diabetes, as well as participants with CRP levels above 5, since because such values indicate infection which would confound our analysis.
+
+
+C-reactive protein and hba1c measured through dried bloodspots (minimally invasive biomarkers) [@10.1353/dem.2007.0038]). 
+
+Self-report surveys conducted by trained interviewers. 
+
+Data are from the World Health Organization's Study on Adult Health and Ageing (SAGE). Our data is from 1 of 5 countries where the data were collected.
+
+Cite R packages here
+
+# Results
+
+# Discussion 
+
+## Limitations
+
+We were not able to look at pills and insulin separately and some their effects have the potential to cancel each other out. The sex variable was established through interviewer discernment. 
+
+# References
+
+
+```{r Citations, eval=FALSE, include=FALSE}
+citation("tidyverse")
+citation("rio")
+citation("here")
+citation("papaja")
+citation("tidyr")
+citation("stargazer")
+
+```
+
+\listoffigures
+\listoftables
+
+
+
+
+
