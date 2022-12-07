@@ -193,13 +193,34 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+<<<<<<< HEAD
+=======
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Relations between Inflammation and Access to care, Treatment, and Diabetes in a repesentative population of Mexico or Relations between inflammation and access to care and treatment among Mexicans 50 years of age or older with diabetes in Mexico},
+  pdfauthor={Dominik Grätz1, Rachel Miller-Moudgil1, Amber Somarriba1, Brittany Spinner1, \& Tian Walker1},
+  pdflang={en-EN},
+  pdfkeywords={Diabetes, access to care, inflammation, health, Mexico, China},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+>>>>>>> master
 
-\title{Relations between Inflammation, access to care and Diabetes in a repesentative population of Mexico.}
+\title{Relations between Inflammation and Access to care, Treatment, and Diabetes in a repesentative population of Mexico or Relations between inflammation and access to care and treatment among Mexicans 50 years of age or older with diabetes in Mexico}
 \author{Dominik Grätz\textsuperscript{1}, Rachel Miller-Moudgil\textsuperscript{1}, Amber Somarriba\textsuperscript{1}, Brittany Spinner\textsuperscript{1}, \& Tian Walker\textsuperscript{1}}
 \date{}
 
 
+<<<<<<< HEAD
 \shorttitle{Inflammation, access to care and Diabetes in Mexico.}
+=======
+<<<<<<< Updated upstream
+\shorttitle{Inflammation, Access to care, and Treatment among those with Diabetes in Mexico.}
+=======
+\shorttitle{Inflammation, access to care and Diabetes in Mexico.}
+>>>>>>> Stashed changes
+>>>>>>> master
 
 \authornote{List of group members ordered by alphabet.}
 
@@ -301,6 +322,75 @@ Dt exrcse2 & -0.25 & {}[-0.47, -0.02] & -2.11 & 354 & .036 & Diet and Exercise\\
 \end{table}
 
 Demo of inline code usage. We found that this regression model (Table \ref{tab:RQ2}) using 354 participants was not significant \(F\)(2, 354) = 2.70, \(p\) = 0.07 with \(R^2\) = 0.02. The regression coefficient for age was \(b_{age}\) = -0.01 (\(SE\) = 0.01, \(p\) = 0.41), and for diet and exercise \(b_{Diet}\) = -0.24 (\(SE\) = 0.12, \(p\) \textless{} 0.05).
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+
+\begin{verbatim}
+## # A tibble: 171 x 2
+##    `RQ4df$access` `RQ4df$crp2`
+##    <fct>          <fct>       
+##  1 No             high        
+##  2 No             low         
+##  3 Yes            low         
+##  4 No             low         
+##  5 No             low         
+##  6 No             low         
+##  7 Yes            low         
+##  8 Yes            low         
+##  9 No             low         
+## 10 No             high        
+## # ... with 161 more rows
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Pearson's Chi-squared test with Yates' continuity correction
+## 
+## data:  RQ4df$access and RQ4df$crp2
+## X-squared = 0.51779, df = 1, p-value = 0.4718
+\end{verbatim}
+
+\begin{verbatim}
+##             RQ4df$crp2
+## RQ4df$access      low     high
+##          Yes 67.26316 13.73684
+##          No  74.73684 15.26316
+\end{verbatim}
+
+\begin{verbatim}
+##             RQ4df$crp2
+## RQ4df$access low high
+##          Yes  65   16
+##          No   77   13
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##       Yes        No 
+## 0.4736842 0.5263158
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##       low      high 
+## 0.8304094 0.1695906
+\end{verbatim}
+
+\begin{figure}[H]
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-1-1} \caption{ }\label{fig:unnamed-chunk-1}
+\end{figure}
+
+\begin{verbatim}
+## 
+##  Chi-squared test for given probabilities
+## 
+## data:  table(data$sex)
+## X-squared = 44.596, df = 1, p-value = 2.422e-11
+\end{verbatim}
+=======
+>>>>>>> Stashed changes
+>>>>>>> master
 
 \begin{figure}[H]
 \includegraphics{NEW_Final_Groupof5_files/figure-latex/tableofcrpmedicationandexercise-1} \caption{Caption for Figure \ref{fig:tableofcrpmedicationandexercise} goes here.}\label{fig:tableofcrpmedicationandexercise}
@@ -343,7 +433,7 @@ Age & & 68 (\(SD\) = 8.40) \\
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-Diabetes and its insidious complications continue to expand as a global health burden at an alarming rate. As of 2021, there were approximately 537 million adults living with diabetes in the world and this number is expected to jump to 783 million by 2045. A disproportionate percentage of these people live in low to middle income countries (LMICs). In light of the Covid pandemic, it is also of great import that we better understand the relationships between diabetes and infectious diseases as diabetes both increased the severity of Covid (in people with elevated a1c levels) and has increased in incidence during the Covid 19 pandemic (\protect\hyperlink{ref-yangPrevalenceComorbiditiesIts2020}{Yang et al., 2020}) (\protect\hyperlink{ref-rohmInflammationObesityDiabetes2022}{Rohm, Meier, Olefsky, \& Donath, 2022}).
+Diabetes and its insidious complications continue to expand as a global health burden at an alarming rate. As of 2021, there were approximately 537 million adults living with diabetes in the world and this number is expected to jump to 783 million by 2045. A disproportionate percentage of these people live in low to middle income countries (LMICs). In light of the COVID-19 pandemic, it is also of great import that we better understand the relationships between diabetes and infectious diseases as diabetes both increased the severity of Covid (in people with elevated a1c levels) and has increased in incidence during the Covid 19 pandemic (\protect\hyperlink{ref-yangPrevalenceComorbiditiesIts2020}{Yang et al., 2020}) (\protect\hyperlink{ref-rohmInflammationObesityDiabetes2022}{Rohm, Meier, Olefsky, \& Donath, 2022}).
 
 Additionally, diabetes is associated with a steep increase in cardiovascular disease risk and is a leading cause of death in many low to middle income countries (LMICs) including Mexico. Although the precise classification of diabetes remains controversial because of the complex nature of its pathogenesis, there are three universally acknowledged subtypes: type 1 diabetes, type 2 diabetes, and gestational diabetes. Diabetes is a progressive disease in that the longer one has it, the more complications ensue. Therefore, it is helpful to conceptualize diabetes as a process that can be stopped, but not reversed. Research that contributes to slowing down or stopping the process can be extremely valuable to global health regardless of its contribution to cure and prevention because of the astronomical rates of diabetes in our world today.
 
