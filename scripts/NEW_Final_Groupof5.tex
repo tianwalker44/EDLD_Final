@@ -33,16 +33,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Relations between Inflammation and Access to care, Treatment, and Diabetes in Older Mexicans},
-  pdfauthor={Dominik Grätz1, Rachel Miller-Moudgil1, Amber Somarriba1, Brittany Spinner1, \& Tian Walker1},
-  pdflang={en-EN},
-  pdfkeywords={Diabetes, access to care, inflammation, health, Mexico, China},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -199,6 +189,16 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Relations between Inflammation and Access to care, Treatment, and Diabetes in Older Mexicans},
+  pdfauthor={Dominik Grätz1, Rachel Miller-Moudgil1, Amber Somarriba1, Brittany Spinner1, \& Tian Walker1},
+  pdflang={en-EN},
+  pdfkeywords={Diabetes, access to care, inflammation, health, Mexico, China},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
 
 \title{Relations between Inflammation and Access to care, Treatment, and Diabetes in Older Mexicans}
 \author{Dominik Grätz\textsuperscript{1}, Rachel Miller-Moudgil\textsuperscript{1}, Amber Somarriba\textsuperscript{1}, Brittany Spinner\textsuperscript{1}, \& Tian Walker\textsuperscript{1}}
@@ -212,11 +212,7 @@
 \affiliation{\vspace{0.5cm}\textsuperscript{1} University of Oregon}
 
 \abstract{%
-<<<<<<< Updated upstream
-\emph{Background.} Background goes here. \emph{Methods.} Methods go here. \emph{Results.} Results here. \emph{Conclusions.} Conclusions here.
-=======
 Diabetes is a leading cause of death in Mexico and is closely linked to the obesity epidemic. Previous studies indicate that inflammation predicts the development of diabetes and is found to be a strong indicator of diabetes development and progression. However, there are limited studies investigating the extent to which inflammation levels relate to the different treatment options among those with diabetes among Mexicans. To gain insight on the extent to which inflammation levels relate to medication, diet, and exercise we conducted a cross-sectional, secondary analysis using linear regression modeling and Chi-square tests of independence. Medication model fit parameter included (N = 357) F(2,354) = 1.06, p= 0.35, with R2= 0.01. Diet and exercise model fit parameters included (N= ) F(2, 354) = 2.70,p= 0.07 withR2= 0.02. And evaluating diet and exercise with access to care results included X2 results: X2(1) = 0.57, p= 0.45. Results indicate that among older Mexicans with diabetes there were no direct effects of treatment and access to inflammation levels.
->>>>>>> Stashed changes
 }
 
 
@@ -382,21 +378,21 @@ Dt exrcse2 & -0.25 & {}[-0.47, -0.02] & -2.11 & 354 & .036 & Diet and Exercise\\
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3243}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.6216}}@{}}
 \caption{\label{tab:descriptives} Descriptive statistics.}\tabularnewline
-\toprule
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Mexico
 \end{minipage} \\
-\midrule
+\midrule()
 \endfirsthead
-\toprule
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Mexico
 \end{minipage} \\
-\midrule
+\midrule()
 \endhead
 \(N_{total}\) & & 357 \\
 Sex & & \\
@@ -404,7 +400,7 @@ Sex & & \\
 & female & 241 (67.50 \%) \\
 & unknown & 1 (0.30 \%) \\
 Age & & 68 (\(SD\) = 8.40) \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 \hypertarget{figure-references-to-copy}{%
@@ -504,11 +500,7 @@ For our first research question, does taking medication lower inflammation level
 \hypertarget{regression-2}{%
 \subsection{Regression 2}\label{regression-2}}
 
-<<<<<<< Updated upstream
-Demo of inline code usage. We found that this regression model (Table \ref{tab:RQ2}) using 357 participants was not significant \(F\)(2, 354) = 2.70, \(p\) = 0.07 with \(R^2\) = 0.02. The regression coefficient for age was \(b_{age}\) = -0.01 (\(SE\) = 0.01, \(p\) = 0.41), and for diet and exercise \(b_{Diet}\) = -0.24 (\(SE\) = 0.12, \(p\) \textless{} 0.05).
-=======
 Our research question two looked at diet and exercise as a treatment for diabetes on predicting inflammation levels. We found that this regression model (Table \ref{tab:RQ2}) using 357 participants was not significant \(F\)(2, 354) = 2.70, \(p\) = 0.07 with \(R^2\) = 0.02. The regression coefficient for age was \(b_{age}\) = -0.01 (\(SE\) = 0.01, \(p\) = 0.41), and for diet and exercise \(b_{Diet}\) = -0.24 (\(SE\) = 0.12, \(p\) \textless{} 0.05). Based on these results, fail to reject our null hypothesis and conclude that diet and exercise does not predict inflammation levels on average in this population.
->>>>>>> Stashed changes
 
 \hypertarget{chi-square-test}{%
 \subsection{Chi Square Test}\label{chi-square-test}}

@@ -61,21 +61,21 @@ Dt exrcse2 & -0.25 & {}[-0.47, -0.02] & -2.11 & 354 & .036 & Diet and Exercise\\
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3243}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.6216}}@{}}
 \caption{\label{tab:descriptives} Descriptive statistics.}\tabularnewline
-\toprule
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Mexico
 \end{minipage} \\
-\midrule
+\midrule()
 \endfirsthead
-\toprule
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Mexico
 \end{minipage} \\
-\midrule
+\midrule()
 \endhead
 \(N_{total}\) & & 357 \\
 Sex & & \\
@@ -83,5 +83,5 @@ Sex & & \\
 & female & 241 (67.50 \%) \\
 & unknown & 1 (0.30 \%) \\
 Age & & 68 (\(SD\) = 8.40) \\
-\bottomrule
+\bottomrule()
 \end{longtable}
