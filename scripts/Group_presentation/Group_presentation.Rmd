@@ -83,7 +83,7 @@ knitr::include_graphics("image.png")
 
 ```{r include=FALSE}
 
-data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset
+data <- import(here("mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset
 dat <- data
 #data <- data %>% select(sex, diagnosis, age, hba1c, crp, medication, dt_exrcse, q5026, q5027) %>% rename(access = q5026) %>% filter(age >=50 & (diagnosis == 1 | crp < 5))  %>% as_tibble 
 

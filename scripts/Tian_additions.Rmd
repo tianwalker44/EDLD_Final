@@ -1,6 +1,6 @@
 ---
-title             : "Relations between Inflammation and Access to care, Treatment, and Diabetes in Older Mexico"
-shorttitle        : "Inflammation, Access to care, and Treatment among those with Diabetes in Mexico."
+title             : "Relations between Inflammation, access to care and Diabetes in a repesentative population of Mexico."
+shorttitle        : "Inflammation, access to care and Diabetes in Mexico."
 
 author: 
   - name          : "Dominik Grätz"
@@ -154,19 +154,12 @@ dat <- dat %>%
 data <- data %>% 
   mutate(treatment_info = if_else(diabetes_treat == "no_treatment" & hba1c < 6.5, "unknown_treat", "known_treat"))
 #This graph is to check that the correct data points were coded for and can be filtered out. It looks good. 
-#data %>% 
-#  ggplot(aes(hba1c, crp)) + geom_point(aes(color = treatment_info)) 
+data %>% 
+  ggplot(aes(hba1c, crp)) + geom_point(aes(color = treatment_info))
 data <- data %>% 
   filter(treatment_info == "known_treat")
 #table(data$treatment_info)  #check to be sure that the filter worked. It looks good
 ```
-
-```{r data-cleaning-tian2-fig, include=FALSE}
-# I wasn't sure if you wanted this figure to be in the knitted document, so I added it to this chunk so that we can have it here but now show it! 
-data %>% 
-ggplot(aes(hba1c, crp)) + geom_point(aes(color = treatment_info))
-```
-
 
 (ref:fig0) Figure \@ref(fig:data-cleaning-tian2) caption goes here.
 
@@ -178,14 +171,8 @@ Here I point the reader to figure \@ref(fig:data-cleaning-tian2).
 #AND it is super interesting to see what is left behind! only 3 data points in this group of people with healthy blood sugar levels were doing diet and exercise. 
 plot.a <- data %>% 
 filter(crp <5, age > 50) %>% 
- ggplot(aes(hba1c, crp)) + geom_point(aes(color = diabetes_treat), size = 3) +
-  theme_apa() +
-  scale_color_brewer(palette = 11, name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication", "No Treatment")) + theme_apa()
-plot.a + font("xlab", size = 14) + font("ylab", size = 14)+ font("xy.text", size = 14, color = "black", face = "bold") +
-  labs( title = "Relationship Between CRP and HbA1c by Diabetes Treatment", 
-        caption =  "SAGE data from Mexico", 
-        x = "HbA1c", 
-        y = "Inflammation (CRP)") 
+ ggplot(aes(hba1c, crp)) + geom_point(aes(color = diabetes_treat), size = 3) + scale_color_brewer(palette = 15) + theme_dark()
+plot.a + font("xlab", size = 34) + font("ylab", size = 34)+ font("xy.text", size = 25, color = "black", face = "bold")
 #?geom_abline
 ```
 
@@ -221,9 +208,9 @@ mreg1 <- lm(crp~age + medication, data = RQ1_df)
 RQ1_df %>% 
   ggplot(aes(age, crp)) + 
   geom_point(aes(color = medication), alpha = 0.5) + 
-  geom_smooth(aes(color = medication), method = "lm", se = FALSE, color = "gray") + 
-  scale_color_brewer(palette = 11, name = "Taking Medication?", labels = c("Yes", "No")) + 
-  theme_apa() + 
+  geom_smooth(aes(color = medication), method = "lm", se = FALSE) + 
+  scale_color_brewer(palette = 11) + 
+  theme_dark() + 
   labs( title = "The Relationship Between Blood Sugar and Inflammation by Medication", 
         caption =  "SAGE data from Mexico", 
         x = "Age", 
@@ -235,15 +222,15 @@ RQ1_df %>%
 Here, I want to point the reader to Figure \@ref(fig:fig2).
 
 ```{r, fig3, fig.cap = "(ref:fig3)"}
-#This visualization is the one that alerted me to the fact that my original attempt at filtering had removed all data above 6.5. We 
+#This visualization is the one that alerted me to the fact that my original attempt at filtering had removed all data above 6.5. We do not need to show this graph. 
 dat %>% 
   filter(diabetes_treat != "no_treatment" & hba1c < 6.5) %>% 
   filter(medication != 0) %>% 
 ggplot(aes(hba1c, crp)) + 
   geom_point(aes(color = diabetes_treat), alpha = 0.5) + 
-  geom_smooth(aes(color = medication), method = "lm", se = FALSE, color = "gray") + 
-  scale_color_brewer(palette = 11, name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication")) + 
-  theme_apa() +
+  geom_smooth(aes(color = medication), method = "lm", se = FALSE) + 
+  scale_color_brewer(palette = 11) + 
+  theme_dark() + 
   labs( title = "The Relationship Between Blood Sugar and Inflammation by Medication", 
         caption =  "SAGE data from Mexico", 
         x = "Age", 
@@ -337,71 +324,42 @@ Demo of inline code usage. We found that this regression model  (Table \@ref(tab
 
 
 ```{r RQ3-brittany, eval=FALSE, include=FALSE}
-#RQ3: Is there a relationship between seeing a doctor in the last year and using diet and exercise as a treatment for diabetes? 
-# Null: There is no relationship between seeing a doctor in the last year and diet and exercise. 
+#RQ3: For those with vs. without access to medical care, what is the effect of diet and exercise on inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
 # data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset #From Rachel: I'm hashtagging this out, because if you re-import the dataset here, it loses all the cleaning from earlier. 
  #filter(!is.na(medication) | !is.na(hba1c) | !is.na(age) | !is.na(crp))
 RQ3df <- data %>% 
-  filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age) & !(is.na(crp)) & !is.na(access)) #From Rachel: There were inconsistencies from the cleaning to here about the variable being called care vs. access. I switched them all to access, here and in the code below.
+  filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age), !(is.na(crp)), !is.na(access)) #From Rachel: There were inconsistencies from the cleaning to here about the variable being called care vs. access. I switched them all to access, here and in the code below.
 RQ3df <- RQ3df %>% select(diagnosis, age, crp, dt_exrcse, access) %>%  
   filter(age >=50 & (diagnosis == 1 | crp < 5))
 RQ3df$access <- factor(RQ3df$access,
                       levels = c(1,2), labels = c("Yes","No")) 
-RQ3df$dt_exrcse <- factor(RQ3df$dt_exrcse, 
-                          levels = c(1,2), labels = c("Yes", "No"))
+table(RQ3df$access)
+tibble(RQ3df)
+RQ3df$crp[RQ3df$crp < 2.5] <- "low"
+RQ3df$crp[RQ3df$crp > 2.6] <- "high"
+tibble(RQ3df$crp)
+RQ3df$crp <- RQ3df %>% mutate(category=cut(crp, 
+                                           breaks=c(2.5, 2.6), 
+                                           labels=c("low","high")))
+min(RQ3)
+tibble(RQ3df$crp)
+#if_else <3 low, otherwise 
+table(RQ3df$crp)
 prop <- prop.table(table(RQ3df$access))
-prop2 <- prop.table(table(RQ3df$dt_exrcse))
+prop2 <- prop.table(table(RQ3df$crp))
 prop
 prop2
-RQ3_barplot <- barplot(prop, xlab = "Saw a doctor in the last year Y/N", ylab = "Frequency", main = "Proportion of Individuals 50yrs or older with Diabetes who saw a Doctor in the Last Year ") #need to add title and subtitle(?)
-RQ3_barplot
-chi_df <- chisq.test(RQ3df$access, RQ3df$dt_exrcse)
-chi_df
-chi_df$expected
-chi_df$observed 
-#chi_df <- chisq.test(RQ3df$access, RQ3df$dt_exrcse)
+RQ3_barplot <- barplot(prop, xlab = "Individuals 50yo or older with Diabetes that partake in Diet&/Exercise and saw a Dr. in the Last Year", ylab = "Proportion of Individuals", main = "L") #need to add title and subtitle(?)
+#chi_df <- chisq.test(RQ3df$access, RQ3df$crp) #need to get rid of NA values in care and possible create two dfs with yes no and then run chi between dfs of data$care but this is the code 
 #chi_df
 #chi_df$expected
 #chi_df$observed 
-
-```
-
-
-```{r}
-#RQ4: For those partaking in diet and exercise, what is the relation of visiting the doctor in the last year on inflammation levels?
-#Null: There is no relation between visiting the doctor in the last year and inflamation levels among those that partake in diet and exercise as a treatment for diabetes. 
-RQ4df <- data %>% 
-  filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age) & !(is.na(crp)) & !is.na(access))
-
-RQ4df <- RQ4df %>% select(diagnosis, age, crp, dt_exrcse, access) %>%  
-  filter(age >=50 & (diagnosis == 1 | crp < 5) & dt_exrcse == 1)
+#w/ hba1c
+RQ4df <- RQ3df %>% select(diagnosis, age, hba1c, crp, dt_exrcse, access) %>%  filter(age >=50 & (diagnosis == 1 | crp < 5 | hba1c >= 6.5)) 
 RQ4df$access <- factor(RQ4df$access,
                       levels = c(1,2), labels = c("Yes","No")) 
-view(RQ4df)
-#RQ4df$crp <- RQ4df %>% 
-#factor(if_else(crp <= 3.0, "low", "high"), levels = c("low", "high"))
-
-RQ4df <- RQ4df %>% 
-  mutate(crp2 = factor(ifelse(crp <= 3.0, "low", "high"), levels = c("low", "high"))) 
-
-
-tibble(RQ4df$access, RQ4df$crp2)
-
-chi_df_access <- chisq.test(RQ4df$access, RQ4df$crp2)
-chi_df_access
-chi_df_access$expected
-chi_df_access$observed 
-
-#RQ4df$crp2 <- factor(RQ3df$crp2, 
-                          #levels = c(1,2), labels = c("low", "high"))
-
-prop_access_bar <- ggplot(data = RQ4df, aes(x = access, fill = crp2))+
-  geom_bar(position = "dodge")+
-  labs(title = "Relation of Inflamation Levels low/high and Seeing a Doctor in the Last Year Y/N", subtitle= "Among Individuals with Diabetes that use Diet and Exercise as Treatment", x = "Saw a doctor in the last year Y/N", y = "Frequency")
-prop_access_bar
-  
-#prop4
-#For those with vs. without access to medical care, what is the effect of diet and exercise on inflammation levels? 
+RQ4df$crp <- RQ4df %>% 
+  mutate(crp2 = factor(ifelse(crp <= 3.0, "low", "high"), levels = c("low", "high")))
 ```
 
 
@@ -422,21 +380,19 @@ summary <- data %>%
             age_M = round(mean(age), 1),
             age_SD = round(sd(age), 1))
 
-chi <- chisq.test(table(data$sex)) #why is this here? what is this asking? 
-chi
+chi <- chisq.test(table(data$sex))
 
 ```
 
 ```{r tableofcrpmedicationandexercise, fig.cap = "(ref:fig4)"}
 ggplot(groups_med_dt_exrcse, aes(medication, mean))+
-  theme_apa()+
   geom_col(aes(fill = dt_exrcse),
            position = "dodge")+
   labs(x = "Medication",
        y = "Mean CRP Level",
        title = "Mean CRP levels for medication and exercise groups")+
-  scale_x_discrete(labels=c("Medication", "No Medication"))+
-  scale_fill_manual(name = "Exercise", labels = c("Yes", "No"), values = c("#d4b9da", "#c994c7"))
+  scale_fill_discrete(name = "Exercise", labels = c("Yes", "No"))+
+  scale_x_discrete(labels=c("Medication", "No Medication"))
 ```
 
 (ref:fig4) Caption for Figure \@ref(fig:tableofcrpmedicationandexercise) goes here.
@@ -458,7 +414,7 @@ Table: (\#tab:descriptives) Descriptive statistics.
 
 # Introduction
 
-Diabetes and its insidious complications continue to expand as a global health burden at an alarming rate. As of 2021, there were approximately 537 million adults living with diabetes in the world and this number is expected to jump to 783 million by 2045. A disproportionate percentage of these people live in low to middle income countries (LMICs). In light of the COVID-19 pandemic, it is also of great import that we better understand the relationships between diabetes and infectious diseases as diabetes both increased the severity of Covid (in people with elevated a1c levels) and has increased in incidence during the Covid 19 pandemic [@yangPrevalenceComorbiditiesIts2020] [@rohmInflammationObesityDiabetes2022].
+Diabetes and its insidious complications continue to expand as a global health burden at an alarming rate. As of 2021, there were approximately 537 million adults living with diabetes in the world and this number is expected to jump to 783 million by 2045. A disproportionate percentage of these people live in low to middle income countries (LMICs). In light of the Covid pandemic, it is also of great import that we better understand the relationships between diabetes and infectious diseases as diabetes both increased the severity of Covid (in people with elevated a1c levels) and has increased in incidence during the Covid 19 pandemic [@yangPrevalenceComorbiditiesIts2020] [@rohmInflammationObesityDiabetes2022].
 
 Additionally, diabetes is associated with a steep increase in cardiovascular disease risk and is a leading cause of death in many low to middle income countries (LMICs) including Mexico. Although the precise classification of diabetes remains controversial because of the complex nature of its pathogenesis, there are three universally acknowledged subtypes: type 1 diabetes, type 2 diabetes, and gestational diabetes. Diabetes is a progressive disease in that the longer one has it, the more complications ensue. Therefore, it is helpful to conceptualize diabetes as a process that can be stopped, but not reversed. Research that contributes to slowing down or stopping the process can be extremely valuable to global health regardless of its contribution to cure and prevention because of the astronomical rates of diabetes in our world today. 
 
