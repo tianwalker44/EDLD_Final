@@ -65,13 +65,6 @@
 \ifnextchar[{\eatarg}{}
 
 \centering
-\includegraphics{NEW_Final_Groupof5_files/figure-latex/appendix-fig2-1.pdf}
-\caption{\label{fig:appendix-fig2}Here goes the caption.}
-\end{figure*}
-\begin{figure*}[hbt]
-\ifnextchar[{\eatarg}{}
-
-\centering
 \includegraphics{NEW_Final_Groupof5_files/figure-latex/appendix-fig3-1.pdf}
 \caption{\label{fig:appendix-fig3}Here goes the caption.}
 \end{figure*}

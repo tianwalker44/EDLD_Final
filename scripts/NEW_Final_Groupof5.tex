@@ -33,6 +33,16 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Relations between Inflammation and Access to care, Treatment, and Diabetes in Older Mexicans},
+  pdfauthor={Dominik Grätz1, Rachel Miller-Moudgil1, Amber Somarriba1, Brittany Spinner1, \& Tian Walker1},
+  pdflang={en-EN},
+  pdfkeywords={Diabetes, access to care, inflammation, health, Mexico, China},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -167,16 +177,6 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
-\hypersetup{
-  pdftitle={Relations between Inflammation and Access to care, Treatment, and Diabetes in Older Mexicans},
-  pdfauthor={Dominik Grätz1, Rachel Miller-Moudgil1, Amber Somarriba1, Brittany Spinner1, \& Tian Walker1},
-  pdflang={en-EN},
-  pdfkeywords={Diabetes, access to care, inflammation, health, Mexico, China},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
 
 \title{Relations between Inflammation and Access to care, Treatment, and Diabetes in Older Mexicans}
 \author{Dominik Grätz\textsuperscript{1}, Rachel Miller-Moudgil\textsuperscript{1}, Amber Somarriba\textsuperscript{1}, Brittany Spinner\textsuperscript{1}, \& Tian Walker\textsuperscript{1}}
@@ -325,12 +325,6 @@ Diet and Exercise & -0.25 & $[-0.47$, $-0.02]$ & -2.11 & .036\\
 
 
 
-\begin{figure}
-\centering
-\includegraphics{NEW_Final_Groupof5_files/figure-latex/appendix-fig2-1.pdf}
-\caption{\label{fig:appendix-fig2}Here goes the caption.}
-\end{figure}
-
 
 
 \begin{figure}
@@ -356,21 +350,21 @@ Diet and Exercise & -0.25 & $[-0.47$, $-0.02]$ & -2.11 & .036\\
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3243}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.6216}}@{}}
 \caption{\label{tab:descriptives} Descriptive statistics.}\tabularnewline
-\toprule()
+\toprule
 \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Mexico
 \end{minipage} \\
-\midrule()
+\midrule
 \endfirsthead
-\toprule()
+\toprule
 \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Mexico
 \end{minipage} \\
-\midrule()
+\midrule
 \endhead
 \(N_{total}\) & & 357 \\
 Sex & & \\
@@ -378,7 +372,7 @@ Sex & & \\
 & female & 241 (67.50 \%) \\
 & unknown & 1 (0.30 \%) \\
 Age & & 68 (\(SD\) = 8.40) \\
-\bottomrule()
+\bottomrule
 \end{longtable}
 
 \begin{figure}
