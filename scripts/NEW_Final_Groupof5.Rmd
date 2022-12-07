@@ -64,24 +64,10 @@ library(gt)
 source(file = here("scripts", "report_p.R"))
 ```
 
-```{r data-cleaning-tian, echo=FALSE, eval=FALSE}
-#code used to create extracted data file - Mexico 
-#Rachel's note: This does not need re-run, as this was Tian joining two Mexico datasets and renaming variables and outputting mexico_raw_dat.csv. We should leave the code here so Joe can see how much initial data cleaning she worked on.
-#great idea #dg
-mex_survey <- import("Mexico_IND.sav")
-mex_bio <- import("MexicoLabData.csv")
-mex_survey$id <- as.numeric(mex_survey$id)
-mexico <- mex_survey %>%
-  left_join(mex_bio, by = 'id')
-mexico_raw_dat <- mexico %>% 
-  select(income, q4022,  sex = q0406 , q0407, hba1c, crp, q4023a, q4024, weight = q2507, height = q2506, waist = q2508, marriage = q0408, q2000:q2024) %>% 
-  rename(diagnosis = q4022, age = q0407, medication = q4023a, dt_exrcse = q4024)
-write_csv(mexico_raw_dat, file = "mexico_raw_dat.csv")
-```
 
 ```{r data-cleaning-rachel, echo=FALSE}
 #Rachel's code to drop irrelevant variables, filter, and add a medication*dt_exrcse variable.
-dat <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble
+
 data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset
 data <- data %>% 
   select(sex, diagnosis, age, hba1c, crp, medication, dt_exrcse, q5026) %>% 
@@ -133,8 +119,6 @@ col3_code <- c("male = 1, female = 2",
 data_variables <- data.frame(col1_var, col2_desc, col3_code) %>% 
   rename("Variable name" = col1_var, "Description" = col2_desc, "Coding criteria" = col3_code)
 
-#random comment from Tian
-#testing pushing and pulling at the same time to different chunks
 ```
 
 
@@ -148,6 +132,10 @@ data <- data %>%
     medication== 1  ~ "medication",
     dt_exrcse==1 ~ "dt_excercise",
     medication == 2  & dt_exrcse == 2 ~ "no_treatment"))
+
+#raw data for graphing purposes
+dat <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble
+
 dat <- dat %>% 
   mutate(diabetes_treat=case_when(
     medication== 1  ~ "medication",
@@ -165,12 +153,29 @@ data <- data %>%
 data <- data %>% 
   filter(treatment_info == "known_treat")
 #table(data$treatment_info)  #check to be sure that the filter worked. It looks good
+
+
+dat <- dat %>%
+  mutate(diabetes_stat=case_when(
+    hba1c >= 6.5 & diagnosis==2 ~ "undiagnosed",
+    diagnosis==1 ~ "diagnosed",
+    hba1c < 6.5  ~ "no_diabetes"))
+
+
+dat <- dat %>%
+mutate(a1c_dichot_words = ifelse(hba1c>= 6.5, "elevated", "in_range")) 
+
+data <- data %>%
+mutate(a1c_dichot_words = ifelse(hba1c>= 6.5, "elevated", "in_range")) 
 ```
+
+
 
 ```{r data-cleaning-tian2-fig, include=FALSE}
 # I wasn't sure if you wanted this figure to be in the knitted document, so I added it to this chunk so that we can have it here but now show it! 
 data %>% 
 ggplot(aes(hba1c, crp)) + geom_point(aes(color = treatment_info))
+#t: no, this is just to check that I filtered the data correctly
 ```
 
 
@@ -178,22 +183,37 @@ ggplot(aes(hba1c, crp)) + geom_point(aes(color = treatment_info))
 
 Here I point the reader to figure \@ref(fig:data-cleaning-tian2).
 
+```{r}
+plot_all <- dat %>% 
+filter(!is.na(diabetes_stat)) %>% 
+ggplot(aes(hba1c,crp))  + geom_point(aes(color = as.factor(medication )) )+ facet_wrap(~diabetes_stat)+ scale_color_manual(values = c("tomato1", "purple4"))
+
+```
+```{r}
+plot.all2 <- dat %>% 
+filter(crp <5, age > 50) %>% 
+  filter(!is.na(diabetes_treat)) %>% 
+ ggplot(aes(hba1c, crp)) + geom_point(aes(color = diabetes_treat), size = 3) + geom_vline(xintercept = 6.5, color = "dodgerblue")+ scale_color_brewer(palette = 15) + theme_apa() + labs( caption = "dark green points should not be there")
+
+
+```
+
+
 
 ```{r fig1, fig.cap = "(ref:fig1)"}
 #testdg
 #this is a check to see that the code above worked. It did! (which we know because the dark green - no treatment category is removed from the plot below 6.5 but remain above 6.5)
 #AND it is super interesting to see what is left behind! only 3 data points in this group of people with healthy blood sugar levels were doing diet and exercise. 
-plot.a <- data %>% 
+plot.all_filtered <- data %>% 
 filter(crp <5, age > 50) %>% 
  ggplot(aes(hba1c, crp)) + geom_point(aes(color = diabetes_treat), size = 3) +
-  theme_apa() +
-  scale_color_brewer(palette = 11, name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication", "No Treatment")) + theme_apa()
-plot.a + font("xlab", size = 14) + font("ylab", size = 14)+ font("xy.text", size = 14, color = "black", face = "bold") +
+  geom_vline(xintercept = 6.5, color = "darkorchid4") +
+  scale_color_brewer(palette = 11, name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication", "No Treatment")) + 
   labs( title = "Relationship Between CRP and HbA1c by Diabetes Treatment", 
-        caption =  "SAGE data from Mexico", 
+        caption =  "Note that all data points with No Treatment were removed from below HbA1c 6.5", 
         x = "HbA1c", 
-        y = "Inflammation (CRP)") 
-#?geom_abline
+        y = "Inflammation (CRP)") + theme_apa()
+
 ```
 
 (ref:fig1) This is the caption of figure \@ref(fig:fig1).
@@ -213,6 +233,17 @@ groups_med_dt_exrcse <- data %>%
   dplyr::summarize(mean = mean(crp)) %>% 
   as_tibble()
 ```
+```{r}
+#include this in final product
+crp_by_sex %>% 
+  ggplot(aes(diabetes_treat, male)) + geom_col(aes(fill = a1c_dichot_words), position = "dodge")
+```
+
+```{r}
+#include this in final product
+crp_by_sex %>% 
+  ggplot(aes(diabetes_treat, female)) + geom_col(aes(fill = a1c_dichot_words), position = "dodge")
+```
 
 ```{r RQ1, render = 'normal print'}
 #RQ1: Does taking medication lower inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
@@ -225,10 +256,10 @@ mreg1 <- lm(crp~age + medication, data = RQ1_df)
 ```
 
 ```{r, fig2, fig.cap = "(ref:fig2)"}
-RQ1_df %>% 
+regression1 <- RQ1_df %>% 
   ggplot(aes(age, crp)) + 
   geom_point(aes(color = medication), alpha = 0.5) + 
-  geom_smooth(aes(color = medication), method = "lm", se = FALSE, color = "gray") + 
+  geom_smooth(aes(color = medication), method = "lm", se = FALSE) + 
   scale_color_brewer(palette = 11, name = "Taking Medication?", labels = c("Yes", "No")) + 
   theme_apa() + 
   labs( title = "The Relationship Between Blood Sugar and Inflammation by Medication", 
@@ -242,19 +273,26 @@ RQ1_df %>%
 Here, I want to point the reader to Figure \@ref(fig:fig2).
 
 ```{r, fig3, fig.cap = "(ref:fig3)"}
-#This visualization is the one that alerted me to the fact that my original attempt at filtering had removed all data above 6.5. We 
+#This visualization is the one that alerted me to the fact that my original attempt at filtering had removed all data above 6.5. 
+
+#This was not intended to be included, but might be cool to show the different slopes of the two treatments 
 dat %>% 
   filter(diabetes_treat != "no_treatment" & hba1c < 6.5) %>% 
   filter(medication != 0) %>% 
 ggplot(aes(hba1c, crp)) + 
-  geom_point(aes(color = diabetes_treat), alpha = 0.5) + 
-  geom_smooth(aes(color = medication), method = "lm", se = FALSE, color = "gray") + 
-  scale_color_brewer(palette = 11, name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication")) + 
+  geom_point(aes(color = diabetes_treat)) + 
+  geom_smooth(aes(color = diabetes_treat), method = "lm", se = FALSE) + 
+  scale_color_brewer(  name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication")) +
+#this line does not enable manual color adjustment
   theme_apa() +
-  labs( title = "The Relationship Between Blood Sugar and Inflammation by Medication", 
+  labs( title = "The Relationship Between Blood Sugar and Inflammation by Treatment", 
         caption =  "SAGE data from Mexico", 
         x = "Age", 
-        y = "Inflammation (CRP)")
+        y = "Inflammation (CRP)") + scale_color_manual(values = c("magenta", "limegreen"))
+#change colors freely. none of the palettes are working 
+
+scale_color_brewer(  name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication")) 
+#this line does not enable manual color adjustment
 ```
 
 (ref:fig3) This is the caption of figure \@ref(fig:fig3).
@@ -493,6 +531,66 @@ describe(dat2$picking_up)
 
 ```
 
+```{r}
+dat2_long <- dat2 %>% 
+  pivot_longer(cols = 5:10, names_to = "health_state_vars", values_to = "hs_score")
+
+apendix_fig <- dat2_long %>% 
+  filter(!is.na(levels_dbts)) %>% 
+  filter(crp < 5) %>% 
+  group_by(id) %>% 
+  summarize(mean_hs = mean(hs_score, na.rm = TRUE), crp, levels_dbts, a1c_dichot_words) %>% 
+  ggplot(aes(mean_hs, crp)) + geom_point(aes(color = levels_dbts)) + geom_smooth(aes(color = levels_dbts), method = "lm") + scale_color_brewer(type = "div", palette = 4) + labs(title = "CRP and Health Score by Diabetes", caption = "Mean health score is calculated such that higher scores = worse health") + theme_apa()
+
+```
+
+```{r}
+#pivoting the data
+dat2_long <- dat2 %>% 
+  pivot_longer(cols = 5:10, names_to = "health_state_vars", values_to = "hs_score")
+
+#creating summaries and graphing 
+apendix_fig <- dat2_long %>% 
+  filter(!is.na(levels_dbts)) %>% 
+  filter(crp < 5) %>% 
+  group_by(id) %>% 
+  summarize(mean_hs = mean(hs_score, na.rm = TRUE), crp, levels_dbts, a1c_dichot_words) %>% 
+  ggplot(aes(mean_hs, crp)) + geom_point(aes(color = levels_dbts)) + geom_smooth(aes(color = levels_dbts), method = "lm") + scale_color_brewer(type = "div", palette = 4) + labs(title = "CRP and Health Score by Diabetes", caption = "Mean health score is calculated such that higher scores = worse health") + theme_apa()
+
+```
+
+```{r}
+#Table summarizing the data in the graph
+dat2_long_neat <- dat2_long %>% 
+  filter(!is.na(levels_dbts)) %>% 
+  filter(crp < 5) %>% 
+  group_by( levels_dbts, health_state_vars) %>% 
+  summarize(mean_crp = mean(crp, na.rm = TRUE), mean_score = mean(hs_score))%>% 
+  gt()
+```
+
+```{r}
+appendix_fig_2 <- dat2_long %>% 
+  filter(!is.na(diabetes_treat)) %>% 
+  filter(!is.na(a1c_dichot_words)) %>% 
+  filter(crp < 5) %>% 
+  group_by(id) %>% 
+  summarize(mean_hs = mean(hs_score, na.rm = TRUE), crp, diabetes_treat, a1c_dichot_words) %>% 
+  ggplot(aes(mean_hs, crp)) + geom_col(aes(fill= a1c_dichot_words, position = "dodge"), method = "lm") + facet_wrap(~diabetes_treat) + scale_fill_manual(values = c("salmon","springgreen"))
+
+```
+
+```{r}
+#a glimpse at what is going on with hba1c 
+app_fig_3 <- dat2_long %>% 
+  filter(!is.na(diabetes_treat)) %>% 
+  group_by(id) %>% 
+  summarize(mean_hs = mean(hs_score, na.rm = TRUE), hba1c, diabetes_treat) %>% 
+  ggplot(aes(mean_hs, hba1c)) + geom_point(aes(color = diabetes_treat)) + geom_smooth(aes(color = diabetes_treat), method = "lm") + scale_color_brewer(palette = 3) + theme_apa()
+```
+
+
+
 (ref:fig4) Caption for Figure \@ref(fig:tableofcrpmedicationandexercise) goes here.
 
 Here I reference figure \@ref(fig:tableofcrpmedicationandexercise).
@@ -531,36 +629,56 @@ Because of missing values in the variables of interest in some of our analyses, 
 
 ## Variables
 
-The original WHO dataset contains more than 1,600 variables, not all of which are relevant to our research questions. Therefore, we have limited our analysis to 10 variables, listed below in Table 1. In our analysis, we exclude participants who reported that they already have a formal diabetes diagnosis from a doctor, since we are interested in HBA1C values for people who do not have a diabetes diagnosis. We also exclude participants age 50 or older, since this group typically has high HbA1c levels regardless of the presence of diabetes, as well as participants with CRP levels above 5, since because such values indicate infection which would confound our analysis.
+The original WHO dataset contains more than 1,600 variables, not all of which are relevant to our research questions. Therefore, we have limited our analysis to 10 variables, listed below in Table 1. In our analysis, we only included participants who reported that they already have a formal diabetes diagnosis from a doctor, since our research questions revolve around diabetes treatments. Figure (plot_all) shows the raw data and the data that we selected for our analysis (the colorful points on the far left).  
+
+
+### filtering
+
+A variable was created called "diabetes treatment" wherein anyone who answered yes to 
+
+[edit this to describe the three we use in our analysis]
+A variable was created to indicate whether or not someone fell into one of the four following categories: diagnosed and treated diabetes, diagnosed and untreated diabetes, undiagnosed diabetes, or no diabetes. This variable was created using 3 questions from the in-person survey portion of the study. If participants answered yes to "Have you ever been diagnosed with diabetes (high blood sugar)?" and also answered yes to either "Have you been taking insulin or other blood sugar lowering medications in the last 2 weeks?" or "Have you been following a special diet, exercise regime or weight control program for diabetes during the last 2 weeks?", then they were in the diagnosed and treated group (China: n = 448, Mexico: n = 165). If they answered yes to diagnosis, but no to both treatment questions then they were placed in the untreated diabetes group (China: n = 43, Mexico: n = 39). If they answered no to the diagnosis question and their HbA1c was under 6.5% then they were placed in the no diabetes group (China: n = 5,246, Mexico: n = 1,241). Lastly, if they answered no to the diagnosis question but their HbA1c was 6.5% or higher, then they were placed into the undiagnosed diabetes group (China: n = 444, Mexico: n = 181). There was a group of people in both countries who answered "no" to both treatment options but still had an HbA1c level below 6.5% (China: n = 29, Mexico: n = 17). These people were excluded from the analysis. 
+
+
+[This is good as is]
+A variable was then created that indicated "unknown treatment" if the diabetes treatment variable indicated that there was no treatment but hba1c was below 6.5 and otherwise "Known treatment" was indicated. All "unknown treatment" variables were then removed (n = 17). See plot.all2 and plot.all_filtered to see the data before and after these data points were filtered out. 
 
 
 ### Biomarkers
 
-A subset of people participating in the SAGE study underwent biomarker analysis in Mexico (n = 1831) and in China (n = 12,077). Exclusions included ## people for incomplete data, ### people for having an elevated CRP value that might indicate injury or infection. The sample was 60% women. Participant ages for this analysis ranged from 50 to 97 years old (China: M = 63.07, SD = 9.28, Mexico: M = 68.27, SD = 9.23). 
+A subset of people participating in the SAGE study underwent biomarker analysis in Mexico (n = 1831) and in China (n = 12,077). Exclusions included ## people for incomplete data, ### people for having an elevated CRP value that might indicate injury or infection. The sample was ##% female and ##% male. Participant ages for this analysis ranged from 50 to 105 years old  (M = 68.27, SD = 9.23). 
 
-Biomarkers were analyzed using dried blood spot (DBS) procedures, and collected via standard venipuncture into an EDTA tube. In order to go from venous blood to DBS, the samples of whole blood were homogenized and then pipetted in 20μL aliquots onto standard Whatman 903 filter paper. The samples were left to dry for 24 hours at room temperature before they were analyzed. We punched out a 6mm spot from the DBS card and used 250 μL of PBS buffer pH = 7 to elute for 14 hours. The Abbott Architect CI8200 chemistry analyzer was used to analyzed the DBS eluates in order to obtain CRP values and it was used for HbA1c as well. 
+Biomarkers were analyzed using dried blood spot (DBS) procedures, and collected via standard venipuncture into an EDTA tube. In order to go from venous blood to DBS, the samples of whole blood were homogenized and then pipetted in 20uL aliquots onto standard Whatman 903 filter paper. The samples were left to dry for 24 hours at room temperature before they were analyzed. We punched out a 6mm spot from the DBS card and used 250 uL of PBS buffer pH = 7 to elute for 14 hours. The Abbott Architect CI8200 chemistry analyzer was used to analyzed the DBS eluates in order to obtain CRP values and it was used for HbA1c as well. 
 
-Hemoglobin A1c (HbA1c) is a measure of average blood glucose values over the past 3 months. HbA1c also required a 6 mm DBS punch. This one was eluted in 400μL MULTIAGEN Hemoglobin Denaturant for 14 hours. The Architect blood chemistry analyzer was loaded with a cuvette with eluent and was then used to determine HbA1c and total hemoglobin by measuring absorbance at 700 for Hba1cnm and 604nm for total hemoglobin. The analyzer's program calculated percent HbA1c using the following formula:[(HbA1c/TotHb)×100] − 3+(0.2 × TotHb).
+Hemoglobin A1c (HbA1c) is a measure of average blood glucose values over the past 3 months. HbA1c also required a 6 mm DBS punch. This one was eluted in 400uL MULTIAGEN Hemoglobin Denaturant for 14 hours. The Architect blood chemistry analyzer was loaded with a cuvette with eluent and was then used to determine HbA1c and total hemoglobin by measuring absorbance at 700 for Hba1cnm and 604nm for total hemoglobin. The analyzer's program calculated percent HbA1c using the following formula:[(HbA1c/TotHb)×100] - 3+(0.2 × TotHb).
 
 
-C-reactive protein and hba1c measured through dried bloodspots (minimally invasive biomarkers) [@10.1353/dem.2007.0038]). 
 
 Self-report surveys conducted by trained interviewers. 
 
 Data are from the World Health Organization's Study on Adult Health and Ageing (SAGE). Our data is from 1 of 5 countries where the data were collected.
 
-Cite R packages here
+All analyses were conducted in R with the following packages: 
+here [@here], rio[@chanRioSwissarmyKnife2021], tidyverse[re], ggpubr [@kassambaraGgpubrGgplot2Based2022],bibtex [@francoisBibtexBibtexParser2022],papja [@austPapajaPrepareReproducible2022], psych
+[@revellePsychProceduresPsychological2022],and forcats [@wickhamForcatsToolsWorking2022].
+
 comment 495
 # Results
 
 # Discussion 
 
+We see diet and exercise predicting CRP over and above the effects of age such that those who said that they do diet and exercise (insert direction based in RQ2 results). 
+
+Ultimately we see that inflammation is impacted by diabetes treatments. Access to care does not appear to explain (summarize baed on RQ3). However, it is important that further exploration between diabetes, inflammation, and diabetes treatments take place. 
+
 ## Limitations
 
 We were not able to look at pills and insulin separately and some their effects have the potential to cancel each other out. The sex variable was established through interviewer discernment. 
+* combination therapy is a possibility that we could not account for. Additionally we do not know exactly which medications people were taking. 
 
 # Appendix
 
+Despite the documented limitations of the World Health Organization Health State Description scale [@asadaMedicalTechnologiesNonhuman2005], it is worth exploring in future studies whether or not this scale captures diabetes complications in such a way that we might be able to analyze connections between inflammation and diabetes complications cross-sectionally in the SAGE data. 
 
 
 # References

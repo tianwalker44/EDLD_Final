@@ -218,16 +218,16 @@
 
 Here I point the reader to figure \ref{fig:data-cleaning-tian2}.
 
-\begin{figure}[H]
-\includegraphics{NEW_Final_Groupof5_files/figure-latex/fig1-1} \caption{This is the caption of figure \ref{fig:fig1}.}\label{fig:fig1}
-\end{figure}
-
 
 
 Here, I want to point the reader to Figure \ref{fig:fig1}.
 
 \begin{figure}[H]
-\includegraphics{NEW_Final_Groupof5_files/figure-latex/fig2-1} \caption{This is the caption this figure.}\label{fig:fig2}
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-3-1} \caption{ }\label{fig:unnamed-chunk-3}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-4-1} \caption{ }\label{fig:unnamed-chunk-4}
 \end{figure}
 
 
@@ -237,6 +237,53 @@ Here, I want to point the reader to Figure \ref{fig:fig2}.
 \begin{figure}[H]
 \includegraphics{NEW_Final_Groupof5_files/figure-latex/fig3-1} \caption{This is the caption of figure \ref{fig:fig3}.}\label{fig:fig3}
 \end{figure}
+
+\begin{verbatim}
+## <ggproto object: Class ScaleDiscrete, Scale, gg>
+##     aesthetics: colour
+##     axis_order: function
+##     break_info: function
+##     break_positions: function
+##     breaks: waiver
+##     call: call
+##     clone: function
+##     dimension: function
+##     drop: TRUE
+##     expand: waiver
+##     get_breaks: function
+##     get_breaks_minor: function
+##     get_labels: function
+##     get_limits: function
+##     guide: legend
+##     is_discrete: function
+##     is_empty: function
+##     labels: Diet & Exercise Medication
+##     limits: NULL
+##     make_sec_title: function
+##     make_title: function
+##     map: function
+##     map_df: function
+##     n.breaks.cache: NULL
+##     na.translate: TRUE
+##     na.value: NA
+##     name: Diabetes Treatment
+##     palette: function
+##     palette.cache: NULL
+##     position: left
+##     range: <ggproto object: Class RangeDiscrete, Range, gg>
+##         range: NULL
+##         reset: function
+##         train: function
+##         super:  <ggproto object: Class RangeDiscrete, Range, gg>
+##     rescale: function
+##     reset: function
+##     scale_name: brewer
+##     train: function
+##     train_df: function
+##     transform: function
+##     transform_df: function
+##     super:  <ggproto object: Class ScaleDiscrete, Scale, gg>
+\end{verbatim}
 
 
 
@@ -342,7 +389,7 @@ Demo of inline code usage. We found that this regression model (Table \ref{tab:R
 \end{verbatim}
 
 \begin{figure}[H]
-\includegraphics{NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-1-1} \caption{ }\label{fig:unnamed-chunk-1}
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-5-1} \caption{ }\label{fig:unnamed-chunk-5}
 \end{figure}
 
 \begin{verbatim}
@@ -416,28 +463,56 @@ Because of missing values in the variables of interest in some of our analyses, 
 \hypertarget{variables}{%
 \subsection{Variables}\label{variables}}
 
-The original WHO dataset contains more than 1,600 variables, not all of which are relevant to our research questions. Therefore, we have limited our analysis to 10 variables, listed below in Table 1. In our analysis, we exclude participants who reported that they already have a formal diabetes diagnosis from a doctor, since we are interested in HBA1C values for people who do not have a diabetes diagnosis. We also exclude participants age 50 or older, since this group typically has high HbA1c levels regardless of the presence of diabetes, as well as participants with CRP levels above 5, since because such values indicate infection which would confound our analysis.
+The original WHO dataset contains more than 1,600 variables, not all of which are relevant to our research questions. Therefore, we have limited our analysis to 10 variables, listed below in Table 1. In our analysis, we only included participants who reported that they already have a formal diabetes diagnosis from a doctor, since our research questions revolve around diabetes treatments. Figure (plot\_all) shows the raw data and the data that we selected for our analysis (the colorful points on the far left).
 
-C-reactive protein and hba1c measured through dried bloodspots (minimally invasive biomarkers) (\protect\hyperlink{ref-10.1353ux2fdem.2007.0038}{McDade, Williams, \& Snodgrass, 2007})).
+\hypertarget{filtering}{%
+\subsubsection{filtering}\label{filtering}}
+
+A variable was created called ``diabetes treatment'' wherein anyone who answered yes to
+
+{[}edit this to describe the three we use in our analysis{]}
+A variable was created to indicate whether or not someone fell into one of the four following categories: diagnosed and treated diabetes, diagnosed and untreated diabetes, undiagnosed diabetes, or no diabetes. This variable was created using 3 questions from the in-person survey portion of the study. If participants answered yes to ``Have you ever been diagnosed with diabetes (high blood sugar)?'' and also answered yes to either ``Have you been taking insulin or other blood sugar lowering medications in the last 2 weeks?'' or ``Have you been following a special diet, exercise regime or weight control program for diabetes during the last 2 weeks?'', then they were in the diagnosed and treated group (China: n = 448, Mexico: n = 165). If they answered yes to diagnosis, but no to both treatment questions then they were placed in the untreated diabetes group (China: n = 43, Mexico: n = 39). If they answered no to the diagnosis question and their HbA1c was under 6.5\% then they were placed in the no diabetes group (China: n = 5,246, Mexico: n = 1,241). Lastly, if they answered no to the diagnosis question but their HbA1c was 6.5\% or higher, then they were placed into the undiagnosed diabetes group (China: n = 444, Mexico: n = 181). There was a group of people in both countries who answered ``no'' to both treatment options but still had an HbA1c level below 6.5\% (China: n = 29, Mexico: n = 17). These people were excluded from the analysis.
+
+{[}This is good as is{]}
+A variable was then created that indicated ``unknown treatment'' if the diabetes treatment variable indicated that there was no treatment but hba1c was below 6.5 and otherwise ``Known treatment'' was indicated. All ``unknown treatment'' variables were then removed (n = 17). See plot.all2 and plot.all\_filtered to see the data before and after these data points were filtered out.
+
+\hypertarget{biomarkers}{%
+\subsubsection{Biomarkers}\label{biomarkers}}
+
+A subset of people participating in the SAGE study underwent biomarker analysis in Mexico (n = 1831) and in China (n = 12,077). Exclusions included \#\# people for incomplete data, \#\#\# people for having an elevated CRP value that might indicate injury or infection. The sample was \#\#\% female and \#\#\% male. Participant ages for this analysis ranged from 50 to 105 years old (M = 68.27, SD = 9.23).
+
+Biomarkers were analyzed using dried blood spot (DBS) procedures, and collected via standard venipuncture into an EDTA tube. In order to go from venous blood to DBS, the samples of whole blood were homogenized and then pipetted in 20uL aliquots onto standard Whatman 903 filter paper. The samples were left to dry for 24 hours at room temperature before they were analyzed. We punched out a 6mm spot from the DBS card and used 250 uL of PBS buffer pH = 7 to elute for 14 hours. The Abbott Architect CI8200 chemistry analyzer was used to analyzed the DBS eluates in order to obtain CRP values and it was used for HbA1c as well.
+
+Hemoglobin A1c (HbA1c) is a measure of average blood glucose values over the past 3 months. HbA1c also required a 6 mm DBS punch. This one was eluted in 400uL MULTIAGEN Hemoglobin Denaturant for 14 hours. The Architect blood chemistry analyzer was loaded with a cuvette with eluent and was then used to determine HbA1c and total hemoglobin by measuring absorbance at 700 for Hba1cnm and 604nm for total hemoglobin. The analyzer's program calculated percent HbA1c using the following formula:{[}(HbA1c/TotHb)×100{]} - 3+(0.2 × TotHb).
 
 Self-report surveys conducted by trained interviewers.
 
 Data are from the World Health Organization's Study on Adult Health and Ageing (SAGE). Our data is from 1 of 5 countries where the data were collected.
 
-Cite R packages here
+All analyses were conducted in R with the following packages:
+here (\protect\hyperlink{ref-here}{Müller, 2020}), rio(\protect\hyperlink{ref-chanRioSwissarmyKnife2021}{\textbf{chanRioSwissarmyKnife2021?}}), tidyverse{[}re{]}, ggpubr (\protect\hyperlink{ref-kassambaraGgpubrGgplot2Based2022}{\textbf{kassambaraGgpubrGgplot2Based2022?}}),bibtex (\protect\hyperlink{ref-francoisBibtexBibtexParser2022}{\textbf{francoisBibtexBibtexParser2022?}}),papja (\protect\hyperlink{ref-austPapajaPrepareReproducible2022}{\textbf{austPapajaPrepareReproducible2022?}}), psych
+(\protect\hyperlink{ref-revellePsychProceduresPsychological2022}{\textbf{revellePsychProceduresPsychological2022?}}),and forcats (\protect\hyperlink{ref-wickhamForcatsToolsWorking2022}{\textbf{wickhamForcatsToolsWorking2022?}}).
+
 comment 495
 \# Results
 
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
 
+We see diet and exercise predicting CRP over and above the effects of age such that those who said that they do diet and exercise (insert direction based in RQ2 results).
+
+Ultimately we see that inflammation is impacted by diabetes treatments. Access to care does not appear to explain (summarize baed on RQ3). However, it is important that further exploration between diabetes, inflammation, and diabetes treatments take place.
+
 \hypertarget{limitations}{%
 \subsection{Limitations}\label{limitations}}
 
 We were not able to look at pills and insulin separately and some their effects have the potential to cancel each other out. The sex variable was established through interviewer discernment.
+* combination therapy is a possibility that we could not account for. Additionally we do not know exactly which medications people were taking.
 
 \hypertarget{appendix}{%
 \section{Appendix}\label{appendix}}
+
+Despite the documented limitations of the World Health Organization Health State Description scale (\protect\hyperlink{ref-asadaMedicalTechnologiesNonhuman2005}{\textbf{asadaMedicalTechnologiesNonhuman2005?}}), it is worth exploring in future studies whether or not this scale captures diabetes complications in such a way that we might be able to analyze connections between inflammation and diabetes complications cross-sectionally in the SAGE data.
 
 \hypertarget{references}{%
 \section{References}\label{references}}
@@ -456,8 +531,8 @@ Freeman, Dilys J., Norrie, J., Caslake, M. J., Gaw, A., Ford, I., Lowe, G. D. O.
 \leavevmode\vadjust pre{\hypertarget{ref-10.1161ux2f01.cir.103.3.357}{}}%
 Freeman, Dilys J., Norrie, J., Sattar, N., Neely, R. D. G., Cobbe, S. M., Ford, I., \ldots{} Gaw, A. (2001). Pravastatin and the development of diabetes mellitus. \emph{Circulation}, \emph{103}(3), 357--362. \url{https://doi.org/10.1161/01.cir.103.3.357}
 
-\leavevmode\vadjust pre{\hypertarget{ref-10.1353ux2fdem.2007.0038}{}}%
-McDade, T. W., Williams, S., \& Snodgrass, J. J. (2007). What a drop can do: {Dried} blood spots as a minimally invasive method for integrating biomarkers into population-based research. \emph{Demography}, \emph{44}(4), 899--925. \url{https://doi.org/10.1353/dem.2007.0038}
+\leavevmode\vadjust pre{\hypertarget{ref-here}{}}%
+Müller, K. (2020). \emph{Here: {A} simpler way to find your files} {[}Manual{]}. Retrieved from \url{https://CRAN.R-project.org/package=here}
 
 \leavevmode\vadjust pre{\hypertarget{ref-rohmInflammationObesityDiabetes2022}{}}%
 Rohm, T. V., Meier, D. T., Olefsky, J. M., \& Donath, M. Y. (2022). Inflammation in obesity, diabetes, and related disorders. \emph{Immunity}, \emph{55}(1), 31--55. \url{https://doi.org/10.1016/j.immuni.2021.12.013}

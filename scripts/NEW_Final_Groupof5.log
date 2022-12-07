@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.3.15)  6 DEC 2022 17:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.3.15)  6 DEC 2022 18:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -794,20 +794,25 @@ Package fancyhdr Warning: \headheight is too small (15.2pt):
 LaTeX Warning: Reference `fig:data-cleaning-tian2' on page 3 undefined on input
  line 219.
 
-<NEW_Final_Groupof5_files/figure-latex/fig1-1.pdf, id=17, 443.6575pt x 315.1775
-pt>
-File: NEW_Final_Groupof5_files/figure-latex/fig1-1.pdf Graphic file (type pdf)
-<use NEW_Final_Groupof5_files/figure-latex/fig1-1.pdf>
-Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/fig1-1.pdf  used
- on input line 222.
-(pdftex.def)             Requested size: 443.6564pt x 315.17673pt.
-<NEW_Final_Groupof5_files/figure-latex/fig2-1.pdf, id=20, 446.66875pt x 315.177
-5pt>
-File: NEW_Final_Groupof5_files/figure-latex/fig2-1.pdf Graphic file (type pdf)
-<use NEW_Final_Groupof5_files/figure-latex/fig2-1.pdf>
-Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/fig2-1.pdf  used
- on input line 230.
-(pdftex.def)             Requested size: 446.67445pt x 315.18153pt.
+
+LaTeX Warning: Reference `fig:fig1' on page 3 undefined on input line 223.
+
+<NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-3-1.pdf, id=17, 453.695pt 
+x 315.1775pt>
+File: NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file 
+(type pdf)
+<use NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-3-1.pdf>
+Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-3-
+1.pdf  used on input line 226.
+(pdftex.def)             Requested size: 453.6939pt x 315.17673pt.
+<NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-4-1.pdf, id=18, 453.695pt 
+x 315.1775pt>
+File: NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file 
+(type pdf)
+<use NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-4-1.pdf>
+Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-4-
+1.pdf  used on input line 230.
+(pdftex.def)             Requested size: 453.6939pt x 315.17673pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -819,14 +824,17 @@ Package fancyhdr Warning: \headheight is too small (15.2pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-11.91652pt}.
 
-[3 <./NEW_Final_Groupof5_files/figure-latex/fig1-1.pdf>]
-<NEW_Final_Groupof5_files/figure-latex/fig3-1.pdf, id=37, 446.66875pt x 315.177
-5pt>
+[3 <./NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-3-1.pdf>]
+
+LaTeX Warning: Reference `fig:fig2' on page 4 undefined on input line 235.
+
+<NEW_Final_Groupof5_files/figure-latex/fig3-1.pdf, id=33, 447.6725pt x 315.1775
+pt>
 File: NEW_Final_Groupof5_files/figure-latex/fig3-1.pdf Graphic file (type pdf)
 <use NEW_Final_Groupof5_files/figure-latex/fig3-1.pdf>
 Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/fig3-1.pdf  used
  on input line 238.
-(pdftex.def)             Requested size: 446.67445pt x 315.18153pt.
+(pdftex.def)             Requested size: 447.68506pt x 315.18634pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -838,7 +846,12 @@ Package fancyhdr Warning: \headheight is too small (15.2pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-11.91652pt}.
 
-[4 <./NEW_Final_Groupof5_files/figure-latex/fig2-1.pdf>]
+[4 <./NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-4-1.pdf>]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
+41.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
 
 Package fancyhdr Warning: \headheight is too small (15.2pt): 
 (fancyhdr)                Make it at least 27.11652pt, for example:
@@ -848,6 +861,8 @@ Package fancyhdr Warning: \headheight is too small (15.2pt):
 (fancyhdr)                \addtolength{\topmargin}{-11.91652pt}.
 
 [5 <./NEW_Final_Groupof5_files/figure-latex/fig3-1.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 
 Package fancyhdr Warning: \headheight is too small (15.2pt): 
 (fancyhdr)                Make it at least 27.11652pt, for example:
@@ -857,13 +872,17 @@ Package fancyhdr Warning: \headheight is too small (15.2pt):
 (fancyhdr)                \addtolength{\topmargin}{-11.91652pt}.
 
 [6]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 3
-05.
-(/usr/local/texlive/2021/texmf-dist/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
+
+Package fancyhdr Warning: \headheight is too small (15.2pt): 
+(fancyhdr)                Make it at least 27.11652pt, for example:
+(fancyhdr)                \setlength{\headheight}{27.11652pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-11.91652pt}.
+
+[7]
 LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
-320.
+367.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -877,14 +896,14 @@ Package fancyhdr Warning: \headheight is too small (15.2pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-11.91652pt}.
 
-[7]
-<NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-1-1.pdf, id=93, 464.73625p
+[8]
+<NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-5-1.pdf, id=85, 464.73625p
 t x 316.18124pt>
-File: NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file 
+File: NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file 
 (type pdf)
-<use NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-1-1.pdf>
-Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-1-
-1.pdf  used on input line 345.
+<use NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-5-1.pdf>
+Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-5-
+1.pdf  used on input line 392.
 (pdftex.def)             Requested size: 464.74928pt x 316.19011pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -897,15 +916,15 @@ Package fancyhdr Warning: \headheight is too small (15.2pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-11.91652pt}.
 
-[8]
+[9]
 <NEW_Final_Groupof5_files/figure-latex/tableofcrpmedicationandexercise-1.pdf, i
-d=98, 446.66875pt x 312.16624pt>
+d=90, 446.66875pt x 312.16624pt>
 File: NEW_Final_Groupof5_files/figure-latex/tableofcrpmedicationandexercise-1.p
 df Graphic file (type pdf)
 <use NEW_Final_Groupof5_files/figure-latex/tableofcrpmedicationandexercise-1.pd
 f>
 Package pdftex.def Info: NEW_Final_Groupof5_files/figure-latex/tableofcrpmedica
-tionandexercise-1.pdf  used on input line 357.
+tionandexercise-1.pdf  used on input line 404.
 (pdftex.def)             Requested size: 446.67445pt x 312.17024pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -918,8 +937,8 @@ Package fancyhdr Warning: \headheight is too small (15.2pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-11.91652pt}.
 
-[9 <./NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-1-1.pdf>]
-Overfull \hbox (3.19122pt too wide) in paragraph at lines 385--385
+[10 <./NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-5-1.pdf>]
+Overfull \hbox (3.19122pt too wide) in paragraph at lines 432--432
 []|$\OML/lmm/m/it/12 N[]$|  
  []
 
@@ -934,17 +953,8 @@ Package fancyhdr Warning: \headheight is too small (15.2pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-11.91652pt}.
 
-[10 <./NEW_Final_Groupof5_files/figure-latex/tableofcrpmedicationandexercise-1.
+[11 <./NEW_Final_Groupof5_files/figure-latex/tableofcrpmedicationandexercise-1.
 pdf>]
-
-Package fancyhdr Warning: \headheight is too small (15.2pt): 
-(fancyhdr)                Make it at least 27.11652pt, for example:
-(fancyhdr)                \setlength{\headheight}{27.11652pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-11.91652pt}.
-
-[11]
 
 Package fancyhdr Warning: \headheight is too small (15.2pt): 
 (fancyhdr)                Make it at least 27.11652pt, for example:
@@ -963,6 +973,8 @@ Package fancyhdr Warning: \headheight is too small (15.2pt):
 (fancyhdr)                \addtolength{\topmargin}{-11.91652pt}.
 
 [13]
+Underfull \vbox (badness 2384) has occurred while \output is active []
+
 
 Package fancyhdr Warning: \headheight is too small (15.2pt): 
 (fancyhdr)                Make it at least 27.11652pt, for example:
@@ -971,7 +983,39 @@ Package fancyhdr Warning: \headheight is too small (15.2pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-11.91652pt}.
 
-[14] (./NEW_Final_Groupof5.lof)
+[14]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 4
+86.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+
+Package fancyhdr Warning: \headheight is too small (15.2pt): 
+(fancyhdr)                Make it at least 27.11652pt, for example:
+(fancyhdr)                \setlength{\headheight}{27.11652pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-11.91652pt}.
+
+[15]
+
+Package fancyhdr Warning: \headheight is too small (15.2pt): 
+(fancyhdr)                Make it at least 27.11652pt, for example:
+(fancyhdr)                \setlength{\headheight}{27.11652pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-11.91652pt}.
+
+[16]
+
+Package fancyhdr Warning: \headheight is too small (15.2pt): 
+(fancyhdr)                Make it at least 27.11652pt, for example:
+(fancyhdr)                \setlength{\headheight}{27.11652pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-11.91652pt}.
+
+[17] (./NEW_Final_Groupof5.lof)
 \tf@lof=\write5
 \openout5 = `NEW_Final_Groupof5.lof'.
 
@@ -983,7 +1027,7 @@ Package fancyhdr Warning: \headheight is too small (15.2pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-11.91652pt}.
 
-[15
+[18
 
 ] (./NEW_Final_Groupof5.lot)
 \tf@lot=\write6
@@ -998,7 +1042,7 @@ Package fancyhdr Warning: \headheight is too small (15.2pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-11.91652pt}.
 
-[16
+[19
 
 ] (./NEW_Final_Groupof5.aux)
 
@@ -1006,27 +1050,48 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 17435 strings out of 478994
- 271655 string characters out of 5858184
- 635933 words of memory out of 5000000
- 34428 multiletter control sequences out of 15000+600000
- 458161 words of font info for 106 fonts, out of 8000000 for 9000
+ 17500 strings out of 478994
+ 273182 string characters out of 5858184
+ 635929 words of memory out of 5000000
+ 34463 multiletter control sequences out of 15000+600000
+ 459060 words of font info for 113 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 85i,13n,88p,1106b,590s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/local
-/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2021/
-texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2021/texmf-dist
-/fonts/enc/dvips/lm/lm-rm.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/p
-ublic/lm/lmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/l
-mmi12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><
-/usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/
-texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2021
-/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2021/texmf-dis
-t/fonts/type1/public/lm/lmtt12.pfb>
-Output written on NEW_Final_Groupof5.pdf (16 pages, 233534 bytes).
+ 85i,13n,88p,1483b,590s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{ref-asadaMedicalTechnologiesNonhuman2005} has bee
+n referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{ref-wickhamForcatsToolsWorking2022} has been refere
+nced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{ref-revellePsychProceduresPsychological2022} has be
+en referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{ref-austPapajaPrepareReproducible2022} has been ref
+erenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{ref-francoisBibtexBibtexParser2022} has been refere
+nced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{ref-kassambaraGgpubrGgplot2Based2022} has been refe
+renced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{ref-chanRioSwissarmyKnife2021} has been referenced 
+but does not exist, replaced by a fixed one
+
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/local/t
+exlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/202
+1/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2021/texmf-dist/f
+onts/enc/dvips/lm/lm-ec.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/pub
+lic/lm/lmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmm
+i12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></u
+sr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/te
+xlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2021/t
+exmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2021/texmf-dist/
+fonts/type1/public/lm/lmtt12.pfb>
+Output written on NEW_Final_Groupof5.pdf (19 pages, 207253 bytes).
 PDF statistics:
- 286 PDF objects out of 1000 (max. 8388607)
- 243 compressed objects within 3 object streams
- 56 named destinations out of 1000 (max. 500000)
- 26730 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 314 PDF objects out of 1000 (max. 8388607)
+ 268 compressed objects within 3 object streams
+ 70 named destinations out of 1000 (max. 500000)
+ 28794 words of extra memory for PDF output out of 29859 (max. 10000000)
 
