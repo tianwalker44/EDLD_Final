@@ -116,9 +116,9 @@
 
 % Create new environments so endfloat can handle them
 % \newenvironment{ltable}
-%   {\begin{landscape}\centering\begin{threeparttable}}
-%   {\end{threeparttable}\end{landscape}}
-\newenvironment{lltable}{\begin{landscape}\centering\begin{ThreePartTable}}{\end{ThreePartTable}\end{landscape}}
+%   {\begin{landscape}\begin{center}\begin{threeparttable}}
+%   {\end{threeparttable}\end{center}\end{landscape}}
+\newenvironment{lltable}{\begin{landscape}\begin{center}\begin{ThreePartTable}}{\end{ThreePartTable}\end{center}\end{landscape}}
 
 % Enables adjusting longtable caption width to table width
 % Solution found at http://golatex.de/longtable-mit-caption-so-breit-wie-die-tabelle-t15767.html
@@ -131,20 +131,6 @@
 % \setlength{\parindent}{0.5in}
 % \setlength{\parskip}{0pt plus 0pt minus 0pt}
 
-% Overwrite redefinition of paragraph and subparagraph by the default LaTeX template
-% See https://github.com/crsh/papaja/issues/292
-\makeatletter
-\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
-  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
-  {-1em}%
-  {\normalfont\normalsize\bfseries\itshape\typesectitle}}
-
-\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{1em}%
-  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
-  {-\z@\relax}%
-  {\normalfont\normalsize\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
-\makeatother
-
 % \usepackage{etoolbox}
 \makeatletter
 \patchcmd{\HyOrg@maketitle}
@@ -156,15 +142,7 @@
   {\section*{\protect\normalfont{\@title}}}
   {}{\typeout{Failed to patch title.}}
 \makeatother
-
-\usepackage{xpatch}
-\makeatletter
-\xapptocmd\appendix
-  {\xapptocmd\section
-    {\addcontentsline{toc}{section}{\appendixname\ifoneappendix\else~\theappendix\fi\\: #1}}
-    {}{\InnerPatchFailed}%
-  }
-{}{\PatchFailed}
+\shorttitle{Inflammation, Access to care, and Treatment among Older Mexicans with Diabetes}
 \keywords{Diabetes, access to care, inflammation, health, Mexico, China\newline\indent Word count: X (this cannot easily be done automatically, we can also just leave it out)}
 \DeclareDelayedFloatFlavor{ThreePartTable}{table}
 \DeclareDelayedFloatFlavor{lltable}{table}
@@ -205,13 +183,11 @@
 \date{}
 
 
-\shorttitle{Inflammation, Access to care, and Treatment among Older Mexicans with Diabetes}
-
 \authornote{List of group members ordered by alphabet.}
 
 \affiliation{\vspace{0.5cm}\textsuperscript{1} University of Oregon}
 
-\abstract{%
+\abstract{
 Diabetes is a leading cause of death in Mexico and is closely linked to the obesity epidemic. Previous studies indicate that inflammation predicts the development of diabetes and is found to be a strong indicator of diabetes development and progression. However, there are limited studies investigating the extent to which inflammation levels relate to the different treatment options among those with diabetes among Mexicans. To gain insight on the extent to which inflammation levels relate to medication, diet, and exercise we conducted a cross-sectional, secondary analysis using linear regression modeling and Chi-square tests of independence. Medication model fit parameter included (N = 357) F(2,354) = 1.06, p= 0.35, with R2= 0.01. Diet and exercise model fit parameters included (N= ) F(2, 354) = 2.70,p= 0.07 withR2= 0.02. And evaluating diet and exercise with access to care results included X2 results: X2(1) = 0.57, p= 0.45. Results indicate that among older Mexicans with diabetes there were no direct effects of treatment and access to inflammation levels.
 }
 
@@ -283,13 +259,13 @@ Diabetes is a leading cause of death in Mexico and is closely linked to the obes
 
 \caption{\label{tab:regtab1}Effect of Medication on CRP, controlling for Age. }
 
-\begin{tabular}{lllllll}
+\begin{tabular}{lllll}
 \toprule
-Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t$} & \multicolumn{1}{c}{$\mathit{df}$} & \multicolumn{1}{c}{$p$} & \multicolumn{1}{c}{predictor}\\
+Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t(354)$} & \multicolumn{1}{c}{$p$}\\
 \midrule
-Intercept & 2.00 & {}[1.06, 2.94] & 4.18 & 354 & < .001 & Intercept\\
-Age & -0.01 & {}[-0.02, 0.01] & -0.91 & 354 & .362 & Age\\
-Medication2 & 0.20 & {}[-0.17, 0.56] & 1.07 & 354 & .284 & Medication\\
+Intercept & 2.00 & $[1.06$, $2.94]$ & 4.18 & < .001\\
+Age & -0.01 & $[-0.02$, $0.01]$ & -0.91 & .362\\
+Medication & 0.20 & $[-0.17$, $0.56]$ & 1.07 & .284\\
 \bottomrule
 \addlinespace
 \end{tabular}
@@ -310,13 +286,13 @@ Medication2 & 0.20 & {}[-0.17, 0.56] & 1.07 & 354 & .284 & Medication\\
 
 \caption{\label{tab:RQ2}Effect of Diet and Exercise on CRP, controlling for Age.}
 
-\begin{tabular}{lllllll}
+\begin{tabular}{lllll}
 \toprule
-Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t$} & \multicolumn{1}{c}{$\mathit{df}$} & \multicolumn{1}{c}{$p$} & \multicolumn{1}{c}{predictor}\\
+Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t(354)$} & \multicolumn{1}{c}{$p$}\\
 \midrule
-Intercept & 2.10 & {}[1.17, 3.04] & 4.43 & 354 & < .001 & Intercept\\
-Age & -0.01 & {}[-0.02, 0.01] & -0.83 & 354 & .408 & Age\\
-Dt exrcse2 & -0.25 & {}[-0.47, -0.02] & -2.11 & 354 & .036 & Diet and Exercise\\
+Intercept & 2.10 & $[1.17$, $3.04]$ & 4.43 & < .001\\
+Age & -0.01 & $[-0.02$, $0.01]$ & -0.83 & .408\\
+Diet and Exercise & -0.25 & $[-0.47$, $-0.02]$ & -2.11 & .036\\
 \bottomrule
 \addlinespace
 \end{tabular}
@@ -499,7 +475,7 @@ For our first research question, does taking medication lower inflammation level
 \hypertarget{regression-2}{%
 \subsection{Regression 2}\label{regression-2}}
 
-Our research question two looked at diet and exercise as a treatment for diabetes on predicting inflammation levels. We found that this regression model (Table \ref{tab:RQ2}) using 357 participants was not significant \(F\)(2, 354) = 2.70, \(p\) = 0.07 with \(R^2\) = 0.02. The regression coefficient for age was \(b_{age}\) = -0.01 (\(SE\) = 0.01, \(p\) = 0.41), and for diet and exercise \(b_{Diet}\) = -0.24 (\(SE\) = 0.12, \(p\) \textless{} 0.05). Based on these results, fail to reject our null hypothesis and conclude that diet and exercise does not predict inflammation levels on average in this population.
+Our research question two looked at diet and exercise as a treatment for diabetes on predicting inflammation levels. We found that this regression model (Table \ref{tab:RQ2}) using 357 participants was not significant \(F\)(2, 354) = 2.70, \(p\) = 0.07 with \(R^2\) = 0.01. The regression coefficient for age was \(b_{age}\) = -0.01 (\(SE\) = 0.01, \(p\) = 0.41), and for diet and exercise \(b_{Diet}\) = -0.24 (\(SE\) = 0.12, \(p\) \textless{} 0.05). Based on these results, fail to reject our null hypothesis and conclude that diet and exercise does not predict inflammation levels on average in this population.
 
 \hypertarget{chi-square-test}{%
 \subsection{Chi Square Test}\label{chi-square-test}}
@@ -545,16 +521,16 @@ Agrawal, N. K., \& Kant, S. (2014). Targeting inflammation in diabetes: {Newer} 
 Asada, Y. (2005). Medical technologies, nonhuman aids, human assistance, and environmental factors in the assessment of health states. \emph{Quality of Life Research}, \emph{14}(3), 867--874. \url{https://doi.org/10.1007/s11136-004-0910-z}
 
 \leavevmode\vadjust pre{\hypertarget{ref-austPapajaPrepareReproducible2022}{}}%
-Aust, F., \& Barth, M. (2022). \emph{{papaja}: {Prepare} reproducible {APA} journal articles with {R Markdown}} {[}Manual{]}. Retrieved from \url{https://github.com/crsh/papaja}
+Aust, F., \& Barth, M. (2022). \emph{{papaja}: {Prepare} reproducible {APA} journal articles with {R Markdown}}. manual. Retrieved from \url{https://github.com/crsh/papaja}
 
 \leavevmode\vadjust pre{\hypertarget{ref-chanRioSwissarmyKnife2021a}{}}%
-Chan, C., Chan, G. C., Leeper, T. J., \& Becker, J. (2021). \emph{Rio: {A Swiss-army} knife for data file {I}/{O}} {[}Manual{]}.
+Chan, C., Chan, G. C., Leeper, T. J., \& Becker, J. (2021). \emph{Rio: {A Swiss-army} knife for data file {I}/{O}}. manual.
 
 \leavevmode\vadjust pre{\hypertarget{ref-firkeJanitorSimpleTools2021}{}}%
-Firke, S. (2021). \emph{Janitor: {Simple} tools for examining and cleaning dirty data} {[}Manual{]}. Retrieved from \url{https://CRAN.R-project.org/package=janitor}
+Firke, S. (2021). \emph{Janitor: {Simple} tools for examining and cleaning dirty data}. manual. Retrieved from \url{https://CRAN.R-project.org/package=janitor}
 
 \leavevmode\vadjust pre{\hypertarget{ref-francoisBibtexBibtexParser2022}{}}%
-Francois, R., \& Hernangómez, D. (2022). \emph{Bibtex: {Bibtex} parser} {[}Manual{]}. Retrieved from \url{https://CRAN.R-project.org/package=bibtex}
+Francois, R., \& Hernangómez, D. (2022). \emph{Bibtex: {Bibtex} parser}. manual. Retrieved from \url{https://CRAN.R-project.org/package=bibtex}
 
 \leavevmode\vadjust pre{\hypertarget{ref-freemanCreactiveProteinIndependent2002}{}}%
 Freeman, Dilys J., Norrie, J., Caslake, M. J., Gaw, A., Ford, I., Lowe, G. D. O., \ldots{} Study, W. of S. C. P. (2002). C-reactive protein is an independent predictor of risk for the development of diabetes in the west of scotland coronary prevention study. \emph{Diabetes}, \emph{51}(5), 1596--1600. \url{https://doi.org/10.2337/diabetes.51.5.1596}
@@ -563,19 +539,19 @@ Freeman, Dilys J., Norrie, J., Caslake, M. J., Gaw, A., Ford, I., Lowe, G. D. O.
 Freeman, Dilys J., Norrie, J., Sattar, N., Neely, R. D. G., Cobbe, S. M., Ford, I., \ldots{} Gaw, A. (2001). Pravastatin and the development of diabetes mellitus. \emph{Circulation}, \emph{103}(3), 357--362. \url{https://doi.org/10.1161/01.cir.103.3.357}
 
 \leavevmode\vadjust pre{\hypertarget{ref-hlavacStargazerWellformattedRegression2018}{}}%
-Hlavac, M. (2018). \emph{Stargazer: {Well-formatted} regression and summary statistics tables} {[}Manual{]}. {Bratislava, Slovakia}: {Central European Labour Studies Institute (CELSI)}. Retrieved from \url{https://CRAN.R-project.org/package=stargazer}
+Hlavac, M. (2018). \emph{Stargazer: {Well-formatted} regression and summary statistics tables}. manual, {Bratislava, Slovakia}: {Central European Labour Studies Institute (CELSI)}. Retrieved from \url{https://CRAN.R-project.org/package=stargazer}
 
 \leavevmode\vadjust pre{\hypertarget{ref-iannoneGtEasilyCreate2022}{}}%
-Iannone, R., Cheng, J., Schloerke, B., Hughes, E., \& Seo, J. (2022). \emph{Gt: {Easily} create presentation-ready display tables} {[}Manual{]}. Retrieved from \url{https://CRAN.R-project.org/package=gt}
+Iannone, R., Cheng, J., Schloerke, B., Hughes, E., \& Seo, J. (2022). \emph{Gt: {Easily} create presentation-ready display tables}. manual. Retrieved from \url{https://CRAN.R-project.org/package=gt}
 
 \leavevmode\vadjust pre{\hypertarget{ref-kassambaraGgpubrGgplot2Based2022}{}}%
-Kassambara, A. (2022). \emph{Ggpubr: 'ggplot2' based publication ready plots} {[}Manual{]}. Retrieved from \url{https://CRAN.R-project.org/package=ggpubr}
+Kassambara, A. (2022). \emph{Ggpubr: 'ggplot2' based publication ready plots}. manual. Retrieved from \url{https://CRAN.R-project.org/package=ggpubr}
 
 \leavevmode\vadjust pre{\hypertarget{ref-here}{}}%
-Müller, K. (2020). \emph{Here: {A} simpler way to find your files} {[}Manual{]}. Retrieved from \url{https://CRAN.R-project.org/package=here}
+Müller, K. (2020). \emph{Here: {A} simpler way to find your files}. manual. Retrieved from \url{https://CRAN.R-project.org/package=here}
 
 \leavevmode\vadjust pre{\hypertarget{ref-revellePsychProceduresPsychological2022}{}}%
-Revelle, W. (2022). \emph{Psych: {Procedures} for psychological, psychometric, and personality research} {[}Manual{]}. {Evanston, Illinois}: {Northwestern University}. Retrieved from \url{https://CRAN.R-project.org/package=psych}
+Revelle, W. (2022). \emph{Psych: {Procedures} for psychological, psychometric, and personality research}. manual, {Evanston, Illinois}: {Northwestern University}. Retrieved from \url{https://CRAN.R-project.org/package=psych}
 
 \leavevmode\vadjust pre{\hypertarget{ref-rohmInflammationObesityDiabetes2022}{}}%
 Rohm, T. V., Meier, D. T., Olefsky, J. M., \& Donath, M. Y. (2022). Inflammation in obesity, diabetes, and related disorders. \emph{Immunity}, \emph{55}(1), 31--55. \url{https://doi.org/10.1016/j.immuni.2021.12.013}
@@ -587,7 +563,7 @@ Said, G. (2007). Diabetic neuropathy---a review. \emph{Nature Clinical Practice 
 Schmidt, M. I., Duncan, B. B., Sharrett, A. R., Lindberg, G., Savage, P. J., Offenbacher, S., \ldots{} Heiss, G. (1999). Markers of inflammation and prediction of diabetes mellitus in adults ({Atherosclerosis Risk} in {Communities} study): A cohort study. \emph{The Lancet}, \emph{353}(9165), 1649--1652. \url{https://doi.org/10.1016/S0140-6736(99)01046-6}
 
 \leavevmode\vadjust pre{\hypertarget{ref-wickhamForcatsToolsWorking2022}{}}%
-Wickham, H. (2022). \emph{Forcats: {Tools} for working with categorical variables (factors)} {[}Manual{]}. Retrieved from \url{https://CRAN.R-project.org/package=forcats}
+Wickham, H. (2022). \emph{Forcats: {Tools} for working with categorical variables (factors)}. manual. Retrieved from \url{https://CRAN.R-project.org/package=forcats}
 
 \leavevmode\vadjust pre{\hypertarget{ref-yangPrevalenceComorbiditiesIts2020}{}}%
 Yang, J., Zheng, Y., Gou, X., Pu, K., Chen, Z., Guo, Q., \ldots{} Zhou, Y. (2020). Prevalence of comorbidities and its effects in patients infected with {SARS-CoV-2}: A systematic review and meta-analysis. \emph{International Journal of Infectious Diseases}, \emph{94}, 91--95. \url{https://doi.org/10.1016/j.ijid.2020.03.017}
