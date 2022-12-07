@@ -33,6 +33,16 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Relations between Inflammation and Access to care, Treatment, and Diabetes in Older Mexicans},
+  pdfauthor={Dominik Grätz1, Rachel Miller-Moudgil1, Amber Somarriba1, Brittany Spinner1, \& Tian Walker1},
+  pdflang={en-EN},
+  pdfkeywords={Diabetes, access to care, inflammation, health, Mexico, China},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -189,16 +199,6 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
-\hypersetup{
-  pdftitle={Relations between Inflammation and Access to care, Treatment, and Diabetes in Older Mexicans},
-  pdfauthor={Dominik Grätz1, Rachel Miller-Moudgil1, Amber Somarriba1, Brittany Spinner1, \& Tian Walker1},
-  pdflang={en-EN},
-  pdfkeywords={Diabetes, access to care, inflammation, health, Mexico, China},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
 
 \title{Relations between Inflammation and Access to care, Treatment, and Diabetes in Older Mexicans}
 \author{Dominik Grätz\textsuperscript{1}, Rachel Miller-Moudgil\textsuperscript{1}, Amber Somarriba\textsuperscript{1}, Brittany Spinner\textsuperscript{1}, \& Tian Walker\textsuperscript{1}}
@@ -374,21 +374,21 @@ Dt exrcse2 & -0.25 & {}[-0.47, -0.02] & -2.11 & 354 & .036 & Diet and Exercise\\
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3243}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.6216}}@{}}
 \caption{\label{tab:descriptives} Descriptive statistics.}\tabularnewline
-\toprule()
+\toprule
 \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Mexico
 \end{minipage} \\
-\midrule()
+\midrule
 \endfirsthead
-\toprule()
+\toprule
 \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Mexico
 \end{minipage} \\
-\midrule()
+\midrule
 \endhead
 \(N_{total}\) & & 357 \\
 Sex & & \\
@@ -396,7 +396,7 @@ Sex & & \\
 & female & 241 (67.50 \%) \\
 & unknown & 1 (0.30 \%) \\
 Age & & 68 (\(SD\) = 8.40) \\
-\bottomrule()
+\bottomrule
 \end{longtable}
 
 \begin{figure}
@@ -485,18 +485,12 @@ The original WHO dataset contains more than 1,600 variables, not all of which ar
 \hypertarget{filtering}{%
 \subsubsection{Filtering}\label{filtering}}
 
-A variable was created called ``diabetes treatment'' wherein anyone who answered yes to
-
-{[}edit this to describe the three we use in our analysis{]}
-A variable was created to indicate whether or not someone fell into one of the four following categories: diagnosed and treated diabetes, diagnosed and untreated diabetes, undiagnosed diabetes, or no diabetes. This variable was created using 3 questions from the in-person survey portion of the study. If participants answered yes to ``Have you ever been diagnosed with diabetes (high blood sugar)?'' and also answered yes to either ``Have you been taking insulin or other blood sugar lowering medications in the last 2 weeks?'' or ``Have you been following a special diet, exercise regime or weight control program for diabetes during the last 2 weeks?'', then they were in the diagnosed and treated group (China: n = 448, Mexico: n = 165). If they answered yes to diagnosis, but no to both treatment questions then they were placed in the untreated diabetes group (China: n = 43, Mexico: n = 39). If they answered no to the diagnosis question and their HbA1c was under 6.5\% then they were placed in the no diabetes group (China: n = 5,246, Mexico: n = 1,241). Lastly, if they answered no to the diagnosis question but their HbA1c was 6.5\% or higher, then they were placed into the undiagnosed diabetes group (China: n = 444, Mexico: n = 181). There was a group of people in both countries who answered ``no'' to both treatment options but still had an HbA1c level below 6.5\% (China: n = 29, Mexico: n = 17). These people were excluded from the analysis.
-
-{[}This is good as is{]}
-A variable was then created that indicated ``unknown treatment'' if the diabetes treatment variable indicated that there was no treatment but hba1c was below 6.5 and otherwise ``Known treatment'' was indicated. All ``unknown treatment'' variables were then removed (n = 17). See plot.all2 and plot.all\_filtered to see the data before and after these data points were filtered out.
+A variable was created called ``diabetes treatment'' that indicated whether or not someone fell into one of the three following categories: medication, diet and exercise, and no treatment.Anyone who answered yes to ``Have you been taking insulin or other blood sugar lowering medications in the last 2 weeks?'' was coded ``yes'' for medication. Anyone who answered yes to ``Have you been following a special diet, exercise regime or weight control program for diabetes during the last 2 weeks?'' was coded yes for diet and exercise. Anyone who answered no to both was coded as ``no treatment''. A variable was then created that indicated ``unknown treatment'' if the diabetes treatment variable indicated that there was no treatment but hba1c was below 6.5 and otherwise ``Known treatment'' was indicated. All ``unknown treatment'' variables were then removed (n = 17). See plot.all2 and plot.all\_filtered to see the data before and after these data points were filtered out.
 
 \hypertarget{biomarkers}{%
 \subsubsection{Biomarkers}\label{biomarkers}}
 
-Biomarkers.A subset of people participating in the SAGE study underwentbiomarker analysis in Mexico (n = 1831) and in China (n = 12,077). Exclusions included\#\# people for incomplete data, \#\#\# people for having an elevated CRP value that might indicate injury or infection. The sample was \#\#\% female and \#\#\% male. Participant ages for this analysis ranged from 50 to 105 years old (M = 68.27, SD = 9.23).
+Biomarkers.A subset of people participating in the SAGE study underwentbiomarker analysis in Mexico (n = 1831) and in China (n = 12,077). Exclusions included 194 people for having an elevated CRP value that might indicate injury or infection. The sample was 60\% female and 40\% male. Participant ages for this analysis ranged from 50 to 105 years old (M = 68.27, SD = 9.23).
 
 Biomarkers were analyzed using dried blood spot (DBS) procedures, and collected via standard venipuncture into an EDTA tube. In order to go from venous blood to DBS, the samples of whole blood were homogenized and then pipetted in 20uL aliquots onto standard Whatman 903 filter paper. The samples were left to dry for 24 hours at room temperature before they were analyzed. We punched out a 6mm spot from the DBS card and used 250 uL of PBS buffer pH = 7 to elute for 14 hours. The Abbott Architect CI8200 chemistry analyzer was used to analyzed the DBS eluates in order to obtain CRP values and it was used for HbA1c as well.
 
@@ -527,6 +521,8 @@ Our research question two looked at diet and exercise as a treatment for diabete
 
 \hypertarget{chi-square-test}{%
 \subsection{Chi Square Test}\label{chi-square-test}}
+
+To gain insight into the relation between accessing health care and the treatment option: diet and exercise among those with diabetes partaking we conducted a Chi-square test of independence. Based on this analysis there were no significant differences in those utilizing care in the last year (Y/N) and partaking in diet and exercise (Y/N). In addition, to evaluate whether accessing health care in the last year relates with inflammation levels among those that partake in diet and exercise only, we conducted another chi-square test of independence. Results for this analysis were also not significant.
 
 To better understand differences in outcomes in health among those partaking in diet and exercise versus those that are not to treat diabetes, we seek to understand if there is difference in those that accessed health care in the last year and those that use diet and exercise as a treatment option for diabetes. \(\chi^2\) results: (\(\chi^2\)(1) = 0.57, \(p\) = 0.45). Based on these results we fail to reject the null hypothesis, and cannot conclude seeing a doctor in the last year relates to individuals using diet and exercise as treatment for diabetes in this population sample.
 
