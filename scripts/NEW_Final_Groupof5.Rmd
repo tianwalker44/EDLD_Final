@@ -129,6 +129,9 @@ col3_code <- c("male = 1, female = 2",
                "discrete variable")
 data_variables <- data.frame(col1_var, col2_desc, col3_code) %>% 
   rename("Variable name" = col1_var, "Description" = col2_desc, "Coding criteria" = col3_code)
+
+#random comment from Tian
+#testing pushing and pulling at the same time to different chunks
 ```
 
 
