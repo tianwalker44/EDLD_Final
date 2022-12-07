@@ -1,6 +1,6 @@
 ---
-title             : "Relations between Inflammation and Access to care, Treatment, and Diabetes in Older Mexico"
-shorttitle        : "Inflammation, Access to care, and Treatment among those with Diabetes in Mexico."
+title             : "Relations between Inflammation and Access to care, Treatment, and Diabetes in Older Mexicans"
+shorttitle        : "Inflammation, Access to care, and Treatment among Older Mexicans with Diabetes"
 
 author: 
   - name          : "Dominik Grätz"
