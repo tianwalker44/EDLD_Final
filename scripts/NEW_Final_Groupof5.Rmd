@@ -118,11 +118,6 @@ data_variables <- data.frame(col1_var, col2_desc, col3_code) %>%
 
 ```
 
-
-```{r variables-table}
-#data_variables
-```
-
 ```{r data-cleaning-tian2}
 data <- data %>% 
   mutate(diabetes_treat=case_when(
@@ -423,7 +418,7 @@ reg2_f_p <- report_p(get_model_p(reg2_summary))
 reg2_r2 <- reg2_summary$r.squared %>% round(3)
 ```
 
-```{r RQ3-brittany}
+```{r RQ3-brittany, fig.cap = "(ref:RQ3-brittany)"}
 #RQ3: Is there a relationship between seeing a doctor in the last year and using diet and exercise as a treatment for diabetes? 
 # Null: There is no relationship between seeing a doctor in the last year and diet and exercise. 
 # data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset #From Rachel: I'm hashtagging this out, because if you re-import the dataset here, it loses all the cleaning from earlier. 
@@ -453,9 +448,11 @@ chi_df$observed
 
 ```
 
+(ref:RQ3-brittany) Here goes the caption.
+
 ```{r, prop-access-bar, fig.cap = "(ref:prop-access-bar)"}
 #RQ4: For those partaking in diet and exercise, what is the relation of visiting the doctor in the last year on inflammation levels?
-#Null: There is no relation between visiting the doctor in the last year and inflamation levels among those that partake in diet and exercise as a treatment for diabetes. 
+#Null: There is no relation between visiting the doctor in the last year and inflammation levels among those that partake in diet and exercise as a treatment for diabetes. 
 RQ4df <- data %>% 
   filter(!is.na(dt_exrcse) & !is.na(age) & !(is.na(crp)) & !is.na(access))
 
@@ -481,15 +478,17 @@ chi_df_access$observed
 #RQ4df$crp2 <- factor(RQ3df$crp2, 
 #levels = c(1,2), labels = c("low", "high"))
 
-prop_access_bar <- ggplot(data = RQ4df, aes(x = access, fill = crp2))+
+prop_access_bar <- 
+  ggplot(data = RQ4df, aes(x = access, fill = crp2))+
   geom_bar(position = "dodge")+
-  labs(title = "Relation of Inflamation Levels low/high and Seeing a Doctor in the Last Year Y/N", subtitle= "Among Individuals with Diabetes that use Diet and Exercise as Treatment", x = "Saw a doctor in the last year Y/N", y = "Frequency")
+  labs(title = "Relation of Inflammation Levels low/high and Seeing a Doctor in the Last Year Y/N", subtitle= "Among Individuals with Diabetes that use Diet and Exercise as Treatment", x = "Saw a doctor in the last year Y/N", y = "Frequency")
 prop_access_bar+
   scale_fill_brewer(palette = "Spectral", name = "CRP Levels", labels = c("Low", "High"))
 
 #prop4
 #For those with vs. without access to medical care, what is the effect of diet and exercise on inflammation levels? 
 ```
+
 (ref:prop-access-bar) Here goes the caption.
 
 ```{r descriptives table prep}
@@ -744,34 +743,6 @@ ggplot(aes(x = as.factor(diabetes_treat), y = mean_crp)) + geom_col(aes(fill = d
 
 (ref:treat-fig) Here goes the caption.
 
-# FIGURE REFERENCES TO COPY
-
-Figure \@ref(fig:plot-all)
-Figure \@ref(fig:plot-all2)
-Figure \@ref(fig:tian-fig-hba1c-65)
-Figure \@ref(fig:crp-by-sex-male)
-Figure \@ref(fig:crp-by-sex-female)
-Figure \@ref(fig:RQ1plot)
-Figure \@ref(fig:tian-filtering)
-Figure \@ref(fig:prop-access-bar)
-Figure \@ref(fig:tableofcrpmedicationandexercise)
-Figure \@ref(fig:appendix-fig1)
-Figure \@ref(fig:appendix-fig2)
-Figure \@ref(fig:appendix-fig3)
-Figure \@ref(fig:appendix-fig4)
-Figure \@ref(fig:dshba1c)
-Figure \@ref(fig:dscrp)
-Figure \@ref(fig:treat-fig)
-
-# TABLE REFERENCES TO COPY
-
-Table \@ref(tab:regtab1) (Regression Table 1)
-
-Table \@ref(tab:RQ2) (Regression Table 2)
-
-Table \@ref(tab:descriptives) (Descriptives Table)
-
-
 # Introduction
 
 Diabetes and its insidious complications continue to expand as a global health burden at an alarming rate. In 2021, there were approximately 537 million adults living with diabetes in the world and this number is expected to jump to 783 million by 2045. A disproportionate percentage of these people live in low to middle income countries (LMICs). Given this predicted jump in incidence and in light of the COVID-19 pandemic, there is a heightened need in better understanding diabetes. During COVID-19, diabetes was found to both increase the severity of COVID-19 symptoms (in people with elevated a1c levels) and increase in incidence [@yangPrevalenceComorbiditiesIts2020] [@rohmInflammationObesityDiabetes2022]. Additionally, diabetes is associated with a steep increase in cardiovascular disease risk and is a leading cause of death in many low to middle income countries (LMICs) including Mexico. 
@@ -843,13 +814,13 @@ To gain insight into the relation between accessing health care and the  treatme
 
 To better understand differences in outcomes in health among those partaking in diet and exercise versus those that are not to treat diabetes, we seek to understand if there is difference in those that accessed health care in the last year and those that use diet and exercise as a treatment option for diabetes. $\chi^2$ results: ($\chi^2$(`r chi_df$parameter`) = `r chi_df$statistic`, $p$ `r report_p(chi_df$p.value)`). Based on these results we fail to reject the null hypothesis, and cannot conclude seeing a doctor in the last year relates to individuals using diet and exercise as treatment for diabetes in this population sample. 
 
-Looking at individuals who partake in diet and exercise only as a treatment for diabetes, we seek to answer the extent to which seeing a doctor in the last year relates to inflammation levels. $\chi^2$ results: ($\chi^2$(`r chi_df_access$parameter`) = `r chi_df_access$statistic`, $p$ `r report_p(chi_df_access$p.value)`). Based on these results, we fail to reject our null hypothesis and cannot conclude that seeing a doctor in the last year relates to inflammation levels in this populaiton sample. 
+Looking at individuals who partake in diet and exercise only as a treatment for diabetes, we seek to answer the extent to which seeing a doctor in the last year relates to inflammation levels. $\chi^2$ results: ($\chi^2$(`r chi_df_access$parameter`) = `r chi_df_access$statistic`, $p$ `r report_p(chi_df_access$p.value)`). Based on these results, we fail to reject our null hypothesis and cannot conclude that seeing a doctor in the last year relates to inflammation levels in this population sample. 
 
 # Discussion 
 
-We see diet and exercise predicting CRP over and above the effects of age such that those who said that they do diet and exercise (insert direction based in RQ2 results). 
+We see diet and exercise predicting CRP over and above the effects of age such that those who said that they do diet and exercise have higher CRP. 
 
-Ultimately we see that inflammation is impacted by diabetes treatments. Access to care does not appear to explain (summarize baed on RQ3). However, it is important that further exploration between diabetes, inflammation, and diabetes treatments take place. 
+Ultimately we see that inflammation is impacted by diabetes treatments. Access to care does not appear to explain this relationship. However, it is important that further exploration between diabetes, inflammation, and diabetes treatments take place. 
 
 ## Limitations
 

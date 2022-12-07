@@ -51,6 +51,20 @@
 \ifnextchar[{\eatarg}{}
 
 \centering
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/RQ3-brittany-1.pdf}
+\caption{\label{fig:RQ3-brittany}Here goes the caption.}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/prop-access-bar-1.pdf}
+\caption{\label{fig:prop-access-bar}Here goes the caption.}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
 \includegraphics{NEW_Final_Groupof5_files/figure-latex/tableofcrpmedicationandexercise-1.pdf}
 \caption{\label{fig:tableofcrpmedicationandexercise}Here goes the caption.}
 \end{figure*}
