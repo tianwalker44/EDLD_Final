@@ -250,6 +250,7 @@ plot.a <- data %>%
 ```{r pivot-group_by}
 #Code to fulfill all of Joe's requirements.
 #pivot_wider, to investigate crp levels by sex
+
 crp_by_sex <- data %>% pivot_wider(names_from="sex", values_from="crp") %>% rename(male="1",female="2") %>% as_tibble
 #pivot_longer, to investigate medication by crp level
 medication_by_crp <- data %>% pivot_longer(cols = "crp", "medication", values_to = "crp","on medication?", names_repair = "unique") #This isn't really doing what I want it to, but I'm out of time for now. -Rachel
@@ -284,7 +285,7 @@ crp_by_sex %>%
   geom_col(aes(fill = a1c_dichot_words), position = "dodge")+
   labs(x = "Diabetes Treatment",
        y = "CRP Level (Female)",
-       title = "Relationship Between Diabetes Treatment and Female CRP by HbA1c")+
+       title = "Diabetes Treatment and Female CRP by HbA1c")+
   theme(plot.title = element_text(hjust = 0.5))+
   scale_x_discrete(labels = c("Diet & Exerc.", "Medication", "No Treatment"))+
   scale_fill_brewer(palette = "RdPu", name = "HbA1c Levels", labels = c("Elevated", "In Range"))+
