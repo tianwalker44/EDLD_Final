@@ -789,7 +789,7 @@ Data are from the World Health Organization's Study on Adult Health and Ageing (
 
 All analyses were conducted in R with the following packages: 
 here [@here], rio[@chanRioSwissarmyKnife2021a], tidyverse[re], ggpubr [@kassambaraGgpubrGgplot2Based2022],bibtex [@francoisBibtexBibtexParser2022],papaja [@austPapajaPrepareReproducible2022], psych
-[@revellePsychProceduresPsychological2022],and forcats [@wickhamForcatsToolsWorking2022].
+[@revellePsychProceduresPsychological2022],and forcats [@wickhamForcatsToolsWorking2022], janitor[@firkeJanitorSimpleTools2021], gt [@iannoneGtEasilyCreate2022], stargazer[@hlavacStargazerWellformattedRegression2018]. 
 
 
 # Results
