@@ -82,3 +82,24 @@
 \includegraphics{NEW_Final_Groupof5_files/figure-latex/appendix-fig4-1.pdf}
 \caption{\label{fig:appendix-fig4}Here goes the caption.}
 \end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/dshba1c-1.pdf}
+\caption{\label{fig:dshba1c}Here goes the caption.}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/dscrp-1.pdf}
+\caption{\label{fig:dscrp}Here goes the caption.}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/treat-fig-1.pdf}
+\caption{\label{fig:treat-fig}Here goes the caption.}
+\end{figure*}
