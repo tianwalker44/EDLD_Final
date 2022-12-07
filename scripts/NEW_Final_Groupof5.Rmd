@@ -59,6 +59,8 @@ library(janitor)
 library(tidyr)
 library(stargazer)
 library(ggpubr)
+library(psych)
+library(gt)
 source(file = here("scripts", "report_p.R"))
 ```
 
@@ -444,6 +446,53 @@ ggplot(groups_med_dt_exrcse, aes(medication, mean))+
   scale_fill_manual(name = "Exercise", labels = c("Yes", "No"), values = c("#d4b9da", "#c994c7"))
 ```
 
+
+```{r include=FALSE}
+#code for appendix exploration 
+
+#rename variables of interest from the Health State Description Scale 
+dat <- dat %>% 
+rename(activities = q2001, vigorous_act = q2003, bod_discomfort = q2008, walking = q2026, standing = q2028, picking_up = q2031 )
+
+
+#select variables of interest and create a new data frame(df) that can be manipulated.
+
+dat2 <- dat %>% 
+  select(id, crp, hba1c, age, activities, vigorous_act, bod_discomfort, walking, standing, picking_up, diabetes_treat, diagnosis, medication, dt_exrcse) %>% 
+  #remove codes that indicate na variables from any variables that have them (checked by looking at min and max through the describe function)
+  filter(walking != 8 & walking != 9) %>% 
+  filter(standing != 8 & standing != 9) %>% 
+  filter(picking_up != 8 & picking_up != 9)
+
+#move the diabetes variable into the new df
+dat2 <- dat2 %>% 
+mutate(diabetes=if_else(diagnosis ==1|hba1c >6.5,"yes","no"))
+
+
+#move the diabetes levels variable into the new df
+dat2 <- dat2 %>% 
+  mutate(levels_dbts =
+           case_when(
+    diabetes == "yes" & medication == 1 & dt_exrcse == 1 ~ "treated_diabetes",
+    diabetes == "yes"& medication == 2 & dt_exrcse == 2  ~ "untreated_diabetes",
+    diabetes == "no" ~ "no_diabetes", 
+    hba1c > 6.5 & diagnosis == 2 ~ "undiagnosed_diabetes"))
+
+#move the dichotomized hba1c variable into the new df
+dat2 <- dat2 %>% 
+mutate(a1c_dichot_words = ifelse(hba1c>= 6.5, "elevated", "in_range")) 
+dat2
+
+#this is where I checked to be sure the values make sense
+describe(dat2$activities)
+describe(dat2$vigorous_act)
+describe(dat2$bod_discomfort)
+describe(dat2$walking)
+describe(dat2$standing)
+describe(dat2$picking_up)
+
+```
+
 (ref:fig4) Caption for Figure \@ref(fig:tableofcrpmedicationandexercise) goes here.
 
 Here I reference figure \@ref(fig:tableofcrpmedicationandexercise).
@@ -485,6 +534,15 @@ Because of missing values in the variables of interest in some of our analyses, 
 The original WHO dataset contains more than 1,600 variables, not all of which are relevant to our research questions. Therefore, we have limited our analysis to 10 variables, listed below in Table 1. In our analysis, we exclude participants who reported that they already have a formal diabetes diagnosis from a doctor, since we are interested in HBA1C values for people who do not have a diabetes diagnosis. We also exclude participants age 50 or older, since this group typically has high HbA1c levels regardless of the presence of diabetes, as well as participants with CRP levels above 5, since because such values indicate infection which would confound our analysis.
 
 
+### Biomarkers
+
+A subset of people participating in the SAGE study underwent biomarker analysis in Mexico (n = 1831) and in China (n = 12,077). Exclusions included ## people for incomplete data, ### people for having an elevated CRP value that might indicate injury or infection. The sample was 60% women. Participant ages for this analysis ranged from 50 to 97 years old (China: M = 63.07, SD = 9.28, Mexico: M = 68.27, SD = 9.23). 
+
+Biomarkers were analyzed using dried blood spot (DBS) procedures, and collected via standard venipuncture into an EDTA tube. In order to go from venous blood to DBS, the samples of whole blood were homogenized and then pipetted in 20μL aliquots onto standard Whatman 903 filter paper. The samples were left to dry for 24 hours at room temperature before they were analyzed. We punched out a 6mm spot from the DBS card and used 250 μL of PBS buffer pH = 7 to elute for 14 hours. The Abbott Architect CI8200 chemistry analyzer was used to analyzed the DBS eluates in order to obtain CRP values and it was used for HbA1c as well. 
+
+Hemoglobin A1c (HbA1c) is a measure of average blood glucose values over the past 3 months. HbA1c also required a 6 mm DBS punch. This one was eluted in 400μL MULTIAGEN Hemoglobin Denaturant for 14 hours. The Architect blood chemistry analyzer was loaded with a cuvette with eluent and was then used to determine HbA1c and total hemoglobin by measuring absorbance at 700 for Hba1cnm and 604nm for total hemoglobin. The analyzer's program calculated percent HbA1c using the following formula:[(HbA1c/TotHb)×100] − 3+(0.2 × TotHb).
+
+
 C-reactive protein and hba1c measured through dried bloodspots (minimally invasive biomarkers) [@10.1353/dem.2007.0038]). 
 
 Self-report surveys conducted by trained interviewers. 
@@ -501,6 +559,10 @@ comment 495
 
 We were not able to look at pills and insulin separately and some their effects have the potential to cancel each other out. The sex variable was established through interviewer discernment. 
 
+# Appendix
+
+
+
 # References
 
 
@@ -511,6 +573,7 @@ citation("here")
 citation("papaja")
 citation("tidyr")
 citation("stargazer")
+
 
 ```
 
