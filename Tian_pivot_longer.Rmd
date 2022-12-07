@@ -1,0 +1,112 @@
+---
+title: "pivot_longer_appendix"
+author: "Tian Walker"
+date: "2022-12-06"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#code for appendix exploration 
+
+#rename variables of interest from the Health State Description Scale 
+dat <- dat %>% 
+rename(activities = q2001, vigorous_act = q2003, bod_discomfort = q2008, walking = q2026, standing = q2028, picking_up = q2031 )
+
+
+#select variables of interest and create a new data frame(df) that can be manipulated.
+
+dat2 <- dat %>% 
+  select(id, crp, hba1c, age, activities, vigorous_act, bod_discomfort, walking, standing, picking_up, diabetes_treat, diagnosis, medication, dt_exrcse) %>% 
+  #remove codes that indicate na variables from any variables that have them (checked by looking at min and max through the describe function)
+  filter(walking != 8 & walking != 9) %>% 
+  filter(standing != 8 & standing != 9) %>% 
+  filter(picking_up != 8 & picking_up != 9)
+
+#move the diabetes variable into the new df
+dat2 <- dat2 %>% 
+mutate(diabetes=if_else(diagnosis ==1|hba1c >6.5,"yes","no"))
+
+
+#move the diabetes levels variable into the new df
+dat2 <- dat2 %>% 
+  mutate(levels_dbts =
+           case_when(
+    diabetes == "yes" & medication == 1 & dt_exrcse == 1 ~ "treated_diabetes",
+    diabetes == "yes"& medication == 2 & dt_exrcse == 2  ~ "untreated_diabetes",
+    diabetes == "no" ~ "no_diabetes", 
+    hba1c > 6.5 & diagnosis == 2 ~ "undiagnosed_diabetes"))
+
+#move the dichotomized hba1c variable into the new df
+dat2 <- dat2 %>% 
+mutate(a1c_dichot_words = ifelse(hba1c>= 6.5, "elevated", "in_range")) 
+dat2
+
+#this is where I checked to be sure the values make sense
+describe(dat2$activities)
+describe(dat2$vigorous_act)
+describe(dat2$bod_discomfort)
+describe(dat2$walking)
+describe(dat2$standing)
+describe(dat2$picking_up)
+
+```
+
+```{r}
+
+dat2_long <- dat2 %>% 
+  pivot_longer(cols = 5:10, names_to = "health_state_vars", values_to = "hs_score")
+
+apendix_fig <- dat2_long %>% 
+  filter(!is.na(levels_dbts)) %>% 
+  filter(crp < 5) %>% 
+  group_by(id) %>% 
+  summarize(mean_hs = mean(hs_score, na.rm = TRUE), crp, levels_dbts, a1c_dichot_words) %>% 
+  ggplot(aes(mean_hs, crp)) + geom_point(aes(color = levels_dbts)) + geom_smooth(aes(color = levels_dbts), method = "lm") + scale_color_brewer(type = "div", palette = 4) + labs(title = "CRP and Health Score by Diabetes", caption = "Mean health score is calculated such that higher scores = worse health") + theme_apa()
+
+
+```
+Mean health score is calculated such that higher scores = worse health. 
+
+```{r}
+library(gt)
+dat2_long_neat <- dat2_long %>% 
+  filter(!is.na(levels_dbts)) %>% 
+  filter(crp < 5) %>% 
+  group_by(id) %>% 
+  summarize(mean_hs = mean(hs_score, na.rm = TRUE), crp) %>% 
+  gt()
+
+
+dat2_long_neat <- dat2_long %>% 
+  filter(!is.na(levels_dbts)) %>% 
+  filter(crp < 5) %>% 
+  group_by( levels_dbts, health_state_vars) %>% 
+  summarize(mean_crp = mean(crp, na.rm = TRUE), mean_score = mean(hs_score))%>% 
+  gt()
+```
+
+
+```{r}
+dat2_long %>% 
+  filter(!is.na(diabetes_treat)) %>% 
+  filter(!is.na(a1c_dichot_words)) %>% 
+  filter(crp < 5) %>% 
+  group_by(id) %>% 
+  summarize(mean_hs = mean(hs_score, na.rm = TRUE), crp, diabetes_treat, a1c_dichot_words) %>% 
+  ggplot(aes(mean_hs, crp)) + geom_col(aes(fill= a1c_dichot_words, position = "dodge"), method = "lm") + facet_wrap(~diabetes_treat) + scale_fill_manual(values = c("salmon","springgreen"))
+```
+
+```{r}
+dat2_long %>% 
+  filter(!is.na(diabetes_treat)) %>% 
+  group_by(id) %>% 
+  summarize(mean_hs = mean(hs_score, na.rm = TRUE), hba1c, diabetes_treat) %>% 
+  ggplot(aes(mean_hs, hba1c)) + geom_point(aes(color = diabetes_treat)) + geom_smooth(aes(color = diabetes_treat), method = "lm") + scale_color_brewer(palette = 3)
+```
+
+Despite the documented limitations of the World Health Organization Health State Description scale (CITE), it is worth exploring in future studies whether or not this scale captures diabetes complications in such a way that we might be able to analyze connections between inflammation and diabetes complications cross-sectionally in the SAGE data. 
+

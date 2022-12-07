@@ -253,7 +253,11 @@ groups_med_dt_exrcse <- data %>%
   as_tibble()
 ```
 
+<<<<<<< Updated upstream
 ```{r crp-by-sex-male, fig.cap="(ref:crp-by-sex-male)"}
+=======
+```{r}
+>>>>>>> Stashed changes
 #include this in final product
 crp_by_sex %>% 
   ggplot(aes(diabetes_treat, male)) + 
@@ -735,6 +739,46 @@ here [@here], rio[@chanRioSwissarmyKnife2021], tidyverse[re], ggpubr [@kassambar
 comment 495
 
 # Results
+
+We see the expected relationships between diabetes status and HbA1c (see figure ds-hba1c). However, with CRP we see a relatively similar level of CRP between people without diabetes and those with diagnosed diabetes (see figure ds_crp). Thus, we explored whether medication may be responsible for lowering CRP. In Figure treat_fig we see that those who are using diet and exercise as treatment have higher CRP levels than those taking medication and those not on treatment. We explored this further statistically.  
+
+```{r  ds-hba1c}
+mex_sub_plota <- data|>
+  filter(!is.na(diabetes_stat))|>
+  filter(!is.na(hba1c)) |>
+  filter(crp<5) |>
+  group_by(diabetes_stat) |>
+summarise( mean_hba1c = mean(hba1c), se_hba1c = sqrt(var(hba1c, na.rm = TRUE) / 
+                                  length(na.omit(hba1c))))
+
+ds_hba1c <- mex_sub_plota |>
+ggplot(aes(x = as.factor(diabetes_stat), y = mean_hba1c)) + geom_col(aes(fill = diabetes_stat), color = "black") + 
+  geom_errorbar(aes(ymax = mean_hba1c + se_hba1c, 
+                    ymin = mean_hba1c - se_hba1c), width=.1) +
+  scale_fill_brewer(palette = 11) + theme_bw() + labs(
+    title = "Mean HbA1c and Diabetes Status in Mexico",
+                                                       
+    caption = "Figure 5", x = "Diabetes Status", y = "Mean CRP", fill = "Diabetes Status")
+
+```
+
+```{r  ds-crp}
+mex_sub_plot <- data|>
+  filter(!is.na(diabetes_stat))|>
+  filter(crp<5) |>
+  group_by(diabetes_stat) |>
+summarise(mean_crp = mean(crp), se_crp = sqrt(var(crp, na.rm = TRUE) / 
+                                  length(na.omit(crp))))
+
+dscrp <- mex_sub_plot |>
+ggplot(aes(x = as.factor(diabetes_stat), y = mean_crp)) + geom_col(aes(fill = diabetes_stat), color = "black") + 
+  geom_errorbar(aes(ymax = mean_crp + se_crp, 
+                    ymin = mean_crp - se_crp), width=.1) +
+  scale_fill_brewer(palette = 10) + theme_bw() + labs(
+    title = "Mean CRP and Diabetes Status in Mexico",
+                                                       
+    caption = "Figure 4", x = "Diabetes Status", y = "Mean CRP", fill = "Diabetes Status") 
+```
 
 ## Regression 1
 For our first research question, does taking medication lower inflammation levels, we found that this regression model (Table \@ref(tab:regtab1)) using `r mreg1_N` participants was not significant $F$(`r mreg1_f_df1`, `r mreg1_f_df2`) = `r mreg1_f`, $p$ `r mreg1_f_p` with $R^2$ = `r mreg1_r2`. The regression coefficient for age was $b_{age}$ = `r mreg1_age` ($SE$ = `r mreg1_age_se`, $p$ `r mreg1_age_p`), and for use of medication $b_{medication}$ = `r mreg1_med` ($SE$ =  `r mreg1_med_se`, $p$ `r mreg1_med_p`). Therefore, based on these results we fail to reject our null hypothesis and we cannot conclude that there is a relationship between medication and inflammation levels on average in this population. 
