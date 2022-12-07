@@ -1,5 +1,5 @@
 ---
-title             : "Relations between Inflammation and Access to care, Treatment, and Diabetes in a repesentative population of Mexico or Relations between inflammation and access to care and treatment among Mexicans 50 years of age or older with diabetes in Mexico"
+title             : "Relations between Inflammation and Access to care, Treatment, and Diabetes in Older Mexico"
 shorttitle        : "Inflammation, Access to care, and Treatment among those with Diabetes in Mexico."
 
 author: 
