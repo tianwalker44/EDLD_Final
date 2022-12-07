@@ -168,67 +168,69 @@ data <- data %>%
 mutate(a1c_dichot_words = ifelse(hba1c>= 6.5, "elevated", "in_range")) 
 ```
 
-<<<<<<< HEAD
-
-
-```{r data-cleaning-tian2-fig, include=FALSE}
-# I wasn't sure if you wanted this figure to be in the knitted document, so I added it to this chunk so that we can have it here but now show it! 
-data %>% 
-ggplot(aes(hba1c, crp)) + geom_point(aes(color = treatment_info))
-#t: no, this is just to check that I filtered the data correctly
-```
-
-
-(ref:fig0) Figure \@ref(fig:data-cleaning-tian2) caption goes here.
-=======
 ```{r data-cleaning-tian2-fig, fig.cap = "(ref:data-cleaning-tian2-fig)", include=FALSE}
 # I wasn't sure if you wanted this figure to be in the knitted document, so I added it to this chunk so that we can have it here but now show it! 
 data %>% 
   ggplot(aes(hba1c, crp)) + geom_point(aes(color = treatment_info))
->>>>>>> master
+
 
 #(ref:data-cleaning-tian2-fig) Figure caption goes here.
 ```
 
-```{r}
-plot_all <- dat %>% 
-filter(!is.na(diabetes_stat)) %>% 
-ggplot(aes(hba1c,crp))  + geom_point(aes(color = as.factor(medication )) )+ facet_wrap(~diabetes_stat)+ scale_color_manual(values = c("tomato1", "purple4"))
+```{r, plot-all, fig.cap = "(ref:plot-all)"}
+(plot_all <- dat %>% 
+  filter(!is.na(diabetes_stat)) %>% 
+  ggplot(aes(hba1c,crp))  + 
+  geom_point(aes(color = as.factor(medication )) )+ 
+  facet_wrap(~diabetes_stat)+ 
+  scale_color_manual(values = c("tomato1", "purple4")))
 
 ```
-```{r}
-plot.all2 <- dat %>% 
-filter(crp <5, age > 50) %>% 
+
+(ref:plot-all) Figure caption goes here.
+
+```{r, plot-all2, fig.cap = "(ref:plot-all2)"}
+
+(plot_all2 <- dat %>% 
+  filter(crp <5, age > 50) %>% 
   filter(!is.na(diabetes_treat)) %>% 
- ggplot(aes(hba1c, crp)) + geom_point(aes(color = diabetes_treat), size = 3) + geom_vline(xintercept = 6.5, color = "dodgerblue")+ scale_color_brewer(palette = 15) + theme_apa() + labs( caption = "dark green points should not be there")
-
+  ggplot(aes(hba1c, crp)) + geom_point(aes(color = diabetes_treat), size = 3) + 
+  geom_vline(xintercept = 6.5, color = "dodgerblue")+ 
+  scale_color_brewer(palette = 15) + 
+  theme_apa() + 
+  labs(caption = "dark green points should not be there"))
 
 ```
 
+(ref:plot-all2) Figure caption goes here.
 
+```{r, tian-fig-hba1c-65, fig.cap = "(ref:tian-fig-hba1c-65)"}
 
-```{r tian-fig-hba1c-65, fig.cap = "(ref:tian-fig-hba1c-65)"}
-#testdg
 #this is a check to see that the code above worked. It did! (which we know because the dark green - no treatment category is removed from the plot below 6.5 but remain above 6.5)
 #AND it is super interesting to see what is left behind! only 3 data points in this group of people with healthy blood sugar levels were doing diet and exercise. 
-<<<<<<< HEAD
+
 plot.all_filtered <- data %>% 
 filter(crp <5, age > 50) %>% 
- ggplot(aes(hba1c, crp)) + geom_point(aes(color = diabetes_treat), size = 3) +
+ ggplot(aes(hba1c, crp)) + 
+  geom_point(aes(color = diabetes_treat), size = 3) +
   geom_vline(xintercept = 6.5, color = "darkorchid4") +
-  scale_color_brewer(palette = 11, name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication", "No Treatment")) + 
-=======
+  scale_color_brewer(palette = 11, name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication", "No Treatment")) 
+
 plot.a <- data %>% 
   filter(crp <5, age > 50) %>% 
   ggplot(aes(hba1c, crp)) + geom_point(aes(color = diabetes_treat), size = 3) +
   theme_apa() +
-  scale_color_brewer(palette = 11, name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication", "No Treatment")) + theme_apa()
-plot.a + font("xlab", size = 14) + font("ylab", size = 14)+ font("xy.text", size = 14, color = "black", face = "bold") +
->>>>>>> master
+  scale_color_brewer(palette = 11, name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication", "No Treatment")) + 
+  theme_apa()
+
+(tian_hba1c_65 <- plot.a + 
+    font("xlab", size = 14) + font("ylab", size = 14)+
+    font("xy.text", size = 14, color = "black", face = "bold") +
   labs( title = "Relationship Between CRP and HbA1c by Diabetes Treatment", 
         caption =  "Note that all data points with No Treatment were removed from below HbA1c 6.5", 
         x = "HbA1c", 
-        y = "Inflammation (CRP)") + theme_apa()
+        y = "Inflammation (CRP)") + 
+  theme_apa())
 
 ```
 
@@ -247,35 +249,39 @@ groups_med_dt_exrcse <- data %>%
   dplyr::summarize(mean = mean(crp)) %>% 
   as_tibble()
 ```
-```{r}
+
+```{r crp-by-sex-male, fig.cap="(ref:crp-by-sex-male)"}
 #include this in final product
 crp_by_sex %>% 
-  ggplot(aes(diabetes_treat, male)) + geom_col(aes(fill = a1c_dichot_words), position = "dodge")
+  ggplot(aes(diabetes_treat, male)) + 
+  geom_col(aes(fill = a1c_dichot_words), position = "dodge")
 ```
 
-```{r}
+(ref:crp-by-sex-male) Here goes the caption.
+
+
+```{r crp-by-sex-female, fig.cap="(ref:crp-by-sex-female)"}
 #include this in final product
 crp_by_sex %>% 
-  ggplot(aes(diabetes_treat, female)) + geom_col(aes(fill = a1c_dichot_words), position = "dodge")
+  ggplot(aes(diabetes_treat, female)) + 
+  geom_col(aes(fill = a1c_dichot_words), position = "dodge")
 ```
+
+(ref:crp-by-sex-female) Here goes the caption.
 
 ```{r RQ1, render = 'normal print'}
 #RQ1: Does taking medication lower inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
 RQ1_df <- data %>% 
-  filter(!is.na(medication & !is.na(age) & is.na(crp)))
+  filter(!is.na(medication) & !is.na(age) & !is.na(crp))
 mreg1 <- lm(crp~age + medication, data = RQ1_df)
 #summary(mreg1) #No significant findings. Oh well!
 #mreg1_plot <- ggplot(RQ1_df, aes(medication, hba1c, age)) + geom_point() + stat_smooth(method = "lm", formula = mreg1, geom = "smooth") #This plot looks terrible right now, so I will see if we need to come back to it later.
 #table(data$medication) #this a quick way to see the n in both categories
 ```
 
-<<<<<<< HEAD
-```{r, fig2, fig.cap = "(ref:fig2)"}
-regression1 <- RQ1_df %>% 
-=======
 ```{r, RQ1plot, fig.cap = "(ref:RQ1plot)"}
+
 RQ1_df %>% 
->>>>>>> master
   ggplot(aes(age, crp)) + 
   geom_point(aes(color = medication), alpha = 0.5) + 
   geom_smooth(aes(color = medication), method = "lm", se = FALSE) + 
@@ -289,21 +295,6 @@ RQ1_df %>%
 
 (ref:RQ1plot) Here goes the caption.
 
-
-<<<<<<< HEAD
-```{r, fig3, fig.cap = "(ref:fig3)"}
-#This visualization is the one that alerted me to the fact that my original attempt at filtering had removed all data above 6.5. 
-
-#This was not intended to be included, but might be cool to show the different slopes of the two treatments 
-dat %>% 
-  filter(diabetes_treat != "no_treatment" & hba1c < 6.5) %>% 
-  filter(medication != 0) %>% 
-ggplot(aes(hba1c, crp)) + 
-  geom_point(aes(color = diabetes_treat)) + 
-  geom_smooth(aes(color = diabetes_treat), method = "lm", se = FALSE) + 
-  scale_color_brewer(  name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication")) +
-#this line does not enable manual color adjustment
-=======
 ```{r, tian-filtering, fig.cap = "(ref:tian-filtering)"}
 #This visualization is the one that alerted me to the fact that my original attempt at filtering had removed all data above 6.5. We 
 dat %>% 
@@ -312,16 +303,17 @@ dat %>%
   ggplot(aes(hba1c, crp)) + 
   geom_point(aes(color = diabetes_treat), alpha = 0.5) + 
   geom_smooth(aes(color = medication), method = "lm", se = FALSE, color = "gray") + 
-  scale_color_brewer(palette = 11, name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication")) + 
->>>>>>> master
+  #scale_color_brewer(palette = 14, name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication")) + 
   theme_apa() +
   labs( title = "The Relationship Between Blood Sugar and Inflammation by Treatment", 
         caption =  "SAGE data from Mexico", 
         x = "Age", 
-        y = "Inflammation (CRP)") + scale_color_manual(values = c("magenta", "limegreen"))
+        y = "Inflammation (CRP)") +
+  scale_color_manual(values = c("magenta", "limegreen"))
+  #scale_color_brewer(  name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication")) 
+
 #change colors freely. none of the palettes are working 
 
-scale_color_brewer(  name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication")) 
 #this line does not enable manual color adjustment
 ```
 
@@ -443,7 +435,7 @@ RQ4df <- RQ4df %>% select(diagnosis, age, crp, dt_exrcse, access) %>%
   filter(age >=50 & (diagnosis == 1 | crp < 5) & dt_exrcse == 1)
 RQ4df$access <- factor(RQ4df$access,
                        levels = c(1,2), labels = c("Yes","No")) 
-view(RQ4df)
+
 #RQ4df$crp <- RQ4df %>% 
 #factor(if_else(crp <= 3.0, "low", "high"), levels = c("low", "high"))
 
@@ -551,11 +543,11 @@ describe(dat2$picking_up)
 
 ```
 
-```{r}
+```{r appendix-fig1, fig.cap = "(ref:appendix-fig1)"}
 dat2_long <- dat2 %>% 
   pivot_longer(cols = 5:10, names_to = "health_state_vars", values_to = "hs_score")
 
-apendix_fig <- dat2_long %>% 
+dat2_long %>% 
   filter(!is.na(levels_dbts)) %>% 
   filter(crp < 5) %>% 
   group_by(id) %>% 
@@ -564,13 +556,15 @@ apendix_fig <- dat2_long %>%
 
 ```
 
-```{r}
+(ref:appendix-fig1) Here goes the caption.
+
+```{r, appendix-fig2, fig.cap="(ref:appendix-fig2)"}
 #pivoting the data
 dat2_long <- dat2 %>% 
   pivot_longer(cols = 5:10, names_to = "health_state_vars", values_to = "hs_score")
 
 #creating summaries and graphing 
-apendix_fig <- dat2_long %>% 
+dat2_long %>% 
   filter(!is.na(levels_dbts)) %>% 
   filter(crp < 5) %>% 
   group_by(id) %>% 
@@ -578,6 +572,8 @@ apendix_fig <- dat2_long %>%
   ggplot(aes(mean_hs, crp)) + geom_point(aes(color = levels_dbts)) + geom_smooth(aes(color = levels_dbts), method = "lm") + scale_color_brewer(type = "div", palette = 4) + labs(title = "CRP and Health Score by Diabetes", caption = "Mean health score is calculated such that higher scores = worse health") + theme_apa()
 
 ```
+
+(ref:appendix-fig2) Here goes the caption.
 
 ```{r}
 #Table summarizing the data in the graph
@@ -589,8 +585,8 @@ dat2_long_neat <- dat2_long %>%
   gt()
 ```
 
-```{r}
-appendix_fig_2 <- dat2_long %>% 
+```{r appendix-fig3, fig.cap="(ref:appendix-fig3)"}
+dat2_long %>% 
   filter(!is.na(diabetes_treat)) %>% 
   filter(!is.na(a1c_dichot_words)) %>% 
   filter(crp < 5) %>% 
@@ -600,18 +596,20 @@ appendix_fig_2 <- dat2_long %>%
 
 ```
 
-```{r}
+(ref:appendix-fig3) Here goes the caption.
+
+```{r, appendix-fig4, fig.cap="(ref:appendix-fig4)"}
 #a glimpse at what is going on with hba1c 
-app_fig_3 <- dat2_long %>% 
+dat2_long %>% 
   filter(!is.na(diabetes_treat)) %>% 
   group_by(id) %>% 
   summarize(mean_hs = mean(hs_score, na.rm = TRUE), hba1c, diabetes_treat) %>% 
   ggplot(aes(mean_hs, hba1c)) + geom_point(aes(color = diabetes_treat)) + geom_smooth(aes(color = diabetes_treat), method = "lm") + scale_color_brewer(palette = 3) + theme_apa()
 ```
 
+(ref:appendix-fig4) Here goes the caption.
 
 
-(ref:fig4) Caption for Figure \@ref(fig:tableofcrpmedicationandexercise) goes here.
 (ref:tableofcrpmedicationandexercise) Here goes the caption.
 
 
@@ -627,17 +625,23 @@ app_fig_3 <- dat2_long %>%
 Table: (\#tab:descriptives) Descriptive statistics.
 
 
-# FIGURE REFERENCES
+# FIGURE REFERENCES TO COPY
 
-Figure \@ref(fig:tableofcrpmedicationandexercise)
-
-Figure \@ref(fig:tian-filtering)
-
+Figure \@ref(fig:plot-all)
+Figure \@ref(fig:plot-all2)
 Figure \@ref(fig:tian-fig-hba1c-65)
-
+Figure \@ref(fig:crp-by-sex-male)
+Figure \@ref(fig:crp-by-sex-female)
 Figure \@ref(fig:RQ1plot)
+Figure \@ref(fig:tian-filtering)
+Figure \@ref(fig:prop-access-bar)
+Figure \@ref(fig:tableofcrpmedicationandexercise)
+Figure \@ref(fig:appendix-fig1)
+Figure \@ref(fig:appendix-fig2)
+Figure \@ref(fig:appendix-fig3)
+Figure \@ref(fig:appendix-fig4)
 
-# TABLE REFERENCES
+# TABLE REFERENCES TO COPY
 
 Table \@ref(tab:regtab1) (Regression Table 1)
 

@@ -1,0 +1,65 @@
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[H]
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/plot-all-1} \caption{Figure caption goes here.}\label{fig:plot-all}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[H]
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/plot-all2-1} \caption{Figure caption goes here.}\label{fig:plot-all2}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[H]
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/tian-fig-hba1c-65-1} \caption{Here goes the caption.}\label{fig:tian-fig-hba1c-65}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[H]
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/crp-by-sex-male-1} \caption{Here goes the caption.}\label{fig:crp-by-sex-male}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[H]
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/crp-by-sex-female-1} \caption{Here goes the caption.}\label{fig:crp-by-sex-female}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[H]
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/RQ1plot-1} \caption{Here goes the caption.}\label{fig:RQ1plot}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[H]
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/tian-filtering-1} \caption{Here goes the caption.}\label{fig:tian-filtering}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[H]
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/prop-access-bar-1} \caption{Here goes the caption.}\label{fig:prop-access-bar}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[H]
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/tableofcrpmedicationandexercise-1} \caption{Here goes the caption.}\label{fig:tableofcrpmedicationandexercise}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[H]
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/appendix-fig1-1} \caption{Here goes the caption.}\label{fig:appendix-fig1}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[H]
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/appendix-fig2-1} \caption{Here goes the caption.}\label{fig:appendix-fig2}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[H]
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/appendix-fig3-1} \caption{Here goes the caption.}\label{fig:appendix-fig3}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[H]
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/appendix-fig4-1} \caption{Here goes the caption.}\label{fig:appendix-fig4}
+\end{figure*}
