@@ -3,7 +3,7 @@
 \PassOptionsToPackage{hyphens}{url}
 %
 \documentclass[
-  man,floatsintext]{apa6}
+  man]{apa6}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
 \usepackage{iftex}
@@ -116,9 +116,9 @@
 
 % Create new environments so endfloat can handle them
 % \newenvironment{ltable}
-%   {\begin{landscape}\centering\begin{threeparttable}}
-%   {\end{threeparttable}\end{landscape}}
-\newenvironment{lltable}{\begin{landscape}\centering\begin{ThreePartTable}}{\end{ThreePartTable}\end{landscape}}
+%   {\begin{landscape}\begin{center}\begin{threeparttable}}
+%   {\end{threeparttable}\end{center}\end{landscape}}
+\newenvironment{lltable}{\begin{landscape}\begin{center}\begin{ThreePartTable}}{\end{ThreePartTable}\end{center}\end{landscape}}
 
 % Enables adjusting longtable caption width to table width
 % Solution found at http://golatex.de/longtable-mit-caption-so-breit-wie-die-tabelle-t15767.html
@@ -131,20 +131,6 @@
 % \setlength{\parindent}{0.5in}
 % \setlength{\parskip}{0pt plus 0pt minus 0pt}
 
-% Overwrite redefinition of paragraph and subparagraph by the default LaTeX template
-% See https://github.com/crsh/papaja/issues/292
-\makeatletter
-\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
-  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
-  {-1em}%
-  {\normalfont\normalsize\bfseries\itshape\typesectitle}}
-
-\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{1em}%
-  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
-  {-\z@\relax}%
-  {\normalfont\normalsize\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
-\makeatother
-
 % \usepackage{etoolbox}
 \makeatletter
 \patchcmd{\HyOrg@maketitle}
@@ -156,16 +142,14 @@
   {\section*{\protect\normalfont{\@title}}}
   {}{\typeout{Failed to patch title.}}
 \makeatother
-
-\usepackage{xpatch}
-\makeatletter
-\xapptocmd\appendix
-  {\xapptocmd\section
-    {\addcontentsline{toc}{section}{\appendixname\ifoneappendix\else~\theappendix\fi\\: #1}}
-    {}{\InnerPatchFailed}%
-  }
-{}{\PatchFailed}
+\shorttitle{Inflammation, Access to care, and Treatment among those with Diabetes in Mexico.}
 \keywords{Diabetes, access to care, inflammation, health, Mexico, China\newline\indent Word count: X (this cannot easily be done automatically, we can also just leave it out)}
+\DeclareDelayedFloatFlavor{ThreePartTable}{table}
+\DeclareDelayedFloatFlavor{lltable}{table}
+\DeclareDelayedFloatFlavor*{longtable}{table}
+\makeatletter
+\renewcommand{\efloat@iwrite}[1]{\immediate\expandafter\protected@write\csname efloat@post#1\endcsname{}}
+\makeatother
 \usepackage{csquotes}
 \usepackage[titles]{tocloft}
 \cftpagenumbersoff{figure}
@@ -199,13 +183,11 @@
 \date{}
 
 
-\shorttitle{Inflammation, Access to care, and Treatment among those with Diabetes in Mexico.}
-
 \authornote{List of group members ordered by alphabet.}
 
 \affiliation{\vspace{0.5cm}\textsuperscript{1} University of Oregon}
 
-\abstract{%
+\abstract{
 \emph{Background.} Background goes here. \emph{Methods.} Methods go here. \emph{Results.} Results here. \emph{Conclusions.} Conclusions here.
 }
 
@@ -214,28 +196,34 @@
 \begin{document}
 \maketitle
 
+<<<<<<< HEAD
 
 
 Here I point the reader to figure \ref{fig:data-cleaning-tian2}.
+=======
+\begin{figure}[H]
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/tian-fig-hba1c-65-1} \caption{Here goes the caption.}\label{fig:tian-fig-hba1c-65}
+\end{figure}
+>>>>>>> master
 
 
-
-Here, I want to point the reader to Figure \ref{fig:fig1}.
 
 \begin{figure}[H]
+<<<<<<< HEAD
 \includegraphics{NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-3-1} \caption{ }\label{fig:unnamed-chunk-3}
 \end{figure}
 
 \begin{figure}[H]
 \includegraphics{NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-4-1} \caption{ }\label{fig:unnamed-chunk-4}
+=======
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/RQ1plot-1} \caption{Here goes the caption.}\label{fig:RQ1plot}
+>>>>>>> master
 \end{figure}
 
 
 
-Here, I want to point the reader to Figure \ref{fig:fig2}.
-
 \begin{figure}[H]
-\includegraphics{NEW_Final_Groupof5_files/figure-latex/fig3-1} \caption{This is the caption of figure \ref{fig:fig3}.}\label{fig:fig3}
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/tian-filtering-1} \caption{Here goes the caption.}\label{fig:tian-filtering}
 \end{figure}
 
 \begin{verbatim}
@@ -287,8 +275,6 @@ Here, I want to point the reader to Figure \ref{fig:fig2}.
 
 
 
-Here, I want to point the reader to Figure \ref{fig:fig3}.
-
 \begin{table}[tbp]
 
 \begin{center}
@@ -296,13 +282,13 @@ Here, I want to point the reader to Figure \ref{fig:fig3}.
 
 \caption{\label{tab:regtab1}Effect of Medication on CRP, controlling for Age. }
 
-\begin{tabular}{lllllll}
+\begin{tabular}{lllll}
 \toprule
-Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t$} & \multicolumn{1}{c}{$\mathit{df}$} & \multicolumn{1}{c}{$p$} & \multicolumn{1}{c}{predictor}\\
+Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t(354)$} & \multicolumn{1}{c}{$p$}\\
 \midrule
-Intercept & 2.00 & {}[1.06, 2.94] & 4.18 & 354 & < .001 & Intercept\\
-Age & -0.01 & {}[-0.02, 0.01] & -0.91 & 354 & .362 & Age\\
-Medication2 & 0.20 & {}[-0.17, 0.56] & 1.07 & 354 & .284 & Medication\\
+Intercept & 2.00 & $[1.06$, $2.94]$ & 4.18 & < .001\\
+Age & -0.01 & $[-0.02$, $0.01]$ & -0.91 & .362\\
+Medication & 0.20 & $[-0.17$, $0.56]$ & 1.07 & .284\\
 \bottomrule
 \addlinespace
 \end{tabular}
@@ -316,10 +302,6 @@ Medication2 & 0.20 & {}[-0.17, 0.56] & 1.07 & 354 & .284 & Medication\\
 
 \end{table}
 
-Demo of inline code usage. We found that this regression model (Table \ref{tab:regtab1}) using 357 participants was not significant \(F\)(2, 354) = 1.06, \(p\) = 0.35 with \(R^2\) = 0.01. The regression coefficient for age was \(b_{age}\) = -0.01 (\(SE\) = 0.01, \(p\) = 0.36), and for use of medication \(b_{medication}\) = 0.20 (\(SE\) = 0.18, \(p\) = 0.28).
-
-\newpage
-
 \begin{table}[tbp]
 
 \begin{center}
@@ -327,13 +309,13 @@ Demo of inline code usage. We found that this regression model (Table \ref{tab:r
 
 \caption{\label{tab:RQ2}Effect of Diet and Exercise on CRP, controlling for Age.}
 
-\begin{tabular}{lllllll}
+\begin{tabular}{lllll}
 \toprule
-Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t$} & \multicolumn{1}{c}{$\mathit{df}$} & \multicolumn{1}{c}{$p$} & \multicolumn{1}{c}{predictor}\\
+Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t(354)$} & \multicolumn{1}{c}{$p$}\\
 \midrule
-Intercept & 2.10 & {}[1.17, 3.04] & 4.43 & 354 & < .001 & Intercept\\
-Age & -0.01 & {}[-0.02, 0.01] & -0.83 & 354 & .408 & Age\\
-Dt exrcse2 & -0.25 & {}[-0.47, -0.02] & -2.11 & 354 & .036 & Diet and Exercise\\
+Intercept & 2.10 & $[1.17$, $3.04]$ & 4.43 & < .001\\
+Age & -0.01 & $[-0.02$, $0.01]$ & -0.83 & .408\\
+Diet and Exercise & -0.25 & $[-0.47$, $-0.02]$ & -2.11 & .036\\
 \bottomrule
 \addlinespace
 \end{tabular}
@@ -347,10 +329,8 @@ Dt exrcse2 & -0.25 & {}[-0.47, -0.02] & -2.11 & 354 & .036 & Diet and Exercise\\
 
 \end{table}
 
-Demo of inline code usage. We found that this regression model (Table \ref{tab:RQ2}) using 354 participants was not significant \(F\)(2, 354) = 2.70, \(p\) = 0.07 with \(R^2\) = 0.02. The regression coefficient for age was \(b_{age}\) = -0.01 (\(SE\) = 0.01, \(p\) = 0.41), and for diet and exercise \(b_{Diet}\) = -0.24 (\(SE\) = 0.12, \(p\) \textless{} 0.05).
-
 \begin{verbatim}
-## # A tibble: 171 x 2
+## # A tibble: 172 x 2
 ##    `RQ4df$access` `RQ4df$crp2`
 ##    <fct>          <fct>       
 ##  1 No             high        
@@ -359,11 +339,11 @@ Demo of inline code usage. We found that this regression model (Table \ref{tab:R
 ##  4 No             low         
 ##  5 No             low         
 ##  6 No             low         
-##  7 Yes            low         
+##  7 No             low         
 ##  8 Yes            low         
-##  9 No             low         
-## 10 No             high        
-## # ... with 161 more rows
+##  9 Yes            low         
+## 10 No             low         
+## # ... with 162 more rows
 \end{verbatim}
 
 \begin{verbatim}
@@ -371,42 +351,38 @@ Demo of inline code usage. We found that this regression model (Table \ref{tab:R
 ##  Pearson's Chi-squared test with Yates' continuity correction
 ## 
 ## data:  RQ4df$access and RQ4df$crp2
-## X-squared = 0.51779, df = 1, p-value = 0.4718
+## X-squared = 0.56544, df = 1, p-value = 0.4521
 \end{verbatim}
 
 \begin{verbatim}
 ##             RQ4df$crp2
 ## RQ4df$access      low     high
-##          Yes 67.26316 13.73684
-##          No  74.73684 15.26316
+##          Yes 67.34302 13.65698
+##          No  75.65698 15.34302
 \end{verbatim}
 
 \begin{verbatim}
 ##             RQ4df$crp2
 ## RQ4df$access low high
 ##          Yes  65   16
-##          No   77   13
+##          No   78   13
 \end{verbatim}
 
 \begin{figure}[H]
+<<<<<<< HEAD
 \includegraphics{NEW_Final_Groupof5_files/figure-latex/unnamed-chunk-5-1} \caption{ }\label{fig:unnamed-chunk-5}
+=======
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/prop-access-bar-1} \caption{Here goes the caption.}\label{fig:prop-access-bar}
+>>>>>>> master
 \end{figure}
 
-\begin{verbatim}
-## 
-##  Chi-squared test for given probabilities
-## 
-## data:  table(data$sex)
-## X-squared = 44.596, df = 1, p-value = 2.422e-11
-\end{verbatim}
+
 
 \begin{figure}[H]
-\includegraphics{NEW_Final_Groupof5_files/figure-latex/tableofcrpmedicationandexercise-1} \caption{Caption for Figure \ref{fig:tableofcrpmedicationandexercise} goes here.}\label{fig:tableofcrpmedicationandexercise}
+\includegraphics{NEW_Final_Groupof5_files/figure-latex/tableofcrpmedicationandexercise-1} \caption{Here goes the caption.}\label{fig:tableofcrpmedicationandexercise}
 \end{figure}
 
 
-
-Here I reference figure \ref{fig:tableofcrpmedicationandexercise}.
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.0541}}
@@ -438,6 +414,26 @@ Age & & 68 (\(SD\) = 8.40) \\
 \bottomrule()
 \end{longtable}
 
+\hypertarget{figure-references}{%
+\section{FIGURE REFERENCES}\label{figure-references}}
+
+Figure \ref{fig:tableofcrpmedicationandexercise}
+
+Figure \ref{fig:tian-filtering}
+
+Figure \ref{fig:tian-fig-hba1c-65}
+
+Figure \ref{fig:RQ1plot}
+
+\hypertarget{table-references}{%
+\section{TABLE REFERENCES}\label{table-references}}
+
+Table \ref{tab:regtab1} (Regression Table 1)
+
+Table \ref{tab:RQ2} (Regression Table 2)
+
+Table \ref{tab:descriptives} (Descriptives Table)
+
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
@@ -457,7 +453,7 @@ The ability of cells to absorb insulin can be increased through diet, exercise, 
 \hypertarget{procedures-and-sample}{%
 \subsection{Procedures and Sample}\label{procedures-and-sample}}
 
-357 participants were included in our analyses. Of those, 115 were assessed to be male (32.20 \%), 241 were identified to be female (67.50 \%). Sex data for 1 participant was missing (see Table \ref{tab:descriptives}). This indicates that females were overrepresented in our sample, assuming binary sexes are represented equally in the population (\(\chi\)(1) = 44.60, \(p\) \textless{} 0.0001). The age in our sample was \(M\) = 68 years (SD = 8.40 years).
+357 participants were included in our analyses. Of those, 115 were assessed to be male (32.20 \%), 241 were identified to be female (67.50 \%). Sex data for 1 participant was missing (see Table \ref{tab:descriptives}). This indicates that females were overrepresented in our sample, assuming binary sexes are represented equally in the population (\(\chi^2\)(1) = 44.60, \(p\) \textless{} 0.0001). The age in our sample was \(M\) = 68 years (SD = 8.40 years).
 Because of missing values in the variables of interest in some of our analyses, subjects were excluded. Thus, \(N\) is reported separately for each analysis.
 
 \hypertarget{variables}{%
@@ -494,7 +490,29 @@ here (\protect\hyperlink{ref-here}{Müller, 2020}), rio(\protect\hyperlink{ref-c
 (\protect\hyperlink{ref-revellePsychProceduresPsychological2022}{\textbf{revellePsychProceduresPsychological2022?}}),and forcats (\protect\hyperlink{ref-wickhamForcatsToolsWorking2022}{\textbf{wickhamForcatsToolsWorking2022?}}).
 
 comment 495
+<<<<<<< HEAD
+
+\hypertarget{results}{%
+\section{Results}\label{results}}
+=======
 \# Results
+>>>>>>> d68fbfed796ae31a1d591c9f05853138bdea0006
+
+\hypertarget{regression-1}{%
+\subsection{Regression 1}\label{regression-1}}
+
+Demo of inline code usage. We found that this regression model (Table \ref{tab:regtab1}) using 357 participants was not significant \(F\)(2, 354) = 1.06, \(p\) = 0.35 with \(R^2\) = 0.01. The regression coefficient for age was \(b_{age}\) = -0.01 (\(SE\) = 0.01, \(p\) = 0.36), and for use of medication \(b_{medication}\) = 0.20 (\(SE\) = 0.18, \(p\) = 0.28).
+
+\hypertarget{regression-2}{%
+\subsection{Regression 2}\label{regression-2}}
+
+Demo of inline code usage. We found that this regression model (Table \ref{tab:RQ2}) using 357 participants was not significant \(F\)(2, 354) = 2.70, \(p\) = 0.07 with \(R^2\) = 0.01. The regression coefficient for age was \(b_{age}\) = -0.01 (\(SE\) = 0.01, \(p\) = 0.41), and for diet and exercise \(b_{Diet}\) = -0.24 (\(SE\) = 0.12, \(p\) \textless{} 0.05).
+
+\hypertarget{chi-square-test}{%
+\subsection{Chi Square Test}\label{chi-square-test}}
+
+First \(\chi^2\) results: (\(\chi^2\)(1) = 0.57, \(p\) = 0.45).
+Second \(\chi^2\) results: (\(\chi^2\)(1) = 0.57, \(p\) = 0.45).
 
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
@@ -516,9 +534,6 @@ Despite the documented limitations of the World Health Organization Health State
 
 \hypertarget{references}{%
 \section{References}\label{references}}
-
-
-
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}
@@ -548,12 +563,15 @@ Yang, J., Zheng, Y., Gou, X., Pu, K., Chen, Z., Guo, Q., \ldots{} Zhou, Y. (2020
 
 \end{CSLReferences}
 
+\hypertarget{tables-and-figures}{%
+\section{Tables and Figures}\label{tables-and-figures}}
+
 
 \clearpage
 \renewcommand{\listfigurename}{Figure captions}
-\listoffigures
+
 \clearpage
 \renewcommand{\listtablename}{Table captions}
-\listoftables
+
 
 \end{document}

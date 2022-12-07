@@ -33,7 +33,7 @@ wordcount         : "X (this cannot easily be done automatically, we can also ju
 bibliography      : [references.bib]
 link-citations    : true
 
-floatsintext      : yes
+floatsintext      : no
 figurelist        : yes
 tablelist         : yes
 footnotelist      : no
@@ -49,7 +49,6 @@ output            :
 ---
 
 ```{r setup, include=FALSE}
-#AMBER TEST
 knitr::opts_chunk$set(cache = FALSE, warning = FALSE, echo = FALSE, fig.pos = "H", out.extra = "")
 library(tidyverse)
 library(rio)
@@ -126,7 +125,7 @@ data_variables <- data.frame(col1_var, col2_desc, col3_code) %>%
 #data_variables
 ```
 
-```{r data-cleaning-tian2, fig.cap = "(ref:fig0)"}
+```{r data-cleaning-tian2}
 data <- data %>% 
   mutate(diabetes_treat=case_when(
     medication== 1  ~ "medication",
@@ -142,7 +141,7 @@ dat <- dat %>%
     dt_exrcse==1 ~ "dt_excercise",
     medication == 2  & dt_exrcse == 2 ~ "no_treatment"))
 #data <- data %>% 
- # filter(diabetes_treat != "no_treatment" & hba1c < 6.5)
+# filter(diabetes_treat != "no_treatment" & hba1c < 6.5)
 #This above code filter isn't filtering the "and" with each line of data but first filtering all of those that don't equal no treatment and then filtering out everyone with an hba1c below 6.5...which is not what we want 
 #So I made a new variable that we can use to filter:
 data <- data %>% 
@@ -169,6 +168,7 @@ data <- data %>%
 mutate(a1c_dichot_words = ifelse(hba1c>= 6.5, "elevated", "in_range")) 
 ```
 
+<<<<<<< HEAD
 
 
 ```{r data-cleaning-tian2-fig, include=FALSE}
@@ -180,8 +180,15 @@ ggplot(aes(hba1c, crp)) + geom_point(aes(color = treatment_info))
 
 
 (ref:fig0) Figure \@ref(fig:data-cleaning-tian2) caption goes here.
+=======
+```{r data-cleaning-tian2-fig, fig.cap = "(ref:data-cleaning-tian2-fig)", include=FALSE}
+# I wasn't sure if you wanted this figure to be in the knitted document, so I added it to this chunk so that we can have it here but now show it! 
+data %>% 
+  ggplot(aes(hba1c, crp)) + geom_point(aes(color = treatment_info))
+>>>>>>> master
 
-Here I point the reader to figure \@ref(fig:data-cleaning-tian2).
+#(ref:data-cleaning-tian2-fig) Figure caption goes here.
+```
 
 ```{r}
 plot_all <- dat %>% 
@@ -200,15 +207,24 @@ filter(crp <5, age > 50) %>%
 
 
 
-```{r fig1, fig.cap = "(ref:fig1)"}
+```{r tian-fig-hba1c-65, fig.cap = "(ref:tian-fig-hba1c-65)"}
 #testdg
 #this is a check to see that the code above worked. It did! (which we know because the dark green - no treatment category is removed from the plot below 6.5 but remain above 6.5)
 #AND it is super interesting to see what is left behind! only 3 data points in this group of people with healthy blood sugar levels were doing diet and exercise. 
+<<<<<<< HEAD
 plot.all_filtered <- data %>% 
 filter(crp <5, age > 50) %>% 
  ggplot(aes(hba1c, crp)) + geom_point(aes(color = diabetes_treat), size = 3) +
   geom_vline(xintercept = 6.5, color = "darkorchid4") +
   scale_color_brewer(palette = 11, name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication", "No Treatment")) + 
+=======
+plot.a <- data %>% 
+  filter(crp <5, age > 50) %>% 
+  ggplot(aes(hba1c, crp)) + geom_point(aes(color = diabetes_treat), size = 3) +
+  theme_apa() +
+  scale_color_brewer(palette = 11, name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication", "No Treatment")) + theme_apa()
+plot.a + font("xlab", size = 14) + font("ylab", size = 14)+ font("xy.text", size = 14, color = "black", face = "bold") +
+>>>>>>> master
   labs( title = "Relationship Between CRP and HbA1c by Diabetes Treatment", 
         caption =  "Note that all data points with No Treatment were removed from below HbA1c 6.5", 
         x = "HbA1c", 
@@ -216,9 +232,7 @@ filter(crp <5, age > 50) %>%
 
 ```
 
-(ref:fig1) This is the caption of figure \@ref(fig:fig1).
-
-Here, I want to point the reader to Figure \@ref(fig:fig1).
+(ref:tian-fig-hba1c-65) Here goes the caption.
 
 
 ```{r pivot-group_by}
@@ -248,15 +262,20 @@ crp_by_sex %>%
 ```{r RQ1, render = 'normal print'}
 #RQ1: Does taking medication lower inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
 RQ1_df <- data %>% 
-  filter(!is.na(medication & !is.na(hba1c) & !is.na(age) & is.na(crp)))
+  filter(!is.na(medication & !is.na(age) & is.na(crp)))
 mreg1 <- lm(crp~age + medication, data = RQ1_df)
 #summary(mreg1) #No significant findings. Oh well!
 #mreg1_plot <- ggplot(RQ1_df, aes(medication, hba1c, age)) + geom_point() + stat_smooth(method = "lm", formula = mreg1, geom = "smooth") #This plot looks terrible right now, so I will see if we need to come back to it later.
 #table(data$medication) #this a quick way to see the n in both categories
 ```
 
+<<<<<<< HEAD
 ```{r, fig2, fig.cap = "(ref:fig2)"}
 regression1 <- RQ1_df %>% 
+=======
+```{r, RQ1plot, fig.cap = "(ref:RQ1plot)"}
+RQ1_df %>% 
+>>>>>>> master
   ggplot(aes(age, crp)) + 
   geom_point(aes(color = medication), alpha = 0.5) + 
   geom_smooth(aes(color = medication), method = "lm", se = FALSE) + 
@@ -268,10 +287,10 @@ regression1 <- RQ1_df %>%
         y = "Inflammation (CRP)")
 ```
 
-(ref:fig2) This is the caption this figure.
+(ref:RQ1plot) Here goes the caption.
 
-Here, I want to point the reader to Figure \@ref(fig:fig2).
 
+<<<<<<< HEAD
 ```{r, fig3, fig.cap = "(ref:fig3)"}
 #This visualization is the one that alerted me to the fact that my original attempt at filtering had removed all data above 6.5. 
 
@@ -284,6 +303,17 @@ ggplot(aes(hba1c, crp)) +
   geom_smooth(aes(color = diabetes_treat), method = "lm", se = FALSE) + 
   scale_color_brewer(  name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication")) +
 #this line does not enable manual color adjustment
+=======
+```{r, tian-filtering, fig.cap = "(ref:tian-filtering)"}
+#This visualization is the one that alerted me to the fact that my original attempt at filtering had removed all data above 6.5. We 
+dat %>% 
+  filter(diabetes_treat != "no_treatment" & hba1c < 6.5) %>% 
+  filter(medication != 0) %>% 
+  ggplot(aes(hba1c, crp)) + 
+  geom_point(aes(color = diabetes_treat), alpha = 0.5) + 
+  geom_smooth(aes(color = medication), method = "lm", se = FALSE, color = "gray") + 
+  scale_color_brewer(palette = 11, name = "Diabetes Treatment", labels = c("Diet & Exercise", "Medication")) + 
+>>>>>>> master
   theme_apa() +
   labs( title = "The Relationship Between Blood Sugar and Inflammation by Treatment", 
         caption =  "SAGE data from Mexico", 
@@ -295,9 +325,9 @@ scale_color_brewer(  name = "Diabetes Treatment", labels = c("Diet & Exercise", 
 #this line does not enable manual color adjustment
 ```
 
-(ref:fig3) This is the caption of figure \@ref(fig:fig3).
+(ref:tian-filtering) Here goes the caption.
 
-Here, I want to point the reader to Figure \@ref(fig:fig3).
+
 
 ```{r regtab1}
 mreg1_summary<- summary(mreg1)
@@ -332,15 +362,10 @@ mreg1_f_p <- report_p(get_model_p(mreg1_summary))
 mreg1_r2 <- mreg1_summary$r.squared %>% round(3)
 ```
 
-Demo of inline code usage. We found that this regression model (Table \@ref(tab:regtab1)) using `r mreg1_N` participants was not significant $F$(`r mreg1_f_df1`, `r mreg1_f_df2`) = `r mreg1_f`, $p$ `r mreg1_f_p` with $R^2$ = `r mreg1_r2`. The regression coefficient for age was $b_{age}$ = `r mreg1_age` ($SE$ = `r mreg1_age_se`, $p$ `r mreg1_age_p`), and for use of medication $b_{medication}$ = `r mreg1_med` ($SE$ =  `r mreg1_med_se`, $p$ `r mreg1_med_p`).
-
-
-\newpage 
-
 ```{r RQ2}
 #RQ2: Does diet and exercise predict inflammation levels? (Requires filtering, modeling, a table, and a figure. Do only as much as possible in this timeframe!)
 RQ2_df <- data %>%
-  filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age), !(is.na(crp)))
+  filter(!is.na(dt_exrcse) & !is.na(age), !(is.na(crp)))
 reg2 <- lm(crp ~ age + dt_exrcse, data = data)
 #summary(reg2)
 #stargazer(reg2, type = "text")
@@ -378,20 +403,17 @@ reg2_f_p <- report_p(get_model_p(reg2_summary))
 reg2_r2 <- reg2_summary$r.squared %>% round(3)
 ```
 
-Demo of inline code usage. We found that this regression model  (Table \@ref(tab:RQ2)) using `r reg2_N` participants was not significant $F$(`r reg2_f_df1`, `r reg2_f_df2`) = `r reg2_f`, $p$ `r reg2_f_p` with $R^2$ = `r reg2_r2`. The regression coefficient for age was $b_{age}$ = `r reg2_age` ($SE$ = `r reg2_age_se`, $p$ `r reg2_age_p`), and for diet and exercise $b_{Diet}$ = `r reg2_de` ($SE$ =  `r reg2_de_se`, $p$ `r reg2_de_p`).
-
-
-```{r RQ3-brittany, eval=FALSE, include=FALSE}
+```{r RQ3-brittany, include=FALSE}
 #RQ3: Is there a relationship between seeing a doctor in the last year and using diet and exercise as a treatment for diabetes? 
 # Null: There is no relationship between seeing a doctor in the last year and diet and exercise. 
 # data <- import(here("data","mexico_raw_dat.csv")) %>% as_tibble #Importing the Mexico dataset #From Rachel: I'm hashtagging this out, because if you re-import the dataset here, it loses all the cleaning from earlier. 
- #filter(!is.na(medication) | !is.na(hba1c) | !is.na(age) | !is.na(crp))
+#filter(!is.na(medication) | !is.na(hba1c) | !is.na(age) | !is.na(crp))
 RQ3df <- data %>% 
-  filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age) & !(is.na(crp)) & !is.na(access)) #From Rachel: There were inconsistencies from the cleaning to here about the variable being called care vs. access. I switched them all to access, here and in the code below.
+  filter(!is.na(dt_exrcse) & !is.na(age) & !(is.na(crp)) & !is.na(access)) #From Rachel: There were inconsistencies from the cleaning to here about the variable being called care vs. access. I switched them all to access, here and in the code below.
 RQ3df <- RQ3df %>% select(diagnosis, age, crp, dt_exrcse, access) %>%  
   filter(age >=50 & (diagnosis == 1 | crp < 5))
 RQ3df$access <- factor(RQ3df$access,
-                      levels = c(1,2), labels = c("Yes","No")) 
+                       levels = c(1,2), labels = c("Yes","No")) 
 RQ3df$dt_exrcse <- factor(RQ3df$dt_exrcse, 
                           levels = c(1,2), labels = c("Yes", "No"))
 prop <- prop.table(table(RQ3df$access))
@@ -411,17 +433,16 @@ chi_df$observed
 
 ```
 
-
-```{r}
+```{r, prop-access-bar, fig.cap = "(ref:prop-access-bar)"}
 #RQ4: For those partaking in diet and exercise, what is the relation of visiting the doctor in the last year on inflammation levels?
 #Null: There is no relation between visiting the doctor in the last year and inflamation levels among those that partake in diet and exercise as a treatment for diabetes. 
 RQ4df <- data %>% 
-  filter(!is.na(dt_exrcse) & !is.na(hba1c) & !is.na(age) & !(is.na(crp)) & !is.na(access))
+  filter(!is.na(dt_exrcse) & !is.na(age) & !(is.na(crp)) & !is.na(access))
 
 RQ4df <- RQ4df %>% select(diagnosis, age, crp, dt_exrcse, access) %>%  
   filter(age >=50 & (diagnosis == 1 | crp < 5) & dt_exrcse == 1)
 RQ4df$access <- factor(RQ4df$access,
-                      levels = c(1,2), labels = c("Yes","No")) 
+                       levels = c(1,2), labels = c("Yes","No")) 
 view(RQ4df)
 #RQ4df$crp <- RQ4df %>% 
 #factor(if_else(crp <= 3.0, "low", "high"), levels = c("low", "high"))
@@ -438,17 +459,17 @@ chi_df_access$expected
 chi_df_access$observed 
 
 #RQ4df$crp2 <- factor(RQ3df$crp2, 
-                          #levels = c(1,2), labels = c("low", "high"))
+#levels = c(1,2), labels = c("low", "high"))
 
 prop_access_bar <- ggplot(data = RQ4df, aes(x = access, fill = crp2))+
   geom_bar(position = "dodge")+
   labs(title = "Relation of Inflamation Levels low/high and Seeing a Doctor in the Last Year Y/N", subtitle= "Among Individuals with Diabetes that use Diet and Exercise as Treatment", x = "Saw a doctor in the last year Y/N", y = "Frequency")
 prop_access_bar
-  
+
 #prop4
 #For those with vs. without access to medical care, what is the effect of diet and exercise on inflammation levels? 
 ```
-
+(ref:prop-access-bar) Here goes the caption.
 
 ```{r descriptives table prep}
 summary <- data %>%
@@ -467,12 +488,11 @@ summary <- data %>%
             age_M = round(mean(age), 1),
             age_SD = round(sd(age), 1))
 
-chi <- chisq.test(table(data$sex)) #why is this here? what is this asking? 
-chi
+chi <- chisq.test(table(data$sex)) #why is this here? what is this asking? #just seeing if there is women are overrepesented in our sample.
 
 ```
 
-```{r tableofcrpmedicationandexercise, fig.cap = "(ref:fig4)"}
+```{r tableofcrpmedicationandexercise, fig.cap = "(ref:tableofcrpmedicationandexercise)"}
 ggplot(groups_med_dt_exrcse, aes(medication, mean))+
   theme_apa()+
   geom_col(aes(fill = dt_exrcse),
@@ -592,8 +612,7 @@ app_fig_3 <- dat2_long %>%
 
 
 (ref:fig4) Caption for Figure \@ref(fig:tableofcrpmedicationandexercise) goes here.
-
-Here I reference figure \@ref(fig:tableofcrpmedicationandexercise).
+(ref:tableofcrpmedicationandexercise) Here goes the caption.
 
 
 |  |            |`r summary$country[1]` |
@@ -606,6 +625,25 @@ Here I reference figure \@ref(fig:tableofcrpmedicationandexercise).
 |Age        |           |`r summary$age_M[1]` ($SD$ = `r summary$age_SD[1]`)                  |
 
 Table: (\#tab:descriptives) Descriptive statistics.
+
+
+# FIGURE REFERENCES
+
+Figure \@ref(fig:tableofcrpmedicationandexercise)
+
+Figure \@ref(fig:tian-filtering)
+
+Figure \@ref(fig:tian-fig-hba1c-65)
+
+Figure \@ref(fig:RQ1plot)
+
+# TABLE REFERENCES
+
+Table \@ref(tab:regtab1) (Regression Table 1)
+
+Table \@ref(tab:RQ2) (Regression Table 2)
+
+Table \@ref(tab:descriptives) (Descriptives Table)
 
 
 # Introduction
@@ -624,7 +662,7 @@ The ability of cells to absorb insulin can be increased through diet, exercise, 
 
 ## Procedures and Sample
 
-`r summary$N` participants were included in our analyses. Of those, `r summary$N_male` were assessed to be male (`r summary$N_male_pct` %), `r summary$N_female` were identified to be female (`r summary$N_female_pct` %). Sex data for `r summary$N_unknown` participant was missing (see Table \@ref(tab:descriptives)). This indicates that females were overrepresented in our sample, assuming binary sexes are represented equally in the population ($\chi$(`r chi$parameter`) = `r chi$statistic`, $p$ `r report_p(chi$p.value)`). The age in our sample was $M$ = `r summary$age_M` years (SD = `r summary$age_SD` years).
+`r summary$N` participants were included in our analyses. Of those, `r summary$N_male` were assessed to be male (`r summary$N_male_pct` %), `r summary$N_female` were identified to be female (`r summary$N_female_pct` %). Sex data for `r summary$N_unknown` participant was missing (see Table \@ref(tab:descriptives)). This indicates that females were overrepresented in our sample, assuming binary sexes are represented equally in the population ($\chi^2$(`r chi$parameter`) = `r chi$statistic`, $p$ `r report_p(chi$p.value)`). The age in our sample was $M$ = `r summary$age_M` years (SD = `r summary$age_SD` years).
 Because of missing values in the variables of interest in some of our analyses, subjects were excluded. Thus, $N$ is reported separately for each analysis.
 
 ## Variables
@@ -663,7 +701,20 @@ here [@here], rio[@chanRioSwissarmyKnife2021], tidyverse[re], ggpubr [@kassambar
 [@revellePsychProceduresPsychological2022],and forcats [@wickhamForcatsToolsWorking2022].
 
 comment 495
+
 # Results
+
+## Regression 1
+Demo of inline code usage. We found that this regression model (Table \@ref(tab:regtab1)) using `r mreg1_N` participants was not significant $F$(`r mreg1_f_df1`, `r mreg1_f_df2`) = `r mreg1_f`, $p$ `r mreg1_f_p` with $R^2$ = `r mreg1_r2`. The regression coefficient for age was $b_{age}$ = `r mreg1_age` ($SE$ = `r mreg1_age_se`, $p$ `r mreg1_age_p`), and for use of medication $b_{medication}$ = `r mreg1_med` ($SE$ =  `r mreg1_med_se`, $p$ `r mreg1_med_p`).
+
+## Regression 2
+
+Demo of inline code usage. We found that this regression model  (Table \@ref(tab:RQ2)) using `r reg2_N` participants was not significant $F$(`r reg2_f_df1`, `r reg2_f_df2`) = `r reg2_f`, $p$ `r reg2_f_p` with $R^2$ = `r reg2_r2`. The regression coefficient for age was $b_{age}$ = `r reg2_age` ($SE$ = `r reg2_age_se`, $p$ `r reg2_age_p`), and for diet and exercise $b_{Diet}$ = `r reg2_de` ($SE$ =  `r reg2_de_se`, $p$ `r reg2_de_p`).
+
+## Chi Square Test
+
+First $\chi^2$ results: ($\chi^2$(`r chi_df$parameter`) = `r chi_df$statistic`, $p$ `r report_p(chi_df$p.value)`).
+Second $\chi^2$ results: ($\chi^2$(`r chi_df_access$parameter`) = `r chi_df_access$statistic`, $p$ `r report_p(chi_df_access$p.value)`).
 
 # Discussion 
 
@@ -683,6 +734,7 @@ Despite the documented limitations of the World Health Organization Health State
 
 # References
 
+<div id="refs"></div>
 
 ```{r Citations, eval=FALSE, include=FALSE}
 citation("tidyverse")
@@ -695,9 +747,7 @@ citation("stargazer")
 
 ```
 
-\listoffigures
-\listoftables
-
+# Tables and Figures
 
 
 
